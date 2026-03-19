@@ -8,20 +8,6 @@ const state_choices = [{
     type: "dynamic"
 }, ...states]
 
-/**
- * TODO from 3/16/26
- * 
- * This can now display a Static menu, which is supposed to be a context for other Menu States to be run from
- * 
- * Action and Dynamic are currently dummied out to just display their own names
- * 
- * What needs to be done now is implementing the Anchor Location, and Anchor X/Y portion of the menu creation.
- * 
- * This means pulling the overlay all the way up, and drawing all the menu boxes necessary in the correct spots
- * 
- * Later, it will also mean trying to see if this can be made to work with the Combat Scene type.
- */
-
 const autoLabel = (fetchArg) => {
     const state = fetchArg("state")
 
@@ -54,26 +40,20 @@ const fields = [
             {
                 key: "x",
                 label: "Anchor X",
-                type: "value",
-                min: 0,
-                max: 255,
+                type: "number",
+                min: 1,
+                max: 20,
                 width: "50%",
-                defaultValue: {
-                    type: "number",
-                    value: 0,
-                },
+                defaultValue: 1
             },
             {
                 key: "y",
                 label: "Anchor Y",
-                type: "value",
-                min: 0,
-                max: 255,
+                type: "number",
+                min: 1,
+                max: 18,
                 width: "50%",
-                defaultValue: {
-                    type: "number",
-                    value: 0,
-                },
+                defaultValue: 1
             },
         ],
     },
@@ -84,26 +64,20 @@ const fields = [
             {
                 key: "width",
                 label: "Width",
-                type: "value",
-                min: 0,
-                max: 255,
+                type: "number",
+                min: 1,
+                max: 18,
                 width: "50%",
-                defaultValue: {
-                    type: "number",
-                    value: 20,
-                },
+                defaultValue: 1
             },
             {
                 key: "height",
                 label: "Height",
-                type: "value",
-                min: 0,
-                max: 255,
+                type: "number",
+                min: 1,
+                max: 16,
                 width: "50%",
-                defaultValue: {
-                    type: "number",
-                    value: 4,
-                },
+                defaultValue: 1
             },
         ],
     },
@@ -118,44 +92,17 @@ const actions = states.filter((_) => ["action"].includes(_.type))
  */
 const compile = (input, helpers) => {
     const menu_state = state_choices.find((_) => (_.name === input.state))
-
-    /**
-     * TODO 3/18/26
-     * 
-     * This needs something to one-time make a script that builds a huge switch statement for all the actions.
-     * 
-     * if helpers.cache does not have an actionSwitchId representing the script that should be generated
-     * then actionSwitchId should be set for it
-     * 
-     * that script looks like the following:
-     * 
-     * for each entry in states filtered by action
-     * if action is in helper.cache
-     * add it to the list of cases
-     * 
-     * then build the switch statement
-     * 
-     * 
-     * ---
-     * 
-     * Might be a really good idea to see if macros  and imports can allow for the above in a way that won't steal a lot of ram with duplication
-     * 
-     * have the define action state function build an importable file thats just like 
-     * 
-     * .MACRO ACTION_FIGHT
-     * VM_CALL_FAR fight b_fight
-     * ENDMACRO
-     * 
-     * and then in here we can just look for macros of the correct pattern or something.
-     * 
-     * ---
-     * 
-     * 3/18/26 afternoon
-     * 
-     * Decided it to be easier to just make the array files and probably send over the far_ptr_t somehow or something. Maybe theres an existing function to help with that. 
-     */
     const run_dynamic_menu = () => {
         const len = helpers._declareLocal("len", 1, true)
+        const oct_x = Number(input.x+2).toString(8).padStart(3, "0")
+        const oct_y = Number(input.y+1).toString(8).padStart(3, "0")
+
+        helpers.overlayMoveTo(0, 0, -3)
+        helpers._overlayClear(input.x-1, input.y-1, input.width+2, input.height+2, ".UI_COLOR_WHITE", true, false)
+        helpers._loadText(0)
+        helpers._string(`\\003\\${oct_x}\\${oct_y}`)
+        helpers._displayText()
+        helpers._overlayWait(false, [".UI_WAIT_TEXT"]);
 
         helpers.variableSetToValue(len, 0)
         helpers.whileScriptValue(
@@ -165,33 +112,35 @@ const compile = (input, helpers) => {
                     type: "variable",
                     value: len,
                 },
-                valueB: input.height,
+                valueB: {
+                    type: "number",
+                    value: input.height
+                },
             }, () => {
                 helpers._stackPush(len)
                 helpers._callNative("runActionViewScript")
                 helpers._stackPop(1)
                 helpers.variableInc(len)
             })
-        helpers.overlayMoveTo(0, 0, -3)
         helpers._addNL();
 
-        helpers._choice(len, [], 16)
+        helpers._choice(len, [], input.height)
         const clampedMenuIndex = (index) => {
             if (index < 0) {
                 return 0;
             }
-            if (index > 16 - 1) {
+            if (index > input.height - 1) {
                 return 0;
             }
             return index + 1;
         };
 
-        for (let i = 0; i < 16; i++) {
+        for (let i = 0; i < input.height; i++) {
             helpers._menuItem(
                 1,
                 1 + i,
                 1,
-                16,
+                input.height,
                 clampedMenuIndex(i - 1),
                 clampedMenuIndex(i + 1),
             );
@@ -203,6 +152,7 @@ const compile = (input, helpers) => {
         helpers._callNative("runActionScript")
         helpers._stackPop(1)
         helpers._addNL();
+        helpers.markLocalsUsed(len, oct_x, oct_y)
     }
 
     switch (menu_state.type) {

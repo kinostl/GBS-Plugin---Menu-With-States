@@ -65,34 +65,14 @@
       "command": "MENU_START_MENU_STATE",
       "args": {
         "state": "Main Menu",
-        "x": {
-          "type": "number",
-          "value": 0
-        },
-        "y": {
-          "type": "number",
-          "value": 0
-        },
+        "x": 1,
+        "y": 1,
         "": "Top Left",
-        "__collapse": true,
-        "height": {
-          "type": "number",
-          "value": 4
-        }
+        "__collapse": false,
+        "height": 4,
+        "width": 18
       },
       "id": "f7d3b846-1c26-4815-9e15-7f1625577cad"
-    },
-    {
-      "command": "EVENT_SET_VALUE",
-      "args": {
-        "variable": "L0",
-        "value": {
-          "type": "number",
-          "value": 0
-        },
-        "__collapse": true
-      },
-      "id": "ab4d8774-1796-4ae2-9668-5a8818ba935f"
     }
   ],
   "playerHit1Script": [],
