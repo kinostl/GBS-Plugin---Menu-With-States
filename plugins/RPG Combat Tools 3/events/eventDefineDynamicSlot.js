@@ -41,8 +41,8 @@ const compile = (input, helpers) => {
     const action_state_idx = actions.findIndex((_) => (_.name == input.script))
 
     helpers._addComment(`Update Dynamic Slot #${input.slot} to ${action_state.name}`)
-    helpers._stackPush(input.slot - 1)
-    helpers._stackPush(action_state_idx)
+    helpers._stackPushConst(input.slot - 1)
+    helpers._stackPushConst(action_state_idx)
     helpers._callNative("updateDynamicSlot")
     helpers._stackPop(2)
 }

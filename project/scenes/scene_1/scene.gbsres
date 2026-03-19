@@ -37,15 +37,6 @@
     {
       "command": "MENU_DEFINE_MENU_ACTION_STATE",
       "args": {
-        "state": "Run",
-        "script": "ef3ef23d-ee70-4cff-ac84-4f8157045dbc",
-        "__collapse": true
-      },
-      "id": "957f70d5-35d0-40f6-aa22-2883967f5376"
-    },
-    {
-      "command": "MENU_DEFINE_MENU_ACTION_STATE",
-      "args": {
         "state": "Item",
         "script": "ef3ef23d-ee70-4cff-ac84-4f8157045dbc",
         "__collapse": true
@@ -62,6 +53,15 @@
       "id": "53f9136d-7494-4ed6-8f7f-5014481b3149"
     },
     {
+      "command": "MENU_DEFINE_MENU_ACTION_STATE",
+      "args": {
+        "state": "Run",
+        "script": "ef3ef23d-ee70-4cff-ac84-4f8157045dbc",
+        "__collapse": true
+      },
+      "id": "957f70d5-35d0-40f6-aa22-2883967f5376"
+    },
+    {
       "command": "MENU_START_MENU_STATE",
       "args": {
         "state": "Main Menu",
@@ -74,7 +74,7 @@
           "value": 0
         },
         "": "Top Left",
-        "__collapse": false,
+        "__collapse": true,
         "height": {
           "type": "number",
           "value": 4

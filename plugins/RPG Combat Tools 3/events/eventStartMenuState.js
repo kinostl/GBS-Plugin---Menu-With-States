@@ -172,8 +172,37 @@ const compile = (input, helpers) => {
                 helpers._stackPop(1)
                 helpers.variableInc(len)
             })
-        helpers.overlayMoveTo(0, 0, 0)
-        helpers.markLocalsUsed(len)
+        helpers.overlayMoveTo(0, 0, -3)
+        helpers._addNL();
+
+        helpers._choice(len, [], 16)
+        const clampedMenuIndex = (index) => {
+            if (index < 0) {
+                return 0;
+            }
+            if (index > 16 - 1) {
+                return 0;
+            }
+            return index + 1;
+        };
+
+        for (let i = 0; i < 16; i++) {
+            helpers._menuItem(
+                1,
+                1 + i,
+                1,
+                16,
+                clampedMenuIndex(i - 1),
+                clampedMenuIndex(i + 1),
+            );
+        }
+        helpers.variableDec(len)
+        helpers._addNL();
+
+        helpers._stackPush(len)
+        helpers._callNative("runActionScript")
+        helpers._stackPop(1)
+        helpers._addNL();
     }
 
     switch (menu_state.type) {
