@@ -97,6 +97,7 @@ const compile = (input, helpers) => {
         const oct_x = Number(input.x+2).toString(8).padStart(3, "0")
         const oct_y = Number(input.y+1).toString(8).padStart(3, "0")
 
+        helpers.overlayCopyFromBackground()
         helpers.overlayMoveTo(0, 0, -3)
         helpers._overlayClear(input.x-1, input.y-1, input.width+2, input.height+2, ".UI_COLOR_WHITE", true, false)
         helpers._loadText(0)
