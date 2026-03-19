@@ -1,0 +1,28 @@
+[
+    {
+        "name": "Main Menu",
+        "type": "static",
+        "slots": [
+            "Fight",
+            "Magic",
+            "Item",
+            "Run"
+        ]
+    },
+    {
+        "name": "Fight",
+        "type": "action"
+    },
+    {
+        "name": "Magic",
+        "type": "action"
+    },
+    {
+        "name": "Item",
+        "type": "action"
+    },
+    {
+        "name": "Run",
+        "type": "action"
+    }
+]

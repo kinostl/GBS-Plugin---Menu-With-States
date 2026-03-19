@@ -1,0 +1,6 @@
+Diagnostics:
+  Suppress: 
+  - expected_fn_body
+  - asm_qualifier_ignored
+  - init_element_not_constant
+  - incompatible-pointer-types-discards-qualifiers

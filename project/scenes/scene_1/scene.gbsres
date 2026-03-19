@@ -1,0 +1,101 @@
+{
+  "_resourceType": "scene",
+  "id": "b6d6c5ad-0315-425e-8ca0-8b3437e0b23d",
+  "_index": 0,
+  "name": "Scene 1",
+  "backgroundId": "1e5f9d6a-bdbc-43e6-8c34-22f5bb5dea05",
+  "tilesetId": "",
+  "width": 20,
+  "height": 18,
+  "type": "TOPDOWN",
+  "colorModeOverride": "none",
+  "paletteIds": [],
+  "spritePaletteIds": [],
+  "collisions": "",
+  "autoFadeSpeed": 1,
+  "symbol": "scene_1",
+  "x": 143.5,
+  "y": 31,
+  "script": [
+    {
+      "command": "EVENT_FADE_IN",
+      "args": {
+        "speed": "2",
+        "__collapse": true
+      },
+      "id": "5fd165d8-b3a2-4cc7-b4de-7b68468e689c"
+    },
+    {
+      "command": "MENU_DEFINE_MENU_ACTION_STATE",
+      "args": {
+        "state": "Fight",
+        "script": "ef3ef23d-ee70-4cff-ac84-4f8157045dbc",
+        "__collapse": true
+      },
+      "id": "3e2c74c4-4d9c-425c-91cb-1b931c2214c4"
+    },
+    {
+      "command": "MENU_DEFINE_MENU_ACTION_STATE",
+      "args": {
+        "state": "Run",
+        "script": "ef3ef23d-ee70-4cff-ac84-4f8157045dbc",
+        "__collapse": true
+      },
+      "id": "957f70d5-35d0-40f6-aa22-2883967f5376"
+    },
+    {
+      "command": "MENU_DEFINE_MENU_ACTION_STATE",
+      "args": {
+        "state": "Item",
+        "script": "ef3ef23d-ee70-4cff-ac84-4f8157045dbc",
+        "__collapse": true
+      },
+      "id": "dfd9fdaf-8789-4343-aabf-c509a9f0cd39"
+    },
+    {
+      "command": "MENU_DEFINE_MENU_ACTION_STATE",
+      "args": {
+        "state": "Magic",
+        "script": "086bbf29-eddc-4018-bce2-afc898411253",
+        "__collapse": true
+      },
+      "id": "53f9136d-7494-4ed6-8f7f-5014481b3149"
+    },
+    {
+      "command": "MENU_START_MENU_STATE",
+      "args": {
+        "state": "Main Menu",
+        "x": {
+          "type": "number",
+          "value": 0
+        },
+        "y": {
+          "type": "number",
+          "value": 0
+        },
+        "": "Top Left",
+        "__collapse": false,
+        "height": {
+          "type": "number",
+          "value": 4
+        }
+      },
+      "id": "f7d3b846-1c26-4815-9e15-7f1625577cad"
+    },
+    {
+      "command": "EVENT_SET_VALUE",
+      "args": {
+        "variable": "L0",
+        "value": {
+          "type": "number",
+          "value": 0
+        },
+        "__collapse": true
+      },
+      "id": "ab4d8774-1796-4ae2-9668-5a8818ba935f"
+    }
+  ],
+  "playerHit1Script": [],
+  "playerHit2Script": [],
+  "playerHit3Script": []
+}
