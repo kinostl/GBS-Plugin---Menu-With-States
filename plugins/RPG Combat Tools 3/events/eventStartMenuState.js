@@ -29,26 +29,13 @@ const fields = [
         defaultValue: "Dynamic Menu"
     },
     {
-        label: "Draw Menu on which corner?",
-        key: "anchor",
-        type: "select",
-        options: [
-            "Top Left",
-            "Top Right",
-            "Bottom Left",
-            "Bottom Right"
-        ].map((_) => [_, _]),
-        defaultValue: "Top Left",
-        conditions: [state_in_state_condition]
-    },
-    {
         type: "group",
         wrapItems: true,
         conditions: [state_in_state_condition],
         fields: [
             {
                 key: "x",
-                label: "X Buffer",
+                label: "X",
                 type: "number",
                 min: 0,
                 max: 20,
@@ -58,7 +45,7 @@ const fields = [
             },
             {
                 key: "y",
-                label: "Y Buffer",
+                label: "Y",
                 type: "number",
                 min: 0,
                 max: 18,
@@ -95,6 +82,13 @@ const fields = [
             },
         ],
     },
+    {
+        type: "checkbox",
+        key: "draw_frame",
+        label: "Draw Frame?",
+        defaultValue: true,
+        conditions: [state_in_state_condition],
+    }
 ];
 
 const actions = states.filter((_) => ["action"].includes(_.type))
@@ -105,25 +99,6 @@ const actions = states.filter((_) => ["action"].includes(_.type))
  * @param {import('/home/deck/.local/share/gb-studio/helpers.d.ts').Helpers} helpers 
  */
 const compile = (input, helpers) => {
-    const SCREEN_WIDTH = 19
-    const SCREEN_HEIGHT = 17
-
-    if (input.anchor.includes("Bottom")) {
-        input.y = SCREEN_HEIGHT - input.height - input.y
-    }
-
-    if (input.anchor.includes("Right")) {
-        input.x = SCREEN_WIDTH - input.width - input.x
-    }
-
-    if (input.anchor.includes("Top")) {
-        input.y++
-    }
-
-    if (input.anchor.includes("Left")) {
-        input.x++
-    }
-
     const menu_state = state_choices.find((_) => (_.name === input.state))
     const run_dynamic_menu = () => {
         const len = helpers._declareLocal("len", 1, true)
@@ -132,7 +107,11 @@ const compile = (input, helpers) => {
 
         helpers.overlayCopyFromBackground()
         helpers.overlayMoveTo(0, 0, -3)
-        helpers._overlayClear(input.x-1, input.y-1, input.width+2, input.height+2, ".UI_COLOR_WHITE", true, false)
+        if (input.draw_frame) {
+            helpers._overlayClear(input.x - 1, input.y - 1, input.width + 2, input.height + 2, ".UI_COLOR_WHITE", true, false)
+        }else{
+            helpers._overlayClear(input.x, input.y, input.width, input.height, ".UI_COLOR_WHITE", false, false)
+        }
         helpers._loadText(0)
         helpers._string(`\\003\\${oct_x}\\${oct_y}`)
         helpers._displayText()

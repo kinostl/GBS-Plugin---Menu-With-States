@@ -36,7 +36,8 @@
         "height": 2,
         "width": 18,
         "": "Top Right",
-        "anchor": "Top Left"
+        "anchor": "Top Left",
+        "draw_frame": true
       },
       "id": "288cbaf2-fd6e-4c92-9541-5c94e5cafac9"
     }
