@@ -31,13 +31,15 @@
       "command": "MENU_START_MENU_STATE",
       "args": {
         "state": "Dynamic Menu",
-        "x": 1,
+        "x": 3,
         "y": 1,
         "height": 2,
-        "width": 18,
+        "width": 6,
         "": "Top Right",
         "anchor": "Top Left",
-        "draw_frame": true
+        "draw_frame": true,
+        "clear_previous": false,
+        "show_frame": true
       },
       "id": "288cbaf2-fd6e-4c92-9541-5c94e5cafac9"
     }
