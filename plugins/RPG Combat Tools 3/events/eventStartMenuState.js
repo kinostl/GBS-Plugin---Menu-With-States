@@ -118,8 +118,19 @@ const compile = (input, helpers) => {
     const menu_state = state_choices.find((_) => (_.name === input.state))
     const run_dynamic_menu = () => {
         const len = helpers._declareLocal("len", 1, true)
-        const oct_x = Number(input.x+2).toString(8).padStart(3, "0")
-        const oct_y = Number(input.y+1).toString(8).padStart(3, "0")
+        const oct_x = Number(input.x + 2).toString(8).padStart(3, "0")
+        const oct_y = Number(input.y + 1).toString(8).padStart(3, "0")
+
+        const isColor = helpers.options.settings.colorMode !== "mono";
+        if (isColor) {
+            helpers._stackPushConst(0);
+            helpers._getMemUInt8(".ARG0", "overlay_priority");
+            helpers._setConstMemUInt8("overlay_priority", 0);
+        } else {
+            helpers._stackPushConst(0);
+            helpers._getMemUInt8(".ARG0", "show_actors_on_overlay");
+            helpers._setConstMemUInt8("show_actors_on_overlay", 1);
+        }
 
         if (input.clear_previous) {
             helpers.overlayHide()
@@ -183,6 +194,13 @@ const compile = (input, helpers) => {
         helpers._stackPop(1)
         helpers._addNL();
         helpers.markLocalsUsed(len, oct_x, oct_y)
+        if (isColor) {
+            helpers._setMemUInt8("overlay_priority", ".ARG0");
+            helpers._stackPop(1);
+        } else {
+            helpers._setMemUInt8("show_actors_on_overlay", ".ARG0");
+            helpers._stackPop(1);
+        }
     }
 
     switch (menu_state.type) {

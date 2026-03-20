@@ -62,21 +62,30 @@
       "id": "957f70d5-35d0-40f6-aa22-2883967f5376"
     },
     {
-      "command": "MENU_START_MENU_STATE",
-      "args": {
-        "state": "Main Menu",
-        "x": 1,
-        "y": 1,
-        "": "Bottom Left",
-        "__collapse": false,
-        "height": 4,
-        "width": 9,
-        "anchor": "Top Left",
-        "draw_frame": false,
-        "clear_previous": true,
-        "show_frame": true
+      "command": "EVENT_LOOP",
+      "args": {},
+      "children": {
+        "true": [
+          {
+            "command": "MENU_START_MENU_STATE",
+            "args": {
+              "state": "Main Menu",
+              "x": 1,
+              "y": 1,
+              "": "Bottom Left",
+              "__collapse": false,
+              "height": 4,
+              "width": 9,
+              "anchor": "Top Left",
+              "draw_frame": false,
+              "clear_previous": true,
+              "show_frame": true
+            },
+            "id": "f7d3b846-1c26-4815-9e15-7f1625577cad"
+          }
+        ]
       },
-      "id": "f7d3b846-1c26-4815-9e15-7f1625577cad"
+      "id": "043eb718-4164-4717-8b49-569951be1047"
     }
   ],
   "playerHit1Script": [],
