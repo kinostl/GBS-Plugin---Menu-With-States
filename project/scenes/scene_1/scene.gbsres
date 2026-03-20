@@ -67,10 +67,11 @@
         "state": "Main Menu",
         "x": 1,
         "y": 1,
-        "": "Top Left",
+        "": "Bottom Left",
         "__collapse": false,
         "height": 4,
-        "width": 18
+        "width": 9,
+        "anchor": "Top Left"
       },
       "id": "f7d3b846-1c26-4815-9e15-7f1625577cad"
     }

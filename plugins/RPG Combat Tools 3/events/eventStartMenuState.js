@@ -23,7 +23,8 @@ const fields = [
         defaultValue: "Dynamic Menu"
     },
     {
-        label: "Anchor Location",
+        label: "Draw Menu on which corner?",
+        key: "anchor",
         type: "select",
         options: [
             "Top Left",
@@ -39,21 +40,21 @@ const fields = [
         fields: [
             {
                 key: "x",
-                label: "Anchor X",
+                label: "X Buffer",
                 type: "number",
-                min: 1,
+                min: 0,
                 max: 20,
                 width: "50%",
-                defaultValue: 1
+                defaultValue: 0
             },
             {
                 key: "y",
-                label: "Anchor Y",
+                label: "Y Buffer",
                 type: "number",
-                min: 1,
+                min: 0,
                 max: 18,
                 width: "50%",
-                defaultValue: 1
+                defaultValue: 0
             },
         ],
     },
@@ -91,6 +92,25 @@ const actions = states.filter((_) => ["action"].includes(_.type))
  * @param {import('/home/deck/.local/share/gb-studio/helpers.d.ts').Helpers} helpers 
  */
 const compile = (input, helpers) => {
+    const SCREEN_WIDTH = 19
+    const SCREEN_HEIGHT = 17
+
+    if (input.anchor.includes("Bottom")) {
+        input.y = SCREEN_HEIGHT - input.height - input.y
+    }
+
+    if (input.anchor.includes("Right")) {
+        input.x = SCREEN_WIDTH - input.width - input.x
+    }
+
+    if (input.anchor.includes("Top")) {
+        input.y++
+    }
+
+    if (input.anchor.includes("Left")) {
+        input.x++
+    }
+
     const menu_state = state_choices.find((_) => (_.name === input.state))
     const run_dynamic_menu = () => {
         const len = helpers._declareLocal("len", 1, true)
@@ -138,8 +158,8 @@ const compile = (input, helpers) => {
 
         for (let i = 0; i < input.height; i++) {
             helpers._menuItem(
-                1,
-                1 + i,
+                input.x,
+                input.y + i,
                 1,
                 input.height,
                 clampedMenuIndex(i - 1),
