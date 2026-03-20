@@ -8,6 +8,12 @@ const state_choices = [{
     type: "dynamic"
 }, ...states]
 
+const menu_state_names = state_choices.filter((_)=>["static", "dynamic"].includes(_.type)).map((_)=>_.name)
+const state_in_state_condition = {
+    key: "state",
+    in: menu_state_names
+}
+
 const autoLabel = (fetchArg) => {
     const state = fetchArg("state")
 
@@ -32,11 +38,13 @@ const fields = [
             "Bottom Left",
             "Bottom Right"
         ].map((_) => [_, _]),
-        defaultValue: "Top Left"
+        defaultValue: "Top Left",
+        conditions: [state_in_state_condition]
     },
     {
         type: "group",
         wrapItems: true,
+        conditions: [state_in_state_condition],
         fields: [
             {
                 key: "x",
@@ -45,7 +53,8 @@ const fields = [
                 min: 0,
                 max: 20,
                 width: "50%",
-                defaultValue: 0
+                defaultValue: 0,
+                conditions: [state_in_state_condition],
             },
             {
                 key: "y",
@@ -54,13 +63,15 @@ const fields = [
                 min: 0,
                 max: 18,
                 width: "50%",
-                defaultValue: 0
+                defaultValue: 0,
+                conditions: [state_in_state_condition],
             },
         ],
     },
     {
         type: "group",
         wrapItems: true,
+        conditions: [state_in_state_condition],
         fields: [
             {
                 key: "width",
@@ -69,7 +80,8 @@ const fields = [
                 min: 1,
                 max: 18,
                 width: "50%",
-                defaultValue: 1
+                defaultValue: 1,
+                conditions: [state_in_state_condition],
             },
             {
                 key: "height",
@@ -78,7 +90,8 @@ const fields = [
                 min: 1,
                 max: 16,
                 width: "50%",
-                defaultValue: 1
+                defaultValue: 1,
+                conditions: [state_in_state_condition],
             },
         ],
     },
