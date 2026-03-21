@@ -1,5 +1,11 @@
 {
   "_resourceType": "variables",
-  "variables": [],
+  "variables": [
+    {
+      "id": "0",
+      "name": "Menu State (DEBUG)",
+      "symbol": "var_menu_state_debug_"
+    }
+  ],
   "constants": []
 }

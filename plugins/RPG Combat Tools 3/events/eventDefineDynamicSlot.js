@@ -6,12 +6,11 @@ const states = api.readJSON("./states.json")
 
 const autoLabel = (fetchArg) => {
     const slot = fetchArg("slot")
-    const script = fetchArg("script")
+    const script = fetchArg("state")
 
     return `Set Dynamic Slot #${slot} to ${script}`
 }
 
-const actions = states.filter((_) => ["action"].includes(_.type))
 
 const fields = [
     {
@@ -23,11 +22,11 @@ const fields = [
         defaultValue: 1
     },
     {
-        key: "script",
-        label: "Action to Load to Dynamic Slot",
+        key: "state",
+        label: "State to Load to Dynamic Slot",
         type: "select",
-        options: actions.map((_) => [_.name, _.name]),
-        defaultValue: actions[0].name
+        options: states.map((_) => [_, _]),
+        defaultValue: states[0]
     },
 ];
 
@@ -37,12 +36,11 @@ const fields = [
  * @param {import('/home/deck/.local/share/gb-studio/helpers.d.ts').Helpers} helpers 
  */
 const compile = (input, helpers) => {
-    const action_state = actions.find((_) => (_.name == input.script))
-    const action_state_idx = actions.findIndex((_) => (_.name == input.script))
+    const state_idx = states.indexOf(input.state)
 
-    helpers._addComment(`Update Dynamic Slot #${input.slot} to ${action_state.name}`)
+    helpers._addComment(`Update Dynamic Slot #${input.slot} to ${input.state}`)
     helpers._stackPushConst(input.slot - 1)
-    helpers._stackPushConst(action_state_idx)
+    helpers._stackPushConst(state_idx)
     helpers._callNative("updateDynamicSlot")
     helpers._stackPop(2)
 }

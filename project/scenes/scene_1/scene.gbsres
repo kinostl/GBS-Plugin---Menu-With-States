@@ -18,6 +18,17 @@
   "y": 31,
   "script": [
     {
+      "command": "EVENT_SET_VALUE",
+      "args": {
+        "variable": "0",
+        "value": {
+          "type": "number",
+          "value": 0
+        }
+      },
+      "id": "62d52fb6-3064-4e1f-8eb1-0a071b97b2f0"
+    },
+    {
       "command": "EVENT_FADE_IN",
       "args": {
         "speed": "2",
@@ -38,8 +49,8 @@
       "command": "MENU_DEFINE_MENU_ACTION_STATE",
       "args": {
         "state": "Item",
-        "script": "ef3ef23d-ee70-4cff-ac84-4f8157045dbc",
-        "__collapse": true
+        "script": "cc6eb97b-bb5c-4d80-b120-6743d70984db",
+        "__collapse": false
       },
       "id": "dfd9fdaf-8789-4343-aabf-c509a9f0cd39"
     },
@@ -62,32 +73,31 @@
       "id": "957f70d5-35d0-40f6-aa22-2883967f5376"
     },
     {
-      "command": "EVENT_LOOP",
+      "command": "MENU_DEFINE_MENU_ACTION_STATE",
       "args": {
-        "__comment": false
+        "state": "Main Menu",
+        "script": "be1ae652-95d0-4e48-be29-f4bc3205c77f",
+        "__collapse": false
       },
-      "children": {
-        "true": [
-          {
-            "command": "MENU_START_MENU_STATE",
-            "args": {
-              "state": "Main Menu",
-              "x": 1,
-              "y": 1,
-              "": "Bottom Left",
-              "__collapse": false,
-              "height": 4,
-              "width": 9,
-              "anchor": "Top Left",
-              "draw_frame": false,
-              "clear_previous": true,
-              "show_frame": true
-            },
-            "id": "f7d3b846-1c26-4815-9e15-7f1625577cad"
-          }
-        ]
+      "id": "0f878b02-73cc-4e9b-9692-135b41c95c29"
+    },
+    {
+      "command": "MENU_START_MENU_STATE",
+      "args": {
+        "state": "Main Menu",
+        "x": 1,
+        "y": 1,
+        "": "Bottom Left",
+        "__collapse": false,
+        "height": 4,
+        "width": 9,
+        "anchor": "Top Left",
+        "draw_frame": false,
+        "clear_previous": true,
+        "show_frame": true,
+        "allow_undo": false
       },
-      "id": "043eb718-4164-4717-8b49-569951be1047"
+      "id": "f7d3b846-1c26-4815-9e15-7f1625577cad"
     }
   ],
   "playerHit1Script": [],

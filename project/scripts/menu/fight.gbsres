@@ -31,6 +31,20 @@
         "closeDelayFrames": 30
       },
       "id": "c1899ede-98f8-4be2-9180-94e63e370e0d"
+    },
+    {
+      "command": "MENU_START_MENU_STATE",
+      "args": {
+        "state": "Main Menu",
+        "on_cancel": "Do Nothing",
+        "width": 1,
+        "height": 1,
+        "x": 0,
+        "y": 0,
+        "clear_previous": true,
+        "show_frame": true
+      },
+      "id": "3c70d877-dab3-4676-a9ad-7d30ade49018"
     }
   ]
 }

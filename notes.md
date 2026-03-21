@@ -3,7 +3,7 @@
 1. Menus have multiple States
 2. Any Menu Option can induce a new State
 3. An event or script may induce a new State
-4. Any Menu Option may execution actions or a script
+4. Any Menu Option may execution states or a script
 5. States may stack on top of each other (add Menu State to Stack?)
 6. Menu States may have dynamically or static options
 7. Menu States must be rendered to display
@@ -72,7 +72,7 @@ We might want something like "When this State Performs This Action" as an event,
 ------
 
 
-I think dynamics should just be precompiled actions probably, since the offset method we're using will work well with that. Then update the defineActionStates thing to be a bit more aware of that idea or something.
+I think dynamics should just be precompiled states probably, since the offset method we're using will work well with that. Then update the defineStatestates thing to be a bit more aware of that idea or something.
 
 
 -----

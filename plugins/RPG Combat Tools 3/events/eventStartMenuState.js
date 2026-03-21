@@ -3,15 +3,10 @@ const groups = ["Menu State System"];
 const name = "Start Menu State";
 const api = require("plugin-api")
 const states = api.readJSON("./states.json")
-const state_choices = [{
-    name: "Dynamic Menu",
-    type: "dynamic"
-}, ...states]
 
-const menu_state_names = state_choices.filter((_)=>["static", "dynamic"].includes(_.type)).map((_)=>_.name)
 const state_in_state_condition = {
     key: "state",
-    in: menu_state_names
+    in: ["Dynamic Menu"]
 }
 
 const autoLabel = (fetchArg) => {
@@ -25,8 +20,16 @@ const fields = [
         key: "state",
         label: "Which State?",
         type: "select",
-        options: state_choices.map((_) => [_.name, _.name]),
+        options: ["Dynamic Menu", ...states].map((_) => [_, _]),
         defaultValue: "Dynamic Menu"
+    },
+    {
+        type: "select",
+        label: "On Cancel",
+        key: "on_cancel",
+        options: ["Do Nothing", ...states].map((_) => [_, _]),
+        defaultValue: "Do Nothing",
+        conditions: [state_in_state_condition],
     },
     {
         type: "group",
@@ -107,28 +110,30 @@ const fields = [
     },
 ];
 
-const actions = states.filter((_) => ["action"].includes(_.type))
-
 /**
  * 
  * @param {*} input
  * @param {import('/home/deck/.local/share/gb-studio/helpers.d.ts').Helpers} helpers 
  */
 const compile = (input, helpers) => {
-    const menu_state = state_choices.find((_) => (_.name === input.state))
+    const menu_state = input.state
+    const state_idx = states.indexOf(menu_state)
+    const on_cancel = states.indexOf(input.on_cancel)
+
     const run_dynamic_menu = () => {
+        helpers.labelDefine("dynamic_menu")
         const len = helpers._declareLocal("len", 1, true)
+        const choice = helpers._declareLocal("choice", 1, true)
+        const actors_on_overlay = helpers._declareLocal("actors_on_overlay", 1, true)
         const oct_x = Number(input.x + 2).toString(8).padStart(3, "0")
         const oct_y = Number(input.y + 1).toString(8).padStart(3, "0")
 
         const isColor = helpers.options.settings.colorMode !== "mono";
         if (isColor) {
-            helpers._stackPushConst(0);
-            helpers._getMemUInt8(".ARG0", "overlay_priority");
+            helpers._getMemUInt8(actors_on_overlay, "overlay_priority");
             helpers._setConstMemUInt8("overlay_priority", 0);
         } else {
-            helpers._stackPushConst(0);
-            helpers._getMemUInt8(".ARG0", "show_actors_on_overlay");
+            helpers._getMemUInt8(actors_on_overlay, "show_actors_on_overlay");
             helpers._setConstMemUInt8("show_actors_on_overlay", 1);
         }
 
@@ -165,7 +170,7 @@ const compile = (input, helpers) => {
             helpers.overlayMoveTo(0, 0, -3)
         }
 
-        helpers._choice(len, [], input.height)
+        helpers._choice(choice, input.on_cancel == "Do Nothing" ? [] : [".UI_MENU_CANCEL_B"], input.height)
         const clampedMenuIndex = (index) => {
             if (index < 0) {
                 return 0;
@@ -186,50 +191,58 @@ const compile = (input, helpers) => {
                 clampedMenuIndex(i + 1),
             );
         }
-        helpers.variableDec(len)
         helpers._addNL();
 
-        helpers._stackPush(len)
-        helpers._callNative("runActionScript")
-        helpers._stackPop(1)
+        helpers.ifVariableCompareScriptValue(choice, '.GT', {
+            type: "number",
+            value: 0
+        }, () => {
+            helpers.variableDec(choice)
+            helpers._stackPush(choice)
+            helpers._callNative("runDynamicMenuChoice")
+            helpers._stackPop(1)
+        }, () => {
+            if (on_cancel > -1) {
+                helpers._stackPushConst(on_cancel)
+                helpers._callNative("runDynamicMenuState")
+                helpers._stackPop(1)
+            }
+        })
+
         helpers._addNL();
-        helpers.markLocalsUsed(len, oct_x, oct_y)
         if (isColor) {
-            helpers._setMemUInt8("overlay_priority", ".ARG0");
-            helpers._stackPop(1);
+            helpers._setMemUInt8("overlay_priority", actors_on_overlay);
         } else {
-            helpers._setMemUInt8("show_actors_on_overlay", ".ARG0");
-            helpers._stackPop(1);
+            helpers._setMemUInt8("show_actors_on_overlay", actors_on_overlay);
         }
+
+        if(on_cancel < 0){
+            helpers.labelGoto("dynamic_menu")
+        }
+        helpers.markLocalsUsed(len, choice, actors_on_overlay)
     }
 
-    switch (menu_state.type) {
-        case "static":
-            menu_state.slots.forEach((slot, idx) => {
-                helpers.compileEvents([{
-                    "command": "MENU_DEFINE_MENU_DYNAMIC SLOT",
-                    "args": {
-                        "slot": idx+1,
-                        "script": slot
-                    },
-                    "id": ""
-                }])
-            })
-        case "dynamic":
-            run_dynamic_menu()
-            break
-        case "action":
-            // Look for a definition
-            const action = helpers.options.compiledAssetsCache[menu_state.name]
-            if (!action) {
-                throw new Error(`${menu_state.name} has not been defined.`)
-            }
-            helpers.callScript(action)
-            break;
-        default:
-            throw new Error(`Could not find menu state: ${menu_state.type}`)
+    if (menu_state == "Dynamic Menu") {
+        run_dynamic_menu()
+    } else {
+        helpers._stackPushConst(state_idx)
+        helpers._callNative("runDynamicMenuState")
+        helpers._stackPop(1)
     }
 }
+/**
+ * TODO 3/21/26
+ * 
+ * What if I use threads and make option 0 be the current state like add it as option 0 as part of this event before run_dynamic_menu
+ * 
+ * That should be fine and it would avoib it would mess up for undoing the undo
+ * Do I really need the entire history of menus to make it work right
+ * maybe
+ * 
+ * 
+ * 
+ * If I use threads then I can use "on cancel return to" or something like that. 
+ */
 
 module.exports = {
     id,

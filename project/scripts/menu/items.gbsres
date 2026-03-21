@@ -1,0 +1,34 @@
+{
+  "_resourceType": "script",
+  "id": "cc6eb97b-bb5c-4d80-b120-6743d70984db",
+  "name": "Menu/Items",
+  "description": "",
+  "variables": {},
+  "actors": {},
+  "symbol": "script_4",
+  "script": [
+    {
+      "command": "MENU_DEFINE_MENU_DYNAMIC SLOT",
+      "args": {
+        "slot": 1,
+        "state": "Fight"
+      },
+      "id": "23d3a203-6705-4b24-a91a-a8a89dd39533"
+    },
+    {
+      "command": "MENU_START_MENU_STATE",
+      "args": {
+        "state": "Dynamic Menu",
+        "allow_undo": true,
+        "width": 3,
+        "height": 1,
+        "x": 5,
+        "y": 1,
+        "clear_previous": false,
+        "show_frame": true,
+        "on_cancel": "Magic"
+      },
+      "id": "c7d8648d-239d-43ea-98bc-ec41b66a40db"
+    }
+  ]
+}

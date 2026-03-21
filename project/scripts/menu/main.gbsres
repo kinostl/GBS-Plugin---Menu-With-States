@@ -1,0 +1,69 @@
+{
+  "_resourceType": "script",
+  "id": "be1ae652-95d0-4e48-be29-f4bc3205c77f",
+  "name": "Menu/Main",
+  "description": "",
+  "variables": {},
+  "actors": {},
+  "symbol": "script_3",
+  "script": [
+    {
+      "command": "MENU_DEFINE_MENU_DYNAMIC SLOT",
+      "args": {
+        "slot": 1,
+        "script": "Fight",
+        "__collapse": true,
+        "state": "Fight",
+        "__comment": true
+      },
+      "id": "e19a658a-92f8-49ac-8ec1-6f1350c0fccc"
+    },
+    {
+      "command": "MENU_DEFINE_MENU_DYNAMIC SLOT",
+      "args": {
+        "slot": 1,
+        "script": "Magic",
+        "__collapse": false,
+        "state": "Magic"
+      },
+      "id": "294fdc0c-c614-4edb-9a11-55af53b65c9e"
+    },
+    {
+      "command": "MENU_DEFINE_MENU_DYNAMIC SLOT",
+      "args": {
+        "slot": 3,
+        "script": "Item",
+        "__collapse": true,
+        "state": "Item",
+        "__comment": true
+      },
+      "id": "0790980d-79af-49ea-9bb3-5c6742071df7"
+    },
+    {
+      "command": "MENU_DEFINE_MENU_DYNAMIC SLOT",
+      "args": {
+        "slot": 4,
+        "script": "Run",
+        "__collapse": true,
+        "state": "Run",
+        "__comment": true
+      },
+      "id": "0c5ca2e5-30dd-439a-962d-d7e1817a6ba0"
+    },
+    {
+      "command": "MENU_START_MENU_STATE",
+      "args": {
+        "state": "Dynamic Menu",
+        "width": 9,
+        "height": 1,
+        "x": 1,
+        "y": 1,
+        "clear_previous": true,
+        "show_frame": true,
+        "__collapse": false,
+        "allow_undo": false
+      },
+      "id": "9cb5cacd-9522-4b72-b7d1-2d60c8d46cef"
+    }
+  ]
+}

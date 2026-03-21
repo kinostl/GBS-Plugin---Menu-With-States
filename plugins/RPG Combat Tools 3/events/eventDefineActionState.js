@@ -12,15 +12,13 @@ const autoLabel = (fetchArg) => {
     return `[AS]${state}=${script}`
 }
 
-const actions = states.filter((_) => ["action"].includes(_.type))
-
 const fields = [
     {
         key: "state",
         label: "Which State?",
         type: "select",
-        options: actions.map((_) => [_.name, _.name]),
-        defaultValue: states[0].name
+        options: states.map((_) => [_, _]),
+        defaultValue: states[0]
     },
     {
         key: "script",
@@ -35,54 +33,61 @@ const fields = [
  * @param {import('/home/deck/.local/share/gb-studio/helpers.d.ts').Helpers} helpers 
  */
 const compile = (input, helpers) => {
-    const menu_state_choice = input.state
-    const menu_state = states.find((_) => (_.name == menu_state_choice))
+    const menu_state = input.state
 
-    if (input.compile_subscript) {
-        helpers._loadText(0)
-        helpers._string(`\\001\\001${menu_state.name}\\n`)
-        helpers._displayText(true);
-        helpers._overlayWait(false, [".UI_WAIT_TEXT"]);
-        return
+    switch (input.compile_subscript) {
+        case "script":
+            helpers.callScript(input.script)
+            return
+        case "display":
+            helpers._loadText(0)
+            helpers._string(`\\001\\001${menu_state}\\n`)
+            helpers._displayText(true);
+            helpers._overlayWait(false, [".UI_WAIT_TEXT"]);
+            return
     }
 
-    if (helpers.options.compiledAssetsCache[menu_state.name]) {
-        throw new Error(`${menu_state.name} has already been defined.`)
+    if (helpers.options.compiledAssetsCache[menu_state]) {
+        throw new Error(`${menu_state} has already been defined.`)
     }
 
-
-    helpers.options.compiledAssetsCache[menu_state.name] = input.script
-    helpers.options.compiledAssetsCache[`${menu_state.name}___display`] = helpers._compileSubScript("custom", [{
+    helpers.options.compiledAssetsCache[menu_state] = helpers._compileSubScript("thread", [{
         "command": id,
         "id": "",
         "args": {
             ...input,
-            "compile_subscript": true
+            "compile_subscript": "script"
+        }
+    }])
+    helpers.options.compiledAssetsCache[`${menu_state}___display`] = helpers._compileSubScript("custom", [{
+        "command": id,
+        "id": "",
+        "args": {
+            ...input,
+            "compile_subscript": "display"
         }
     }])
 
-    const menu_actions = actions.map((action) => {
-        const customEventScript = helpers.options.compiledAssetsCache[action.name]
-        if (!customEventScript) return `{0, 0} /*${action.name} has no script*/`
-        const customEvent = helpers.compileCustomEventScript(customEventScript)
-        return `TO_FAR_PTR_T(${customEvent.scriptRef}) /*${action.name}*/`
+    const menu_states = states.map((action) => {
+        const customEventScript = helpers.options.compiledAssetsCache[action]
+        if (!customEventScript) return `{0, 0} /*${action} has no script*/`
+        return `TO_FAR_PTR_T(${customEventScript}) /*${action}*/`
     })
 
-    const menu_display_actions = actions.map((action) => {
-        const customEventScript = helpers.options.compiledAssetsCache[`${action.name}___display`]
-        if (!customEventScript) return `{0, 0} /*${action.name} has no display script*/`
-        return `TO_FAR_PTR_T(${customEventScript}) /*${action.name}*/`
+    const menu_display_states = states.map((action) => {
+        const customEventScript = helpers.options.compiledAssetsCache[`${action}___display`]
+        if (!customEventScript) return `{0, 0} /*${action} has no display script*/`
+        return `TO_FAR_PTR_T(${customEventScript}) /*${action}*/`
     })
 
-    const menu_deps = [...new Set(actions.map((action) => {
-        const customEventScript = helpers.options.compiledAssetsCache[action.name]
+    const menu_deps = [...new Set(states.map((action) => {
+        const customEventScript = helpers.options.compiledAssetsCache[action]
         if (!customEventScript) return ``
-        const customEvent = helpers.compileCustomEventScript(customEventScript)
-        return `${customEvent.scriptRef}`
+        return `${customEventScript}`
     }).filter((_) => _.trim()))]
 
-    const menu_display_deps = [...new Set(actions.map((action) => {
-        const customEventScript = helpers.options.compiledAssetsCache[`${action.name}___display`]
+    const menu_display_deps = [...new Set(states.map((action) => {
+        const customEventScript = helpers.options.compiledAssetsCache[`${action}___display`]
         if (!customEventScript) return ``
         return `${customEventScript}`
     }).filter((_) => _.trim()))]
@@ -92,9 +97,9 @@ const compile = (input, helpers) => {
         "id": "",
         "args": {
             type: "far_ptr_t",
-            symbol: "menu_actions",
-            comment: "/* Menu Actions */",
-            array: menu_actions,
+            symbol: "menu_states",
+            comment: "/* Menu States */",
+            array: menu_states,
             perLine: 1,
             dependencies: menu_deps
         }
@@ -105,9 +110,9 @@ const compile = (input, helpers) => {
         "id": "",
         "args": {
             type: "far_ptr_t",
-            symbol: "menu_display_actions",
-            comment: "/* Menu Display Actions */",
-            array: menu_display_actions,
+            symbol: "menu_display_states",
+            comment: "/* Menu Display States */",
+            array: menu_display_states,
             perLine: 1,
             dependencies: menu_display_deps
         }
