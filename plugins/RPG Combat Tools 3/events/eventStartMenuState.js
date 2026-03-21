@@ -121,7 +121,6 @@ const compile = (input, helpers) => {
     const on_cancel = states.indexOf(input.on_cancel)
 
     const run_dynamic_menu = () => {
-        helpers.labelDefine("dynamic_menu")
         const len = helpers._declareLocal("len", 1, true)
         const choice = helpers._declareLocal("choice", 1, true)
         const actors_on_overlay = helpers._declareLocal("actors_on_overlay", 1, true)
@@ -170,6 +169,9 @@ const compile = (input, helpers) => {
             helpers.overlayMoveTo(0, 0, -3)
         }
 
+        if (on_cancel < 0) {
+            helpers.labelDefine("dynamic_menu")
+        }
         helpers._choice(choice, input.on_cancel == "Do Nothing" ? [] : [".UI_MENU_CANCEL_B"], input.height)
         const clampedMenuIndex = (index) => {
             if (index < 0) {
@@ -210,15 +212,17 @@ const compile = (input, helpers) => {
         })
 
         helpers._addNL();
+
+        if(on_cancel < 0){
+            helpers.labelGoto("dynamic_menu")
+        }
+
         if (isColor) {
             helpers._setMemUInt8("overlay_priority", actors_on_overlay);
         } else {
             helpers._setMemUInt8("show_actors_on_overlay", actors_on_overlay);
         }
 
-        if(on_cancel < 0){
-            helpers.labelGoto("dynamic_menu")
-        }
         helpers.markLocalsUsed(len, choice, actors_on_overlay)
     }
 
