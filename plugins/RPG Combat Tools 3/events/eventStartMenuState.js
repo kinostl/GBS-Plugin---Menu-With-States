@@ -234,19 +234,6 @@ const compile = (input, helpers) => {
         helpers._stackPop(1)
     }
 }
-/**
- * TODO 3/21/26
- * 
- * What if I use threads and make option 0 be the current state like add it as option 0 as part of this event before run_dynamic_menu
- * 
- * That should be fine and it would avoib it would mess up for undoing the undo
- * Do I really need the entire history of menus to make it work right
- * maybe
- * 
- * 
- * 
- * If I use threads then I can use "on cancel return to" or something like that. 
- */
 
 module.exports = {
     id,

@@ -18,25 +18,6 @@
   "y": 31,
   "script": [
     {
-      "command": "EVENT_SET_VALUE",
-      "args": {
-        "variable": "0",
-        "value": {
-          "type": "number",
-          "value": 0
-        }
-      },
-      "id": "62d52fb6-3064-4e1f-8eb1-0a071b97b2f0"
-    },
-    {
-      "command": "EVENT_FADE_IN",
-      "args": {
-        "speed": "2",
-        "__collapse": true
-      },
-      "id": "5fd165d8-b3a2-4cc7-b4de-7b68468e689c"
-    },
-    {
       "command": "MENU_DEFINE_MENU_ACTION_STATE",
       "args": {
         "state": "Fight",
@@ -50,7 +31,7 @@
       "args": {
         "state": "Item",
         "script": "cc6eb97b-bb5c-4d80-b120-6743d70984db",
-        "__collapse": false
+        "__collapse": true
       },
       "id": "dfd9fdaf-8789-4343-aabf-c509a9f0cd39"
     },
@@ -77,7 +58,7 @@
       "args": {
         "state": "Main Menu",
         "script": "be1ae652-95d0-4e48-be29-f4bc3205c77f",
-        "__collapse": false
+        "__collapse": true
       },
       "id": "0f878b02-73cc-4e9b-9692-135b41c95c29"
     },
@@ -95,9 +76,18 @@
         "draw_frame": false,
         "clear_previous": true,
         "show_frame": true,
-        "allow_undo": false
+        "allow_undo": false,
+        "__comment": true
       },
       "id": "f7d3b846-1c26-4815-9e15-7f1625577cad"
+    },
+    {
+      "command": "EVENT_FADE_IN",
+      "args": {
+        "speed": "2",
+        "__collapse": true
+      },
+      "id": "5fd165d8-b3a2-4cc7-b4de-7b68468e689c"
     }
   ],
   "playerHit1Script": [],
