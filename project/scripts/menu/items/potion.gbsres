@@ -45,7 +45,7 @@
       "args": {
         "count": 1,
         "slot_1_view": "Healing",
-        "slot_2_view": "Slot #2",
+        "slot_2_view": "Items",
         "slot_3_view": "Slot #3",
         "slot_4_view": "Slot #4",
         "slot_5_view": "Slot #5",
@@ -60,7 +60,8 @@
         "slot_14_view": "Slot #14",
         "slot_15_view": "Slot #15",
         "slot_16_view": "Slot #16",
-        "slot_1_script": "20eb97dc-0532-4ed5-a99e-7f1e72e4f270"
+        "slot_1_script": "20eb97dc-0532-4ed5-a99e-7f1e72e4f270",
+        "slot_2_script": "cc6eb97b-bb5c-4d80-b120-6743d70984db"
       },
       "id": "f93d2115-e21c-4cc3-8b69-b8d2cecca8c7"
     }

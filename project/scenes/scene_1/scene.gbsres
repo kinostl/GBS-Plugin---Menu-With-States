@@ -77,15 +77,27 @@
       "command": "MENU_DISPLAY_SCRIPT_MENU",
       "args": {
         "count": 3,
-        "__comment": false,
         "slot_1_view": "Fight",
-        "slot_1_script": "ef3ef23d-ee70-4cff-ac84-4f8157045dbc",
         "slot_2_view": "Item",
-        "slot_2_script": "cc6eb97b-bb5c-4d80-b120-6743d70984db",
         "slot_3_view": "Magic",
+        "slot_4_view": "Slot #4",
+        "slot_5_view": "Slot #5",
+        "slot_6_view": "Slot #6",
+        "slot_7_view": "Slot #7",
+        "slot_8_view": "Slot #8",
+        "slot_9_view": "Slot #9",
+        "slot_10_view": "Slot #10",
+        "slot_11_view": "Slot #11",
+        "slot_12_view": "Slot #12",
+        "slot_13_view": "Slot #13",
+        "slot_14_view": "Slot #14",
+        "slot_15_view": "Slot #15",
+        "slot_16_view": "Slot #16",
+        "slot_1_script": "ef3ef23d-ee70-4cff-ac84-4f8157045dbc",
+        "slot_2_script": "cc6eb97b-bb5c-4d80-b120-6743d70984db",
         "slot_3_script": "086bbf29-eddc-4018-bce2-afc898411253"
       },
-      "id": "6e81c31d-306f-4a3b-bb46-cd37a223be37"
+      "id": "850d1b9f-9002-47bf-8ca1-ca5a79d2e700"
     },
     {
       "command": "EVENT_LOOP",

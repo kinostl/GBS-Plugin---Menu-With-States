@@ -44,7 +44,7 @@ const fields = [
         type: "number",
         defaultValue: 1,
         min: 1,
-        max: 16,
+        max: 8,
         label: "Count"
     },
     ...script_header,
@@ -57,11 +57,25 @@ const fields = [
  */
 const compile = (input, helpers) => {
     const choice = helpers._declareLocal("choice", 1, true)
+    const script_menu_depth = helpers._declareLocal("script_menu_depth", 1, true)
+    const script_menu_depth_diff = helpers._declareLocal("script_menu_depth_diff", 1, true)
+    helpers._addComment(`Max Depth: ${helpers.options.maxDepth}`)
 
-    const x = 10 - (helpers.options.maxDepth * 2)
-    const width = 10 + (helpers.options.maxDepth * 2)
+    // const x = 10 - (helpers.options.maxDepth * 2)
+    // const width = 10 + (helpers.options.maxDepth * 2)
+    const x = 0
+    const width = 20
     const height = input.count + 2
-    const is_main_menu = helpers.output.maxDepth >= 5
+    const is_main_menu = helpers.options.maxDepth >= 5
+
+    if(is_main_menu){
+        helpers._callNative("catchMainMenu")
+        helpers._setConstMemUInt8("script_menu_depth", 5)
+    }else{
+        helpers._getMemUInt8(script_menu_depth, "script_menu_depth")
+        helpers.variableDec(script_menu_depth)
+        helpers._setMemUInt8ToVariable("script_menu_depth", script_menu_depth)
+    }
 
     const choices = []
 
@@ -82,6 +96,14 @@ const compile = (input, helpers) => {
                 branch: () => {
                     helpers.overlayMoveTo(0, 18, ".OVERLAY_OUT_SPEED")
                     helpers.callScript(input[`slot_${i + 1}_script`])
+                    helpers._getMemUInt8(script_menu_depth_diff, "script_menu_depth")
+                    helpers.ifVariableCompare(script_menu_depth, '.EQ', script_menu_depth_diff, () => {
+                        // A non-menu script has been run
+                        helpers._callNative("goToMainMenu")
+                    }, () => {
+                        // A menu script has been returned from
+                        helpers._setMemUInt8ToVariable("script_menu_depth", script_menu_depth)
+                    })
                 }
             })
         }
@@ -111,8 +133,10 @@ const compile = (input, helpers) => {
 
         helpers.caseVariableConstValue(choice, choices, is_main_menu ? null : () => {
             helpers.overlayMoveTo(0, 18, ".OVERLAY_OUT_SPEED")
+            helpers.labelGoto("end")
         })
     })
+    helpers.labelDefine("end")
     helpers.markLocalsUsed(choice)
 }
 module.exports = {
