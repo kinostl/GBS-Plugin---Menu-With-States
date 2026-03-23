@@ -107,7 +107,7 @@
   "scriptEventDefaultPresets": {},
   "runSceneSelectionOnly": false,
   "spriteMode": "8x16",
-  "openBuildFolderOnExport": true,
+  "openBuildFolderOnExport": false,
   "showRomUsageAfterBuild": false,
   "romFilename": "",
   "defaultSceneTypeId": "TOPDOWN",

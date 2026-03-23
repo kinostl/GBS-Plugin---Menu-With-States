@@ -1,10 +1,10 @@
 {
   "_resourceType": "script",
-  "id": "be1ae652-95d0-4e48-be29-f4bc3205c77f",
-  "name": "Menu/Main",
+  "id": "82df1edb-c5c4-44b9-9e05-79325bda1834",
+  "name": "Menu/Run",
   "description": "",
   "variables": {},
   "actors": {},
-  "symbol": "script_3",
+  "symbol": "script_5",
   "script": []
 }

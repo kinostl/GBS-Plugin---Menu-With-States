@@ -18,76 +18,118 @@
   "y": 31,
   "script": [
     {
-      "command": "MENU_DEFINE_MENU_ACTION_STATE",
+      "command": "EVENT_GROUP",
       "args": {
-        "state": "Fight",
-        "script": "ef3ef23d-ee70-4cff-ac84-4f8157045dbc",
-        "__collapse": true
-      },
-      "id": "3e2c74c4-4d9c-425c-91cb-1b931c2214c4"
-    },
-    {
-      "command": "MENU_DEFINE_MENU_ACTION_STATE",
-      "args": {
-        "state": "Item",
-        "script": "cc6eb97b-bb5c-4d80-b120-6743d70984db",
-        "__collapse": true
-      },
-      "id": "dfd9fdaf-8789-4343-aabf-c509a9f0cd39"
-    },
-    {
-      "command": "MENU_DEFINE_MENU_ACTION_STATE",
-      "args": {
-        "state": "Magic",
-        "script": "086bbf29-eddc-4018-bce2-afc898411253",
-        "__collapse": true
-      },
-      "id": "53f9136d-7494-4ed6-8f7f-5014481b3149"
-    },
-    {
-      "command": "MENU_DEFINE_MENU_ACTION_STATE",
-      "args": {
-        "state": "Run",
-        "script": "ef3ef23d-ee70-4cff-ac84-4f8157045dbc",
-        "__collapse": true
-      },
-      "id": "957f70d5-35d0-40f6-aa22-2883967f5376"
-    },
-    {
-      "command": "MENU_DEFINE_MENU_ACTION_STATE",
-      "args": {
-        "state": "Main Menu",
-        "script": "be1ae652-95d0-4e48-be29-f4bc3205c77f",
-        "__collapse": true
-      },
-      "id": "0f878b02-73cc-4e9b-9692-135b41c95c29"
-    },
-    {
-      "command": "MENU_START_MENU_STATE",
-      "args": {
-        "state": "Main Menu",
-        "x": 1,
-        "y": 1,
-        "": "Bottom Left",
-        "__collapse": false,
-        "height": 4,
-        "width": 9,
-        "anchor": "Top Left",
-        "draw_frame": false,
-        "clear_previous": true,
-        "show_frame": true,
-        "allow_undo": false,
         "__comment": true
       },
-      "id": "f7d3b846-1c26-4815-9e15-7f1625577cad"
+      "children": {
+        "true": [
+          {
+            "command": "MENU_DEFINE_MENU_ACTION_STATE",
+            "args": {
+              "state": "Fight",
+              "script": "ef3ef23d-ee70-4cff-ac84-4f8157045dbc",
+              "__collapse": true
+            },
+            "id": "3e2c74c4-4d9c-425c-91cb-1b931c2214c4"
+          },
+          {
+            "command": "MENU_DEFINE_MENU_ACTION_STATE",
+            "args": {
+              "state": "Item",
+              "script": "cc6eb97b-bb5c-4d80-b120-6743d70984db",
+              "__collapse": true
+            },
+            "id": "dfd9fdaf-8789-4343-aabf-c509a9f0cd39"
+          },
+          {
+            "command": "MENU_DEFINE_MENU_ACTION_STATE",
+            "args": {
+              "state": "Magic",
+              "script": "086bbf29-eddc-4018-bce2-afc898411253",
+              "__collapse": true
+            },
+            "id": "53f9136d-7494-4ed6-8f7f-5014481b3149"
+          },
+          {
+            "command": "MENU_DEFINE_MENU_ACTION_STATE",
+            "args": {
+              "state": "Run",
+              "script": "ef3ef23d-ee70-4cff-ac84-4f8157045dbc",
+              "__collapse": true
+            },
+            "id": "957f70d5-35d0-40f6-aa22-2883967f5376"
+          },
+          {
+            "command": "MENU_DEFINE_MENU_ACTION_STATE",
+            "args": {
+              "state": "Main Menu",
+              "script": "be1ae652-95d0-4e48-be29-f4bc3205c77f",
+              "__collapse": true
+            },
+            "id": "0f878b02-73cc-4e9b-9692-135b41c95c29"
+          }
+        ]
+      },
+      "id": "8ad5eb86-013c-4ecd-8f5c-75933300b998"
     },
     {
-      "command": "EVENT_FADE_IN",
+      "command": "MENU_DISPLAY_SCRIPT_MENU",
       "args": {
-        "speed": "2",
-        "__collapse": true
+        "count": 3,
+        "__comment": false,
+        "slot_1_view": "Fight",
+        "slot_1_script": "ef3ef23d-ee70-4cff-ac84-4f8157045dbc",
+        "slot_2_view": "Item",
+        "slot_2_script": "cc6eb97b-bb5c-4d80-b120-6743d70984db",
+        "slot_3_view": "Magic",
+        "slot_3_script": "086bbf29-eddc-4018-bce2-afc898411253"
       },
-      "id": "5fd165d8-b3a2-4cc7-b4de-7b68468e689c"
+      "id": "6e81c31d-306f-4a3b-bb46-cd37a223be37"
+    },
+    {
+      "command": "EVENT_LOOP",
+      "args": {
+        "__comment": true,
+        "__collapse": false
+      },
+      "children": {
+        "true": [
+          {
+            "command": "MENU_DEFINE_SCRIPT_MENU_SLOT",
+            "args": {
+              "text": "Fight",
+              "slot": 1,
+              "script": "ef3ef23d-ee70-4cff-ac84-4f8157045dbc"
+            },
+            "id": "98344c8b-a14f-4953-8330-bb140c30eda2"
+          },
+          {
+            "command": "MENU_DEFINE_SCRIPT_MENU_SLOT",
+            "args": {
+              "text": "Items",
+              "slot": 2,
+              "script": "cc6eb97b-bb5c-4d80-b120-6743d70984db",
+              "__collapse": false
+            },
+            "id": "c0d9e153-02d2-4bfd-9611-c89644fb049e"
+          },
+          {
+            "command": "MENU_START_MENU_STATE",
+            "args": {
+              "width": 9,
+              "height": 4,
+              "x": 1,
+              "y": 1,
+              "clear_previous": true,
+              "show_frame": true,
+              "__comment": false
+            },
+            "id": "2d151f3c-04c6-418f-860d-7a9b00f64149"
+          }
+        ]
+      },
+      "id": "1b71b412-259a-422b-8def-1bc35bb390dd"
     }
   ],
   "playerHit1Script": [],

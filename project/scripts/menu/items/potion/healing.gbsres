@@ -1,17 +1,17 @@
 {
   "_resourceType": "script",
-  "id": "ef3ef23d-ee70-4cff-ac84-4f8157045dbc",
-  "name": "Menu/Fight",
+  "id": "20eb97dc-0532-4ed5-a99e-7f1e72e4f270",
+  "name": "Menu/Items/Potion/Healing",
   "description": "",
   "variables": {},
   "actors": {},
-  "symbol": "script_1",
+  "symbol": "script_7",
   "script": [
     {
       "command": "EVENT_TEXT",
       "args": {
         "text": [
-          "Fight Dialog"
+          "Heal it up"
         ],
         "__section": "text",
         "avatarId": "",
@@ -30,7 +30,7 @@
         "closeDelayTime": 0.5,
         "closeDelayFrames": 30
       },
-      "id": "c1899ede-98f8-4be2-9180-94e63e370e0d"
+      "id": "801994f6-49d1-401e-a31b-c0154719c11a"
     }
   ]
 }

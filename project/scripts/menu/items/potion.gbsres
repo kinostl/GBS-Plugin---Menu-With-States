@@ -1,11 +1,11 @@
 {
   "_resourceType": "script",
-  "id": "cc6eb97b-bb5c-4d80-b120-6743d70984db",
-  "name": "Menu/Items",
+  "id": "2d6d2d39-e281-46e4-b1ac-806e5e91a126",
+  "name": "Menu/Items/Potion",
   "description": "",
   "variables": {},
   "actors": {},
-  "symbol": "script_4",
+  "symbol": "script_6",
   "script": [
     {
       "command": "EVENT_LOOP",
@@ -17,35 +17,34 @@
           {
             "command": "MENU_DEFINE_SCRIPT_MENU_SLOT",
             "args": {
-              "text": "Potion",
+              "text": "Healing",
               "slot": 1,
-              "script": "2d6d2d39-e281-46e4-b1ac-806e5e91a126",
-              "__comment": false
+              "script": "20eb97dc-0532-4ed5-a99e-7f1e72e4f270"
             },
-            "id": "1175fd7e-56ff-4745-8f04-bca42367c384"
+            "id": "a4a2c831-0247-47e3-8322-f6a4b5d654c6"
           },
           {
             "command": "MENU_START_MENU_STATE",
             "args": {
-              "width": 5,
+              "width": 6,
               "height": 1,
-              "x": 3,
+              "x": 5,
               "y": 1,
               "clear_previous": false,
               "show_frame": true,
               "__comment": false
             },
-            "id": "06aba9e3-cf34-426d-93d6-8d8cd2ab5182"
+            "id": "71be00f9-cbe1-4dd9-ad42-7e7653274098"
           }
         ]
       },
-      "id": "da73b2be-6709-4f8e-a9e2-efebfdf0a7cb"
+      "id": "7b16745f-8709-4fb5-997e-982bae377112"
     },
     {
       "command": "MENU_DISPLAY_SCRIPT_MENU",
       "args": {
         "count": 1,
-        "slot_1_view": "Potions",
+        "slot_1_view": "Healing",
         "slot_2_view": "Slot #2",
         "slot_3_view": "Slot #3",
         "slot_4_view": "Slot #4",
@@ -61,9 +60,9 @@
         "slot_14_view": "Slot #14",
         "slot_15_view": "Slot #15",
         "slot_16_view": "Slot #16",
-        "slot_1_script": "2d6d2d39-e281-46e4-b1ac-806e5e91a126"
+        "slot_1_script": "20eb97dc-0532-4ed5-a99e-7f1e72e4f270"
       },
-      "id": "86dad80d-9583-48b9-b36b-a159a2589f0f"
+      "id": "f93d2115-e21c-4cc3-8b69-b8d2cecca8c7"
     }
   ]
 }
