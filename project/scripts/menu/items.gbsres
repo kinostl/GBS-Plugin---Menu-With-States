@@ -8,40 +8,6 @@
   "symbol": "script_4",
   "script": [
     {
-      "command": "EVENT_LOOP",
-      "args": {
-        "__comment": true
-      },
-      "children": {
-        "true": [
-          {
-            "command": "MENU_DEFINE_SCRIPT_MENU_SLOT",
-            "args": {
-              "text": "Potion",
-              "slot": 1,
-              "script": "2d6d2d39-e281-46e4-b1ac-806e5e91a126",
-              "__comment": false
-            },
-            "id": "1175fd7e-56ff-4745-8f04-bca42367c384"
-          },
-          {
-            "command": "MENU_START_MENU_STATE",
-            "args": {
-              "width": 5,
-              "height": 1,
-              "x": 3,
-              "y": 1,
-              "clear_previous": false,
-              "show_frame": true,
-              "__comment": false
-            },
-            "id": "06aba9e3-cf34-426d-93d6-8d8cd2ab5182"
-          }
-        ]
-      },
-      "id": "da73b2be-6709-4f8e-a9e2-efebfdf0a7cb"
-    },
-    {
       "command": "MENU_DISPLAY_SCRIPT_MENU",
       "args": {
         "count": 1,

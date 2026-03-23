@@ -8,39 +8,6 @@
   "symbol": "script_6",
   "script": [
     {
-      "command": "EVENT_LOOP",
-      "args": {
-        "__comment": true
-      },
-      "children": {
-        "true": [
-          {
-            "command": "MENU_DEFINE_SCRIPT_MENU_SLOT",
-            "args": {
-              "text": "Healing",
-              "slot": 1,
-              "script": "20eb97dc-0532-4ed5-a99e-7f1e72e4f270"
-            },
-            "id": "a4a2c831-0247-47e3-8322-f6a4b5d654c6"
-          },
-          {
-            "command": "MENU_START_MENU_STATE",
-            "args": {
-              "width": 6,
-              "height": 1,
-              "x": 5,
-              "y": 1,
-              "clear_previous": false,
-              "show_frame": true,
-              "__comment": false
-            },
-            "id": "71be00f9-cbe1-4dd9-ad42-7e7653274098"
-          }
-        ]
-      },
-      "id": "7b16745f-8709-4fb5-997e-982bae377112"
-    },
-    {
       "command": "MENU_DISPLAY_SCRIPT_MENU",
       "args": {
         "count": 1,
