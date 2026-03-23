@@ -37,6 +37,40 @@ const script_header = [{
     }]
 }]
 
+const settings = [
+  {
+    type: "checkbox",
+    label: "Last option returns to previous menu",
+    key: "cancelOnLastOption",
+  },
+  {
+    type: "text",
+    key: "cancelOnLastOptionText",
+    label: "Last Option Text",
+    defaultValue: "Cancel",
+    conditions: [{
+        key: "cancelOnLastOption",
+        eq: true
+    }]
+  },
+  {
+    type: "checkbox",
+    label: "Return to previous menu if 'B' is pressed",
+    key: "cancelOnB",
+    defaultValue: true,
+  },
+  {
+    key: "layout",
+    type: "select",
+    label: "Layout",
+    options: [
+      ["dialogue", "Dialogue"],
+      ["menu", "Menu"],
+    ],
+    defaultValue: "dialogue",
+  },
+]
+
 const fields = [
     // ...menu_event_fields.display_menu,
     {
@@ -49,6 +83,7 @@ const fields = [
     },
     ...script_header,
     ...script_fields,
+    ...settings
 ]
 /**
  * 
@@ -58,11 +93,7 @@ const fields = [
 const compile = (input, helpers) => {
     const choice = helpers._declareLocal("choice", 1, true)
     const in_child_script_menu = helpers._declareLocal("in_child_script_menu", 1, true)
-    helpers._addComment(`Max Depth: ${helpers.options.maxDepth}`)
 
-    // const x = 10 - (helpers.options.maxDepth * 2)
-    // const width = 10 + (helpers.options.maxDepth * 2)
-    const x = 0
     const is_main_menu = helpers.options.maxDepth >= 5
 
     helpers._setConstMemUInt8("in_child_script_menu", 1)
@@ -74,7 +105,11 @@ const compile = (input, helpers) => {
         type: "variable",
         value: in_child_script_menu
     }, () => {
-        helpers.textMenu(choice, Array(input.count).fill().map((_, i) => input[`slot_${i + 1}_view`]), "dialog", false, !is_main_menu)
+        const textMenuChoices = Array(input.count).fill().map((_, i) => input[`slot_${i + 1}_view`])
+        if(input.cancelOnLastOption) {
+            textMenuChoices.push(input.cancelOnLastOptionText)
+        }
+        helpers.textMenu(choice, textMenuChoices, input.dialogue, input.cancelOnLastOption, input.cancelOnB)
 
         for (let i = 0; i < input.count; i++) {
             choices.push({

@@ -27,7 +27,10 @@
         "slot_14_view": "Slot #14",
         "slot_15_view": "Slot #15",
         "slot_16_view": "Slot #16",
-        "slot_1_script": "2d6d2d39-e281-46e4-b1ac-806e5e91a126"
+        "slot_1_script": "2d6d2d39-e281-46e4-b1ac-806e5e91a126",
+        "cancelOnB": true,
+        "layout": "menu",
+        "cancelOnLastOption": false
       },
       "id": "86dad80d-9583-48b9-b36b-a159a2589f0f"
     }
