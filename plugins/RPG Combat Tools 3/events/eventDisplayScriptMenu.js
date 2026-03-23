@@ -63,8 +63,6 @@ const compile = (input, helpers) => {
     // const x = 10 - (helpers.options.maxDepth * 2)
     // const width = 10 + (helpers.options.maxDepth * 2)
     const x = 0
-    const width = 20
-    const height = input.count + 2
     const is_main_menu = helpers.options.maxDepth >= 5
 
     helpers._setConstMemUInt8("in_child_script_menu", 1)
@@ -76,19 +74,15 @@ const compile = (input, helpers) => {
         type: "variable",
         value: in_child_script_menu
     }, () => {
-
-        helpers._overlayClear(x, 0, width, height, ".UI_COLOR_WHITE", true, false)
-        helpers.overlayMoveTo(0, 18 - height, ".OVERLAY_IN_SPEED")
+        helpers.textMenu(choice, Array(input.count).fill().map((_, i) => input[`slot_${i + 1}_view`]), "dialog", false, !is_main_menu)
 
         for (let i = 0; i < input.count; i++) {
-            helpers.textDraw(input[`slot_${i + 1}_view`], x + 2, i + 1, "overlay")
             choices.push({
                 value: {
                     type: "number",
                     value: i + 1,
                 },
                 branch: () => {
-                    helpers.overlayMoveTo(0, 18, ".OVERLAY_OUT_SPEED")
                     helpers._setConstMemUInt8("in_child_script_menu", 0)
                     helpers.callScript(input[`slot_${i + 1}_script`])
                     helpers._getMemUInt8(in_child_script_menu, "in_child_script_menu")
@@ -96,31 +90,7 @@ const compile = (input, helpers) => {
             })
         }
 
-        helpers._choice(choice, is_main_menu ? [] : [".UI_MENU_CANCEL_B"], input.count)
-        const clampedMenuIndex = (index) => {
-            if (index < 0) {
-                return 0;
-            }
-            if (index > input.count - 1) {
-                return 0;
-            }
-            return index + 1;
-        };
-
-        for (let i = 0; i < input.count; i++) {
-            helpers._menuItem(
-                x + 1,
-                i + 1,
-                1,
-                input.count,
-                clampedMenuIndex(i - 1),
-                clampedMenuIndex(i + 1),
-            );
-        }
-        helpers._addNL();
-
         helpers.caseVariableConstValue(choice, choices, is_main_menu ? null : () => {
-            helpers.overlayMoveTo(0, 18, ".OVERLAY_OUT_SPEED")
             helpers.labelGoto("end")
         })
     })
