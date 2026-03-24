@@ -58,6 +58,7 @@ const compile = (input, helpers) => {
     helpers._stackPushConst(toASMCollisionMask(input.collisionGroup))
     helpers._stackPushReference(helpers.getVariableAlias(input.variable))
     helpers._callNative("runActorMenu")
+    helpers.overlayMoveTo(0, 18, ".OVERLAY_SPEED_INSTANT")
     helpers._stackPop(2)
     helpers.markLocalsUsed(actors_on_overlay)
 }

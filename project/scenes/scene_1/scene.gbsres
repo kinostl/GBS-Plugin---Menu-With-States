@@ -160,15 +160,49 @@
       "id": "3826be57-3163-40cd-aa53-fb2bee2c9647"
     },
     {
-      "command": "MENU_DISPLAY_ACTORS_MENU",
-      "args": {
-        "collisionGroup": [
-          "1"
-        ],
-        "__comment": false,
-        "variable": "L0"
+      "command": "EVENT_LOOP",
+      "args": {},
+      "children": {
+        "true": [
+          {
+            "command": "MENU_DISPLAY_ACTORS_MENU",
+            "args": {
+              "collisionGroup": [
+                "1"
+              ],
+              "__comment": false,
+              "variable": "L0"
+            },
+            "id": "8930da19-e433-4386-b9b6-a0bde864ebc3"
+          },
+          {
+            "command": "EVENT_TEXT",
+            "args": {
+              "text": [
+                "You chose \nActor $L0$"
+              ],
+              "__section": "text",
+              "avatarId": "",
+              "minHeight": 4,
+              "maxHeight": 7,
+              "textX": 1,
+              "textY": 1,
+              "textHeight": 5,
+              "position": "bottom",
+              "clearPrevious": true,
+              "showFrame": "true",
+              "speedIn": -1,
+              "speedOut": -1,
+              "closeWhen": "key",
+              "closeButton": "a",
+              "closeDelayTime": 0.5,
+              "closeDelayFrames": 30
+            },
+            "id": "31f0cc95-0bbc-4cb6-a3c0-e94fb4fe263a"
+          }
+        ]
       },
-      "id": "8930da19-e433-4386-b9b6-a0bde864ebc3"
+      "id": "86755484-70a6-4e46-820a-3b2c1d6402fd"
     }
   ],
   "playerHit1Script": [],
