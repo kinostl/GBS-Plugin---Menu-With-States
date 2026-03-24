@@ -109,7 +109,7 @@ const compile = (input, helpers) => {
         if(input.cancelOnLastOption) {
             textMenuChoices.push(input.cancelOnLastOptionText)
         }
-        helpers.textMenu(choice, textMenuChoices, input.dialogue, input.cancelOnLastOption, input.cancelOnB)
+        helpers.textMenu(choice, textMenuChoices, input.layout, input.cancelOnLastOption, input.cancelOnB)
 
         for (let i = 0; i < input.count; i++) {
             choices.push({

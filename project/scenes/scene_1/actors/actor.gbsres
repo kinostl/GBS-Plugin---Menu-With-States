@@ -12,12 +12,22 @@
   "paletteId": "",
   "isPinned": false,
   "persistent": false,
-  "collisionGroup": "",
+  "collisionGroup": "1",
   "collisionExtraFlags": [],
   "prefabScriptOverrides": {},
   "symbol": "actor_0",
   "script": [],
-  "startScript": [],
+  "startScript": [
+    {
+      "command": "MENU_SET_ACTOR_NAME",
+      "args": {
+        "text": "Arrow Man",
+        "actor": "$self$",
+        "__comment": true
+      },
+      "id": "73ee88e1-b712-4b8f-9006-a8b2d122a13b"
+    }
+  ],
   "updateScript": [
     {
       "command": "EVENT_IF",
@@ -103,7 +113,7 @@
   "hit2Script": [],
   "hit3Script": [],
   "coordinateType": "tiles",
-  "x": 9,
-  "y": 6,
+  "x": 16,
+  "y": 8,
   "_index": 0
 }

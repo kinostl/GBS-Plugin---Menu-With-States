@@ -31,7 +31,7 @@
         "slot_2_script": "cc6eb97b-bb5c-4d80-b120-6743d70984db",
         "cancelOnLastOption": false,
         "cancelOnB": true,
-        "layout": "menu"
+        "layout": "dialogue"
       },
       "id": "f93d2115-e21c-4cc3-8b69-b8d2cecca8c7"
     }

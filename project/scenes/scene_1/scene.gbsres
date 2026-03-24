@@ -3,7 +3,7 @@
   "id": "b6d6c5ad-0315-425e-8ca0-8b3437e0b23d",
   "_index": 0,
   "name": "Scene 1",
-  "backgroundId": "1e5f9d6a-bdbc-43e6-8c34-22f5bb5dea05",
+  "backgroundId": "8f5e134b-0b42-44f3-ae09-d44be226509d",
   "tilesetId": "",
   "width": 20,
   "height": 18,
@@ -119,17 +119,19 @@
     },
     {
       "command": "EVENT_LOOP",
-      "args": {},
+      "args": {
+        "__comment": true
+      },
       "children": {
         "true": [
           {
             "command": "MENU_DISPLAY_SCRIPT_MENU",
             "args": {
-              "count": 3,
+              "count": 4,
               "slot_1_view": "Fight",
               "slot_2_view": "Item",
               "slot_3_view": "Magic",
-              "slot_4_view": "Slot #4",
+              "slot_4_view": "Run",
               "slot_5_view": "Slot #5",
               "slot_6_view": "Slot #6",
               "slot_7_view": "Slot #7",
@@ -144,16 +146,29 @@
               "slot_16_view": "Slot #16",
               "cancelOnLastOptionText": "Cancel",
               "cancelOnB": false,
-              "layout": "menu",
+              "layout": "dialogue",
               "slot_1_script": "ef3ef23d-ee70-4cff-ac84-4f8157045dbc",
               "slot_2_script": "cc6eb97b-bb5c-4d80-b120-6743d70984db",
-              "slot_3_script": "086bbf29-eddc-4018-bce2-afc898411253"
+              "slot_3_script": "086bbf29-eddc-4018-bce2-afc898411253",
+              "cancelOnLastOption": false,
+              "slot_4_script": "ef3ef23d-ee70-4cff-ac84-4f8157045dbc"
             },
             "id": "86742c68-46ed-46b4-964f-64ef076a7e22"
           }
         ]
       },
       "id": "3826be57-3163-40cd-aa53-fb2bee2c9647"
+    },
+    {
+      "command": "MENU_DISPLAY_ACTORS_MENU",
+      "args": {
+        "collisionGroup": [
+          "1"
+        ],
+        "__comment": false,
+        "variable": "L0"
+      },
+      "id": "8930da19-e433-4386-b9b6-a0bde864ebc3"
     }
   ],
   "playerHit1Script": [],
