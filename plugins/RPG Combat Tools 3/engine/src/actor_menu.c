@@ -24,15 +24,15 @@ inline UBYTE clampedMenuIndex(BYTE index, UBYTE length) {
 
 void runActorMenu(SCRIPT_CTX *THIS) OLDCALL BANKED {
   UBYTE menu_actors_length = 0;
-  UBYTE actor_id = 0;
-  for (actor_t *actor = actors_active_tail; actor; actor = actor->prev) {
-    actor_id++;
-  }
+  UBYTE actor_id = 1;
+//   for (actor_t *actor = actors_active_tail; actor; actor = actor->prev) {
+//     actor_id++;
+//   }
   const UBYTE collision_mask = *(UBYTE *)VM_REF_TO_PTR(FN_ARG1);
   const WORD variable_idx = *(WORD *)VM_REF_TO_PTR(FN_ARG0);
   WORD *variable = VM_REF_TO_PTR(variable_idx);
   *variable = 0;
-  for (actor_t *actor = actors_active_tail; actor; actor = actor->prev) {
+  for (actor_t *actor = actors_active_head; actor; actor = actor->next) {
     if (actor->collision_group & collision_mask) {
       actor_menu_actors[menu_actors_length] = actor_id;
       menu_item_t *menu_actor = &actor_menu_options[menu_actors_length];
@@ -40,7 +40,7 @@ void runActorMenu(SCRIPT_CTX *THIS) OLDCALL BANKED {
       menu_actor->Y = SUBPX_TO_TILE(actor->pos.y + actor->bounds.top);
       menu_actors_length++;
     }
-    actor_id--;
+    actor_id++;
   }
 
   for (UBYTE i = 0; i < menu_actors_length; i++) {
