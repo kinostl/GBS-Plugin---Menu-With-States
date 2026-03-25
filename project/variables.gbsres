@@ -1,11 +1,5 @@
 {
   "_resourceType": "variables",
-  "variables": [
-    {
-      "id": "0",
-      "name": "Fight Choice",
-      "symbol": "var_fight_choice"
-    }
-  ],
+  "variables": [],
   "constants": []
 }

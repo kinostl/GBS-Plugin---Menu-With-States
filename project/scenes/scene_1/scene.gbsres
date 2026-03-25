@@ -18,6 +18,27 @@
   "y": 31,
   "script": [
     {
+      "command": "EVENT_LOAD_PROJECTILE_SLOT",
+      "args": {
+        "__section": "projectile",
+        "slot": 4,
+        "spriteSheetId": "e9b6425b-4007-46d3-970c-7f6f245b21f3",
+        "spriteStateId": "",
+        "speed": 2,
+        "animSpeed": 15,
+        "lifeTime": 1,
+        "initialOffset": 0,
+        "loopAnim": true,
+        "destroyOnHit": true,
+        "collisionGroup": "3",
+        "collisionMask": [
+          "1"
+        ],
+        "__collapse": false
+      },
+      "id": "5a2e137c-96ea-44be-af28-3c902f222af0"
+    },
+    {
       "command": "EVENT_LOOP",
       "args": {},
       "children": {

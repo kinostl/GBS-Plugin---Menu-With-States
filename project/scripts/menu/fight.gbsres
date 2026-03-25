@@ -19,27 +19,6 @@
   "symbol": "script_1",
   "script": [
     {
-      "command": "EVENT_LOAD_PROJECTILE_SLOT",
-      "args": {
-        "__section": "projectile",
-        "slot": 0,
-        "spriteSheetId": "581d34d0-9591-4e6e-a609-1d94f203b0cd",
-        "spriteStateId": "",
-        "speed": 2,
-        "animSpeed": 15,
-        "lifeTime": 1,
-        "initialOffset": 0,
-        "loopAnim": true,
-        "destroyOnHit": true,
-        "collisionGroup": "3",
-        "collisionMask": [
-          "1"
-        ],
-        "__collapse": false
-      },
-      "id": "e8b4e858-b651-4531-a2c3-0b2cd6ea533a"
-    },
-    {
       "command": "MENU_DISPLAY_ACTORS_MENU",
       "args": {
         "variable": "V0",
@@ -72,7 +51,7 @@
               "angle": 0,
               "angleVariable": "V0",
               "targetActorId": "0",
-              "slot": 0,
+              "slot": 4,
               "__collapse": false
             },
             "id": "339e62bf-0daa-4e06-b3d1-8ecd273ef830"
