@@ -61,6 +61,12 @@ const compile = (input, helpers) => {
     helpers.overlayMoveTo(0, 18, ".OVERLAY_SPEED_INSTANT")
     helpers._stackPop(2)
     helpers.markLocalsUsed(actors_on_overlay)
+
+    if (isColor) {
+        helpers._setMemUInt8("overlay_priority", actors_on_overlay);
+    } else {
+        helpers._setMemUInt8("show_actors_on_overlay", actors_on_overlay);
+    }
 }
 
 module.exports = {

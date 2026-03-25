@@ -18,175 +18,48 @@
   "y": 31,
   "script": [
     {
-      "command": "EVENT_GROUP",
-      "args": {
-        "__comment": true
-      },
-      "children": {
-        "true": [
-          {
-            "command": "MENU_DEFINE_MENU_ACTION_STATE",
-            "args": {
-              "state": "Fight",
-              "script": "ef3ef23d-ee70-4cff-ac84-4f8157045dbc",
-              "__collapse": true
-            },
-            "id": "3e2c74c4-4d9c-425c-91cb-1b931c2214c4"
-          },
-          {
-            "command": "MENU_DEFINE_MENU_ACTION_STATE",
-            "args": {
-              "state": "Item",
-              "script": "cc6eb97b-bb5c-4d80-b120-6743d70984db",
-              "__collapse": true
-            },
-            "id": "dfd9fdaf-8789-4343-aabf-c509a9f0cd39"
-          },
-          {
-            "command": "MENU_DEFINE_MENU_ACTION_STATE",
-            "args": {
-              "state": "Magic",
-              "script": "086bbf29-eddc-4018-bce2-afc898411253",
-              "__collapse": true
-            },
-            "id": "53f9136d-7494-4ed6-8f7f-5014481b3149"
-          },
-          {
-            "command": "MENU_DEFINE_MENU_ACTION_STATE",
-            "args": {
-              "state": "Run",
-              "script": "ef3ef23d-ee70-4cff-ac84-4f8157045dbc",
-              "__collapse": true
-            },
-            "id": "957f70d5-35d0-40f6-aa22-2883967f5376"
-          },
-          {
-            "command": "MENU_DEFINE_MENU_ACTION_STATE",
-            "args": {
-              "state": "Main Menu",
-              "script": "be1ae652-95d0-4e48-be29-f4bc3205c77f",
-              "__collapse": true
-            },
-            "id": "0f878b02-73cc-4e9b-9692-135b41c95c29"
-          }
-        ]
-      },
-      "id": "8ad5eb86-013c-4ecd-8f5c-75933300b998"
-    },
-    {
       "command": "EVENT_LOOP",
-      "args": {
-        "__comment": true,
-        "__collapse": false
-      },
+      "args": {},
       "children": {
         "true": [
           {
-            "command": "MENU_DEFINE_SCRIPT_MENU_SLOT",
+            "command": "MENU_DISPLAY_SCRIPT_MENU",
             "args": {
-              "text": "Fight",
-              "slot": 1,
-              "script": "ef3ef23d-ee70-4cff-ac84-4f8157045dbc"
-            },
-            "id": "98344c8b-a14f-4953-8330-bb140c30eda2"
-          },
-          {
-            "command": "MENU_DEFINE_SCRIPT_MENU_SLOT",
-            "args": {
-              "text": "Items",
-              "slot": 2,
-              "script": "cc6eb97b-bb5c-4d80-b120-6743d70984db",
+              "count": 4,
+              "slot_1_view": "Fight",
+              "slot_2_view": "Item",
+              "slot_3_view": "Magic",
+              "slot_4_view": "Run",
+              "slot_5_view": "Slot #5",
+              "slot_6_view": "Slot #6",
+              "slot_7_view": "Slot #7",
+              "slot_8_view": "Slot #8",
+              "slot_9_view": "Slot #9",
+              "slot_10_view": "Slot #10",
+              "slot_11_view": "Slot #11",
+              "slot_12_view": "Slot #12",
+              "slot_13_view": "Slot #13",
+              "slot_14_view": "Slot #14",
+              "slot_15_view": "Slot #15",
+              "slot_16_view": "Slot #16",
+              "cancelOnLastOptionText": "Cancel",
+              "cancelOnB": false,
+              "layout": "dialogue",
+              "slot_1_script": "ef3ef23d-ee70-4cff-ac84-4f8157045dbc",
+              "slot_2_script": "cc6eb97b-bb5c-4d80-b120-6743d70984db",
+              "slot_3_script": "086bbf29-eddc-4018-bce2-afc898411253",
+              "cancelOnLastOption": false,
+              "slot_4_script": "ef3ef23d-ee70-4cff-ac84-4f8157045dbc",
+              "__comment": false,
               "__collapse": false
             },
-            "id": "c0d9e153-02d2-4bfd-9611-c89644fb049e"
+            "id": "86742c68-46ed-46b4-964f-64ef076a7e22"
           },
-          {
-            "command": "MENU_START_MENU_STATE",
-            "args": {
-              "width": 9,
-              "height": 4,
-              "x": 1,
-              "y": 1,
-              "clear_previous": true,
-              "show_frame": true,
-              "__comment": false
-            },
-            "id": "2d151f3c-04c6-418f-860d-7a9b00f64149"
-          }
-        ]
-      },
-      "id": "1b71b412-259a-422b-8def-1bc35bb390dd"
-    },
-    {
-      "command": "EVENT_LOOP",
-      "args": {
-        "__comment": true
-      },
-      "children": {
-        "true": []
-      },
-      "id": "3826be57-3163-40cd-aa53-fb2bee2c9647"
-    },
-    {
-      "command": "EVENT_LOOP",
-      "args": {
-        "__collapse": false,
-        "__comment": true
-      },
-      "children": {
-        "true": []
-      },
-      "id": "86755484-70a6-4e46-820a-3b2c1d6402fd"
-    },
-    {
-      "command": "MENU_DISPLAY_SCRIPT_MENU",
-      "args": {
-        "count": 4,
-        "slot_1_view": "Fight",
-        "slot_2_view": "Item",
-        "slot_3_view": "Magic",
-        "slot_4_view": "Run",
-        "slot_5_view": "Slot #5",
-        "slot_6_view": "Slot #6",
-        "slot_7_view": "Slot #7",
-        "slot_8_view": "Slot #8",
-        "slot_9_view": "Slot #9",
-        "slot_10_view": "Slot #10",
-        "slot_11_view": "Slot #11",
-        "slot_12_view": "Slot #12",
-        "slot_13_view": "Slot #13",
-        "slot_14_view": "Slot #14",
-        "slot_15_view": "Slot #15",
-        "slot_16_view": "Slot #16",
-        "cancelOnLastOptionText": "Cancel",
-        "cancelOnB": false,
-        "layout": "dialogue",
-        "slot_1_script": "ef3ef23d-ee70-4cff-ac84-4f8157045dbc",
-        "slot_2_script": "cc6eb97b-bb5c-4d80-b120-6743d70984db",
-        "slot_3_script": "086bbf29-eddc-4018-bce2-afc898411253",
-        "cancelOnLastOption": false,
-        "slot_4_script": "ef3ef23d-ee70-4cff-ac84-4f8157045dbc",
-        "__comment": true
-      },
-      "id": "86742c68-46ed-46b4-964f-64ef076a7e22"
-    },
-    {
-      "command": "EVENT_SET_INPUT_SCRIPT",
-      "args": {
-        "input": [
-          "b"
-        ],
-        "override": true,
-        "__scriptTabs": "press"
-      },
-      "children": {
-        "true": [
           {
             "command": "MENU_WHILE_ACTOR_CHOICE",
             "args": {
               "actor": "546035ee-3b7d-48af-98a9-525a4fbc9683",
-              "variable": "L0",
-              "__collapse": false
+              "variable": "0"
             },
             "children": {
               "events": [
@@ -216,15 +89,29 @@
                       "1"
                     ]
                   },
-                  "id": "de0cfbaa-c9b9-434a-91bf-faeabdee10a5"
+                  "id": "b61476e6-4ae5-460e-8d2e-f5a793ad7474"
                 }
               ]
             },
-            "id": "8f7f2642-d66a-4748-bdeb-6cc18168a4c6"
+            "id": "33b31aee-5848-4d01-a9f7-b22a8b35077c"
+          },
+          {
+            "command": "EVENT_WAIT",
+            "args": {
+              "time": {
+                "type": "number",
+                "value": 1
+              },
+              "frames": {
+                "type": "number",
+                "value": 1
+              }
+            },
+            "id": "57e54c13-a6a1-4de1-8147-db3e86948c64"
           }
         ]
       },
-      "id": "05427fcf-891f-4951-b34f-4abca223e491"
+      "id": "f400aa0d-5cf1-463f-9aa3-277388677491"
     }
   ],
   "playerHit1Script": [],

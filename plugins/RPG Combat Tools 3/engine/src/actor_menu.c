@@ -31,6 +31,17 @@ void runActorMenu(SCRIPT_CTX *THIS) OLDCALL BANKED {
   WORD *variable = VM_REF_TO_PTR(variable_idx);
   *variable = 0;
   for (actor_t *actor = actors_active_head; actor; actor = actor->next) {
+    if (actor == &PLAYER) {
+      continue;
+    }
+
+    for (UBYTE i = 1; i < MAX_ACTORS; i++) {
+      if (actor == &actors[i]) {
+        actor_id = i;
+        break;
+      }
+    }
+
     if (actor->collision_group & collision_mask) {
       actor_menu_actors[menu_actors_length] = actor_id;
       menu_item_t *menu_actor = &actor_menu_options[menu_actors_length];
@@ -38,18 +49,17 @@ void runActorMenu(SCRIPT_CTX *THIS) OLDCALL BANKED {
       menu_actor->Y = SUBPX_TO_TILE(actor->pos.y + actor->bounds.top);
       menu_actors_length++;
     }
-    actor_id++;
   }
 
   for (UBYTE i = 0; i < menu_actors_length; i++) {
     menu_item_t *menu_actor = &actor_menu_options[i];
     menu_actor->iL = 1;
     menu_actor->iR = menu_actors_length;
-    menu_actor->iU = clampedMenuIndex(i - 1, menu_actors_length);
-    menu_actor->iD = clampedMenuIndex(i + 1, menu_actors_length);
+    menu_actor->iU = clampedMenuIndex(i + 1, menu_actors_length);
+    menu_actor->iD = clampedMenuIndex(i - 1, menu_actors_length);
   }
 
-  const UBYTE choice = ui_run_menu(actor_menu_options, 0, 0, menu_actors_length, 1);
+  const UBYTE choice = ui_run_menu(actor_menu_options, 0, MENU_SET_START, menu_actors_length, menu_actors_length);
   if (choice) {
     *variable = actor_menu_actors[choice-1];
   }

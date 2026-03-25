@@ -3,8 +3,8 @@
   "variables": [
     {
       "id": "0",
-      "name": "Menu State (DEBUG)",
-      "symbol": "var_menu_state_debug_"
+      "name": "Fight Choice",
+      "symbol": "var_fight_choice"
     }
   ],
   "constants": []

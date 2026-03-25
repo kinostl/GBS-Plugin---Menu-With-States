@@ -47,11 +47,13 @@ const compile = (input, helpers) => {
 
     const output = helpers.output.splice(start)
     output.forEach((_) => {
+        const var_alias = input.variable.symbol ? input.variable.symbol : input.variable
         const prep = _.split(" ").map((_) => _.trim()).filter(_ => _)
-        const actor_idx = helpers.getActorIndex(input.actor)
+        const actor_idx = input.actor.symbol ? input.actor.symbol : helpers.getActorIndex(input.actor)
         const check_set_local_actor = ["VM_SET_CONST", ".LOCAL_ACTOR,", `${actor_idx}`]
         const check_stack_push = ["VM_PUSH_CONST", `${actor_idx}`, ";", "Actor"]
         const check_projectile = ["VM_SET_CONST", /\.LOCAL_.*_OTHER_ACTOR\,/, `${actor_idx}`]
+        const check_projectile_2 = ["VM_SET", /\.LOCAL_.*_OTHER_ACTOR\,/, `${actor_idx}`]
 
         if (
             comp_arr(prep, check_set_local_actor)
@@ -66,7 +68,8 @@ const compile = (input, helpers) => {
             helpers._stackPop(1)
             helpers.output.pop()
         } else if (
-            comp_arr(prep, check_projectile)
+            comp_arr(prep, check_projectile) ||
+            comp_arr(prep.slice(0, check_projectile_2.length), check_projectile_2)
         ) {
             helpers._addComment("Found an actor to replace 3")
             helpers.variableCopy(prep[1].substring(0, prep[1].length - 1), input.variable)
