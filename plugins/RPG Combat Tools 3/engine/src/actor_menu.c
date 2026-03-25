@@ -25,9 +25,7 @@ inline UBYTE clampedMenuIndex(BYTE index, UBYTE length) {
 void runActorMenu(SCRIPT_CTX *THIS) OLDCALL BANKED {
   UBYTE menu_actors_length = 0;
   UBYTE actor_id = 1;
-//   for (actor_t *actor = actors_active_tail; actor; actor = actor->prev) {
-//     actor_id++;
-//   }
+
   const UBYTE collision_mask = *(UBYTE *)VM_REF_TO_PTR(FN_ARG1);
   const WORD variable_idx = *(WORD *)VM_REF_TO_PTR(FN_ARG0);
   WORD *variable = VM_REF_TO_PTR(variable_idx);

@@ -1,0 +1,37 @@
+{
+  "_resourceType": "script",
+  "id": "868f5ce1-569b-4ebb-93c1-fc5aa8d671a4",
+  "name": "Script with Actor",
+  "description": "",
+  "variables": {},
+  "actors": {
+    "0": {
+      "id": "0",
+      "name": "Actor A"
+    }
+  },
+  "symbol": "script_0",
+  "script": [
+    {
+      "command": "EVENT_ACTOR_MOVE_TO",
+      "args": {
+        "__section": "movement",
+        "actorId": "0",
+        "x": {
+          "type": "number",
+          "value": 12
+        },
+        "y": {
+          "type": "number",
+          "value": 12
+        },
+        "collideWith": [
+          "walls"
+        ],
+        "lockDirection": [],
+        "moveType": "horizontal"
+      },
+      "id": "f9c66797-aed0-4213-9078-4995834e6486"
+    }
+  ]
+}
