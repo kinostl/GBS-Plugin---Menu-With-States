@@ -1,4 +1,3 @@
-
 const id = "MENU_WHILE_ACTOR_CHOICE";
 const groups = ["RPG Menu System"];
 const name = "With Actor set to Choice";
@@ -24,7 +23,12 @@ const comp_arr = (a, b) => {
     }
 
     for (let i = 0; i < a.length; i++) {
-        if (a[i] != b[i]) {
+
+        if (b[i] instanceof RegExp) {
+            if (!b[i].test(a[i])) {
+                return false;
+            }
+        } else if (a[i] != b[i]) {
             return false;
         }
     }
@@ -47,6 +51,8 @@ const compile = (input, helpers) => {
         const actor_idx = helpers.getActorIndex(input.actor)
         const check_set_local_actor = ["VM_SET_CONST", ".LOCAL_ACTOR,", `${actor_idx}`]
         const check_stack_push = ["VM_PUSH_CONST", `${actor_idx}`, ";", "Actor"]
+        const check_projectile = ["VM_SET_CONST", /\.LOCAL_.*_OTHER_ACTOR\,/, `${actor_idx}`]
+
         if (
             comp_arr(prep, check_set_local_actor)
         ) {
@@ -59,6 +65,11 @@ const compile = (input, helpers) => {
             helpers._stackPushVariable(input.variable)
             helpers._stackPop(1)
             helpers.output.pop()
+        } else if (
+            comp_arr(prep, check_projectile)
+        ) {
+            helpers._addComment("Found an actor to replace 3")
+            helpers.variableCopy(prep[1].substring(0, prep[1].length - 1), input.variable)
         } else {
             helpers.output.push(_)
         }
