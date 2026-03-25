@@ -18,6 +18,20 @@ const fields = [{
     key: "events",
 }]
 
+const comp_arr = (a, b) => {
+    if (a.length != b.length) {
+        return false;
+    }
+
+    for (let i = 0; i < a.length; i++) {
+        if (a[i] != b[i]) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
 /**
  * 
  * @param {*} input
@@ -32,18 +46,14 @@ const compile = (input, helpers) => {
         const prep = _.split(" ").map((_) => _.trim()).filter(_ => _)
         const actor_idx = helpers.getActorIndex(input.actor)
         const check_set_local_actor = ["VM_SET_CONST", ".LOCAL_ACTOR,", `${actor_idx}`]
-        const check_stack_push = ["VM_PUSH_CONST", `${actor_idx}`, ";", "Actor", `${actor_idx - 1}`]
+        const check_stack_push = ["VM_PUSH_CONST", `${actor_idx}`, ";", "Actor"]
         if (
-            prep[0] === check_set_local_actor[0] &&
-            prep[1] === check_set_local_actor[1] &&
-            prep[2] === check_set_local_actor[2]
+            comp_arr(prep, check_set_local_actor)
         ) {
             helpers._addComment("Found an actor to replace")
             helpers.variableCopy(".LOCAL_ACTOR", input.variable)
         } else if (
-            prep[0] === check_stack_push[0] &&
-            prep[1] === check_stack_push[1] &&
-            prep[2] === check_stack_push[2]
+            comp_arr(prep.slice(0, check_stack_push.length), check_stack_push)
         ) {
             helpers._addComment("Found an actor to replace 2")
             helpers._stackPushVariable(input.variable)
