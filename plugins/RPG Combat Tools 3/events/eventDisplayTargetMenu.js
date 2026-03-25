@@ -43,6 +43,7 @@ const toASMCollisionMask = (groups) => {
  */
 const compile = (input, helpers) => {
     const actors_on_overlay = helpers._declareLocal("actors_on_overlay", 1, true)
+    const actor_choice = helpers._declareLocal("actor_choice", 1, true)
     const isColor = helpers.options.settings.colorMode !== "mono";
     if (isColor) {
         helpers._getMemUInt8(actors_on_overlay, "overlay_priority");
@@ -56,8 +57,9 @@ const compile = (input, helpers) => {
     helpers.overlayCopyFromBackground()
     helpers.overlayMoveTo(0, 0, ".OVERLAY_SPEED_INSTANT")
     helpers._stackPushConst(toASMCollisionMask(input.collisionGroup))
-    helpers._stackPushReference(helpers.getVariableAlias(input.variable))
+    helpers._stackPushReference(actor_choice)
     helpers._callNative("runActorMenu")
+    helpers.variableCopy(input.variable, actor_choice)
     helpers.overlayMoveTo(0, 18, ".OVERLAY_SPEED_INSTANT")
     helpers._stackPop(2)
     helpers.markLocalsUsed(actors_on_overlay)

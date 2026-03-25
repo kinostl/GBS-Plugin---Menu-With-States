@@ -119,7 +119,11 @@ const compile = (input, helpers) => {
                 },
                 branch: () => {
                     helpers._setConstMemUInt8("in_child_script_menu", 0)
-                    helpers.callScript(input[`slot_${i + 1}_script`])
+                    const script = helpers.compileCustomEventScript(input[`slot_${i + 1}_script`])
+                    for(let i=0;i<script.argsLen;i++){
+                        helpers._stackPushConst(0)
+                    }
+                    helpers._callFar(script.scriptRef, script.argsLen)
                     helpers._getMemUInt8(in_child_script_menu, "in_child_script_menu")
                 }
             })

@@ -3,20 +3,97 @@
   "id": "ef3ef23d-ee70-4cff-ac84-4f8157045dbc",
   "name": "Menu/Fight",
   "description": "",
-  "variables": {},
-  "actors": {},
+  "variables": {
+    "V0": {
+      "id": "V0",
+      "name": "Variable A",
+      "passByReference": true
+    }
+  },
+  "actors": {
+    "0": {
+      "id": "0",
+      "name": "Actor A"
+    }
+  },
   "symbol": "script_1",
   "script": [
     {
+      "command": "EVENT_LOAD_PROJECTILE_SLOT",
+      "args": {
+        "__section": "projectile",
+        "slot": 0,
+        "spriteSheetId": "581d34d0-9591-4e6e-a609-1d94f203b0cd",
+        "spriteStateId": "",
+        "speed": 2,
+        "animSpeed": 15,
+        "lifeTime": 1,
+        "initialOffset": 0,
+        "loopAnim": true,
+        "destroyOnHit": true,
+        "collisionGroup": "3",
+        "collisionMask": [
+          "1"
+        ],
+        "__collapse": false
+      },
+      "id": "e8b4e858-b651-4531-a2c3-0b2cd6ea533a"
+    },
+    {
       "command": "MENU_DISPLAY_ACTORS_MENU",
       "args": {
-        "variable": "0",
+        "variable": "V0",
         "collisionGroup": [
           "1"
         ],
         "__comment": false
       },
       "id": "01b1a4fa-5396-4e45-9bbb-4ad5f2d2c482"
+    },
+    {
+      "command": "MENU_WHILE_ACTOR_CHOICE",
+      "args": {
+        "actor": "0",
+        "variable": "V0",
+        "__comment": false
+      },
+      "children": {
+        "events": [
+          {
+            "command": "EVENT_LAUNCH_PROJECTILE_SLOT",
+            "args": {
+              "__section": "source",
+              "actorId": "$self$",
+              "x": 0,
+              "y": 0,
+              "directionType": "target",
+              "otherActorId": "$self$",
+              "direction": "right",
+              "angle": 0,
+              "angleVariable": "V0",
+              "targetActorId": "0",
+              "slot": 0,
+              "__collapse": false
+            },
+            "id": "339e62bf-0daa-4e06-b3d1-8ecd273ef830"
+          },
+          {
+            "command": "EVENT_WAIT",
+            "args": {
+              "time": {
+                "type": "number",
+                "value": 1
+              },
+              "frames": {
+                "type": "number",
+                "value": 1
+              }
+            },
+            "id": "e6acc0cd-451f-47f5-b6a1-95972bc1ec68"
+          }
+        ]
+      },
+      "id": "68d1fbe4-1de2-48d3-8fd8-40e836da350f"
     }
   ]
 }
