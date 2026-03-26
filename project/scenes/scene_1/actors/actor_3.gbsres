@@ -4,7 +4,7 @@
   "name": "",
   "frame": 0,
   "animate": false,
-  "spriteSheetId": "252cc798-7bcb-48fc-b4fc-77fc40978f22",
+  "spriteSheetId": "7f708acf-c9bb-4558-b813-00da082c35c4",
   "prefabId": "",
   "direction": "down",
   "moveSpeed": 1,
@@ -24,6 +24,6 @@
   "hit3Script": [],
   "coordinateType": "tiles",
   "x": 12,
-  "y": 7,
+  "y": 6,
   "_index": 2
 }
