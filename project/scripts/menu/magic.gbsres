@@ -6,5 +6,35 @@
   "variables": {},
   "actors": {},
   "symbol": "script_2",
-  "script": []
+  "script": [
+    {
+      "command": "MENU_DISPLAY_SCRIPT_MENU",
+      "args": {
+        "count": 2,
+        "slot_1_view": "Fire",
+        "slot_2_view": "Ice",
+        "slot_3_view": "Slot #3",
+        "slot_4_view": "Slot #4",
+        "slot_5_view": "Slot #5",
+        "slot_6_view": "Slot #6",
+        "slot_7_view": "Slot #7",
+        "slot_8_view": "Slot #8",
+        "slot_9_view": "Slot #9",
+        "slot_10_view": "Slot #10",
+        "slot_11_view": "Slot #11",
+        "slot_12_view": "Slot #12",
+        "slot_13_view": "Slot #13",
+        "slot_14_view": "Slot #14",
+        "slot_15_view": "Slot #15",
+        "slot_16_view": "Slot #16",
+        "cancelOnLastOptionText": "Cancel",
+        "cancelOnB": true,
+        "layout": "dialogue",
+        "slot_1_script": "b5f82077-3eb3-404e-93f3-ea33a6799965",
+        "cancelOnLastOption": false,
+        "slot_2_script": "4ecfe6d9-c0a0-4ad3-9a6a-4eeafef94bae"
+      },
+      "id": "179196b2-84ba-4236-9c3f-f7df2193c4fb"
+    }
+  ]
 }

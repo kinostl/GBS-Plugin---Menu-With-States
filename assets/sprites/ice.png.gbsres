@@ -1,0 +1,129 @@
+{
+  "_resourceType": "sprite",
+  "id": "53d38957-b7a0-4f35-973d-e80e9e5f907f",
+  "name": "ice",
+  "symbol": "bg_another_battle_menu_idea",
+  "states": [
+    {
+      "id": "64b34872-e87d-4494-ab53-016595a17a94",
+      "name": "",
+      "animationType": "fixed",
+      "flipLeft": false,
+      "animations": [
+        {
+          "id": "16f5175d-d26a-48f5-9339-ab1948e6b79d",
+          "frames": [
+            {
+              "id": "36646e07-8dbb-4e31-8edf-344af9842967",
+              "tiles": [
+                {
+                  "id": "900432cf-3427-4b4d-9797-3f34c8b3be68",
+                  "x": 0,
+                  "y": 0,
+                  "sliceX": 0,
+                  "sliceY": 0,
+                  "palette": 0,
+                  "flipX": false,
+                  "flipY": false,
+                  "objPalette": "OBP0",
+                  "paletteIndex": 0,
+                  "priority": false
+                },
+                {
+                  "id": "e5bccec4-b621-4a1a-b0af-e2d1dc8b7fb4",
+                  "x": 8,
+                  "y": 0,
+                  "sliceX": 8,
+                  "sliceY": 0,
+                  "palette": 0,
+                  "flipX": false,
+                  "flipY": false,
+                  "objPalette": "OBP0",
+                  "paletteIndex": 0,
+                  "priority": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "a44867a0-01a3-439a-9566-70188e485a89",
+          "frames": [
+            {
+              "id": "90bc0a28-5c45-437e-b740-68210d0ed6c9",
+              "tiles": []
+            }
+          ]
+        },
+        {
+          "id": "941f8c53-07d9-4d38-94d2-eb92ffd856f0",
+          "frames": [
+            {
+              "id": "ac0635fb-f2a1-4aa5-a6af-aaeeabec029a",
+              "tiles": []
+            }
+          ]
+        },
+        {
+          "id": "f87cce20-e13d-46b5-a175-0d8bbd748857",
+          "frames": [
+            {
+              "id": "f8d871de-7300-4fbc-ad21-2d6b0b141d8d",
+              "tiles": []
+            }
+          ]
+        },
+        {
+          "id": "10ad6c2d-595a-4c3a-98a6-7a131c07ee1b",
+          "frames": [
+            {
+              "id": "215d6fac-e963-4c97-9221-7f9b771732fb",
+              "tiles": []
+            }
+          ]
+        },
+        {
+          "id": "7e5c3365-c5f2-41e7-92b3-fdd5ab44c652",
+          "frames": [
+            {
+              "id": "6ab877fe-087b-4958-98d3-eb4be3b1d2c5",
+              "tiles": []
+            }
+          ]
+        },
+        {
+          "id": "1a9873a7-d24c-46c1-b980-cfafb9f75388",
+          "frames": [
+            {
+              "id": "7328e186-0e7c-4e48-9b6c-106fa8c0228e",
+              "tiles": []
+            }
+          ]
+        },
+        {
+          "id": "61538990-a901-49e6-a4fc-791a4f85c1cb",
+          "frames": [
+            {
+              "id": "ef322094-fb24-4cd3-a1e9-9de80a5e3efb",
+              "tiles": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "numTiles": 2,
+  "canvasOriginX": 0,
+  "canvasOriginY": 0,
+  "canvasWidth": 16,
+  "canvasHeight": 16,
+  "boundsX": 0,
+  "boundsY": -8,
+  "boundsWidth": 16,
+  "boundsHeight": 16,
+  "animSpeed": 15,
+  "filename": "ice.png",
+  "width": 16,
+  "height": 16,
+  "checksum": "3acc46b33187d76811f0b2ed0f871e0b44e484db"
+}

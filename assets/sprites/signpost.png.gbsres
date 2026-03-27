@@ -1,0 +1,129 @@
+{
+  "_resourceType": "sprite",
+  "id": "61698f53-662c-4a9a-bdf1-5442ec2f17ac",
+  "name": "signpost",
+  "symbol": "sprite_signpost",
+  "states": [
+    {
+      "id": "e8de6a47-9e46-40df-a757-a5f76b2d5ac6",
+      "name": "",
+      "animationType": "fixed",
+      "flipLeft": false,
+      "animations": [
+        {
+          "id": "59c5e9fd-3229-4bf9-a1a7-af7060122a85",
+          "frames": [
+            {
+              "id": "19c86042-6097-470e-9a3b-987d6ce610eb",
+              "tiles": [
+                {
+                  "id": "c9908422-0430-408c-8396-3f63b0cf237b",
+                  "x": 0,
+                  "y": 0,
+                  "sliceX": 0,
+                  "sliceY": 0,
+                  "flipX": false,
+                  "flipY": false,
+                  "palette": 0,
+                  "paletteIndex": 0,
+                  "objPalette": "OBP0",
+                  "priority": false
+                },
+                {
+                  "id": "61da0b3d-b9a2-4d79-8a35-92b0c226a33a",
+                  "x": 8,
+                  "y": 0,
+                  "sliceX": 8,
+                  "sliceY": 0,
+                  "flipX": false,
+                  "flipY": false,
+                  "palette": 0,
+                  "paletteIndex": 0,
+                  "objPalette": "OBP0",
+                  "priority": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "50f1cb0e-0f0c-4f65-bb07-6dca818bdaf9",
+          "frames": [
+            {
+              "id": "a118b259-c1a2-4bae-aea1-65e16ebe2dd9",
+              "tiles": []
+            }
+          ]
+        },
+        {
+          "id": "1d179f79-b7ac-4b6f-9890-f7e417245ae4",
+          "frames": [
+            {
+              "id": "dffe6995-34d0-4c50-bf84-35e7f0ec7b4c",
+              "tiles": []
+            }
+          ]
+        },
+        {
+          "id": "a132e45b-48b1-4023-aa86-37b830eb6925",
+          "frames": [
+            {
+              "id": "8df72d64-ac67-470a-a21c-88555a79c50a",
+              "tiles": []
+            }
+          ]
+        },
+        {
+          "id": "56af1fe2-83a8-45d2-a3e2-7fd1574666f8",
+          "frames": [
+            {
+              "id": "49674ccf-fc3a-45ce-acb3-a87ac2d528fd",
+              "tiles": []
+            }
+          ]
+        },
+        {
+          "id": "dd1b91df-ce93-456c-b981-14ce1c5b66ff",
+          "frames": [
+            {
+              "id": "16f91bc8-0023-4874-a614-964d5133a38d",
+              "tiles": []
+            }
+          ]
+        },
+        {
+          "id": "88a534ab-21ff-440e-ac73-70df25da9503",
+          "frames": [
+            {
+              "id": "f6a1ccd6-59bd-45a7-ad61-abf24514982f",
+              "tiles": []
+            }
+          ]
+        },
+        {
+          "id": "3594c322-4eb2-4e5d-9676-7910e5f1b078",
+          "frames": [
+            {
+              "id": "304e1f71-8c99-4952-90a3-869979d25577",
+              "tiles": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "numTiles": 2,
+  "canvasOriginX": 0,
+  "canvasOriginY": 0,
+  "canvasWidth": 16,
+  "canvasHeight": 16,
+  "boundsX": 0,
+  "boundsY": -8,
+  "boundsWidth": 16,
+  "boundsHeight": 16,
+  "animSpeed": 15,
+  "filename": "signpost.png",
+  "width": 16,
+  "height": 16,
+  "checksum": "e4a7a24864ab8f040d49f93c17d144856e1118cc"
+}
