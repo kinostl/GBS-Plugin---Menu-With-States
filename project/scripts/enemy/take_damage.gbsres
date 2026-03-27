@@ -6,12 +6,12 @@
   "variables": {
     "V0": {
       "id": "V0",
-      "name": "Variable A",
+      "name": "HP",
       "passByReference": true
     },
     "V1": {
       "id": "V1",
-      "name": "Variable B",
+      "name": "Personal Animation Count",
       "passByReference": true
     }
   },
@@ -24,23 +24,12 @@
   "symbol": "script_9",
   "script": [
     {
-      "command": "EVENT_SET_VALUE",
-      "args": {
-        "variable": "V1",
-        "value": {
-          "type": "variable",
-          "value": "4"
-        }
-      },
-      "id": "749fff1b-adf2-4324-89bf-da47fb449968"
-    },
-    {
       "command": "EVENT_LOOP_FOR",
       "args": {
         "variable": "V1",
         "from": {
           "type": "variable",
-          "value": "V1"
+          "value": "4"
         },
         "comparison": ">",
         "to": {
@@ -182,9 +171,10 @@
       "args": {
         "variable": "0",
         "value": {
-          "type": "false"
+          "type": "number",
+          "value": 2
         },
-        "__collapse": true
+        "__collapse": false
       },
       "id": "6f535257-9252-489f-969f-426857ae7d8d"
     }

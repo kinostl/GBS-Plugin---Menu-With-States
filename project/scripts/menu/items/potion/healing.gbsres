@@ -39,10 +39,21 @@
       "id": "2ab1ef62-f43e-4ce5-ae74-89ef5e33726d"
     },
     {
+      "command": "EVENT_SET_VALUE",
+      "args": {
+        "variable": "5",
+        "value": {
+          "type": "number",
+          "value": 5
+        }
+      },
+      "id": "e405ceb5-2ef0-4109-beb6-a5dbadd24ff2"
+    },
+    {
       "command": "EVENT_TEXT",
       "args": {
         "text": [
-          "Healed Damage!"
+          "Removed all damage"
         ],
         "__section": "text",
         "avatarId": "",
@@ -62,6 +73,17 @@
         "closeDelayFrames": 30
       },
       "id": "8aa28c90-becb-4920-aa3f-9a0cd597a91d"
+    },
+    {
+      "command": "EVENT_SET_VALUE",
+      "args": {
+        "variable": "0",
+        "value": {
+          "type": "number",
+          "value": 2
+        }
+      },
+      "id": "aa78dbc1-76ed-4bf8-8fb0-9c19565e3079"
     }
   ]
 }

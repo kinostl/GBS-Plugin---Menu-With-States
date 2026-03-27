@@ -28,9 +28,52 @@
         }
       },
       "id": "d738629b-a5b1-4e70-b4eb-daadac65e51f"
+    },
+    {
+      "command": "EVENT_ACTOR_STOP_UPDATE",
+      "args": {
+        "actorId": "$self$"
+      },
+      "id": "2dd200a8-977b-494b-9f8b-9d274215046a"
     }
   ],
-  "updateScript": [],
+  "updateScript": [
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "gt",
+          "valueA": {
+            "type": "variable",
+            "value": "L0"
+          },
+          "valueB": {
+            "type": "number",
+            "value": 0
+          }
+        },
+        "__collapseElse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "args": {
+              "customEventId": "82166c49-fdc3-4602-9b59-89e2df1dcfb4"
+            },
+            "id": "6059a34b-4fd8-4a8b-a500-54263a39f391"
+          }
+        ],
+        "false": []
+      },
+      "id": "71806ceb-da58-4d87-baeb-df35be884e8c"
+    },
+    {
+      "command": "EVENT_STOP",
+      "args": {},
+      "id": "44a906d7-2f18-4a49-ae14-743b3109fbdc"
+    }
+  ],
   "hit1Script": [],
   "hit2Script": [
     {

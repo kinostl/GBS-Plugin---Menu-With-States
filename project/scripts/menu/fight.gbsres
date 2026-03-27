@@ -122,7 +122,8 @@
       "args": {
         "variable": "0",
         "value": {
-          "type": "true"
+          "type": "number",
+          "value": 1
         }
       },
       "id": "da7b59f8-b774-41ec-a239-1fa6e21f07ea"

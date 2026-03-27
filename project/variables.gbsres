@@ -47,9 +47,9 @@
       "symbol": "var_damage_animation_count"
     },
     {
-      "id": "b6d6c5ad-0315-425e-8ca0-8b3437e0b23d__L0",
+      "id": "5",
       "name": "Player HP",
-      "symbol": "var_player_hp"
+      "symbol": "var_player_hp_0"
     }
   ],
   "constants": [
