@@ -1,0 +1,35 @@
+{
+  "_resourceType": "script",
+  "id": "a443fb89-6b27-43ce-8f56-2471ea726dd7",
+  "name": "Enemy/Init",
+  "description": "",
+  "variables": {
+    "V0": {
+      "id": "V0",
+      "name": "Variable A",
+      "passByReference": true
+    }
+  },
+  "actors": {},
+  "symbol": "script_10",
+  "script": [
+    {
+      "command": "EVENT_INC_VALUE",
+      "args": {
+        "variable": "1"
+      },
+      "id": "07142246-7e2b-48ab-b8c2-0d283b87ed32"
+    },
+    {
+      "command": "EVENT_SET_VALUE",
+      "args": {
+        "variable": "V0",
+        "value": {
+          "type": "number",
+          "value": 0
+        }
+      },
+      "id": "ed8244e6-81fa-4fc4-ab0a-3d5e2710a1eb"
+    }
+  ]
+}

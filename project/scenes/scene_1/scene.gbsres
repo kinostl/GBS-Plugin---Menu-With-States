@@ -18,6 +18,18 @@
   "y": 31,
   "script": [
     {
+      "command": "EVENT_ACTOR_EFFECTS",
+      "args": {
+        "effect": "splitIn",
+        "actorId": "$self$",
+        "distance": 20,
+        "speed": 2,
+        "time": 0.5,
+        "frames": 30
+      },
+      "id": "beb7ff6d-6da2-41cd-9230-4505692586ed"
+    },
+    {
       "command": "EVENT_LOAD_PROJECTILE_SLOT",
       "args": {
         "__section": "projectile",
@@ -31,9 +43,7 @@
         "loopAnim": true,
         "destroyOnHit": false,
         "collisionGroup": "3",
-        "collisionMask": [
-          "1"
-        ],
+        "collisionMask": [],
         "__collapse": true
       },
       "id": "5a2e137c-96ea-44be-af28-3c902f222af0"
@@ -51,7 +61,7 @@
         "initialOffset": 0,
         "loopAnim": true,
         "destroyOnHit": true,
-        "collisionGroup": "3",
+        "collisionGroup": "2",
         "collisionMask": [
           "1"
         ],
@@ -73,54 +83,187 @@
         "loopAnim": true,
         "destroyOnHit": true,
         "collisionGroup": "3",
-        "collisionMask": [
-          "1"
-        ],
-        "__collapse": false
+        "collisionMask": [],
+        "__collapse": true
       },
       "id": "c34420b5-ea15-4b0c-961e-9f971365a05a"
     },
     {
+      "command": "EVENT_LOAD_PROJECTILE_SLOT",
+      "args": {
+        "__section": "projectile",
+        "slot": 0,
+        "spriteSheetId": "61698f53-662c-4a9a-bdf1-5442ec2f17ac",
+        "spriteStateId": "Invisible Projectile",
+        "speed": 0,
+        "animSpeed": 255,
+        "lifeTime": 4,
+        "initialOffset": 0,
+        "loopAnim": true,
+        "destroyOnHit": true,
+        "collisionGroup": "2",
+        "collisionMask": [
+          "1"
+        ],
+        "__collapse": true
+      },
+      "id": "fee566dc-6372-4cd8-8468-45c3c88f7efe"
+    },
+    {
       "command": "EVENT_LOOP",
-      "args": {},
+      "args": {
+        "__collapse": false,
+        "__comment": true
+      },
+      "children": {
+        "true": []
+      },
+      "id": "f400aa0d-5cf1-463f-9aa3-277388677491"
+    },
+    {
+      "command": "EVENT_THREAD_START",
+      "args": {
+        "variable": "T0",
+        "__scriptTabs": "true"
+      },
       "children": {
         "true": [
           {
-            "command": "MENU_DISPLAY_SCRIPT_MENU",
+            "command": "EVENT_LOOP_WHILE",
             "args": {
-              "count": 4,
-              "slot_1_view": "Fight",
-              "slot_2_view": "Item",
-              "slot_3_view": "Magic",
-              "slot_4_view": "Run",
-              "slot_5_view": "Slot #5",
-              "slot_6_view": "Slot #6",
-              "slot_7_view": "Slot #7",
-              "slot_8_view": "Slot #8",
-              "slot_9_view": "Slot #9",
-              "slot_10_view": "Slot #10",
-              "slot_11_view": "Slot #11",
-              "slot_12_view": "Slot #12",
-              "slot_13_view": "Slot #13",
-              "slot_14_view": "Slot #14",
-              "slot_15_view": "Slot #15",
-              "slot_16_view": "Slot #16",
-              "cancelOnLastOptionText": "Cancel",
-              "cancelOnB": false,
-              "layout": "dialogue",
-              "slot_1_script": "ef3ef23d-ee70-4cff-ac84-4f8157045dbc",
-              "slot_2_script": "cc6eb97b-bb5c-4d80-b120-6743d70984db",
-              "slot_3_script": "086bbf29-eddc-4018-bce2-afc898411253",
-              "cancelOnLastOption": false,
-              "slot_4_script": "ef3ef23d-ee70-4cff-ac84-4f8157045dbc",
-              "__comment": false,
-              "__collapse": false
+              "condition": {
+                "type": "gt",
+                "valueA": {
+                  "type": "variable",
+                  "value": "1"
+                },
+                "valueB": {
+                  "type": "number",
+                  "value": 0
+                }
+              },
+              "__collapse": true
             },
-            "id": "86742c68-46ed-46b4-964f-64ef076a7e22"
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "not",
+                      "value": {
+                        "type": "variable",
+                        "value": "0"
+                      }
+                    },
+                    "__collapseElse": false,
+                    "__collapse": false
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "MENU_DISPLAY_SCRIPT_MENU",
+                        "args": {
+                          "count": 4,
+                          "slot_1_view": "Fight",
+                          "slot_2_view": "Item",
+                          "slot_3_view": "Magic",
+                          "slot_4_view": "Run",
+                          "slot_5_view": "Slot #5",
+                          "slot_6_view": "Slot #6",
+                          "slot_7_view": "Slot #7",
+                          "slot_8_view": "Slot #8",
+                          "slot_9_view": "Slot #9",
+                          "slot_10_view": "Slot #10",
+                          "slot_11_view": "Slot #11",
+                          "slot_12_view": "Slot #12",
+                          "slot_13_view": "Slot #13",
+                          "slot_14_view": "Slot #14",
+                          "slot_15_view": "Slot #15",
+                          "slot_16_view": "Slot #16",
+                          "cancelOnLastOptionText": "Cancel",
+                          "cancelOnB": false,
+                          "layout": "dialogue",
+                          "slot_1_script": "ef3ef23d-ee70-4cff-ac84-4f8157045dbc",
+                          "slot_2_script": "cc6eb97b-bb5c-4d80-b120-6743d70984db",
+                          "slot_3_script": "086bbf29-eddc-4018-bce2-afc898411253",
+                          "cancelOnLastOption": false,
+                          "slot_4_script": "ef3ef23d-ee70-4cff-ac84-4f8157045dbc",
+                          "__comment": false,
+                          "__collapse": false
+                        },
+                        "id": "86742c68-46ed-46b4-964f-64ef076a7e22"
+                      }
+                    ],
+                    "false": [
+                      {
+                        "command": "EVENT_IDLE",
+                        "args": {},
+                        "id": "d58f35b9-e721-4cee-8461-c0961dc8e2cd"
+                      }
+                    ]
+                  },
+                  "id": "a4f5a0ee-bb45-41d3-8fea-700e2492cbdd"
+                }
+              ]
+            },
+            "id": "7cee9eda-29ce-440d-b2f7-54a1b2ba32a1"
+          },
+          {
+            "command": "EVENT_TEXT",
+            "args": {
+              "text": [
+                "You Win!"
+              ],
+              "__section": "text",
+              "avatarId": "",
+              "minHeight": 4,
+              "maxHeight": 7,
+              "textX": 1,
+              "textY": 1,
+              "textHeight": 5,
+              "position": "bottom",
+              "clearPrevious": true,
+              "showFrame": "true",
+              "speedIn": -1,
+              "speedOut": -1,
+              "closeWhen": "key",
+              "closeButton": "a",
+              "closeDelayTime": 0.5,
+              "closeDelayFrames": 30
+            },
+            "id": "5d35c8d5-4d19-40c9-a9b2-7e4f8b8e7ffc"
+          },
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "2",
+              "value": {
+                "type": "true"
+              }
+            },
+            "id": "d2ce2aa7-59ea-41b8-99b2-4796e7ea4ba3"
+          },
+          {
+            "command": "EVENT_SWITCH_SCENE",
+            "args": {
+              "sceneId": "2f13d5a2-0bec-4d54-bd1c-f3365e0d8cb3",
+              "x": {
+                "type": "number",
+                "value": 9
+              },
+              "y": {
+                "type": "number",
+                "value": 10
+              },
+              "direction": "up",
+              "fadeSpeed": "2"
+            },
+            "id": "5c54587c-9859-47ce-a2fe-02551729cfc5"
           }
         ]
       },
-      "id": "f400aa0d-5cf1-463f-9aa3-277388677491"
+      "id": "5be652aa-0199-4244-a8bc-cbd61998ad25"
     }
   ],
   "playerHit1Script": [],

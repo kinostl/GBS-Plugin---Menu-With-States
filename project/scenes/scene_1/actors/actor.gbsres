@@ -19,98 +19,36 @@
   "script": [],
   "startScript": [
     {
-      "command": "MENU_SET_ACTOR_NAME",
+      "command": "EVENT_CALL_CUSTOM_EVENT",
       "args": {
-        "text": "Arrow Man",
-        "actor": "$self$",
-        "__comment": true
+        "customEventId": "a443fb89-6b27-43ce-8f56-2471ea726dd7",
+        "$variable[V0]$": {
+          "type": "variable",
+          "value": "L0"
+        }
       },
-      "id": "73ee88e1-b712-4b8f-9006-a8b2d122a13b"
+      "id": "05e6cc59-8a37-4bc4-8f4b-517e3f4812aa"
     }
   ],
-  "updateScript": [
+  "updateScript": [],
+  "hit1Script": [],
+  "hit2Script": [
     {
-      "command": "EVENT_IF",
+      "command": "EVENT_CALL_CUSTOM_EVENT",
       "args": {
-        "condition": {
+        "customEventId": "ebd35050-2de7-496b-9638-e247d4290ad1",
+        "$variable[V0]$": {
           "type": "variable",
           "value": "L0"
         },
-        "__collapseElse": false
+        "$variable[V1]$": {
+          "type": "variable",
+          "value": "L1"
+        }
       },
-      "children": {
-        "true": [
-          {
-            "command": "EVENT_ACTOR_MOVE_TO",
-            "args": {
-              "__section": "movement",
-              "actorId": "$self$",
-              "x": {
-                "type": "number",
-                "value": 0
-              },
-              "y": {
-                "type": "number",
-                "value": 6
-              },
-              "collideWith": [
-                "walls"
-              ],
-              "lockDirection": [],
-              "moveType": "horizontal"
-            },
-            "id": "24ea3064-1ed2-4d08-84c3-fc7e6a68c5c7"
-          },
-          {
-            "command": "EVENT_SET_VALUE",
-            "args": {
-              "variable": "L0",
-              "value": {
-                "type": "false"
-              }
-            },
-            "id": "34880640-53e4-4ea2-8435-f77fa5d54986"
-          }
-        ],
-        "false": [
-          {
-            "command": "EVENT_ACTOR_MOVE_TO",
-            "args": {
-              "__section": "movement",
-              "actorId": "$self$",
-              "x": {
-                "type": "number",
-                "value": 18
-              },
-              "y": {
-                "type": "number",
-                "value": 6
-              },
-              "collideWith": [
-                "walls"
-              ],
-              "lockDirection": [],
-              "moveType": "horizontal"
-            },
-            "id": "7891fd32-4327-407f-8196-44a57351a6d6"
-          },
-          {
-            "command": "EVENT_SET_VALUE",
-            "args": {
-              "variable": "L0",
-              "value": {
-                "type": "true"
-              }
-            },
-            "id": "1f6b3790-c589-495d-b9f0-849a62beb530"
-          }
-        ]
-      },
-      "id": "011cd0c5-9d86-4110-8339-563a64f469a9"
+      "id": "85982e6b-3519-4d53-9e63-a013ef8790e8"
     }
   ],
-  "hit1Script": [],
-  "hit2Script": [],
   "hit3Script": [],
   "coordinateType": "tiles",
   "x": 15,

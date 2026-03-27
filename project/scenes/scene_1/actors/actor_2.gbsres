@@ -17,10 +17,38 @@
   "prefabScriptOverrides": {},
   "symbol": "actor_1",
   "script": [],
-  "startScript": [],
+  "startScript": [
+    {
+      "command": "EVENT_CALL_CUSTOM_EVENT",
+      "args": {
+        "customEventId": "a443fb89-6b27-43ce-8f56-2471ea726dd7",
+        "$variable[V0]$": {
+          "type": "variable",
+          "value": "L0"
+        }
+      },
+      "id": "070848b4-f023-471b-be9d-b8565243b5b9"
+    }
+  ],
   "updateScript": [],
   "hit1Script": [],
-  "hit2Script": [],
+  "hit2Script": [
+    {
+      "command": "EVENT_CALL_CUSTOM_EVENT",
+      "args": {
+        "customEventId": "ebd35050-2de7-496b-9638-e247d4290ad1",
+        "$variable[V0]$": {
+          "type": "variable",
+          "value": "L0"
+        },
+        "$variable[V1]$": {
+          "type": "variable",
+          "value": "L1"
+        }
+      },
+      "id": "496480c8-2a2e-48b4-a224-4b2fe8b177f1"
+    }
+  ],
   "hit3Script": [],
   "coordinateType": "tiles",
   "x": 12,

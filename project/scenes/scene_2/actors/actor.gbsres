@@ -18,81 +18,143 @@
   "symbol": "actor_3",
   "script": [
     {
-      "command": "EVENT_TEXT",
-      "args": {
-        "text": [
-          "If you wish to \nread me,",
-          "you must \ndefeat my three \nevil exes."
-        ],
-        "__section": "text",
-        "avatarId": "",
-        "minHeight": 4,
-        "maxHeight": 7,
-        "textX": 1,
-        "textY": 1,
-        "textHeight": 5,
-        "position": "bottom",
-        "clearPrevious": true,
-        "showFrame": "true",
-        "speedIn": -1,
-        "speedOut": -1,
-        "closeWhen": "key",
-        "closeButton": "a",
-        "closeDelayTime": 0.5,
-        "closeDelayFrames": 30,
-        "__collapse": false
-      },
-      "id": "6b16bbe4-94be-4da8-bdac-9fe545ce5678"
-    },
-    {
-      "command": "EVENT_CHOICE",
-      "args": {
-        "variable": "L0",
-        "trueText": "Fight",
-        "falseText": "Nevermind",
-        "__collapse": true
-      },
-      "id": "4c78c347-993e-43b3-ac1b-f83598fb3730"
-    },
-    {
       "command": "EVENT_IF",
       "args": {
         "condition": {
           "type": "eq",
           "valueA": {
             "type": "variable",
-            "value": "L0"
+            "value": "2"
           },
           "valueB": {
             "type": "true"
           }
         },
-        "__collapseElse": true,
-        "__collapse": true
+        "__collapseElse": false
       },
       "children": {
         "true": [
           {
-            "command": "EVENT_SWITCH_SCENE",
+            "command": "EVENT_TEXT",
             "args": {
-              "sceneId": "b6d6c5ad-0315-425e-8ca0-8b3437e0b23d",
-              "x": {
-                "type": "number",
-                "value": 6
-              },
-              "y": {
-                "type": "number",
-                "value": 8
-              },
-              "direction": "",
-              "fadeSpeed": "2"
+              "text": [
+                "Hello World."
+              ],
+              "__section": "text",
+              "avatarId": "",
+              "minHeight": 4,
+              "maxHeight": 7,
+              "textX": 1,
+              "textY": 1,
+              "textHeight": 5,
+              "position": "bottom",
+              "clearPrevious": true,
+              "showFrame": "true",
+              "speedIn": -1,
+              "speedOut": -1,
+              "closeWhen": "key",
+              "closeButton": "a",
+              "closeDelayTime": 0.5,
+              "closeDelayFrames": 30
             },
-            "id": "871bb958-473f-420a-9359-dbe9d55dc33a"
+            "id": "8a28be85-ebc7-437e-9363-55b6865fe3a2"
           }
         ],
-        "false": []
+        "false": [
+          {
+            "command": "EVENT_TEXT",
+            "args": {
+              "text": [
+                "If you wish to \nread me,",
+                "you must \ndefeat my three \nevil exes."
+              ],
+              "__section": "text",
+              "avatarId": "",
+              "minHeight": 4,
+              "maxHeight": 7,
+              "textX": 1,
+              "textY": 1,
+              "textHeight": 5,
+              "position": "bottom",
+              "clearPrevious": true,
+              "showFrame": "true",
+              "speedIn": -1,
+              "speedOut": -1,
+              "closeWhen": "key",
+              "closeButton": "a",
+              "closeDelayTime": 0.5,
+              "closeDelayFrames": 30,
+              "__collapse": true,
+              "__comment": false
+            },
+            "id": "6b16bbe4-94be-4da8-bdac-9fe545ce5678"
+          },
+          {
+            "command": "EVENT_CHOICE",
+            "args": {
+              "variable": "L0",
+              "trueText": "Fight",
+              "falseText": "Nevermind",
+              "__collapse": true,
+              "__comment": false
+            },
+            "id": "4c78c347-993e-43b3-ac1b-f83598fb3730"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "eq",
+                "valueA": {
+                  "type": "variable",
+                  "value": "L0"
+                },
+                "valueB": {
+                  "type": "true"
+                }
+              },
+              "__collapseElse": true,
+              "__collapse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_ACTOR_EFFECTS",
+                  "args": {
+                    "effect": "splitOut",
+                    "actorId": "player",
+                    "distance": 20,
+                    "speed": 2,
+                    "time": 0.5,
+                    "frames": 30
+                  },
+                  "id": "6ac07bb5-8af9-4d62-a1ab-686ce47cf974"
+                },
+                {
+                  "command": "EVENT_SWITCH_SCENE",
+                  "args": {
+                    "sceneId": "b6d6c5ad-0315-425e-8ca0-8b3437e0b23d",
+                    "x": {
+                      "type": "number",
+                      "value": 6
+                    },
+                    "y": {
+                      "type": "number",
+                      "value": 8
+                    },
+                    "direction": "",
+                    "fadeSpeed": "2"
+                  },
+                  "id": "871bb958-473f-420a-9359-dbe9d55dc33a"
+                }
+              ],
+              "false": []
+            },
+            "id": "d2989405-315c-4990-a1e1-53404e3f1527"
+          }
+        ]
       },
-      "id": "d2989405-315c-4990-a1e1-53404e3f1527"
+      "id": "6174cace-1c58-4c32-85c9-cfe77d95a304"
     }
   ],
   "startScript": [],

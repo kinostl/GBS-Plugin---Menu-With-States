@@ -120,10 +120,12 @@ const compile = (input, helpers) => {
                 branch: () => {
                     helpers._setConstMemUInt8("in_child_script_menu", 0)
                     const script = helpers.compileCustomEventScript(input[`slot_${i + 1}_script`])
+                    const dummies = Array(script.argsLen).fill().map((_)=>helpers._declareLocal("dummy", 1, true))
                     for(let i=0;i<script.argsLen;i++){
-                        helpers._stackPushConst(0)
+                        helpers._stackPushReference(dummies[i])
                     }
                     helpers._callFar(script.scriptRef, script.argsLen)
+                    helpers.markLocalsUsed(...dummies)
                     helpers._getMemUInt8(in_child_script_menu, "in_child_script_menu")
                 }
             })

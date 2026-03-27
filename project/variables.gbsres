@@ -1,5 +1,64 @@
 {
   "_resourceType": "variables",
-  "variables": [],
-  "constants": []
+  "variables": [
+    {
+      "id": "e40c8deb-ee4d-4238-b696-d0f8d735d898__L0",
+      "name": "Rock Health",
+      "symbol": "var_rock_health"
+    },
+    {
+      "id": "546035ee-3b7d-48af-98a9-525a4fbc9683__L0",
+      "name": "Point Health",
+      "symbol": "var_point_health"
+    },
+    {
+      "id": "3a1d8a39-af75-49c1-aa49-f3824cce5413__L0",
+      "name": "Radio Health",
+      "symbol": "var_radio_health"
+    },
+    {
+      "id": "954d16a5-506b-496b-9038-2055dcab3156__L0",
+      "name": "Sign Choice",
+      "symbol": "var_sign_choice"
+    },
+    {
+      "id": "0",
+      "name": "Menu Lock",
+      "symbol": "var_menu_lock"
+    },
+    {
+      "id": "1",
+      "name": "Enemy Count",
+      "symbol": "var_enemy_count"
+    },
+    {
+      "id": "2",
+      "name": "I Won",
+      "symbol": "var_i_won"
+    },
+    {
+      "id": "3",
+      "name": "Damage Animation Type",
+      "symbol": "var_damage_animation_type"
+    },
+    {
+      "id": "4",
+      "name": "Damage Animation Count",
+      "symbol": "var_damage_animation_count"
+    }
+  ],
+  "constants": [
+    {
+      "id": "a621af65-ad59-4545-9bb5-6983d7e9e040",
+      "name": "ANIMATION_TYPE/UP-DOWN",
+      "symbol": "const_animation_type_up_dow",
+      "value": 1
+    },
+    {
+      "id": "1222793e-4aef-4f7d-8597-11e9fb6fa2ce",
+      "name": "ANIMATION_TYPE/LEFT_RIGHT",
+      "symbol": "const_animation_type_left_r",
+      "value": 2
+    }
+  ]
 }
