@@ -6,5 +6,48 @@
   "variables": {},
   "actors": {},
   "symbol": "script_5",
-  "script": []
+  "script": [
+    {
+      "command": "EVENT_TEXT",
+      "args": {
+        "text": [
+          "You flee..."
+        ],
+        "__section": "text",
+        "avatarId": "",
+        "minHeight": 4,
+        "maxHeight": 7,
+        "textX": 1,
+        "textY": 1,
+        "textHeight": 5,
+        "position": "bottom",
+        "clearPrevious": true,
+        "showFrame": "true",
+        "speedIn": -1,
+        "speedOut": -1,
+        "closeWhen": "key",
+        "closeButton": "a",
+        "closeDelayTime": 0.5,
+        "closeDelayFrames": 30
+      },
+      "id": "554b3097-befe-435d-8563-ac4c6b13e205"
+    },
+    {
+      "command": "EVENT_SWITCH_SCENE",
+      "args": {
+        "sceneId": "2f13d5a2-0bec-4d54-bd1c-f3365e0d8cb3",
+        "x": {
+          "type": "number",
+          "value": 9
+        },
+        "y": {
+          "type": "number",
+          "value": 10
+        },
+        "direction": "up",
+        "fadeSpeed": "2"
+      },
+      "id": "5acf1b7b-fd1f-4a71-a936-606f49c31c7f"
+    }
+  ]
 }

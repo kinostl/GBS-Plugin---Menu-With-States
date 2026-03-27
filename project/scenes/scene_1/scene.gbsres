@@ -94,7 +94,7 @@
         "__section": "projectile",
         "slot": 0,
         "spriteSheetId": "61698f53-662c-4a9a-bdf1-5442ec2f17ac",
-        "spriteStateId": "",
+        "spriteStateId": "Invisible Projectile",
         "speed": 0,
         "animSpeed": 255,
         "lifeTime": 4,
@@ -282,7 +282,7 @@
                           "slot_2_script": "cc6eb97b-bb5c-4d80-b120-6743d70984db",
                           "slot_3_script": "086bbf29-eddc-4018-bce2-afc898411253",
                           "cancelOnLastOption": false,
-                          "slot_4_script": "ef3ef23d-ee70-4cff-ac84-4f8157045dbc",
+                          "slot_4_script": "82df1edb-c5c4-44b9-9e05-79325bda1834",
                           "__comment": false,
                           "__collapse": false
                         },
