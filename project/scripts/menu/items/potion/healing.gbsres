@@ -8,10 +8,41 @@
   "symbol": "script_7",
   "script": [
     {
+      "command": "EVENT_LAUNCH_PROJECTILE_SLOT",
+      "args": {
+        "__section": "source",
+        "actorId": "$self$",
+        "x": 0,
+        "y": 0,
+        "directionType": "direction",
+        "otherActorId": "$self$",
+        "direction": "up",
+        "angle": 0,
+        "angleVariable": "V0",
+        "targetActorId": "$self$",
+        "slot": 2
+      },
+      "id": "ac604718-b476-44e2-bb77-70fbc45209b7"
+    },
+    {
+      "command": "EVENT_WAIT",
+      "args": {
+        "time": {
+          "type": "number",
+          "value": 1.2
+        },
+        "frames": {
+          "type": "number",
+          "value": 1
+        }
+      },
+      "id": "2ab1ef62-f43e-4ce5-ae74-89ef5e33726d"
+    },
+    {
       "command": "EVENT_TEXT",
       "args": {
         "text": [
-          "Heal it up"
+          "Healed Damage!"
         ],
         "__section": "text",
         "avatarId": "",
@@ -28,10 +59,9 @@
         "closeWhen": "key",
         "closeButton": "a",
         "closeDelayTime": 0.5,
-        "closeDelayFrames": 30,
-        "__comment": false
+        "closeDelayFrames": 30
       },
-      "id": "801994f6-49d1-401e-a31b-c0154719c11a"
+      "id": "8aa28c90-becb-4920-aa3f-9a0cd597a91d"
     }
   ]
 }

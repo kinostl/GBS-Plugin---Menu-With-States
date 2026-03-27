@@ -34,7 +34,7 @@
         "collisionMask": [
           "1"
         ],
-        "__collapse": false
+        "__collapse": true
       },
       "id": "5a2e137c-96ea-44be-af28-3c902f222af0"
     },
@@ -55,9 +55,30 @@
         "collisionMask": [
           "1"
         ],
-        "__collapse": false
+        "__collapse": true
       },
       "id": "7cf9ba97-d499-45fc-8ae8-094430885cf1"
+    },
+    {
+      "command": "EVENT_LOAD_PROJECTILE_SLOT",
+      "args": {
+        "__section": "projectile",
+        "slot": 2,
+        "spriteSheetId": "495cc611-a667-4cf5-a26e-49d16fdb5002",
+        "spriteStateId": "",
+        "speed": 0.25,
+        "animSpeed": 15,
+        "lifeTime": 1,
+        "initialOffset": 0,
+        "loopAnim": true,
+        "destroyOnHit": true,
+        "collisionGroup": "3",
+        "collisionMask": [
+          "1"
+        ],
+        "__collapse": false
+      },
+      "id": "c34420b5-ea15-4b0c-961e-9f971365a05a"
     },
     {
       "command": "EVENT_LOOP",
