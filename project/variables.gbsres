@@ -32,6 +32,26 @@
       "symbol": "var_player_hp_0"
     },
     {
+      "id": "6",
+      "name": "Menu/Magic/Slot-1",
+      "symbol": "var_menu_magic_slot_1"
+    },
+    {
+      "id": "7",
+      "name": "Menu/Magic/Slot-2",
+      "symbol": "var_menu_magic_slot_2"
+    },
+    {
+      "id": "8",
+      "name": "Menu/Magic/Slot-3",
+      "symbol": "var_menu_magic_slot_3"
+    },
+    {
+      "id": "9",
+      "name": "Menu Choice",
+      "symbol": "var_menu_choice"
+    },
+    {
       "id": "e40c8deb-ee4d-4238-b696-d0f8d735d898__L0",
       "name": "Rock Health",
       "symbol": "var_rock_health"
@@ -60,26 +80,6 @@
       "id": "f0bca9d5-0abf-4066-999e-8860efbb367e__L1",
       "name": "Spell Choice",
       "symbol": "var_spell_choice"
-    },
-    {
-      "id": "6",
-      "name": "Menu/Magic/Slot-1",
-      "symbol": "var_menu_magic_slot_1"
-    },
-    {
-      "id": "7",
-      "name": "Menu/Magic/Slot-2",
-      "symbol": "var_menu_magic_slot_2"
-    },
-    {
-      "id": "8",
-      "name": "Menu/Magic/Slot-3",
-      "symbol": "var_menu_magic_slot_3"
-    },
-    {
-      "id": "9",
-      "name": "Menu Choice",
-      "symbol": "var_menu_choice"
     }
   ],
   "constants": [
