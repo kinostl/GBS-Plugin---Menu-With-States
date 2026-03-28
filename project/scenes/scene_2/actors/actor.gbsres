@@ -40,7 +40,7 @@
               "text": [
                 "Hello World."
               ],
-              "__section": "text",
+              "__section": "behavior",
               "avatarId": "",
               "minHeight": 4,
               "maxHeight": 7,
@@ -114,10 +114,15 @@
                 }
               },
               "__collapseElse": true,
-              "__collapse": true
+              "__collapse": false
             },
             "children": {
               "true": [
+                {
+                  "command": "EVENT_RNG_SEED",
+                  "args": {},
+                  "id": "0793a474-8f81-4450-80db-6532fd1cc8ee"
+                },
                 {
                   "command": "EVENT_ACTOR_EFFECTS",
                   "args": {

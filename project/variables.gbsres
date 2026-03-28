@@ -2,26 +2,6 @@
   "_resourceType": "variables",
   "variables": [
     {
-      "id": "e40c8deb-ee4d-4238-b696-d0f8d735d898__L0",
-      "name": "Rock Health",
-      "symbol": "var_rock_health"
-    },
-    {
-      "id": "546035ee-3b7d-48af-98a9-525a4fbc9683__L0",
-      "name": "Point Health",
-      "symbol": "var_point_health"
-    },
-    {
-      "id": "3a1d8a39-af75-49c1-aa49-f3824cce5413__L0",
-      "name": "Radio Health",
-      "symbol": "var_radio_health"
-    },
-    {
-      "id": "954d16a5-506b-496b-9038-2055dcab3156__L0",
-      "name": "Sign Choice",
-      "symbol": "var_sign_choice"
-    },
-    {
       "id": "0",
       "name": "Menu Lock",
       "symbol": "var_menu_lock"
@@ -50,6 +30,56 @@
       "id": "5",
       "name": "Player HP",
       "symbol": "var_player_hp_0"
+    },
+    {
+      "id": "e40c8deb-ee4d-4238-b696-d0f8d735d898__L0",
+      "name": "Rock Health",
+      "symbol": "var_rock_health"
+    },
+    {
+      "id": "546035ee-3b7d-48af-98a9-525a4fbc9683__L0",
+      "name": "Point Health",
+      "symbol": "var_point_health"
+    },
+    {
+      "id": "3a1d8a39-af75-49c1-aa49-f3824cce5413__L0",
+      "name": "Radio Health",
+      "symbol": "var_radio_health"
+    },
+    {
+      "id": "954d16a5-506b-496b-9038-2055dcab3156__L0",
+      "name": "Sign Choice",
+      "symbol": "var_sign_choice"
+    },
+    {
+      "id": "f0bca9d5-0abf-4066-999e-8860efbb367e__L0",
+      "name": "Slot Choice",
+      "symbol": "var_slot_choice"
+    },
+    {
+      "id": "f0bca9d5-0abf-4066-999e-8860efbb367e__L1",
+      "name": "Spell Choice",
+      "symbol": "var_spell_choice"
+    },
+    {
+      "id": "6",
+      "name": "Menu/Magic/Slot-1",
+      "symbol": "var_menu_magic_slot_1"
+    },
+    {
+      "id": "7",
+      "name": "Menu/Magic/Slot-2",
+      "symbol": "var_menu_magic_slot_2"
+    },
+    {
+      "id": "8",
+      "name": "Menu/Magic/Slot-3",
+      "symbol": "var_menu_magic_slot_3"
+    },
+    {
+      "id": "9",
+      "name": "Menu Choice",
+      "symbol": "var_menu_choice"
     }
   ],
   "constants": [
@@ -64,6 +94,24 @@
       "name": "ANIMATION_TYPE/LEFT_RIGHT",
       "symbol": "const_animation_type_left_r",
       "value": 2
+    },
+    {
+      "id": "6b59d959-f1c8-47cc-a49f-81fc340fc7c6",
+      "name": "SLOT/MAGIC/FIRE",
+      "symbol": "const_slot_magic_fire",
+      "value": 1
+    },
+    {
+      "id": "8b8eace7-602d-419e-bed8-d780b3ae73ce",
+      "name": "SLOT/MAGIC/ICE",
+      "symbol": "const_slot_magic_ice",
+      "value": 2
+    },
+    {
+      "id": "ee9e2f44-c8d5-4394-ae19-0ba676b8ba50",
+      "name": "SLOT/MAGIC/SOAP",
+      "symbol": "const_slot_magic_soap",
+      "value": 3
     }
   ]
 }

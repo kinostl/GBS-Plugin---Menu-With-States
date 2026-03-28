@@ -18,6 +18,19 @@
   "y": 31,
   "script": [
     {
+      "command": "EVENT_GBVM_SCRIPT",
+      "args": {
+        "references": [
+          {
+            "type": "variable",
+            "id": "9"
+          }
+        ],
+        "script": ""
+      },
+      "id": "c5e709fa-1c81-4bed-96f9-30413efea127"
+    },
+    {
       "command": "EVENT_ACTOR_EFFECTS",
       "args": {
         "effect": "splitIn",
@@ -25,7 +38,8 @@
         "distance": 20,
         "speed": 2,
         "time": 0.5,
-        "frames": 30
+        "frames": 30,
+        "__collapse": true
       },
       "id": "beb7ff6d-6da2-41cd-9230-4505692586ed"
     },
@@ -47,6 +61,25 @@
         "__collapse": true
       },
       "id": "5a2e137c-96ea-44be-af28-3c902f222af0"
+    },
+    {
+      "command": "EVENT_LOAD_PROJECTILE_SLOT",
+      "args": {
+        "__section": "projectile",
+        "slot": 1,
+        "spriteSheetId": "7f708acf-c9bb-4558-b813-00da082c35c4",
+        "spriteStateId": "",
+        "speed": 0.25,
+        "animSpeed": 3,
+        "lifeTime": 1,
+        "initialOffset": 0,
+        "loopAnim": true,
+        "destroyOnHit": false,
+        "collisionGroup": "3",
+        "collisionMask": [],
+        "__collapse": true
+      },
+      "id": "831fd55d-e300-47ba-b5bc-9de1abf4793d"
     },
     {
       "command": "EVENT_LOAD_PROJECTILE_SLOT",
@@ -105,7 +138,7 @@
         "collisionMask": [
           "1"
         ],
-        "__collapse": false
+        "__collapse": true
       },
       "id": "fee566dc-6372-4cd8-8468-45c3c88f7efe"
     },
