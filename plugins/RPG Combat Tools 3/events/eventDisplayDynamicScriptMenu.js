@@ -47,17 +47,6 @@ const script_header = [{
     }]
 }]
 
-const slot_header = [{
-    type: "group",
-    fields: [{
-        label: "Menu Text",
-        width: "50%",
-    }, {
-        label: "Variable",
-        width: "50%",
-    }]
-}]
-
 const slot_fields = Array(MAX_DISPLAY).fill().map((_, i) => {
     const conditions = [{
         key: "slot_count",
@@ -150,6 +139,7 @@ const compile = (input, helpers) => {
 
     const choices = []
     const view_choices = []
+    const confirm_choices = []
 
     for (let i = 0; i < input.script_count; i++) {
         choices.push({
@@ -186,6 +176,18 @@ const compile = (input, helpers) => {
         })
     }
 
+    for (let i = 0; i < input.slot_count; i++) {
+        confirm_choices.push({
+            value: {
+                type: "number",
+                value: i + 1,
+            },
+            branch: () => {
+                helpers.variableCopy(choice, input[`slot_${i+1}_choice`])
+            }
+        })
+    }
+
     helpers.whileScriptValue({
         type: "variable",
         value: in_child_script_menu
@@ -209,6 +211,7 @@ const compile = (input, helpers) => {
         }
         helpers.overlayMoveTo(0, 18, ".OVERLAY_OUT_SPEED")
 
+        helpers.caseVariableConstValue(choice, confirm_choices)
         helpers.caseVariableConstValue(choice, choices, is_main_menu ? null : () => {
             helpers.labelGoto("end")
         })
