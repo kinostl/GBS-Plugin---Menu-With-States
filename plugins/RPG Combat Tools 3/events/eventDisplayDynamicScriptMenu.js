@@ -22,6 +22,10 @@ const script_fields = Array(MAX_SCRIPTS).fill().map((_, i) => {
         type: "group",
         conditions,
         fields: [{
+            label: `${i + 1}. `,
+            inline: true,
+            alignBottom: true
+        },{
             type: "text",
             key: `slot_${i + 1}_view`,
             defaultValue: `Option #${i + 1}`,
@@ -38,13 +42,19 @@ const script_fields = Array(MAX_SCRIPTS).fill().map((_, i) => {
 
 const script_header = [{
     type: "group",
-    fields: [{
-        label: "If chosen",
-        width: "50%",
-    }, {
-        label: "Call script",
-        width: "50%",
-    }]
+    fields: [
+        {
+            label: "ID",
+            inline: true,
+            alignBottom: true
+        },
+        {
+            label: "Menu Text",
+            width: "50%",
+        }, {
+            label: "Call Script",
+            width: "50%",
+        }]
 }]
 
 const slot_fields = Array(MAX_DISPLAY).fill().map((_, i) => {
@@ -56,14 +66,33 @@ const slot_fields = Array(MAX_DISPLAY).fill().map((_, i) => {
     return {
         type: "group",
         conditions,
-        fields: [{
-            type: "variable",
-            label: `Get Variable for Slot #${i+1}`,
-            key: `slot_${i + 1}_choice`,
-            conditions
-        }]
+        fields: [
+
+            {
+                label: `${i + 1}. `,
+                inline: true,
+                alignBottom: true
+            },
+            {
+                type: "variable",
+                key: `slot_${i + 1}_choice`,
+                conditions
+            }]
     }
 })
+
+const slot_header = [{
+    type: "group",
+    fields: [
+        {
+            label: "#. ",
+            inline: true,
+            alignBottom: true
+        },
+        {
+            label: "Variable containing ID for Option #",
+        }]
+}]
 
 const settings = [
   {
@@ -109,16 +138,16 @@ const fields = [
         max: MAX_DISPLAY,
         label: "Number of options"
     },
+    ...slot_header,
+    ...slot_fields,
     {
         key: "script_count",
         type: "number",
         defaultValue: 1,
         min: 1,
         max: MAX_SCRIPTS,
-        label: "Number of scripts"
+        label: "Number of Scripts"
     },
-    // ...slot_header,
-    ...slot_fields,
     ...script_header,
     ...script_fields,
     ...settings
@@ -133,8 +162,23 @@ const compile = (input, helpers) => {
     const in_child_script_menu = helpers._declareLocal("in_child_script_menu", 1, true)
     const slot_x = helpers._declareLocal("slot_x", 1, true)
     const slot_y = helpers._declareLocal("slot_y", 1, true)
+    let menu_height = input.slot_count+2
+    let choice_count = input.slot_count
+    if (input.cancelOnLastOption) {
+        menu_height++
+        choice_count++
+    }
 
     const is_main_menu = helpers.options.maxDepth >= 5
+
+    const choiceFlags = [];
+    if (input.cancelOnLastOption) {
+      choiceFlags.push(".UI_MENU_LAST_0");
+    }
+    if (input.cancelOnB) {
+      choiceFlags.push(".UI_MENU_CANCEL_B");
+    }
+
 
     helpers._setConstMemUInt8("in_child_script_menu", 1)
     helpers.variableSetToValue(in_child_script_menu, 1)
@@ -198,7 +242,7 @@ const compile = (input, helpers) => {
         const start_draw_view_loop = helpers.getNextLabel()
         const end_draw_view_loop = helpers.getNextLabel()
 
-        helpers._overlayClear(0, 0, 20, input.slot_count+2, ".UI_COLOR_WHITE", true, false)
+        helpers._overlayClear(0, 0, 20, menu_height, ".UI_COLOR_WHITE", true, false)
         for (let i = 0; i < input.slot_count; i++) {
             const x = 3
             const y = i+2
@@ -216,22 +260,27 @@ const compile = (input, helpers) => {
         helpers._stackPop(1)
         helpers.output.pop()
         helpers._label(end_draw_view_loop)
+        if (input.cancelOnLastOption) {
+            helpers.textDraw(input.cancelOnLastOptionText, 2, choice_count, "overlay")
+        }
 
-        helpers.overlayMoveTo(0, 18 - input.slot_count - 2, ".OVERLAY_IN_SPEED")
-        helpers._choice(choice, [], input.slot_count)
-        for(let i=0;i<input.slot_count;i++){
+        helpers.overlayMoveTo(0, 18 - menu_height, ".OVERLAY_IN_SPEED")
+        helpers._choice(choice, choiceFlags, choice_count)
+        for(let i=0;i<choice_count;i++){
             helpers._menuItem(
                 1,
                 i + 1,
                 1,
-                input.slot_count,
+                choice_count,
                 (i - 1 <= 0) ? 1 : i - 1,
-                (i + 2 >= input.slot_count) ? input.slot_count : i + 2
+                (i + 2 >= choice_count) ? choice_count : i + 2
             )
         }
         helpers.overlayMoveTo(0, 18, ".OVERLAY_OUT_SPEED")
 
-        helpers.caseVariableConstValue(choice, confirm_choices)
+        helpers.caseVariableConstValue(choice, confirm_choices, ()=>{
+            helpers.textDraw("you pressed b", 0, 0, "background")
+        })
         helpers.caseVariableConstValue(choice, choices, is_main_menu ? null : () => {
             helpers.labelGoto("end")
         })

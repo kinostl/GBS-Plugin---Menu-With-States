@@ -14,8 +14,8 @@
   "collisions": "",
   "autoFadeSpeed": 1,
   "symbol": "scene_3",
-  "x": 578.5,
-  "y": 103,
+  "x": 504,
+  "y": 32,
   "script": [
     {
       "command": "EVENT_SET_VALUE",
@@ -23,7 +23,7 @@
         "variable": "L0",
         "value": {
           "type": "number",
-          "value": 3
+          "value": 1
         }
       },
       "id": "7b152daf-8db8-4ccf-b9a7-17d0e623652d"
@@ -34,7 +34,7 @@
         "variable": "L1",
         "value": {
           "type": "number",
-          "value": 2
+          "value": 3
         }
       },
       "id": "2d9d672e-43fd-4e0e-8a5f-71c82e8379b8"
@@ -61,13 +61,14 @@
         "slot_15_view": "Slot #15",
         "slot_16_view": "Slot #16",
         "cancelOnLastOptionText": "Cancel",
-        "cancelOnB": true,
+        "cancelOnB": false,
         "layout": "dialogue",
         "slot_1_script": "b5f82077-3eb3-404e-93f3-ea33a6799965",
         "slot_1_choice": "L0",
         "slot_2_choice": "L1",
         "slot_2_script": "4ecfe6d9-c0a0-4ad3-9a6a-4eeafef94bae",
-        "slot_3_script": "a21f39b7-3fbc-478e-8d8d-7af5d5e8b941"
+        "slot_3_script": "a21f39b7-3fbc-478e-8d8d-7af5d5e8b941",
+        "cancelOnLastOption": false
       },
       "id": "e3418178-adf4-4736-aaa6-9778df7caa49"
     }
