@@ -278,9 +278,7 @@ const compile = (input, helpers) => {
         }
         helpers.overlayMoveTo(0, 18, ".OVERLAY_OUT_SPEED")
 
-        helpers.caseVariableConstValue(choice, confirm_choices, ()=>{
-            helpers.textDraw("you pressed b", 0, 0, "background")
-        })
+        helpers.caseVariableConstValue(choice, confirm_choices)
         helpers.caseVariableConstValue(choice, choices, is_main_menu ? null : () => {
             helpers.labelGoto("end")
         })
