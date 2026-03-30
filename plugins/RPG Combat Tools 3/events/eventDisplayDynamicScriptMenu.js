@@ -193,6 +193,7 @@ const compile = (input, helpers) => {
     const choices = []
     const view_choices = []
     const confirm_choices = []
+    const dummies = []
 
     for (let i = 0; i < input.script_count; i++) {
         choices.push({
@@ -203,16 +204,22 @@ const compile = (input, helpers) => {
             branch: () => {
                 helpers._setConstMemUInt8("in_child_script_menu", 0)
                 const script = helpers.compileCustomEventScript(input[`slot_${i + 1}_script`])
-                const dummies = Array(script.argsLen).fill().map((_) => helpers._declareLocal("dummy", 1, true))
+                while(script.argsLen > dummies.length){
+                    dummies.push(
+                        helpers._declareLocal("dummy", 1, true)
+                    )
+                }
+
                 for (let i = 0; i < script.argsLen; i++) {
                     helpers._stackPushReference(dummies[i])
                 }
                 helpers._callFar(script.scriptRef, script.argsLen)
-                helpers.markLocalsUsed(...dummies)
                 helpers._getMemUInt8(in_child_script_menu, "in_child_script_menu")
             }
         })
     }
+
+    helpers.markLocalsUsed(...dummies)
 
     for (let i = 0; i < input.script_count; i++) {
         view_choices.push({

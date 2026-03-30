@@ -111,6 +111,7 @@ const compile = (input, helpers) => {
         }
         helpers.textMenu(choice, textMenuChoices, input.layout, input.cancelOnLastOption, input.cancelOnB)
 
+        const dummies = []
         for (let i = 0; i < input.count; i++) {
             choices.push({
                 value: {
@@ -120,16 +121,20 @@ const compile = (input, helpers) => {
                 branch: () => {
                     helpers._setConstMemUInt8("in_child_script_menu", 0)
                     const script = helpers.compileCustomEventScript(input[`slot_${i + 1}_script`])
-                    const dummies = Array(script.argsLen).fill().map((_)=>helpers._declareLocal("dummy", 1, true))
+                    while (script.argsLen > dummies.length) {
+                        dummies.push(
+                            helpers._declareLocal("dummy", 1, true)
+                        )
+                    }
                     for(let i=0;i<script.argsLen;i++){
                         helpers._stackPushReference(dummies[i])
                     }
                     helpers._callFar(script.scriptRef, script.argsLen)
-                    helpers.markLocalsUsed(...dummies)
                     helpers._getMemUInt8(in_child_script_menu, "in_child_script_menu")
                 }
             })
         }
+        helpers.markLocalsUsed(...dummies)
 
         helpers.caseVariableConstValue(choice, choices, is_main_menu ? null : () => {
             helpers.labelGoto("end")
