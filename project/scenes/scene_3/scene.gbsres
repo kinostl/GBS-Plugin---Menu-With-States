@@ -68,9 +68,33 @@
         "slot_2_choice": "L1",
         "slot_2_script": "4ecfe6d9-c0a0-4ad3-9a6a-4eeafef94bae",
         "slot_3_script": "a21f39b7-3fbc-478e-8d8d-7af5d5e8b941",
-        "cancelOnLastOption": false
+        "cancelOnLastOption": false,
+        "__section": "menu"
       },
       "id": "e3418178-adf4-4736-aaa6-9778df7caa49"
+    },
+    {
+      "command": "EVENT_TEXT",
+      "args": {
+        "text": "",
+        "__section": "text",
+        "avatarId": "",
+        "minHeight": 4,
+        "maxHeight": 7,
+        "textX": 1,
+        "textY": 1,
+        "textHeight": 5,
+        "position": "bottom",
+        "clearPrevious": true,
+        "showFrame": "true",
+        "speedIn": -1,
+        "speedOut": -1,
+        "closeWhen": "key",
+        "closeButton": "a",
+        "closeDelayTime": 0.5,
+        "closeDelayFrames": 30
+      },
+      "id": "272315d8-0f8f-48d5-84d8-e54ce89adc59"
     }
   ],
   "playerHit1Script": [],

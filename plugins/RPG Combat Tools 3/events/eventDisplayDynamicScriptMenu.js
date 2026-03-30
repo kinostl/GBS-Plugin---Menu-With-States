@@ -12,11 +12,18 @@ const name = "Display Dynamic Script Menu";
 const MAX_DISPLAY = 8
 const MAX_SCRIPTS = 16
 
+const script_conditions = [
+    {
+        key: "__section",
+        in: ["scripts", undefined]
+    }
+]
+
 const script_fields = Array(MAX_SCRIPTS).fill().map((_, i) => {
     const conditions = [{
         key: "script_count",
         gt: i
-    }]
+    },...script_conditions]
 
     return {
         type: "group",
@@ -42,26 +49,35 @@ const script_fields = Array(MAX_SCRIPTS).fill().map((_, i) => {
 
 const script_header = [{
     type: "group",
+    conditions: script_conditions,
     fields: [
         {
             label: "ID",
             inline: true,
-            alignBottom: true
+            alignBottom: true,
+            conditions: script_conditions,
         },
         {
             label: "Menu Text",
             width: "50%",
+            conditions: script_conditions,
         }, {
             label: "Call Script",
             width: "50%",
+            conditions: script_conditions,
         }]
 }]
 
+const slot_conditions = [{
+    key: "__section",
+    in: ["menu", undefined]
+}]
 const slot_fields = Array(MAX_DISPLAY).fill().map((_, i) => {
     const conditions = [{
         key: "slot_count",
         gt: i
-    }]
+    },
+    ...slot_conditions]
 
     return {
         type: "group",
@@ -83,60 +99,83 @@ const slot_fields = Array(MAX_DISPLAY).fill().map((_, i) => {
 
 const slot_header = [{
     type: "group",
+    conditions: slot_conditions,
     fields: [
         {
             label: "#. ",
             inline: true,
-            alignBottom: true
+            alignBottom: true,
+            conditions: slot_conditions,
         },
         {
             label: "Variable containing ID for Option #",
+            conditions: slot_conditions,
         }]
 }]
 
+const settings_conditions = [{
+    key: "__section",
+    in: ["settings", undefined]
+}]
 const settings = [
-  {
-    type: "checkbox",
-    label: "Last option returns to previous menu",
-    key: "cancelOnLastOption",
-  },
-  {
-    type: "text",
-    key: "cancelOnLastOptionText",
-    label: "Last Option Text",
-    defaultValue: "Cancel",
-    conditions: [{
+    {
+        type: "checkbox",
+        label: "Last option returns to previous menu",
         key: "cancelOnLastOption",
-        eq: true
-    }]
-  },
-  {
-    type: "checkbox",
-    label: "Return to previous menu if 'B' is pressed",
-    key: "cancelOnB",
-    defaultValue: true,
-  },
-  {
-    key: "layout",
-    type: "select",
-    label: "Layout",
-    options: [
-      ["dialogue", "Dialogue"],
-      ["menu", "Menu"],
-    ],
-    defaultValue: "dialogue",
-  },
+        conditions: settings_conditions
+    },
+    {
+        type: "text",
+        key: "cancelOnLastOptionText",
+        label: "Last Option Text",
+        defaultValue: "Cancel",
+        conditions: [{
+            key: "cancelOnLastOption",
+            eq: true
+        }, ...settings_conditions]
+    },
+    {
+        type: "checkbox",
+        label: "Return to previous menu if 'B' is pressed",
+        key: "cancelOnB",
+        defaultValue: true,
+        conditions: settings_conditions
+    },
+    {
+        key: "layout",
+        type: "select",
+        label: "Layout",
+        options: [
+            ["dialogue", "Dialogue"],
+            ["menu", "Menu"],
+        ],
+        defaultValue: "dialogue",
+        conditions: settings_conditions
+    },
 ]
 
 const fields = [
     // ...menu_event_fields.display_menu,
+    {
+        key: "__section",
+        type: "tabs",
+        defaultValue: "projectile",
+        variant: "eventSection",
+        values: {
+            menu: "Menu",
+            scripts: "Scripts",
+            settings: "Settings"
+        },
+        defaultValue: "menu"
+    },
     {
         key: "slot_count",
         type: "number",
         defaultValue: 1,
         min: 1,
         max: MAX_DISPLAY,
-        label: "Number of options"
+        label: "Number of options",
+        conditions: slot_conditions
     },
     ...slot_header,
     ...slot_fields,
@@ -146,7 +185,8 @@ const fields = [
         defaultValue: 1,
         min: 1,
         max: MAX_SCRIPTS,
-        label: "Number of Scripts"
+        label: "Number of Scripts",
+        conditions: script_conditions
     },
     ...script_header,
     ...script_fields,
