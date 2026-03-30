@@ -42,7 +42,7 @@
     {
       "command": "MENU_DISPLAY_DYNAMIC_SCRIPT_MENU",
       "args": {
-        "slot_count": 8,
+        "slot_count": 2,
         "script_count": 3,
         "slot_1_view": "Fire",
         "slot_2_view": "Ice",
@@ -62,7 +62,7 @@
         "slot_16_view": "Slot #16",
         "cancelOnLastOptionText": "Cancel",
         "cancelOnB": false,
-        "layout": "menu",
+        "layout": "dialogue",
         "slot_1_script": "b5f82077-3eb3-404e-93f3-ea33a6799965",
         "slot_1_choice": "L0",
         "slot_2_choice": "L1",
