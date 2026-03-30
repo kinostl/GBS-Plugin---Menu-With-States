@@ -14,7 +14,7 @@ const script_fields = Array(16).fill().map((_, i) => {
         fields: [{
             type: "text",
             key: `slot_${i + 1}_view`,
-            defaultValue: `Slot #${i + 1}`,
+            defaultValue: `Item ${i + 1}`,
             width: "50%",
             conditions
         }, {
@@ -29,10 +29,10 @@ const script_fields = Array(16).fill().map((_, i) => {
 const script_header = [{
     type: "group",
     fields: [{
-        label: "Menu Text",
+        label: "Item Text",
         width: "50%",
     }, {
-        label: "Script",
+        label: "Call Script",
         width: "50%",
     }]
 }]
@@ -79,7 +79,7 @@ const fields = [
         defaultValue: 1,
         min: 1,
         max: 8,
-        label: "Count"
+        label: "Number of options"
     },
     ...script_header,
     ...script_fields,

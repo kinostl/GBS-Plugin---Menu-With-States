@@ -35,7 +35,7 @@ const script_fields = Array(MAX_SCRIPTS).fill().map((_, i) => {
         },{
             type: "text",
             key: `slot_${i + 1}_view`,
-            defaultValue: `Option #${i + 1}`,
+            defaultValue: `Item ${i + 1}`,
             width: "50%",
             conditions
         }, {
@@ -58,7 +58,7 @@ const script_header = [{
             conditions: script_conditions,
         },
         {
-            label: "Menu Text",
+            label: "Item Text",
             width: "50%",
             conditions: script_conditions,
         }, {
