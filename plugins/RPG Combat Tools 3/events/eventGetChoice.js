@@ -12,7 +12,7 @@ const option_fields = Array(MAX_OPTIONS).fill().map((_, i) => {
     const conditions = [{
         key: "option_count",
         gt: i
-    },{
+    }, {
         key: "__section",
         in: [page, undefined]
     }]
@@ -65,21 +65,28 @@ const option_fields = Array(MAX_OPTIONS).fill().map((_, i) => {
 })
 
 
-const dest_conditions = [{
+
+const header_conditions = [{}]
+
+const dest_conditions = [...header_conditions, {
     key: "override_dest",
     eq: true
 }]
 
 const option_header = [{
     type: "group",
+    conditions: header_conditions,
     fields: [{
         label: `ID`,
         inline: true,
-        alignBottom: true
+        alignBottom: true,
+        conditions: header_conditions,
     }, {
-        label: "X"
+        label: "X",
+        conditions: header_conditions,
     }, {
-        label: "Y"
+        label: "Y",
+        conditions: header_conditions,
     }, {
         label: "Up",
         conditions: dest_conditions
@@ -147,9 +154,6 @@ const fields = [{
  * @param {import('/home/deck/.local/share/gb-studio/helpers.d.ts').Helpers} helpers 
  */
 const compile = (input, helpers) => {
-    const cols = Math.ceil(input.option_count / 8)
-    const col_width = Math.floor(20 / cols)
-
     helpers.overlayMoveTo(0, 18, -3)
     helpers.overlayCopyFromBackground()
     helpers.overlayMoveTo(0, 0, -3)
@@ -167,14 +171,37 @@ const compile = (input, helpers) => {
             option.up = input[`option_${i + 1}_up`]
             option.down = input[`option_${i + 1}_down`]
         }else{
-            option.left = 0
-            option.right = 0
+            option.left = i + 1
+            option.right = i + 1 + 8
+
+            if(i>=8){
+                option.left-=8
+                option.right+=8
+            }
+            if(i>=16){
+                option.left-=8
+                option.right+=8
+            }
+            if(i>=24){
+                option.left-=8
+                option.right+=8
+            }
+
+            if(option.left <= 0){
+                option.left = 1
+            }
+
+            if(option.right >= input.option_count){
+                option.right = i + 1
+            }
+
             option.up = i <= 0 ? 1 : i
             option.down = i+2 >= input.option_count ? input.option_count : i+2
         }
 
         helpers._menuItem(option.x, option.y, option.left, option.right, option.up, option.down)
     }
+    helpers.overlayMoveTo(0, 18, -3)
 }
 
 module.exports = {
