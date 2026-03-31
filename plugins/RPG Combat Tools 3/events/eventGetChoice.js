@@ -172,28 +172,7 @@ const compile = (input, helpers) => {
             option.down = input[`option_${i + 1}_down`]
         }else{
             option.left = i + 1
-            option.right = i + 1 + 8
-
-            if(i>=8){
-                option.left-=8
-                option.right+=8
-            }
-            if(i>=16){
-                option.left-=8
-                option.right+=8
-            }
-            if(i>=24){
-                option.left-=8
-                option.right+=8
-            }
-
-            if(option.left <= 0){
-                option.left = 1
-            }
-
-            if(option.right >= input.option_count){
-                option.right = i + 1
-            }
+            option.right = i + 1
 
             option.up = i <= 0 ? 1 : i
             option.down = i+2 >= input.option_count ? input.option_count : i+2
