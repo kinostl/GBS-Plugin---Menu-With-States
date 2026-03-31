@@ -6,9 +6,9 @@
  * 
  * Those are used to replicate what I have in the example right now, and run a couple switches like how its being done with the inter-script calls
  */
-const id = "MENU_DISPLAY_DYNAMIC_SCRIPT_MENU";
+const id = "MENU_DISPLAY_DYNAMIC_MENU";
 const groups = ["Menu State System"];
-const name = "Display Dynamic Script Menu";
+const name = "Display Dynamic Menu";
 const MAX_DISPLAY = 8
 const MAX_SCRIPTS = 16
 
@@ -23,7 +23,7 @@ const script_fields = Array(MAX_SCRIPTS).fill().map((_, i) => {
     const conditions = [{
         key: "script_count",
         gt: i
-    },...script_conditions]
+    }, ...script_conditions]
 
     return {
         type: "group",
@@ -32,16 +32,20 @@ const script_fields = Array(MAX_SCRIPTS).fill().map((_, i) => {
             label: `${i + 1}. `,
             inline: true,
             alignBottom: true
-        },{
+        }, {
             type: "text",
             key: `slot_${i + 1}_view`,
             defaultValue: `Item ${i + 1}`,
             width: "50%",
             conditions
         }, {
-            type: "customEvent",
+            type: "constvalue",
             key: `slot_${i + 1}_script`,
             width: "50%",
+            defaultValue: {
+                type: "number",
+                value: i + 1,
+            },
             conditions
         }]
     }
@@ -62,7 +66,7 @@ const script_header = [{
             width: "50%",
             conditions: script_conditions,
         }, {
-            label: "Call Script",
+            label: "Item Value",
             width: "50%",
             conditions: script_conditions,
         }]
@@ -162,10 +166,17 @@ const fields = [
         variant: "eventSection",
         values: {
             menu: "Menu",
-            scripts: "Scripts",
+            scripts: "Values",
             settings: "Settings"
         },
         defaultValue: "menu"
+    },
+    {
+        key: "variable",
+        type: "variable",
+        defaultValue: "LAST_VARIABLE",
+        label: "Set Variable",
+        conditions: slot_conditions
     },
     {
         key: "slot_count",
@@ -184,7 +195,7 @@ const fields = [
         defaultValue: 1,
         min: 1,
         max: MAX_SCRIPTS,
-        label: "Number of Scripts",
+        label: "Number of Values",
         conditions: script_conditions
     },
     ...script_header,
@@ -197,62 +208,141 @@ const fields = [
  * @param {import('/home/deck/.local/share/gb-studio/helpers.d.ts').Helpers} helpers 
  */
 const compile = (input, helpers) => {
-    const choice = helpers._declareLocal("choice", 1, true)
-    const in_child_script_menu = helpers._declareLocal("in_child_script_menu", 1, true)
+    const choice = input.variable
+    const slot_x = helpers._declareLocal("slot_x", 1, true)
+    const slot_y = helpers._declareLocal("slot_y", 1, true)
+    let menu_height = input.slot_count + 2
+    let choice_count = input.slot_count
+    if (input.cancelOnLastOption) {
+        menu_height++
+        choice_count++
+    }
 
-    const is_main_menu = helpers.options.maxDepth >= 5
+    if (input.layout == "dialogue" && choice_count > 4) {
+        menu_height -= 4
+    }
 
-    helpers._setConstMemUInt8("in_child_script_menu", 1)
-    helpers.variableSetToValue(in_child_script_menu, 1)
+    const menu_x = input.layout == "menu" ? 10 : 0
+    const menu_width = input.layout == "menu" ? 10 : 20
 
-    const choices = []
-    const dummies = []
+    const choiceFlags = [];
+    if (input.cancelOnLastOption) {
+        choiceFlags.push(".UI_MENU_LAST_0");
+    }
+    if (input.cancelOnB) {
+        choiceFlags.push(".UI_MENU_CANCEL_B");
+    }
+
+
+
+    const view_choices = []
+    const confirm_choices = []
 
     for (let i = 0; i < input.script_count; i++) {
-        choices.push({
+        view_choices.push({
             value: {
                 type: "number",
                 value: i + 1,
             },
             branch: () => {
-                helpers._setConstMemUInt8("in_child_script_menu", 0)
-                const script = helpers.compileCustomEventScript(input[`slot_${i + 1}_script`])
-                while(script.argsLen > dummies.length){
-                    dummies.push(
-                        helpers._declareLocal("dummy", 1, true)
-                    )
-                }
-
-                for (let i = 0; i < script.argsLen; i++) {
-                    helpers._stackPushReference(dummies[i])
-                }
-                helpers._callFar(script.scriptRef, script.argsLen)
-                helpers._getMemUInt8(in_child_script_menu, "in_child_script_menu")
+                helpers._loadText(2)
+                helpers._dw(slot_x, slot_y)
+                helpers._string(`\\003%c%c\\001\\001${input[`slot_${i + 1}_view`]}`)
+                helpers._displayText()
+                helpers._overlayWait(false, [".UI_WAIT_TEXT"])
             }
         })
     }
 
-    helpers.markLocalsUsed(...dummies)
-
-    helpers.whileScriptValue({
-        type: "variable",
-        value: in_child_script_menu
-    }, () => {
-        helpers.compileEvents([{
-            "id": "",
-            "command": "MENU_DISPLAY_DYNAMIC_MENU",
-            "args": {
-                ...input,
-                variable: choice
+    for (let i = 0; i < input.slot_count; i++) {
+        confirm_choices.push({
+            value: {
+                type: "number",
+                value: i + 1,
+            },
+            branch: () => {
+                helpers.variableCopy(choice, input[`slot_${i + 1}_choice`])
             }
-        }])
-
-        helpers.caseVariableConstValue(choice, choices, is_main_menu ? null : () => {
-            helpers.labelGoto("end")
         })
-    })
-    helpers.labelDefine("end")
-    helpers.markLocalsUsed(choice, in_child_script_menu)
+    }
+    const start_draw_view_loop = helpers.getNextLabel()
+    const end_draw_view_loop = helpers.getNextLabel()
+
+    helpers._overlayClear(0, 0, menu_width, menu_height, ".UI_COLOR_WHITE", true, false)
+    for (let i = 0; i < input.slot_count; i++) {
+        const x_off = (input.layout == "dialogue" && i >= 4) ? 9 : 0
+        const x = 3 + x_off
+
+        const y_off = (input.layout == "dialogue" && i >= 4) ? -4 : 0
+        const y = i + 2 + y_off
+
+        helpers.variableSetToValue(slot_x, x)
+        helpers.variableSetToValue(slot_y, y)
+        helpers.variableCopy(choice, input[`slot_${i + 1}_choice`])
+        helpers._addCmd("VM_CALL", `${start_draw_view_loop}$`)
+    }
+    helpers._jump(end_draw_view_loop)
+    helpers._label(start_draw_view_loop)
+    helpers._stackPushConst(1)
+    helpers.output.pop()
+    helpers.caseVariableConstValue(choice, view_choices)
+    helpers._addCmd("VM_RET")
+    helpers._stackPop(1)
+    helpers.output.pop()
+    helpers._label(end_draw_view_loop)
+    if (input.cancelOnLastOption) {
+        const x_off = (input.layout == "dialogue" && i > 4) ? 10 : 0
+        const x = 2 + x_off
+
+        const y_off = (input.layout == "dialogue" && i > 4) ? -4 : 0
+        const y = choice_count + 1 + y_off
+        helpers.textDraw(input.cancelOnLastOptionText, x, y, "overlay")
+    }
+
+    if (input.layout == "menu") {
+        helpers.overlayMoveTo(menu_x, 18, ".OVERLAY_SPEED_INSTANT")
+    }
+    helpers.overlayMoveTo(menu_x, 18 - menu_height, ".OVERLAY_IN_SPEED")
+
+
+    const clampedMenuIndex = (index) => {
+        if (index < 0) {
+            return 0;
+        }
+        if (index > choice_count - 1) {
+            return 0;
+        }
+        return index + 1;
+    };
+
+    helpers._choice(choice, choiceFlags, choice_count)
+    if (input.layout === "menu") {
+        for (let i = 0; i < choice_count; i++) {
+            helpers._menuItem(
+                1,
+                1 + i,
+                1,
+                choice_count,
+                clampedMenuIndex(i - 1),
+                clampedMenuIndex(i + 1),
+            );
+        }
+    } else {
+        for (let i = 0; i < choice_count; i++) {
+            helpers._menuItem(
+                i < 4 ? 1 : 10,
+                1 + (i % 4),
+                clampedMenuIndex(i - 4) || 1,
+                clampedMenuIndex(i + 4) || choice_count,
+                clampedMenuIndex(i - 1),
+                clampedMenuIndex(i + 1),
+            );
+        }
+    }
+    helpers.overlayMoveTo(menu_x, 18, ".OVERLAY_OUT_SPEED")
+
+    helpers.caseVariableConstValue(choice, confirm_choices)
+    helpers.markLocalsUsed(choice, slot_x, slot_y)
 }
 module.exports = {
     id,

@@ -69,7 +69,8 @@
         "slot_2_script": "4ecfe6d9-c0a0-4ad3-9a6a-4eeafef94bae",
         "slot_3_script": "a21f39b7-3fbc-478e-8d8d-7af5d5e8b941",
         "cancelOnLastOption": false,
-        "__section": "menu"
+        "__section": "menu",
+        "__comment": false
       },
       "id": "e3418178-adf4-4736-aaa6-9778df7caa49"
     }
