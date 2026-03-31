@@ -171,8 +171,8 @@ const compile = (input, helpers) => {
             option.up = input[`option_${i + 1}_up`]
             option.down = input[`option_${i + 1}_down`]
         }else{
-            option.left = i + 1
-            option.right = i + 1
+            option.left = 1
+            option.right = input.option_count
 
             option.up = i <= 0 ? 1 : i
             option.down = i+2 >= input.option_count ? input.option_count : i+2
