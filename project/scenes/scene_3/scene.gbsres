@@ -18,6 +18,13 @@
   "y": 32,
   "script": [
     {
+      "command": "EVENT_ACTOR_DEACTIVATE",
+      "args": {
+        "actorId": "$self$"
+      },
+      "id": "f0627ba7-0357-4840-b478-ceb786bf04cf"
+    },
+    {
       "command": "EVENT_LOOP",
       "args": {},
       "children": {
