@@ -80,13 +80,23 @@
       "id": "f0bca9d5-0abf-4066-999e-8860efbb367e__L1",
       "name": "Spell Choice",
       "symbol": "var_spell_choice"
+    },
+    {
+      "id": "66b62b33-656c-4aaf-a77f-fbdb36c1b4a5__L0",
+      "name": "New Spell",
+      "symbol": "var_new_spell"
+    },
+    {
+      "id": "66b62b33-656c-4aaf-a77f-fbdb36c1b4a5__L1",
+      "name": "Spell Slot",
+      "symbol": "var_spell_slot"
     }
   ],
   "constants": [
     {
       "id": "a621af65-ad59-4545-9bb5-6983d7e9e040",
       "name": "ANIMATION_TYPE/UP-DOWN",
-      "symbol": "const_animation_type_up_dow",
+      "symbol": "const_animation_type_up_dow_0",
       "value": 1
     },
     {

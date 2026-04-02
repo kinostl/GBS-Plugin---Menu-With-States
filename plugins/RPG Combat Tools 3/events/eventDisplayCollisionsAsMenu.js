@@ -43,17 +43,6 @@ const fields = [{
     }]
 }, ...settings]
 
-// Needs three event tabs total
-// On Start
-// On Select
-// On Cancel
-// Possible Additional tabs
-// On Choice Changes
-// When Upper Boundary Reached
-// When Lower Boundary Reached
-// ---
-// Also need an event that starts a Menu State
-
 /**
  * 
  * @param {*} input
@@ -119,8 +108,6 @@ const compile = (input, helpers) => {
         return option
     })
 
-    helpers.overlayCopyFromBackground()
-    helpers.overlayMoveTo(0, 0, -3)
     helpers._choice(helpers.getVariableAlias(input.variable), choiceFlags, menu_items.length)
     menu_items.forEach((_) => {
         helpers._menuItem(_.x, _.y, _.left, _.right, _.up, _.down)
