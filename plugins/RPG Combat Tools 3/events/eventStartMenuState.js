@@ -57,24 +57,12 @@ const compile = (input, helpers) => {
         }
     }
 
-    const count = option_pos.length
-    const max_x = option_pos.reduce((_, __)=>Math.max(_, __.x), 0)
-    const min_x = option_pos.reduce((_, __)=>Math.min(_, __.x), 0)
+    const options = option_pos.map((option, i)=>{
+        option.id = i+1
+        return option
+    })
 
-    let cid = 1
-
-    const options = []
-    for (let x = min_x; x <= max_x; x++) {
-        const col = option_pos.filter((_) => _.x === x)
-        if (col) {
-            col.sort((a, b) => a.y - b.y)
-            col.forEach((_) => {
-                _.id = cid
-                cid++
-            })
-            options.push(...col)
-        }
-    }
+    const count = options.length
 
     const menu_items = options.map((_) => {
         const option = {}
