@@ -1,0 +1,115 @@
+const id = "MENU_CALL_COLLISION_CHOICE";
+const groups = ["RPG Menu System"];
+const name = "Display Collision Tiles as Choice";
+
+const fields = [{
+    label: "Set variable",
+    type: "variable",
+    key: "variable"
+}, {
+    type: "group",
+    fields: [{
+        label: "Collision Tile X",
+        type: "number",
+        key: "state_x",
+    }, {
+        label: "Collision Tile Y",
+        type: "number",
+        key: "state_y",
+    }]
+}]
+
+// Needs three event tabs total
+// On Start
+// On Select
+// On Cancel
+// Possible Additional tabs
+// On Choice Changes
+// When Upper Boundary Reached
+// When Lower Boundary Reached
+// ---
+// Also need an event that starts a Menu State
+
+/**
+ * 
+ * @param {*} input
+ * @param {import('/home/deck/.local/share/gb-studio/helpers.d.ts').Helpers} helpers 
+ */
+const compile = (input, helpers) => {
+    const tiles = helpers.options.scene.collisions
+    const width = helpers.options.scene.width
+    const source_pos = input.state_x + (input.state_y * width)
+    const option_pos = []
+    let x = 0
+    let y = 0
+    const x_lim = helpers.options.scene.width
+
+    for (let i = 0; i < tiles.length; i++) {
+        if (tiles[i] === tiles[source_pos]) {
+            const choice = { x, y }
+            option_pos.push(choice)
+        }
+
+        x++
+        if (x >= x_lim) {
+            x = 0
+            y++
+        }
+    }
+
+    const count = option_pos.length
+    const max_x = option_pos.reduce((_, __)=>Math.max(_, __.x), 0)
+    const min_x = option_pos.reduce((_, __)=>Math.min(_, __.x), 0)
+
+    let cid = 1
+
+    const options = []
+    for (let x = min_x; x <= max_x; x++) {
+        const col = option_pos.filter((_) => _.x === x)
+        if (col) {
+            col.sort((a, b) => a.y - b.y)
+            col.forEach((_) => {
+                _.id = cid
+                cid++
+            })
+            options.push(...col)
+        }
+    }
+
+    const menu_items = options.map((_) => {
+        const option = {}
+        option.x = _.x
+        option.y = _.y
+        option.id = _.id
+        option.left = 1
+        option.right = count
+        option.up = option.id - 1
+        option.down = option.id + 1
+
+        if (option.up <= 1) {
+            option.up = 1
+        }
+
+        if (option.down >= count) {
+            option.down = count
+        }
+
+        return option
+    })
+
+    helpers.overlayCopyFromBackground()
+    helpers.overlayMoveTo(0, 0, -3)
+    helpers._choice(helpers.getVariableAlias(input.variable), [], menu_items.length)
+    menu_items.forEach((_) => {
+        helpers._menuItem(_.x, _.y, _.left, _.right, _.up, _.down)
+    })
+}
+
+module.exports = {
+    id,
+    name,
+    groups,
+    fields,
+    compile,
+    waitUntilAfterInitFade: true,
+};

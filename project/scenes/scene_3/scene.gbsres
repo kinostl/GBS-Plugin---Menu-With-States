@@ -7,7 +7,7 @@
   "tilesetId": "",
   "width": 20,
   "height": 18,
-  "type": "MENUSCREEN",
+  "type": "MENU_SCREEN",
   "colorModeOverride": "none",
   "paletteIds": [],
   "spritePaletteIds": [],
@@ -18,14 +18,33 @@
   "y": 32,
   "script": [
     {
-      "command": "MENU_ATTACH_TO_STATE",
-      "args": {
-        "state": 1
-      },
+      "command": "EVENT_LOOP",
+      "args": {},
       "children": {
-        "events": []
+        "true": [
+          {
+            "command": "MENU_CALL_COLLISION_CHOICE",
+            "args": {
+              "variable": "L0",
+              "state": 1,
+              "state_x": 2,
+              "state_y": 3
+            },
+            "id": "067a0cf8-c291-498d-bbeb-74e3afee5131"
+          },
+          {
+            "command": "MENU_CALL_COLLISION_CHOICE",
+            "args": {
+              "variable": "L0",
+              "state": 2,
+              "state_x": 12,
+              "state_y": 3
+            },
+            "id": "8ffa44e8-2fba-43c8-ae19-8e0fce947f44"
+          }
+        ]
       },
-      "id": "66acc255-e931-4a43-a7d8-75dde952402f"
+      "id": "81bdc032-7961-4d2d-b05b-866b89360d0f"
     }
   ],
   "playerHit1Script": [],
