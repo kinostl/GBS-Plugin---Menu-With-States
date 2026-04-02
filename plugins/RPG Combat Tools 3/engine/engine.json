@@ -1,3 +1,28 @@
 {
-  "version": "4.2.2-e1"
+  "version": "4.2.2-e1",
+  "sceneTypes": [
+    {
+      "key": "MENUSCREEN",
+      "label": "Menu Screen",
+      "files": ["include/states/menu_screen.h", "src/states/menu_screen.c"],
+      "collisionTiles": [
+        {
+          "key": "section_1",
+          "color": "#FA2828FF",
+          "mask": 255,
+          "flag": 1,
+          "name": "Section 1",
+          "icon": "FFFFFFFFFFFFFFFF"
+        },
+        {
+          "key": "section_2",
+          "color": "#00008080",
+          "mask": 255,
+          "flag": 2,
+          "name": "Section 2",
+          "icon": "FFFFFFFFFFFFFFFF"
+        }
+      ]
+    }
+  ]
 }
