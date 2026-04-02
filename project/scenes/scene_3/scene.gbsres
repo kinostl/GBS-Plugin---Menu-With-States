@@ -28,7 +28,10 @@
               "variable": "L0",
               "state": 1,
               "state_x": 2,
-              "state_y": 3
+              "state_y": 3,
+              "x": 2,
+              "y": 3,
+              "cancelOnB": true
             },
             "id": "067a0cf8-c291-498d-bbeb-74e3afee5131"
           },
@@ -38,7 +41,10 @@
               "variable": "L0",
               "state": 2,
               "state_x": 12,
-              "state_y": 3
+              "state_y": 3,
+              "x": 12,
+              "y": 3,
+              "cancelOnB": true
             },
             "id": "8ffa44e8-2fba-43c8-ae19-8e0fce947f44"
           }
