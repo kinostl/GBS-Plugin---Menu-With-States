@@ -96,56 +96,57 @@ const fields = [{
  * @param {import('/home/deck/.local/share/gb-studio/helpers.d.ts').Helpers} helpers 
  */
 const compile = (input, helpers) => {
-    if (input.compileSubScript) {
-        const tiles = helpers.options.scene.collisions
-        const width = helpers.options.scene.width
-        const source_pos = input.x + (input.y * width)
-        const option_pos = []
-        let x = 0
-        let y = 0
-        const x_lim = helpers.options.scene.width
+    const option_pos = []
 
-        for (let i = 0; i < tiles.length; i++) {
-            if (tiles[i] === tiles[source_pos]) {
-                const choice = { x, y }
-                option_pos.push(choice)
-            }
+    const tiles = helpers.options.scene.collisions
+    const width = helpers.options.scene.width
+    const source_pos = input.x + (input.y * width)
+    let x = 0
+    let y = 0
+    const x_lim = helpers.options.scene.width
 
-            x++
-            if (x >= x_lim) {
-                x = 0
-                y++
-            }
+    for (let i = 0; i < tiles.length; i++) {
+        if (tiles[i] === tiles[source_pos]) {
+            const choice = { x, y }
+            option_pos.push(choice)
         }
 
-        const options = option_pos.map((option, i) => {
-            option.id = i + 1
-            return option
-        })
+        x++
+        if (x >= x_lim) {
+            x = 0
+            y++
+        }
+    }
 
-        const count = options.length
+    const options = option_pos.map((option, i) => {
+        option.id = i + 1
+        return option
+    })
 
-        const menu_items = options.map((_) => {
-            const option = {}
-            option.x = _.x
-            option.y = _.y
-            option.id = _.id
-            option.left = 1
-            option.right = count
-            option.up = option.id - 1
-            option.down = option.id + 1
+    const count = options.length
 
-            if (option.up <= 1) {
-                option.up = 1
-            }
+    const menu_items = options.map((_) => {
+        const option = {}
+        option.x = _.x
+        option.y = _.y
+        option.id = _.id
+        option.left = 1
+        option.right = count
+        option.up = option.id - 1
+        option.down = option.id + 1
 
-            if (option.down >= count) {
-                option.down = count
-            }
+        if (option.up <= 1) {
+            option.up = 1
+        }
 
-            return option
-        })
+        if (option.down >= count) {
+            option.down = count
+        }
 
+        return option
+    })
+
+    if (input.compileSubScript) {
         menu_items.forEach((_) => {
             helpers._menuItem(
                 _.x,
@@ -159,12 +160,12 @@ const compile = (input, helpers) => {
         return
     }
 
-    const on_init_script = helpers._compileSubScript("thread", input.on_init)
-    const on_select_script = helpers._compileSubScript("thread", input.on_select)
-    const on_cancel_script = helpers._compileSubScript("thread", input.on_cancel)
-    const on_change_script = helpers._compileSubScript("thread", input.on_change)
+    const on_init_script = helpers._compileSubScript("custom", input.on_init)
+    const on_select_script = helpers._compileSubScript("custom", input.on_select)
+    const on_cancel_script = helpers._compileSubScript("custom", input.on_cancel)
+    const on_change_script = helpers._compileSubScript("custom", input.on_change)
 
-    const unionFlags = (flags, defaultValue = "0") => {
+    const unionFlags = (flags, defaultValue = "UI_MENU_STANDARD") => {
         if (flags.length === 0) {
             return defaultValue;
         }
@@ -177,23 +178,15 @@ const compile = (input, helpers) => {
     const choiceFlags = []
 
     if (input.cancelOnLastOption) {
-      choiceFlags.push("UI_MENU_LAST_0");
+        choiceFlags.push("UI_MENU_LAST_0");
     }
     if (input.cancelOnB) {
-      choiceFlags.push("UI_MENU_CANCEL_B");
-    }
-
-
-    let symbol_id
-    if (input.menu_id.type === "number") {
-        symbol_id = input.menu_id.value;
-    } else if (input.menu_id.type === "constant") {
-        symbol_id = helpers.getConstantSymbol(input.menu_id.value);
+        choiceFlags.push("UI_MENU_CANCEL_B");
     }
 
     const symbol = `${helpers.options.scriptSymbolName}_menu_states`
     const option_symbol = `${symbol}_options`
-    const option_script = helpers._compileSubScript("thread",[{
+    const option_script = helpers._compileSubScript("custom", [{
         "command": id,
         "id": "",
         "args": {
@@ -205,11 +198,15 @@ const compile = (input, helpers) => {
     const menu_struct = {
         set_variable: `&VM_GLOBAL(${helpers.getVariableAlias(input.variable)})`,
         menu_items: `TO_FAR_PTR_T(${option_script})`,
+        menu_items_count: `${menu_items.length}`,
         on_init: `TO_FAR_PTR_T(${on_init_script})`,
         on_select: `TO_FAR_PTR_T(${on_select_script})`,
         on_cancel: `TO_FAR_PTR_T(${on_cancel_script})`,
         on_change: `TO_FAR_PTR_T(${on_change_script})`,
         options: unionFlags(choiceFlags)
+    }
+    if (!helpers.options.compiledAssetsCache["menu_scene_states"]) {
+        helpers.options.compiledAssetsCache["menu_scene_states"] = []
     }
 
     if (!helpers.options.compiledAssetsCache[symbol]) {
@@ -217,6 +214,10 @@ const compile = (input, helpers) => {
     }
     if (!helpers.options.compiledAssetsCache[`${symbol}_h`]) {
         helpers.options.compiledAssetsCache[`${symbol}_h`] = []
+    }
+
+    if (!helpers.options.compiledAssetsCache["menu_scene_states"].includes(`${symbol}`)) {
+        helpers.options.compiledAssetsCache["menu_scene_states"].push(`${symbol}`)
     }
 
     if (!helpers.options.compiledAssetsCache[symbol].includes(menu_struct)) {
@@ -229,7 +230,30 @@ const compile = (input, helpers) => {
         }
     })
 
+    const menu_scene_state_ptrs = helpers.options.compiledAssetsCache["menu_scene_states"].map((_)=>{
+        return `TO_FAR_PTR_T(${_})`
+    })
+
+    const menu_scene_state_deps = helpers.options.compiledAssetsCache["menu_scene_states"].map((_)=>{
+        return `${_}`
+    })
+
     helpers.compileEvents([{
+        "command": "MENU_DEFINE_ARRAY_DATA",
+        "id": "",
+        "args": {
+            type: "const far_ptr_t",
+            symbol: "menu_scene_states",
+            comment: "",
+            array: menu_scene_state_ptrs,
+            dependencies: [
+                "game_globals",
+                "menu_scene_t",
+                ...menu_scene_state_deps
+            ]
+        }
+
+    },{
         "command": "MENU_DEFINE_STRUCT_ARRAY",
         "id": "",
         "args": {
@@ -240,6 +264,7 @@ const compile = (input, helpers) => {
             dependencies: [
                 "game_globals",
                 "menu_scene_t",
+                `${symbol}`,
                 ...helpers.options.compiledAssetsCache[`${symbol}_h`]
             ]
         }
