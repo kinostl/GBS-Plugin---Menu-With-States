@@ -96,7 +96,7 @@
     {
       "id": "a621af65-ad59-4545-9bb5-6983d7e9e040",
       "name": "ANIMATION_TYPE/UP-DOWN",
-      "symbol": "const_animation_type_up_dow_0",
+      "symbol": "const_animation_type_up_dow",
       "value": 1
     },
     {
