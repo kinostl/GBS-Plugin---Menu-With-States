@@ -80,7 +80,7 @@
               "text": "\\003#V1##V2#Fire",
               "x": 0,
               "y": 0,
-              "location": "overlay"
+              "location": "background"
             },
             "id": "9ce33819-1023-4ab5-961b-e1219a8a319c"
           }
@@ -92,7 +92,7 @@
               "text": "\\003#V1##V2#Ice",
               "x": 0,
               "y": 0,
-              "location": "overlay"
+              "location": "background"
             },
             "id": "c37ab877-120e-4af3-be92-8c0e9a3f4f9c"
           }
@@ -104,7 +104,7 @@
               "text": "\\003#V1##V2#Soap",
               "x": 0,
               "y": 0,
-              "location": "overlay"
+              "location": "background"
             },
             "id": "ddb62435-8582-4375-98ad-7988f6f9a9a1"
           }
