@@ -21,14 +21,11 @@ const fields = [{
  * @param {import('/home/deck/.local/share/gb-studio/helpers.d.ts').Helpers} helpers 
  */
 const compile = (input, helpers) => {
-    const scene_sym = `${helpers.options.scriptSymbolName}_menu_states`
-    const scene_id = helpers.options.compiledAssetsCache["menu_scene_states"].indexOf(scene_sym)
     const menu_status = helpers._declareLocal("menu_status", 1, true);
 
-    helpers._stackPushConst(scene_id, "Scene ID")
     helpers._stackPushScriptValue(input.menu_id)
     helpers._callNative("prepareMenuState")
-    helpers._stackPop(2)
+    helpers._stackPop(1)
 
     helpers.variableSetToValue(menu_status, 0)
     helpers._stackPushReference(menu_status)

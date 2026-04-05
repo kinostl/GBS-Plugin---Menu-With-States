@@ -19,17 +19,10 @@ void menu_screen_init(void) BANKED {}
 void menu_screen_update(void) BANKED {}
 
 void prepareMenuState(SCRIPT_CTX *THIS) BANKED {
-  const WORD scene_id = *(WORD *)VM_REF_TO_PTR(FN_ARG1);
   const WORD menu_id = *(WORD *)VM_REF_TO_PTR(FN_ARG0) - 1;
 
-  far_ptr_t menu_screen_ptr;
-
-  ReadBankedFarPtr(&menu_screen_ptr, (void *)&menu_scene_states[scene_id],
-                   BANK(menu_scene_states));
-
-  MemcpyBanked(&cmst,
-               ((menu_screen_state_t *)menu_screen_ptr.ptr) + menu_id,
-               sizeof(menu_screen_state_t), menu_screen_ptr.bank);
+  MemcpyBanked(&cmst, ((menu_screen_state_t *)menu_scene_states) + menu_id,
+               sizeof(menu_screen_state_t), BANK(menu_scene_states));
 
   vm_call_far(THIS, cmst.on_init.bank, cmst.on_init.ptr);
 }
@@ -44,10 +37,11 @@ void continueMenuState(SCRIPT_CTX *THIS) BANKED {
     vm_call_far(THIS, cmst.on_cancel.bank,
                 cmst.on_cancel.ptr);
     return;
-  case 0:
+  case -2:
     // Continue
     vm_call_far(THIS, cmst.on_change.bank,
                 cmst.on_change.ptr);
+    *current_menu_screen_status = 0;
     return;
   case 1:
     // Choice Made
@@ -102,4 +96,5 @@ void invokeMenuState(SCRIPT_CTX *THIS) BANKED {
   if (!next_index)
     return;
   *set_variable = next_index;
+  *current_menu_screen_status=-2;
 }

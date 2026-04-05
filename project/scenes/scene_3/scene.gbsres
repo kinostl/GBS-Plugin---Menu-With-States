@@ -29,13 +29,58 @@
           "value": 1
         },
         "variable": "L0",
-        "__comment": false
+        "__comment": false,
+        "cancelOnLastOption": false
       },
       "children": {
-        "on_init": [],
-        "on_select": [],
-        "on_cancel": [],
-        "on_change": []
+        "on_init": [
+          {
+            "command": "EVENT_TEXT_DRAW",
+            "args": {
+              "text": "Init",
+              "x": 1,
+              "y": 1,
+              "location": "background"
+            },
+            "id": "a0fec8a9-5eb5-45a7-89c7-7f2ed20e7b91"
+          }
+        ],
+        "on_select": [
+          {
+            "command": "MENU_JUMP_TO_MENU_STATE",
+            "args": {
+              "menu_id": {
+                "type": "number",
+                "value": 2
+              }
+            },
+            "id": "e102d655-3718-4c78-a56d-e8e31cb421ca"
+          }
+        ],
+        "on_cancel": [
+          {
+            "command": "EVENT_TEXT_DRAW",
+            "args": {
+              "text": "Canceled",
+              "x": 1,
+              "y": 1,
+              "location": "background"
+            },
+            "id": "74f46dec-c886-45ae-99ac-48d0e1217560"
+          }
+        ],
+        "on_change": [
+          {
+            "command": "EVENT_TEXT_DRAW",
+            "args": {
+              "text": "$L0$",
+              "x": 1,
+              "y": 1,
+              "location": "background"
+            },
+            "id": "51dc0d40-7942-4a7f-b366-03446aa812d8"
+          }
+        ]
       },
       "id": "865991fc-bbf7-4356-b655-6adca8676ad4"
     },
@@ -55,7 +100,18 @@
       },
       "children": {
         "on_init": [],
-        "on_select": [],
+        "on_select": [
+          {
+            "command": "MENU_JUMP_TO_MENU_STATE",
+            "args": {
+              "menu_id": {
+                "type": "number",
+                "value": 1
+              }
+            },
+            "id": "0b37a0b9-4428-4417-8d0c-50e9e07e183f"
+          }
+        ],
         "on_cancel": [],
         "on_change": []
       },

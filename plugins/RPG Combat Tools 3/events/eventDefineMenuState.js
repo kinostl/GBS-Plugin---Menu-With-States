@@ -184,8 +184,8 @@ const compile = (input, helpers) => {
         choiceFlags.push("UI_MENU_CANCEL_B");
     }
 
-    const symbol = `${helpers.options.scriptSymbolName}_menu_states`
-    const option_symbol = `${symbol}_options`
+    const symbol = "menu_scene_states"
+    const option_symbol = `menu_scene_options`
     const option_script = helpers._compileSubScript("input", [{
         "command": id,
         "id": "",
@@ -205,23 +205,16 @@ const compile = (input, helpers) => {
         on_change: `TO_FAR_PTR_T(${on_change_script})`,
         options: unionFlags(choiceFlags)
     }
-    if (!helpers.options.compiledAssetsCache["menu_scene_states"]) {
-        helpers.options.compiledAssetsCache["menu_scene_states"] = []
+    if (!helpers.options.compiledAssetsCache[`${symbol}`]) {
+        helpers.options.compiledAssetsCache[`${symbol}`] = []
     }
 
-    if (!helpers.options.compiledAssetsCache[symbol]) {
-        helpers.options.compiledAssetsCache[symbol] = []
-    }
     if (!helpers.options.compiledAssetsCache[`${symbol}_h`]) {
         helpers.options.compiledAssetsCache[`${symbol}_h`] = []
     }
 
-    if (!helpers.options.compiledAssetsCache["menu_scene_states"].includes(`${symbol}`)) {
-        helpers.options.compiledAssetsCache["menu_scene_states"].push(`${symbol}`)
-    }
-
-    if (!helpers.options.compiledAssetsCache[symbol].includes(menu_struct)) {
-        helpers.options.compiledAssetsCache[symbol].push(menu_struct)
+    if (!helpers.options.compiledAssetsCache[`${symbol}`].includes(menu_struct)) {
+        helpers.options.compiledAssetsCache[`${symbol}`].push(menu_struct)
     }
 
     [on_init_script, on_select_script, on_cancel_script, on_change_script, option_script].forEach((_) => {
@@ -230,41 +223,17 @@ const compile = (input, helpers) => {
         }
     })
 
-    const menu_scene_state_ptrs = helpers.options.compiledAssetsCache["menu_scene_states"].map((_)=>{
-        return `TO_FAR_PTR_T(${_})`
-    })
-
-    const menu_scene_state_deps = helpers.options.compiledAssetsCache["menu_scene_states"].map((_)=>{
-        return `${_}`
-    })
-
     helpers.compileEvents([{
-        "command": "MENU_DEFINE_ARRAY_DATA",
-        "id": "",
-        "args": {
-            type: "const far_ptr_t",
-            symbol: "menu_scene_states",
-            comment: "",
-            array: menu_scene_state_ptrs,
-            dependencies: [
-                "game_globals",
-                "menu_scene_t",
-                ...menu_scene_state_deps
-            ]
-        }
-
-    },{
         "command": "MENU_DEFINE_STRUCT_ARRAY",
         "id": "",
         "args": {
             type: "const menu_screen_state_t",
-            symbol,
+            symbol: `${symbol}`,
             comment: "",
-            array: helpers.options.compiledAssetsCache[symbol],
+            array: helpers.options.compiledAssetsCache[`${symbol}`],
             dependencies: [
                 "game_globals",
                 "menu_scene_t",
-                `${symbol}`,
                 ...helpers.options.compiledAssetsCache[`${symbol}_h`]
             ]
         }
