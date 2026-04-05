@@ -14,6 +14,12 @@
 #include "states/menu_scene.h"
 
 menu_screen_state_t cmst;
+typedef enum menu_screen_status_e {
+  CHOICE_NONE=0,
+  CHOICE_CANCELLED = 1,
+  CHOICE_CHANGED = 2,
+  CHOICE_SELECTED = 3
+} menu_screen_status_e;
 
 void menu_screen_init(void) BANKED {}
 void menu_screen_update(void) BANKED {}
@@ -29,25 +35,20 @@ void prepareMenuState(SCRIPT_CTX *THIS) BANKED {
 
 void continueMenuState(SCRIPT_CTX *THIS) BANKED {
   const WORD menu_status_id = *(WORD *)VM_REF_TO_PTR(FN_ARG0);
-  WORD *current_menu_screen_status = (WORD *)VM_REF_TO_PTR(menu_status_id);
+  menu_screen_status_e *current_menu_screen_status = (menu_screen_status_e *)VM_REF_TO_PTR(menu_status_id);
 
   switch (*current_menu_screen_status) {
-  case -1:
-    // Choice Cancelled
-    vm_call_far(THIS, cmst.on_cancel.bank,
-                cmst.on_cancel.ptr);
+  case CHOICE_CANCELLED:
+    vm_call_far(THIS, cmst.on_cancel.bank, cmst.on_cancel.ptr);
     return;
-  case -2:
-    // Continue
-    vm_call_far(THIS, cmst.on_change.bank,
-                cmst.on_change.ptr);
-    *current_menu_screen_status = 0;
+  case CHOICE_CHANGED:
+    vm_call_far(THIS, cmst.on_change.bank, cmst.on_change.ptr);
+    *current_menu_screen_status = CHOICE_NONE;
     return;
-  case 1:
-    // Choice Made
-    vm_call_far(THIS, cmst.on_select.bank,
-                cmst.on_select.ptr);
+  case CHOICE_SELECTED:
+    vm_call_far(THIS, cmst.on_select.bank, cmst.on_select.ptr);
     return;
+  case CHOICE_NONE:
   default:
     return;
   }
@@ -55,7 +56,7 @@ void continueMenuState(SCRIPT_CTX *THIS) BANKED {
 
 void invokeMenuState(SCRIPT_CTX *THIS) BANKED {
   const WORD menu_status_id = *(WORD *)VM_REF_TO_PTR(FN_ARG0);
-  WORD *current_menu_screen_status = (WORD *)VM_REF_TO_PTR(menu_status_id);
+  menu_screen_status_e *current_menu_screen_status = (menu_screen_status_e *)VM_REF_TO_PTR(menu_status_id);
   WORD *set_variable = (WORD *)VM_REF_TO_PTR(cmst.set_variable_id);
   const WORD menu_item_id = MAX(1, MIN(cmst.menu_items_count, *set_variable));
   menu_item_t current_menu_screen_item;
@@ -82,19 +83,20 @@ void invokeMenuState(SCRIPT_CTX *THIS) BANKED {
   } else if (INPUT_A_PRESSED) {
     if ((*set_variable == cmst.menu_items_count) &&
         (cmst.options & MENU_CANCEL_LAST)) {
-      *current_menu_screen_status = -1;
+      *current_menu_screen_status = CHOICE_CANCELLED;
     } else {
-      *current_menu_screen_status = 1;
+      *current_menu_screen_status = CHOICE_SELECTED;
     }
     return;
   } else if ((INPUT_B_PRESSED) && (cmst.options & MENU_CANCEL_B)) {
-    *current_menu_screen_status = -1;
+    *current_menu_screen_status = CHOICE_CANCELLED;
   } else {
+    *current_menu_screen_status = CHOICE_NONE;
     return;
   }
 
   if (!next_index)
     return;
   *set_variable = next_index;
-  *current_menu_screen_status=-2;
+  *current_menu_screen_status=CHOICE_CHANGED;
 }
