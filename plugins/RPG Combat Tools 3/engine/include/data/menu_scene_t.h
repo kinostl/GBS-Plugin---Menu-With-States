@@ -12,14 +12,14 @@ typedef enum menu_options_e {
 } menu_options_e;
 
 typedef struct menu_screen_state_t {
-  UWORD * set_variable;
-  far_ptr_t menu_items;
+  menu_options_e options;
+  UWORD set_variable_id;
   UWORD menu_items_count;
+  far_ptr_t menu_items;
   far_ptr_t on_init;
   far_ptr_t on_select;
   far_ptr_t on_cancel;
   far_ptr_t on_change;
-  menu_options_e options;
 } menu_screen_state_t;
 
 #endif

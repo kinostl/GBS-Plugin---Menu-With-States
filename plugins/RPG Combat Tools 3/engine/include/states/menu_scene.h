@@ -1,6 +1,9 @@
 #ifndef MENU_SCREEN_SCENE_H
 #define MENU_SCREEN_SCENE_H
 
-#include "data/menu_scene_t.h"
+#include <asm/types.h>
+
+void menu_screen_init(void) BANKED;
+void menu_screen_update(void) BANKED;
 
 #endif

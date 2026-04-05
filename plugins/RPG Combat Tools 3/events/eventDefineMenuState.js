@@ -186,7 +186,7 @@ const compile = (input, helpers) => {
 
     const symbol = `${helpers.options.scriptSymbolName}_menu_states`
     const option_symbol = `${symbol}_options`
-    const option_script = helpers._compileSubScript("custom", [{
+    const option_script = helpers._compileSubScript("input", [{
         "command": id,
         "id": "",
         "args": {
@@ -196,7 +196,7 @@ const compile = (input, helpers) => {
     }], option_symbol)
 
     const menu_struct = {
-        set_variable: `&VM_GLOBAL(${helpers.getVariableAlias(input.variable)})`,
+        set_variable_id: `${helpers.getVariableAlias(input.variable)}`,
         menu_items: `TO_FAR_PTR_T(${option_script})`,
         menu_items_count: `${menu_items.length}`,
         on_init: `TO_FAR_PTR_T(${on_init_script})`,

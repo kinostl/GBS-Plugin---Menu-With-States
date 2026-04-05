@@ -23,14 +23,30 @@ const fields = [{
 const compile = (input, helpers) => {
     const scene_sym = `${helpers.options.scriptSymbolName}_menu_states`
     const scene_id = helpers.options.compiledAssetsCache["menu_scene_states"].indexOf(scene_sym)
+    const menu_status = helpers._declareLocal("menu_status", 1, true);
 
     helpers._stackPushConst(scene_id, "Scene ID")
     helpers._stackPushScriptValue(input.menu_id)
     helpers._callNative("prepareMenuState")
     helpers._stackPop(2)
-    const local = helpers._declareLocal("local", 1, true)
-    helpers._invoke("menu_screen_run_menu_state", 0, local)
-    helpers._markLocalUse(local)
+
+    helpers.variableSetToValue(menu_status, 0)
+    helpers._stackPushReference(menu_status)
+    helpers.whileScriptValue({
+        "type": "eq",
+        "valueA": {
+            "type": "variable",
+            "value": menu_status
+        },
+        "valueB": {
+            "type": "number",
+            "value": 0
+        }
+    }, () => {
+        helpers._callNative("invokeMenuState")
+        helpers._callNative("continueMenuState")
+    })
+    helpers._stackPop(1)
 }
 
 module.exports = {
