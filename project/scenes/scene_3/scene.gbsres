@@ -51,7 +51,7 @@
           "value": 2
         },
         "variable": "L0",
-        "__comment": true
+        "__comment": false
       },
       "children": {
         "on_init": [],

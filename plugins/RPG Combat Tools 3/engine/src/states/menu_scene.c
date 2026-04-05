@@ -19,16 +19,16 @@ void menu_screen_init(void) BANKED {}
 void menu_screen_update(void) BANKED {}
 
 void prepareMenuState(SCRIPT_CTX *THIS) BANKED {
-  const WORD menu_status_id = *(WORD *)VM_REF_TO_PTR(FN_ARG2);
   const WORD scene_id = *(WORD *)VM_REF_TO_PTR(FN_ARG1);
   const WORD menu_id = *(WORD *)VM_REF_TO_PTR(FN_ARG0) - 1;
 
   far_ptr_t menu_screen_ptr;
 
-  ReadBankedFarPtr(&menu_screen_ptr, (void *)&menu_scene_states[menu_id],
+  ReadBankedFarPtr(&menu_screen_ptr, (void *)&menu_scene_states[scene_id],
                    BANK(menu_scene_states));
 
-  MemcpyBanked(&cmst, menu_screen_ptr.ptr + menu_id,
+  MemcpyBanked(&cmst,
+               ((menu_screen_state_t *)menu_screen_ptr.ptr) + menu_id,
                sizeof(menu_screen_state_t), menu_screen_ptr.bank);
 
   vm_call_far(THIS, cmst.on_init.bank, cmst.on_init.ptr);
