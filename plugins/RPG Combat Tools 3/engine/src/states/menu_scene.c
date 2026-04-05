@@ -22,7 +22,6 @@ void prepareMenuState(SCRIPT_CTX *THIS) BANKED {
   const WORD menu_status_id = *(WORD *)VM_REF_TO_PTR(FN_ARG2);
   const WORD scene_id = *(WORD *)VM_REF_TO_PTR(FN_ARG1);
   const WORD menu_id = *(WORD *)VM_REF_TO_PTR(FN_ARG0) - 1;
-  menu_item_t current_menu_screen_item;
 
   far_ptr_t menu_screen_ptr;
 
@@ -32,11 +31,7 @@ void prepareMenuState(SCRIPT_CTX *THIS) BANKED {
   MemcpyBanked(&cmst, menu_screen_ptr.ptr + menu_id,
                sizeof(menu_screen_state_t), menu_screen_ptr.bank);
 
-  MemcpyBanked(&current_menu_screen_item, cmst.menu_items.ptr,
-               sizeof(menu_item_t), cmst.menu_items.bank);
-
-  vm_call_far(THIS, cmst.on_init.bank,
-              cmst.on_init.ptr);
+  vm_call_far(THIS, cmst.on_init.bank, cmst.on_init.ptr);
 }
 
 void continueMenuState(SCRIPT_CTX *THIS) BANKED {
@@ -65,8 +60,6 @@ void continueMenuState(SCRIPT_CTX *THIS) BANKED {
 }
 
 void invokeMenuState(SCRIPT_CTX *THIS) BANKED {
-  vsync();
-  input_update();
   const WORD menu_status_id = *(WORD *)VM_REF_TO_PTR(FN_ARG0);
   WORD *current_menu_screen_status = (WORD *)VM_REF_TO_PTR(menu_status_id);
   WORD *set_variable = (WORD *)VM_REF_TO_PTR(cmst.set_variable_id);
@@ -80,6 +73,10 @@ void invokeMenuState(SCRIPT_CTX *THIS) BANKED {
   PLAYER.pos.y = TILE_TO_SUBPX(current_menu_screen_item.Y);
 
   UBYTE next_index = 0;
+
+  vsync();
+  input_update();
+
   if (INPUT_UP_PRESSED) {
     next_index = current_menu_screen_item.iU;
   } else if (INPUT_DOWN_PRESSED) {
