@@ -77,8 +77,8 @@ const UBYTE * text_sound_data;
 
 UBYTE overlay_priority;
 UBYTE text_palette;
-UBYTE text_buffer_start;
-UBYTE text_buffer_start_bank1;
+UBYTE text_buffer_start=0xCCu;
+UBYTE text_buffer_start_bank1=0xC0u;
 
 void ui_init(void) BANKED {
     vwf_direction               = UI_PRINT_LEFTTORIGHT;
