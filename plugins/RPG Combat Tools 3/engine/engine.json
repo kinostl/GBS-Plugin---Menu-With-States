@@ -9,20 +9,86 @@
         {
           "key": "section_1",
           "color": "#FA2828FF",
-          "mask": 255,
+          "mask": 15,
           "flag": 1,
           "name": "Section 1",
-          "icon": "FFFFFFFFFFFFFFFF"
+          "icon": "FFE7D7F7F7F7C3FF",
+          "multi": true
         },
         {
           "key": "section_2",
-          "color": "#00008080",
-          "mask": 255,
+          "color": "#FA2828FF",
+          "mask": 15,
           "flag": 2,
           "name": "Section 2",
-          "icon": "FFFFFFFFFFFFFFFF"
+          "icon": "FFC3BDFDC3BF81FF",
+          "multi": true
+        },
+        {
+          "key": "section_3",
+          "color": "#FA2828FF",
+          "mask": 15,
+          "flag": 3,
+          "name": "Section 3",
+          "icon": "FF83FDF3FDFD81FF",
+          "multi": true
+        },
+        {
+          "key": "section_4",
+          "color": "#FA2828FF",
+          "mask": 15,
+          "flag": 4,
+          "name": "Section 4",
+          "icon": "FFBFBFB781F7F7FF",
+          "multi": true
+        },
+        {
+          "key": "section_5",
+          "color": "#FA2828FF",
+          "mask": 15,
+          "flag": 5,
+          "name": "Section 5",
+          "icon": "FF81BF83FDFD83FF",
+          "multi": true
+        },
+        {
+          "key": "section_6",
+          "color": "#FA2828FF",
+          "mask": 15,
+          "flag": 6,
+          "name": "Section 6",
+          "icon": "FFC3BF83BDBDC3FF",
+          "multi": true
+        },
+        {
+          "key": "section_7",
+          "color": "#FA2828FF",
+          "mask": 15,
+          "flag": 7,
+          "name": "Section 7",
+          "icon": "FF81FDFBF7EFDFFF",
+          "multi": true
+        },
+        {
+          "key": "section_8",
+          "color": "#FA2828FF",
+          "mask": 15,
+          "flag": 8,
+          "name": "Section 8",
+          "icon": "FFC3BDC3BDBDC3FF",
+          "multi": true
+        },
+        {
+          "key": "text_field",
+          "color": "#2828FAFF",
+          "mask": 240,
+          "flag": 16,
+          "name": "Text Field",
+          "icon": "0000000103070F1F",
+          "multi": true
         }
       ]
+
     }
   ]
 }

@@ -35,10 +35,10 @@ const event_tab = (key) => {
     }
 }
 
-const on_select=event_tab("on_select");
-const on_cancel=event_tab("on_cancel");
-const on_change=event_tab("on_change");
-const on_init=event_tab("on_init");
+const on_select = event_tab("on_select");
+const on_cancel = event_tab("on_cancel");
+const on_change = event_tab("on_change");
+const on_init = event_tab("on_init");
 
 const fields = [{
     label: "Menu ID",
@@ -49,27 +49,17 @@ const fields = [{
         type: "number",
         value: 1
     }
-},{
+}, {
     label: "Set variable",
     type: "variable",
     key: "variable"
-}, {
-    type: "group",
-    fields: [{
-        label: "Collision Tile X",
-        type: "number",
-        key: "x",
-        min: 0,
-        max: 255,
-        defaultValue: 0
-    }, {
-        label: "Collision Tile Y",
-        type: "number",
-        key: "y",
-        min: 0,
-        max: 255,
-        defaultValue: 0
-    }]
+},
+{
+    key: "collisionGroup",
+    label: "Collision Group",
+    type: "togglebuttons",
+    options: Array(8).fill().map((_, i) => [i + 1, `${i + 1}`]),
+    defaultValue: 1,
 },
 ...settings,
 {
@@ -100,13 +90,12 @@ const compile = (input, helpers) => {
 
     const tiles = helpers.options.scene.collisions
     const width = helpers.options.scene.width
-    const source_pos = input.x + (input.y * width)
     let x = 0
     let y = 0
     const x_lim = helpers.options.scene.width
 
     for (let i = 0; i < tiles.length; i++) {
-        if (tiles[i] === tiles[source_pos]) {
+        if (tiles[i] === input.collisionGroup) {
             const choice = { x, y }
             option_pos.push(choice)
         }
@@ -247,9 +236,5 @@ module.exports = {
     fields,
     compile,
     waitUntilAfterInitFade: true,
-    helper: {
-        type: "position",
-        x: "x",
-        y: "y",
-    },
+  sceneTypes: ["MENU_SCREEN"],
 };

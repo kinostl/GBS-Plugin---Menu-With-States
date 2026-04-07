@@ -11,7 +11,7 @@
   "colorModeOverride": "none",
   "paletteIds": [],
   "spritePaletteIds": [],
-  "collisions": "",
+  "collisions": "00168+",
   "autoFadeSpeed": 1,
   "symbol": "scene_4",
   "x": 680,
@@ -19,7 +19,9 @@
   "script": [
     {
       "command": "EVENT_EXTEND_TEXT",
-      "args": {},
+      "args": {
+        "__collapse": true
+      },
       "id": "c638da2e-8be9-4513-86b3-c3af1b2bd958"
     },
     {
@@ -29,7 +31,8 @@
           "b"
         ],
         "override": true,
-        "__scriptTabs": "press"
+        "__scriptTabs": "press",
+        "__collapse": true
       },
       "children": {
         "true": [

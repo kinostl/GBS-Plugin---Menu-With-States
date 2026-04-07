@@ -1,8 +1,8 @@
 {
   "_resourceType": "settings",
   "startSceneId": "5c121ef2-c39c-4ca7-afb5-7e5f9fb4a41d",
-  "startX": 8,
-  "startY": 7,
+  "startX": 5,
+  "startY": 3,
   "startMoveSpeed": 1,
   "startAnimSpeed": 15,
   "startDirection": "up",
@@ -58,7 +58,8 @@
     "ADVENTURE": "581d34d0-9591-4e6e-a609-1d94f203b0cd",
     "SHMUP": "581d34d0-9591-4e6e-a609-1d94f203b0cd",
     "POINTNCLICK": "581d34d0-9591-4e6e-a609-1d94f203b0cd",
-    "LOGO": "581d34d0-9591-4e6e-a609-1d94f203b0cd"
+    "LOGO": "581d34d0-9591-4e6e-a609-1d94f203b0cd",
+    "MENU_SCREEN": "e4ac0c3d-6ac2-4fa5-8e21-910df055d0ac"
   },
   "musicDriver": "huge",
   "cartType": "mbc5",
@@ -111,6 +112,11 @@
   "showRomUsageAfterBuild": false,
   "romFilename": "",
   "defaultSceneTypeId": "TOPDOWN",
-  "disabledSceneTypeIds": [],
+  "disabledSceneTypeIds": [
+    "ADVENTURE",
+    "PLATFORM",
+    "POINTNCLICK",
+    "SHMUP"
+  ],
   "autoTileFlipEnabled": true
 }

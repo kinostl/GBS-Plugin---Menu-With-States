@@ -21,7 +21,9 @@ typedef enum menu_screen_status_e {
   CHOICE_SELECTED = 3
 } menu_screen_status_e;
 
-void menu_screen_init(void) BANKED {}
+void menu_screen_init(void) BANKED {
+  text_extended = TRUE;
+}
 void menu_screen_update(void) BANKED {}
 
 void prepareMenuState(SCRIPT_CTX *THIS) BANKED {
