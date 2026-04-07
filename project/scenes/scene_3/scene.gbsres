@@ -11,19 +11,70 @@
   "colorModeOverride": "none",
   "paletteIds": [],
   "spritePaletteIds": [],
-  "collisions": "003e+01!115+004+02!135+004+01!115+00e+01!115+0040+02!145+004+126+00e+126+00e+126+00e+126+00e+126+004+02!155+0052+",
+  "collisions": "003e+01!115+004+02!145+004+01!125+00e+01!135+0040+02!155+005e+02!165+0052+",
   "autoFadeSpeed": 1,
   "symbol": "scene_3",
   "x": 504,
   "y": 32,
   "script": [
     {
+      "command": "MENU_DEFINE_TEXT_AREA",
+      "args": {
+        "collisionGroup": 1
+      },
+      "id": "0c295ee7-34b7-480a-aae3-9df9a2ec3fc8"
+    },
+    {
+      "command": "EVENT_TEXT_DRAW",
+      "args": {
+        "text": "Fire",
+        "x": 3,
+        "y": 3,
+        "location": "background"
+      },
+      "id": "a0fec8a9-5eb5-45a7-89c7-7f2ed20e7b91"
+    },
+    {
+      "command": "MENU_DEFINE_TEXT_AREA",
+      "args": {
+        "collisionGroup": 2
+      },
+      "id": "9d0e3087-2ac1-4443-9a32-72c740eacadf"
+    },
+    {
+      "command": "EVENT_TEXT_DRAW",
+      "args": {
+        "text": "Ice",
+        "x": 3,
+        "y": 4,
+        "location": "background"
+      },
+      "id": "803ba0ca-00d1-434a-8250-9c64a23f625f"
+    },
+    {
+      "command": "MENU_DEFINE_TEXT_AREA",
+      "args": {
+        "collisionGroup": 3
+      },
+      "id": "87f80f44-fb8d-4b66-b491-f227589e1878"
+    },
+    {
+      "command": "EVENT_TEXT_DRAW",
+      "args": {
+        "text": "Soap",
+        "x": 3,
+        "y": 5,
+        "location": "background"
+      },
+      "id": "ca44afb4-7e3e-407d-8229-63043e7e773b"
+    },
+    {
       "command": "MENU_DEFINE_MENU_STATE",
       "args": {
         "x": 2,
         "y": 3,
         "cancelOnB": true,
-        "__section": "on_select",
+        "__section": "on_init",
         "menu_id": {
           "type": "number",
           "value": 1
@@ -66,6 +117,13 @@
             "id": "33b0b275-08f1-4edb-8e92-59e1e000951b"
           },
           {
+            "command": "MENU_DEFINE_TEXT_AREA",
+            "args": {
+              "collisionGroup": 0
+            },
+            "id": "9ecce651-7e0f-4417-898b-1b0430f3a91a"
+          },
+          {
             "command": "EVENT_TEXT_DRAW",
             "args": {
               "text": "!F:4bd653f0-e08d-424e-9e5b-c1f3aaa21e47!      \n      \n      \n      \n      ",
@@ -74,17 +132,7 @@
               "location": "background",
               "__collapse": false
             },
-            "id": "f3445d09-5c13-4f78-848c-0810096fdfcc"
-          },
-          {
-            "command": "EVENT_TEXT_DRAW",
-            "args": {
-              "text": "Fire\nIce\nSoap",
-              "x": 3,
-              "y": 3,
-              "location": "background"
-            },
-            "id": "a0fec8a9-5eb5-45a7-89c7-7f2ed20e7b91"
+            "id": "5c536e20-7f92-4327-b9e2-7360657504b0"
           },
           {
             "command": "EVENT_SWITCH",
@@ -196,20 +244,9 @@
               "x": 2,
               "y": 9,
               "location": "background",
-              "__collapse": true
+              "__collapse": false
             },
             "id": "35cae9e8-7747-4122-b94f-8bbb4d8fbb9e"
-          },
-          {
-            "command": "EVENT_TEXT_DRAW",
-            "args": {
-              "text": "Fire\nIce\nSoap",
-              "x": 3,
-              "y": 3,
-              "location": "background",
-              "__collapse": true
-            },
-            "id": "0eecc27d-cc5c-4fe2-8fb3-ec40929fcace"
           },
           {
             "command": "EVENT_SWITCH",
@@ -233,7 +270,7 @@
               "__collapseCase14": false,
               "__collapseCase15": false,
               "__collapseElse": false,
-              "__collapse": true
+              "__collapse": false
             },
             "children": {
               "true0": [
@@ -337,6 +374,13 @@
             "children": {
               "true0": [
                 {
+                  "command": "MENU_DEFINE_TEXT_AREA",
+                  "args": {
+                    "collisionGroup": 4
+                  },
+                  "id": "1bf2f39d-93d8-43ce-ad6c-fca0eb27737f"
+                },
+                {
                   "command": "EVENT_SET_VALUE",
                   "args": {
                     "variable": "6",
@@ -369,6 +413,13 @@
               ],
               "true1": [
                 {
+                  "command": "MENU_DEFINE_TEXT_AREA",
+                  "args": {
+                    "collisionGroup": 5
+                  },
+                  "id": "a0c74679-e5ac-4805-967e-b086d0a30eb6"
+                },
+                {
                   "command": "EVENT_SET_VALUE",
                   "args": {
                     "variable": "7",
@@ -400,6 +451,13 @@
                 }
               ],
               "true2": [
+                {
+                  "command": "MENU_DEFINE_TEXT_AREA",
+                  "args": {
+                    "collisionGroup": 6
+                  },
+                  "id": "ac226ee1-0893-409c-956c-2fb4f46052d4"
+                },
                 {
                   "command": "EVENT_SET_VALUE",
                   "args": {

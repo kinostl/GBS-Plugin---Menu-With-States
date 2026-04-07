@@ -89,10 +89,10 @@ const compile = (input, helpers) => {
     const option_pos = []
 
     const tiles = helpers.options.scene.collisions
-    const width = helpers.options.scene.width
+    const x_lim = helpers.options.scene.width
+
     let x = 0
     let y = 0
-    const x_lim = helpers.options.scene.width
 
     for (let i = 0; i < tiles.length; i++) {
         if (tiles[i] === input.collisionGroup) {

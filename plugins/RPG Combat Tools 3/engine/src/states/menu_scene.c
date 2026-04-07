@@ -21,9 +21,7 @@ typedef enum menu_screen_status_e {
   CHOICE_SELECTED = 3
 } menu_screen_status_e;
 
-void menu_screen_init(void) BANKED {
-  text_extended = TRUE;
-}
+void menu_screen_init(void) BANKED {}
 void menu_screen_update(void) BANKED {}
 
 void prepareMenuState(SCRIPT_CTX *THIS) BANKED {
@@ -101,4 +99,8 @@ void invokeMenuState(SCRIPT_CTX *THIS) BANKED {
     return;
   *set_variable = next_index;
   *current_menu_screen_status=CHOICE_CHANGED;
+}
+
+void touchUiTile(SCRIPT_CTX * THIS) BANKED {
+  ui_set_start_tile(TEXT_BUFFER_START, 0);
 }

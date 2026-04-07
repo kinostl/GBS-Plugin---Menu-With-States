@@ -46,7 +46,6 @@ UBYTE sprites_len;
 UBYTE actors_len;
 UBYTE projectiles_len;
 UBYTE player_sprite_len;
-UBYTE text_extended;
 scene_type_e scene_type;
 LCD_isr_e scene_LCD_type;
 
@@ -68,7 +67,6 @@ void load_bkg_tileset(const tileset_t* tiles, UBYTE bank) BANKED {
 
     UWORD n_tiles = ReadBankedUWORD(&(tiles->n_tiles), bank);
     image_tile_count = n_tiles;
-    text_extended = FALSE;
 
     // load first background chunk, align to zero tile
     UBYTE * data = tiles->tiles;

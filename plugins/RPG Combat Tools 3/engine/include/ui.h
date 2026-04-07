@@ -11,8 +11,8 @@
 #define MENU_CANCEL_B    2
 #define MENU_SET_START   4
 
-#define TEXT_BUFFER_START (text_extended ? image_tile_count : 0xCCu)
-#define TEXT_BUFFER_START_BANK1 (text_extended ? cgb_image_tile_count : 0xC0u)
+#define TEXT_BUFFER_START text_buffer_start
+#define TEXT_BUFFER_START_BANK1 text_buffer_start_bank1
 #define TEXT_BUFFER_LEN ((UBYTE)(0x100 - TEXT_BUFFER_START))
 #define TEXT_BKG_FILL_W 0x00u
 #define TEXT_BKG_FILL_B 0xffu
@@ -51,7 +51,7 @@ extern UBYTE text_draw_speed;
 extern UBYTE text_ff_joypad;
 extern UBYTE text_ff;
 extern UBYTE text_bkg_fill;
-extern UBYTE text_extended;
+extern UBYTE text_buffer_start;
 
 extern unsigned char ui_text_data[TEXT_MAX_LENGTH + 1];
 extern UWORD ui_text_start;
@@ -80,6 +80,7 @@ extern const UBYTE ui_time_masks[];
 #ifdef CGB
 extern UBYTE overlay_priority;
 extern UBYTE text_palette;
+extern UBYTE text_buffer_start_bank1;
 #endif
 
 void ui_init(void) BANKED;
