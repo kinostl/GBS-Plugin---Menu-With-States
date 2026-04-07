@@ -54,7 +54,6 @@ extern UBYTE text_bkg_fill;
 extern UBYTE text_buffer_start;
 
 extern unsigned char ui_text_data[TEXT_MAX_LENGTH + 1];
-extern UWORD ui_text_start;
 
 #define UI_PRINT_LEFTTORIGHT 0
 #define UI_PRINT_RIGHTTOLEFT 1
