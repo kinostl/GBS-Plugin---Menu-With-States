@@ -1,0 +1,74 @@
+{
+  "_resourceType": "scene",
+  "id": "5c121ef2-c39c-4ca7-afb5-7e5f9fb4a41d",
+  "_index": 3,
+  "name": "Scene 4",
+  "backgroundId": "8f7aebc2-cd56-4496-a829-d44e67ac9248",
+  "tilesetId": "",
+  "width": 20,
+  "height": 18,
+  "type": "TOPDOWN",
+  "colorModeOverride": "none",
+  "paletteIds": [],
+  "spritePaletteIds": [],
+  "collisions": "",
+  "autoFadeSpeed": 1,
+  "symbol": "scene_4",
+  "x": 680,
+  "y": 30,
+  "script": [
+    {
+      "command": "EVENT_EXTEND_TEXT",
+      "args": {},
+      "id": "c638da2e-8be9-4513-86b3-c3af1b2bd958"
+    },
+    {
+      "command": "EVENT_SET_INPUT_SCRIPT",
+      "args": {
+        "input": [
+          "b"
+        ],
+        "override": true,
+        "__scriptTabs": "press"
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_TEXT_DRAW",
+            "args": {
+              "text": "According to all\nknown laws of\naviation, there is\nno way a bee should\nbe able to fly.\nIts\nwings are too small\nto get its fat\nlittle body off the\nground.",
+              "x": 0,
+              "y": 0,
+              "location": "background"
+            },
+            "id": "04b08e0b-239b-4309-ae6f-5124f965af9f"
+          },
+          {
+            "command": "EVENT_TEXT_DRAW",
+            "args": {
+              "text": "Yellow\nBlack\nYellow",
+              "x": 0,
+              "y": 15,
+              "location": "background"
+            },
+            "id": "ed9e92a6-3c80-4881-83a9-2c70ad771d46"
+          },
+          {
+            "command": "EVENT_TEXT_DRAW",
+            "args": {
+              "text": "RED......,.,.,\nRED,.,.,.,.,\nRED,.,..ljl\nRED",
+              "x": 12,
+              "y": 1,
+              "location": "background"
+            },
+            "id": "fc97dc4a-4bc3-4ae9-aa36-f650fcc2cd81"
+          }
+        ]
+      },
+      "id": "1c0f988f-b53a-4f1f-bbc6-54018453ee30"
+    }
+  ],
+  "playerHit1Script": [],
+  "playerHit2Script": [],
+  "playerHit3Script": []
+}
