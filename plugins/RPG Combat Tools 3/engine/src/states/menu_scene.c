@@ -35,23 +35,30 @@ void prepareMenuState(SCRIPT_CTX *THIS) BANKED {
 
 void continueMenuState(SCRIPT_CTX *THIS) BANKED {
   const WORD menu_status_id = *(WORD *)VM_REF_TO_PTR(FN_ARG0);
-  menu_screen_status_e *current_menu_screen_status = (menu_screen_status_e *)VM_REF_TO_PTR(menu_status_id);
+  menu_screen_status_e *current_menu_screen_status =
+      (menu_screen_status_e *)VM_REF_TO_PTR(menu_status_id);
+
+#define oneWayJump(dest)                                                       \
+  THIS->stack_ptr = THIS->base_addr;                                           \
+  THIS->bank = dest.bank;                                                      \
+  THIS->PC = dest.ptr
 
   switch (*current_menu_screen_status) {
-  case CHOICE_CANCELLED:
-    vm_call_far(THIS, cmst.on_cancel.bank, cmst.on_cancel.ptr);
+  case CHOICE_NONE:
+  default:
     return;
   case CHOICE_CHANGED:
     vm_call_far(THIS, cmst.on_change.bank, cmst.on_change.ptr);
     *current_menu_screen_status = CHOICE_NONE;
     return;
   case CHOICE_SELECTED:
-    vm_call_far(THIS, cmst.on_select.bank, cmst.on_select.ptr);
+    oneWayJump(cmst.on_select);
     return;
-  case CHOICE_NONE:
-  default:
+  case CHOICE_CANCELLED:
+    oneWayJump(cmst.on_cancel);
     return;
   }
+#undef oneWayJump
 }
 
 void invokeMenuState(SCRIPT_CTX *THIS) BANKED {

@@ -20,7 +20,8 @@
     {
       "command": "MENU_DEFINE_TEXT_AREA",
       "args": {
-        "collisionGroup": 1
+        "collisionGroup": 1,
+        "__collapse": true
       },
       "id": "0c295ee7-34b7-480a-aae3-9df9a2ec3fc8"
     },
@@ -30,14 +31,16 @@
         "text": "Fire",
         "x": 3,
         "y": 3,
-        "location": "background"
+        "location": "background",
+        "__collapse": true
       },
       "id": "a0fec8a9-5eb5-45a7-89c7-7f2ed20e7b91"
     },
     {
       "command": "MENU_DEFINE_TEXT_AREA",
       "args": {
-        "collisionGroup": 2
+        "collisionGroup": 2,
+        "__collapse": true
       },
       "id": "9d0e3087-2ac1-4443-9a32-72c740eacadf"
     },
@@ -47,14 +50,16 @@
         "text": "Ice",
         "x": 3,
         "y": 4,
-        "location": "background"
+        "location": "background",
+        "__collapse": true
       },
       "id": "803ba0ca-00d1-434a-8250-9c64a23f625f"
     },
     {
       "command": "MENU_DEFINE_TEXT_AREA",
       "args": {
-        "collisionGroup": 3
+        "collisionGroup": 3,
+        "__collapse": true
       },
       "id": "87f80f44-fb8d-4b66-b491-f227589e1878"
     },
@@ -64,7 +69,8 @@
         "text": "Soap",
         "x": 3,
         "y": 5,
-        "location": "background"
+        "location": "background",
+        "__collapse": true
       },
       "id": "ca44afb4-7e3e-407d-8229-63043e7e773b"
     },
@@ -82,7 +88,8 @@
         "variable": "L0",
         "__comment": false,
         "cancelOnLastOption": false,
-        "collisionGroup": 1
+        "collisionGroup": 1,
+        "__collapse": true
       },
       "children": {
         "on_init": [
@@ -343,7 +350,8 @@
         },
         "variable": "L1",
         "__comment": false,
-        "collisionGroup": 2
+        "collisionGroup": 2,
+        "__collapse": true
       },
       "children": {
         "on_init": [
@@ -571,7 +579,8 @@
           "type": "number",
           "value": 1
         },
-        "__comment": false
+        "__comment": false,
+        "__collapse": true
       },
       "id": "a962a24d-d83f-47e0-81f7-622142b37971"
     }
