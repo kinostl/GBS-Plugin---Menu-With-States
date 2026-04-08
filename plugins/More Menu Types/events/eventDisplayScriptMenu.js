@@ -1,5 +1,5 @@
 const id = "MENU_DISPLAY_SCRIPT_MENU";
-const groups = ["Menu State System"];
+const groups = ["Menus"];
 const name = "Display Script Menu";
 
 const script_fields = Array(16).fill().map((_, i) => {

@@ -1,5 +1,5 @@
 const id = "MENU_DEFINE_TEXT_AREA";
-const groups = ["RPG Menu System"];
+const groups = ["Menus"];
 const name = "Use Text Area";
 
 const fields = [{

@@ -1,5 +1,5 @@
 const id = "MENU_WHILE_ACTOR_CHOICE";
-const groups = ["RPG Menu System"];
+const groups = ["Menus"];
 const name = "With Actor set to Choice";
 
 const fields = [{

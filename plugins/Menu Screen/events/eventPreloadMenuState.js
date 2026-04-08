@@ -1,5 +1,5 @@
 const id = "MENU_PRELOAD_MENU_STATE";
-const groups = ["RPG Menu System"];
+const groups = ["Menus"];
 const name = "Preload Menu State";
 
 const fields = [{
@@ -12,8 +12,6 @@ const fields = [{
         value: 1
     }
 }]
-//Might want some additional fields that allow you to toggle if the state's "On X" scripts run.
-// Also maybe a "Then" field that runs after "On Select" runs or maybe a copy of what Define has, allowing you to do some sort of t--too complex
 
 /**
  * 
@@ -32,4 +30,5 @@ module.exports = {
     groups,
     fields,
     compile,
+    sceneTypes: ["MENU_SCREEN"],
 };

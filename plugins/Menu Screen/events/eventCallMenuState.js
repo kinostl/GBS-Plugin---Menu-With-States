@@ -1,5 +1,5 @@
 const id = "MENU_JUMP_TO_MENU_STATE";
-const groups = ["RPG Menu System"];
+const groups = ["Menus"];
 const name = "Jump To Menu State";
 
 const fields = [{
@@ -53,4 +53,5 @@ module.exports = {
     fields,
     compile,
     waitUntilAfterInitFade: true,
+    sceneTypes: ["MENU_SCREEN"],
 };

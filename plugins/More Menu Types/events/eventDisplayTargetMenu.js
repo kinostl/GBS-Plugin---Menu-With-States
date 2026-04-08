@@ -1,5 +1,5 @@
 const id = "MENU_DISPLAY_ACTORS_MENU";
-const groups = ["RPG Menu System"];
+const groups = ["Menus"];
 const name = "Display Actors Menu";
 
 /**

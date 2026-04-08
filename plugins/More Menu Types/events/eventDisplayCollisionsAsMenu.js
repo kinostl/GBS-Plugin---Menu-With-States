@@ -1,5 +1,5 @@
 const id = "MENU_CALL_COLLISION_CHOICE";
-const groups = ["RPG Menu System"];
+const groups = ["Menus"];
 const name = "Display Collision Tiles as Choice";
 const l10n = require("../helpers/l10n").default;
 

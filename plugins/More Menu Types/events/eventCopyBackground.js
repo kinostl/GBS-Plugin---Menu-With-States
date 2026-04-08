@@ -1,6 +1,6 @@
 
 const id = "MENU_COPY_BKG_TO_WIN";
-const groups = ["RPG Menu System"];
+const groups = ["Menus"];
 const name = "Copy Background to Overlay";
 
 const fields = []

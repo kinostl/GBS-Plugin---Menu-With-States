@@ -1,5 +1,5 @@
 const id = "MENU_DEFINE_ARRAY_DATA";
-const groups = ["Menu State System"];
+const groups = [""];
 const name = "Make Array Data Files";
 
 const fields = [{

@@ -1,10 +1,9 @@
 const id = "MENU_DEFINE_MENU_STATE";
-const groups = ["RPG Menu System"];
+const groups = ["Menus"];
 const name = "Define Menu State";
 const l10n = require("../helpers/l10n").default;
 
 const settings = [
-
     {
         type: "checkbox",
         label: l10n("FIELD_LAST_OPTION_CANCELS"),

@@ -7,7 +7,7 @@
  * Those are used to replicate what I have in the example right now, and run a couple switches like how its being done with the inter-script calls
  */
 const id = "MENU_DISPLAY_DYNAMIC_SCRIPT_MENU";
-const groups = ["Menu State System"];
+const groups = ["Menus"];
 const name = "Display Dynamic Script Menu";
 const MAX_DISPLAY = 8
 const MAX_SCRIPTS = 16
