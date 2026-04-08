@@ -172,8 +172,8 @@ const compile = (input, helpers) => {
         choiceFlags.push("UI_MENU_CANCEL_B");
     }
 
-    const symbol = "menu_scene_states"
-    const option_symbol = `menu_scene_options`
+    const symbol = "menu_screen_states"
+    const option_symbol = `menu_screen_options`
     const option_script = helpers._compileSubScript("input", [{
         "command": id,
         "id": "",
@@ -221,7 +221,7 @@ const compile = (input, helpers) => {
             array: helpers.options.compiledAssetsCache[`${symbol}`],
             dependencies: [
                 "game_globals",
-                "menu_scene_t",
+                "menu_screen_t",
                 ...helpers.options.compiledAssetsCache[`${symbol}_h`]
             ]
         }

@@ -1,7 +1,7 @@
 #include <actor.h>
 #include <asm/types.h>
 #include <bankdata.h>
-#include <data/menu_scene_t.h>
+#include <data/menu_screen_t.h>
 #include <gb/gb.h>
 #include <gbs_types.h>
 #include <input.h>
@@ -10,8 +10,8 @@
 #include <vm.h>
 #pragma bank 255
 
-#include "data/menu_scene_states.h"
-#include "states/menu_scene.h"
+#include "data/menu_screen_states.h"
+#include "states/menu_screen.h"
 
 menu_screen_state_t cmst;
 typedef enum menu_screen_status_e {
@@ -27,8 +27,8 @@ void menu_screen_update(void) BANKED {}
 void prepareMenuState(SCRIPT_CTX *THIS) BANKED {
   const WORD menu_id = *(WORD *)VM_REF_TO_PTR(FN_ARG0) - 1;
 
-  MemcpyBanked(&cmst, ((menu_screen_state_t *)menu_scene_states) + menu_id,
-               sizeof(menu_screen_state_t), BANK(menu_scene_states));
+  MemcpyBanked(&cmst, ((menu_screen_state_t *)menu_screen_states) + menu_id,
+               sizeof(menu_screen_state_t), BANK(menu_screen_states));
 
   vm_call_far(THIS, cmst.on_init.bank, cmst.on_init.ptr);
 }
@@ -36,8 +36,8 @@ void prepareMenuState(SCRIPT_CTX *THIS) BANKED {
 void preloadMenuState(SCRIPT_CTX *THIS) BANKED {
   const WORD menu_id = *(WORD *)VM_REF_TO_PTR(FN_ARG0) - 1;
 
-  MemcpyBanked(&cmst, ((menu_screen_state_t *)menu_scene_states) + menu_id,
-               sizeof(menu_screen_state_t), BANK(menu_scene_states));
+  MemcpyBanked(&cmst, ((menu_screen_state_t *)menu_screen_states) + menu_id,
+               sizeof(menu_screen_state_t), BANK(menu_screen_states));
 
   WORD *set_variable = (WORD *)VM_REF_TO_PTR(cmst.set_variable_id);
   const WORD menu_item_id = MAX(1, MIN(cmst.menu_items_count, *set_variable));
