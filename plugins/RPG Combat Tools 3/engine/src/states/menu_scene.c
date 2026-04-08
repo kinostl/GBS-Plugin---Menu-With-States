@@ -33,6 +33,24 @@ void prepareMenuState(SCRIPT_CTX *THIS) BANKED {
   vm_call_far(THIS, cmst.on_init.bank, cmst.on_init.ptr);
 }
 
+void preloadMenuState(SCRIPT_CTX *THIS) BANKED {
+  const WORD menu_id = *(WORD *)VM_REF_TO_PTR(FN_ARG0) - 1;
+
+  MemcpyBanked(&cmst, ((menu_screen_state_t *)menu_scene_states) + menu_id,
+               sizeof(menu_screen_state_t), BANK(menu_scene_states));
+
+  WORD *set_variable = (WORD *)VM_REF_TO_PTR(cmst.set_variable_id);
+  const WORD menu_item_id = MAX(1, MIN(cmst.menu_items_count, *set_variable));
+  menu_item_t current_menu_screen_item;
+
+  MemcpyBanked(&current_menu_screen_item,
+               ((menu_item_t *)cmst.menu_items.ptr) + menu_item_id - 1,
+               sizeof(menu_item_t), cmst.menu_items.bank);
+
+  PLAYER.pos.x = TILE_TO_SUBPX(current_menu_screen_item.X);
+  PLAYER.pos.y = TILE_TO_SUBPX(current_menu_screen_item.Y);
+}
+
 void continueMenuState(SCRIPT_CTX *THIS) BANKED {
   const WORD menu_status_id = *(WORD *)VM_REF_TO_PTR(FN_ARG0);
   menu_screen_status_e *current_menu_screen_status =

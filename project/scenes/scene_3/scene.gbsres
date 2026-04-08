@@ -18,42 +18,14 @@
   "y": 32,
   "script": [
     {
-      "command": "EVENT_IF",
+      "command": "MENU_PRELOAD_MENU_STATE",
       "args": {
-        "condition": {
-          "type": "or",
-          "valueA": {
-            "type": "variable",
-            "value": "L2"
-          },
-          "valueB": {
-            "type": "variable",
-            "value": "L3"
-          }
-        },
-        "__collapseElse": false
+        "menu_id": {
+          "type": "number",
+          "value": 1
+        }
       },
-      "children": {
-        "true": [
-          {
-            "command": "EVENT_ACTOR_SET_POSITION",
-            "args": {
-              "actorId": "$self$",
-              "x": {
-                "type": "variable",
-                "value": "L2"
-              },
-              "y": {
-                "type": "variable",
-                "value": "L3"
-              }
-            },
-            "id": "775f523c-2e38-478e-9c4d-8ddad3ee5283"
-          }
-        ],
-        "false": []
-      },
-      "id": "a1bfce1c-0004-4627-8c24-c48863eecece"
+      "id": "bde55a17-ba92-401e-b162-23dc51df39e9"
     },
     {
       "command": "MENU_DEFINE_TEXT_AREA",
@@ -270,15 +242,6 @@
           }
         ],
         "on_cancel": [
-          {
-            "command": "EVENT_ACTOR_GET_POSITION",
-            "args": {
-              "actorId": "$self$",
-              "vectorX": "L2",
-              "vectorY": "L3"
-            },
-            "id": "edca8786-caf4-4143-ada8-4f33797d4c0d"
-          },
           {
             "command": "EVENT_SCENE_POP_STATE",
             "args": {
