@@ -1,41 +1,41 @@
 {
   "_resourceType": "script",
-  "id": "3496beee-46f2-4bec-b5b4-edd7a3f992c6",
-  "name": "Setup/Magic/Display",
+  "id": "1b9bd3af-1dd8-4b0e-a567-0297831f5a6f",
+  "name": "Setup/Magic/Option",
   "description": "",
   "variables": {
     "V0": {
       "id": "V0",
-      "name": "Slot Choice",
+      "name": "Variable A",
       "passByReference": true
     },
     "V1": {
       "id": "V1",
-      "name": "X",
-      "passByReference": false
+      "name": "Variable B",
+      "passByReference": true
     },
     "V2": {
       "id": "V2",
-      "name": "Y",
-      "passByReference": false
+      "name": "Variable C",
+      "passByReference": true
     }
   },
   "actors": {},
-  "symbol": "script_16",
+  "symbol": "script_17",
   "script": [
     {
       "command": "EVENT_INC_VALUE",
       "args": {
         "variable": "V1"
       },
-      "id": "3de36123-8b33-4640-98b4-72c52a45a768"
+      "id": "e01a18a3-246e-41a6-9204-fa2d952cf36a"
     },
     {
       "command": "EVENT_INC_VALUE",
       "args": {
         "variable": "V2"
       },
-      "id": "43b4c674-83eb-40a0-bbfb-de11d94aff21"
+      "id": "e775cb42-eaf0-4759-8fa0-c00d7b20a0ca"
     },
     {
       "command": "EVENT_SWITCH",
@@ -80,9 +80,9 @@
               "text": "\\003#V1##V2#Fire",
               "x": 0,
               "y": 0,
-              "location": "overlay"
+              "location": "background"
             },
-            "id": "9ce33819-1023-4ab5-961b-e1219a8a319c"
+            "id": "55c767de-79bd-4c5d-8c8b-3ca258085c0c"
           }
         ],
         "true1": [
@@ -92,9 +92,9 @@
               "text": "\\003#V1##V2#Ice",
               "x": 0,
               "y": 0,
-              "location": "overlay"
+              "location": "background"
             },
-            "id": "c37ab877-120e-4af3-be92-8c0e9a3f4f9c"
+            "id": "da200bcb-1384-42af-b924-876b308a0046"
           }
         ],
         "true2": [
@@ -104,9 +104,9 @@
               "text": "\\003#V1##V2#Soap",
               "x": 0,
               "y": 0,
-              "location": "overlay"
+              "location": "background"
             },
-            "id": "ddb62435-8582-4375-98ad-7988f6f9a9a1"
+            "id": "836f7fc3-f178-48c8-913a-91094bd2f707"
           }
         ],
         "true3": [],
@@ -124,7 +124,7 @@
         "true15": [],
         "false": []
       },
-      "id": "baadc4c1-3aa8-4edd-88ee-ccbd670c6fcb"
+      "id": "d416ac57-7587-4868-87a8-9c0ffb3856b2"
     }
   ]
 }

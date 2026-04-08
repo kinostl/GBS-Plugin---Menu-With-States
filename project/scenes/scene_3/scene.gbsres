@@ -18,6 +18,44 @@
   "y": 32,
   "script": [
     {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "or",
+          "valueA": {
+            "type": "variable",
+            "value": "L2"
+          },
+          "valueB": {
+            "type": "variable",
+            "value": "L3"
+          }
+        },
+        "__collapseElse": false
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_ACTOR_SET_POSITION",
+            "args": {
+              "actorId": "$self$",
+              "x": {
+                "type": "variable",
+                "value": "L2"
+              },
+              "y": {
+                "type": "variable",
+                "value": "L3"
+              }
+            },
+            "id": "775f523c-2e38-478e-9c4d-8ddad3ee5283"
+          }
+        ],
+        "false": []
+      },
+      "id": "a1bfce1c-0004-4627-8c24-c48863eecece"
+    },
+    {
       "command": "MENU_DEFINE_TEXT_AREA",
       "args": {
         "collisionGroup": 1,
@@ -28,7 +66,7 @@
     {
       "command": "EVENT_TEXT_DRAW",
       "args": {
-        "text": "Fire",
+        "text": "Fire   ",
         "x": 3,
         "y": 3,
         "location": "background",
@@ -80,7 +118,7 @@
         "x": 2,
         "y": 3,
         "cancelOnB": true,
-        "__section": "on_init",
+        "__section": "on_cancel",
         "menu_id": {
           "type": "number",
           "value": 1
@@ -89,7 +127,7 @@
         "__comment": false,
         "cancelOnLastOption": false,
         "collisionGroup": 1,
-        "__collapse": true
+        "__collapse": false
       },
       "children": {
         "on_init": [
@@ -233,14 +271,20 @@
         ],
         "on_cancel": [
           {
-            "command": "EVENT_TEXT_DRAW",
+            "command": "EVENT_ACTOR_GET_POSITION",
             "args": {
-              "text": "Canceled",
-              "x": 1,
-              "y": 1,
-              "location": "background"
+              "actorId": "$self$",
+              "vectorX": "L2",
+              "vectorY": "L3"
             },
-            "id": "74f46dec-c886-45ae-99ac-48d0e1217560"
+            "id": "edca8786-caf4-4143-ada8-4f33797d4c0d"
+          },
+          {
+            "command": "EVENT_SCENE_POP_STATE",
+            "args": {
+              "fadeSpeed": "2"
+            },
+            "id": "64675af8-f95e-447b-a903-916e553fb244"
           }
         ],
         "on_change": [
@@ -343,7 +387,7 @@
         "x": 12,
         "y": 3,
         "cancelOnB": true,
-        "__section": "on_init",
+        "__section": "on_select",
         "menu_id": {
           "type": "number",
           "value": 2
@@ -433,7 +477,11 @@
                 {
                   "command": "EVENT_CALL_CUSTOM_EVENT",
                   "args": {
-                    "customEventId": "3496beee-46f2-4bec-b5b4-edd7a3f992c6",
+                    "customEventId": "1b9bd3af-1dd8-4b0e-a567-0297831f5a6f",
+                    "$variable[V0]$": {
+                      "type": "variable",
+                      "value": "L0"
+                    },
                     "$variable[V1]$": {
                       "type": "number",
                       "value": 13
@@ -441,10 +489,6 @@
                     "$variable[V2]$": {
                       "type": "number",
                       "value": 3
-                    },
-                    "$variable[V0]$": {
-                      "type": "variable",
-                      "value": "L0"
                     }
                   },
                   "id": "2cb2f072-b21e-4f3d-a0e5-37ec25eb85e7"
@@ -472,7 +516,11 @@
                 {
                   "command": "EVENT_CALL_CUSTOM_EVENT",
                   "args": {
-                    "customEventId": "3496beee-46f2-4bec-b5b4-edd7a3f992c6",
+                    "customEventId": "1b9bd3af-1dd8-4b0e-a567-0297831f5a6f",
+                    "$variable[V0]$": {
+                      "type": "variable",
+                      "value": "L0"
+                    },
                     "$variable[V1]$": {
                       "type": "number",
                       "value": 13
@@ -480,13 +528,9 @@
                     "$variable[V2]$": {
                       "type": "number",
                       "value": 8
-                    },
-                    "$variable[V0]$": {
-                      "type": "variable",
-                      "value": "L0"
                     }
                   },
-                  "id": "e1728cc7-4380-49f4-84db-31284858f4cb"
+                  "id": "9600d4dc-fd6a-43e7-b35b-e8b79ec201c8"
                 }
               ],
               "true2": [
@@ -511,7 +555,11 @@
                 {
                   "command": "EVENT_CALL_CUSTOM_EVENT",
                   "args": {
-                    "customEventId": "3496beee-46f2-4bec-b5b4-edd7a3f992c6",
+                    "customEventId": "1b9bd3af-1dd8-4b0e-a567-0297831f5a6f",
+                    "$variable[V0]$": {
+                      "type": "variable",
+                      "value": "L0"
+                    },
                     "$variable[V1]$": {
                       "type": "number",
                       "value": 13
@@ -519,13 +567,9 @@
                     "$variable[V2]$": {
                       "type": "number",
                       "value": 13
-                    },
-                    "$variable[V0]$": {
-                      "type": "variable",
-                      "value": "L0"
                     }
                   },
-                  "id": "ecdacc98-39b4-4319-a53c-61dc8762c42b"
+                  "id": "dbac2d1c-d1bd-4196-bd8a-3aed192e4597"
                 }
               ],
               "true3": [],

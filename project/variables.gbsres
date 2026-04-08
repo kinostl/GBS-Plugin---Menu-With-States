@@ -90,6 +90,16 @@
       "id": "66b62b33-656c-4aaf-a77f-fbdb36c1b4a5__L1",
       "name": "Spell Slot",
       "symbol": "var_spell_slot"
+    },
+    {
+      "id": "66b62b33-656c-4aaf-a77f-fbdb36c1b4a5__L2",
+      "name": "Player Start X",
+      "symbol": "var_player_start_x"
+    },
+    {
+      "id": "66b62b33-656c-4aaf-a77f-fbdb36c1b4a5__L3",
+      "name": "Player Start Y",
+      "symbol": "var_player_start_y"
     }
   ],
   "constants": [

@@ -235,6 +235,5 @@ module.exports = {
     groups,
     fields,
     compile,
-    waitUntilAfterInitFade: true,
-  sceneTypes: ["MENU_SCREEN"],
+    sceneTypes: ["MENU_SCREEN"],
 };
