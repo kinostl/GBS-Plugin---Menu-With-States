@@ -6,37 +6,18 @@
   "variables": {
     "V0": {
       "id": "V0",
-      "name": "Variable A",
+      "name": "New Spell",
       "passByReference": true
     },
     "V1": {
       "id": "V1",
-      "name": "Variable B",
-      "passByReference": true
-    },
-    "V2": {
-      "id": "V2",
-      "name": "Variable C",
+      "name": "Text Area ID",
       "passByReference": true
     }
   },
   "actors": {},
   "symbol": "script_17",
   "script": [
-    {
-      "command": "EVENT_INC_VALUE",
-      "args": {
-        "variable": "V1"
-      },
-      "id": "e01a18a3-246e-41a6-9204-fa2d952cf36a"
-    },
-    {
-      "command": "EVENT_INC_VALUE",
-      "args": {
-        "variable": "V2"
-      },
-      "id": "e775cb42-eaf0-4759-8fa0-c00d7b20a0ca"
-    },
     {
       "command": "EVENT_SWITCH",
       "args": {
@@ -75,38 +56,35 @@
       "children": {
         "true0": [
           {
-            "command": "EVENT_TEXT_DRAW",
+            "command": "MENU_DEFINE_TEXT_AREA",
             "args": {
-              "text": "\\003#V1##V2#Fire",
-              "x": 0,
-              "y": 0,
-              "location": "background"
+              "text": "Fire",
+              "textArea": 0,
+              "variable": "V1"
             },
-            "id": "55c767de-79bd-4c5d-8c8b-3ca258085c0c"
+            "id": "395cdf58-0fd7-413a-a587-4b1daf29b512"
           }
         ],
         "true1": [
           {
-            "command": "EVENT_TEXT_DRAW",
+            "command": "MENU_DEFINE_TEXT_AREA",
             "args": {
-              "text": "\\003#V1##V2#Ice",
-              "x": 0,
-              "y": 0,
-              "location": "background"
+              "text": "Ice",
+              "textArea": 0,
+              "variable": "V1"
             },
-            "id": "da200bcb-1384-42af-b924-876b308a0046"
+            "id": "a6715f4b-5568-42e7-bd36-f0077b549cda"
           }
         ],
         "true2": [
           {
-            "command": "EVENT_TEXT_DRAW",
+            "command": "MENU_DEFINE_TEXT_AREA",
             "args": {
-              "text": "\\003#V1##V2#Soap",
-              "x": 0,
-              "y": 0,
-              "location": "background"
+              "text": "Soap",
+              "textArea": 0,
+              "variable": "V1"
             },
-            "id": "836f7fc3-f178-48c8-913a-91094bd2f707"
+            "id": "dd91c4e2-a308-4881-b6f3-7cf32a62446a"
           }
         ],
         "true3": [],

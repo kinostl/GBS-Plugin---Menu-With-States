@@ -6,12 +6,12 @@
   "variables": {
     "V0": {
       "id": "V0",
-      "name": "Slot #",
+      "name": "Spell Slot",
       "passByReference": true
     },
     "V1": {
       "id": "V1",
-      "name": "Slot Choice",
+      "name": "New Spell",
       "passByReference": true
     }
   },
@@ -19,20 +19,9 @@
   "symbol": "script_15",
   "script": [
     {
-      "command": "EVENT_SET_VALUE",
-      "args": {
-        "variable": "V0",
-        "value": {
-          "type": "number",
-          "value": 0
-        }
-      },
-      "id": "855a3338-3312-4845-a468-66e6efc2a7a0"
-    },
-    {
       "command": "EVENT_SWITCH",
       "args": {
-        "variable": "V1",
+        "variable": "V0",
         "choices": 3,
         "__collapseCase0": false,
         "__collapseCase1": false,
@@ -50,55 +39,46 @@
         "__collapseCase13": false,
         "__collapseCase14": false,
         "__collapseCase15": false,
-        "__collapseElse": false,
-        "value0": {
-          "type": "constant",
-          "value": "6b59d959-f1c8-47cc-a49f-81fc340fc7c6"
-        },
-        "value1": {
-          "type": "constant",
-          "value": "8b8eace7-602d-419e-bed8-d780b3ae73ce"
-        },
-        "value2": {
-          "type": "constant",
-          "value": "ee9e2f44-c8d5-4394-ae19-0ba676b8ba50"
-        }
+        "__collapseElse": false
       },
       "children": {
         "true0": [
           {
-            "command": "MENU_DEFINE_SCRIPT_MENU_SLOT",
+            "command": "EVENT_SET_VALUE",
             "args": {
-              "text": "Fire",
-              "slot": 1,
-              "script": "b5f82077-3eb3-404e-93f3-ea33a6799965",
-              "__comment": true
+              "variable": "6",
+              "value": {
+                "type": "variable",
+                "value": "V1"
+              }
             },
-            "id": "c13af8be-76d1-45fc-907b-6414c94b6406"
+            "id": "ca026a53-9d51-4b89-87dc-1883c3398b19"
           }
         ],
         "true1": [
           {
-            "command": "MENU_DEFINE_SCRIPT_MENU_SLOT",
+            "command": "EVENT_SET_VALUE",
             "args": {
-              "text": "Ice",
-              "slot": 1,
-              "script": "4ecfe6d9-c0a0-4ad3-9a6a-4eeafef94bae",
-              "__comment": true
+              "variable": "7",
+              "value": {
+                "type": "variable",
+                "value": "V1"
+              }
             },
-            "id": "7ea743c4-97ad-4fa5-b94a-93a416e3325e"
+            "id": "9b72145d-22ce-4b00-a476-5e722bff3e11"
           }
         ],
         "true2": [
           {
-            "command": "MENU_DEFINE_SCRIPT_MENU_SLOT",
+            "command": "EVENT_SET_VALUE",
             "args": {
-              "text": "Duck",
-              "slot": 1,
-              "script": "a21f39b7-3fbc-478e-8d8d-7af5d5e8b941",
-              "__comment": true
+              "variable": "8",
+              "value": {
+                "type": "variable",
+                "value": "V1"
+              }
             },
-            "id": "bfbc2054-e33f-463a-a3c7-5abe6e08b209"
+            "id": "638e9f88-fe2f-4937-a429-7615d6ae2702"
           }
         ],
         "true3": [],
@@ -116,7 +96,7 @@
         "true15": [],
         "false": []
       },
-      "id": "ee2418a5-5cf8-4b9c-b7e6-8e8d6f6c2f83"
+      "id": "9a9fe045-e7ed-4746-b766-f40fad8c2de7"
     }
   ]
 }

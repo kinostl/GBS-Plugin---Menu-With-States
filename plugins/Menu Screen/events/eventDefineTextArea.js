@@ -35,7 +35,8 @@ const compile = (input, helpers) => {
             "command": "MENU_PREPARE_TEXT_AREAS",
             "id": "",
             "args": {
-                "collisionGroups": [input.collisionGroup]
+                "collisionGroups": [input.collisionGroup],
+                "saveArea": true
             }
         }])
         helpers._stackPushConst(helpers.options.compiledAssetsCache[symbol])

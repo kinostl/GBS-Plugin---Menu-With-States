@@ -22,9 +22,9 @@ const compile = (input, helpers) => {
 
     input.collisionGroups.forEach((collisionGroup) => {
         const symbol = `${helpers.options.scene.hash}_text_area_${collisionGroup}`
+        const len_symbol = `len_${symbol}`
 
         if (!helpers.options.compiledAssetsCache[symbol]) {
-            const len_symbol = `len_${symbol}`
             let len = n_tiles
             const collisions = helpers.options.scene.collisions
             helpers.options.compiledAssetsCache[symbol] = n_tiles
@@ -40,6 +40,13 @@ const compile = (input, helpers) => {
             }
             len = Math.min(16, n_tiles - len)
             helpers.options.compiledAssetsCache[len_symbol] = len
+        }
+
+        if (!input.saveArea) {
+            helpers._stackPushConst(helpers.options.compiledAssetsCache[symbol])
+            helpers._stackPushConst(helpers.options.compiledAssetsCache[len_symbol])
+            helpers._callNative("clearTextArea")
+            helpers._stackPop(2)
         }
     })
 }
