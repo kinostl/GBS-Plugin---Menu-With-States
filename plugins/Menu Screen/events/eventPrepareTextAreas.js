@@ -38,7 +38,7 @@ const compile = (input, helpers) => {
                     n_tiles++
                 }
             }
-            len = n_tiles - len
+            len = Math.min(16, n_tiles - len)
             helpers.options.compiledAssetsCache[len_symbol] = len
         }
     })
