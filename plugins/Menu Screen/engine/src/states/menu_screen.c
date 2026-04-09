@@ -126,6 +126,18 @@ void invokeMenuState(SCRIPT_CTX *THIS) BANKED {
   *current_menu_screen_status=CHOICE_CHANGED;
 }
 
-void touchUiTile(SCRIPT_CTX * THIS) BANKED {
+void drawTextArea(SCRIPT_CTX *THIS) BANKED {
+  const WORD textAreaTile = *(WORD *)VM_REF_TO_PTR(FN_ARG0);
+  ui_set_start_tile(textAreaTile, 0);
+
+  THIS;
+
+  INPUT_RESET;
+  text_options = 0;
+  text_drawn = text_ff = FALSE;
+  
+}
+
+void fixTextArea(SCRIPT_CTX *THIS) BANKED {
   ui_set_start_tile(TEXT_BUFFER_START, 0);
 }

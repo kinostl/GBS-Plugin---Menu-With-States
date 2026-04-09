@@ -23,7 +23,9 @@
         "menu_id": {
           "type": "number",
           "value": 1
-        }
+        },
+        "__comment": false,
+        "__collapse": false
       },
       "id": "bde55a17-ba92-401e-b162-23dc51df39e9"
     },
@@ -31,58 +33,42 @@
       "command": "MENU_DEFINE_TEXT_AREA",
       "args": {
         "collisionGroup": 1,
-        "__collapse": true
+        "__collapse": false,
+        "text": "Fire",
+        "textArea": 1
       },
       "id": "0c295ee7-34b7-480a-aae3-9df9a2ec3fc8"
-    },
-    {
-      "command": "EVENT_TEXT_DRAW",
-      "args": {
-        "text": "Fire   ",
-        "x": 3,
-        "y": 3,
-        "location": "background",
-        "__collapse": true
-      },
-      "id": "a0fec8a9-5eb5-45a7-89c7-7f2ed20e7b91"
     },
     {
       "command": "MENU_DEFINE_TEXT_AREA",
       "args": {
         "collisionGroup": 2,
-        "__collapse": true
+        "__collapse": false,
+        "text": "Ice",
+        "textArea": 2
       },
       "id": "9d0e3087-2ac1-4443-9a32-72c740eacadf"
-    },
-    {
-      "command": "EVENT_TEXT_DRAW",
-      "args": {
-        "text": "Ice",
-        "x": 3,
-        "y": 4,
-        "location": "background",
-        "__collapse": true
-      },
-      "id": "803ba0ca-00d1-434a-8250-9c64a23f625f"
     },
     {
       "command": "MENU_DEFINE_TEXT_AREA",
       "args": {
         "collisionGroup": 3,
-        "__collapse": true
+        "__collapse": false,
+        "text": "Soap",
+        "textArea": 3
       },
       "id": "87f80f44-fb8d-4b66-b491-f227589e1878"
     },
     {
-      "command": "EVENT_TEXT_DRAW",
+      "command": "MENU_PREPARE_TEXT_AREAS",
       "args": {
-        "text": "Soap",
-        "x": 3,
-        "y": 5,
-        "location": "background",
-        "__collapse": true
+        "collisionGroups": [
+          4,
+          5,
+          6
+        ]
       },
-      "id": "ca44afb4-7e3e-407d-8229-63043e7e773b"
+      "id": "f51475cf-d363-40a0-9b31-d30853d13729"
     },
     {
       "command": "MENU_DEFINE_MENU_STATE",
@@ -90,7 +76,7 @@
         "x": 2,
         "y": 3,
         "cancelOnB": true,
-        "__section": "on_cancel",
+        "__section": "on_init",
         "menu_id": {
           "type": "number",
           "value": 1
@@ -132,13 +118,6 @@
               "false": []
             },
             "id": "33b0b275-08f1-4edb-8e92-59e1e000951b"
-          },
-          {
-            "command": "MENU_DEFINE_TEXT_AREA",
-            "args": {
-              "collisionGroup": 0
-            },
-            "id": "9ecce651-7e0f-4417-898b-1b0430f3a91a"
           },
           {
             "command": "EVENT_TEXT_DRAW",
@@ -395,13 +374,31 @@
         ],
         "on_select": [
           {
-            "command": "EVENT_SWITCH",
+            "command": "EVENT_SET_VALUE",
             "args": {
               "variable": "L1",
+              "value": {
+                "type": "add",
+                "valueA": {
+                  "type": "variable",
+                  "value": "L1"
+                },
+                "valueB": {
+                  "type": "number",
+                  "value": 3
+                }
+              }
+            },
+            "id": "761f8f8e-5f74-4b2a-832b-d0940ef33eea"
+          },
+          {
+            "command": "EVENT_SWITCH",
+            "args": {
+              "variable": "L0",
               "choices": 3,
-              "__collapseCase0": true,
-              "__collapseCase1": true,
-              "__collapseCase2": true,
+              "__collapseCase0": false,
+              "__collapseCase1": false,
+              "__collapseCase2": false,
               "__collapseCase3": false,
               "__collapseCase4": false,
               "__collapseCase5": false,
@@ -415,127 +412,56 @@
               "__collapseCase13": false,
               "__collapseCase14": false,
               "__collapseCase15": false,
-              "__collapseElse": true
+              "__collapseElse": false,
+              "value0": {
+                "type": "constant",
+                "value": "6b59d959-f1c8-47cc-a49f-81fc340fc7c6"
+              },
+              "value1": {
+                "type": "constant",
+                "value": "8b8eace7-602d-419e-bed8-d780b3ae73ce"
+              },
+              "value2": {
+                "type": "constant",
+                "value": "ee9e2f44-c8d5-4394-ae19-0ba676b8ba50"
+              },
+              "__collapse": true
             },
             "children": {
               "true0": [
                 {
                   "command": "MENU_DEFINE_TEXT_AREA",
                   "args": {
-                    "collisionGroup": 4,
-                    "__collapse": true
+                    "collisionGroup": 0,
+                    "text": "Fire",
+                    "variable": "L1",
+                    "textArea": 0
                   },
-                  "id": "1bf2f39d-93d8-43ce-ad6c-fca0eb27737f"
-                },
-                {
-                  "command": "EVENT_SET_VALUE",
-                  "args": {
-                    "variable": "6",
-                    "value": {
-                      "type": "variable",
-                      "value": "L0"
-                    },
-                    "__collapse": true
-                  },
-                  "id": "54617354-9206-4b88-9875-54cd23b86b1f"
-                },
-                {
-                  "command": "EVENT_CALL_CUSTOM_EVENT",
-                  "args": {
-                    "customEventId": "1b9bd3af-1dd8-4b0e-a567-0297831f5a6f",
-                    "$variable[V0]$": {
-                      "type": "variable",
-                      "value": "L0"
-                    },
-                    "$variable[V1]$": {
-                      "type": "number",
-                      "value": 13
-                    },
-                    "$variable[V2]$": {
-                      "type": "number",
-                      "value": 3
-                    },
-                    "__collapse": true
-                  },
-                  "id": "2cb2f072-b21e-4f3d-a0e5-37ec25eb85e7"
+                  "id": "a0c74679-e5ac-4805-967e-b086d0a30eb6"
                 }
               ],
               "true1": [
                 {
                   "command": "MENU_DEFINE_TEXT_AREA",
                   "args": {
-                    "collisionGroup": 5
+                    "collisionGroup": 0,
+                    "text": "Ice",
+                    "variable": "L1",
+                    "textArea": 0
                   },
-                  "id": "a0c74679-e5ac-4805-967e-b086d0a30eb6"
-                },
-                {
-                  "command": "EVENT_SET_VALUE",
-                  "args": {
-                    "variable": "7",
-                    "value": {
-                      "type": "variable",
-                      "value": "L0"
-                    }
-                  },
-                  "id": "14dd0f48-4c6c-46d6-a9d5-2c5393effd62"
-                },
-                {
-                  "command": "EVENT_CALL_CUSTOM_EVENT",
-                  "args": {
-                    "customEventId": "1b9bd3af-1dd8-4b0e-a567-0297831f5a6f",
-                    "$variable[V0]$": {
-                      "type": "variable",
-                      "value": "L0"
-                    },
-                    "$variable[V1]$": {
-                      "type": "number",
-                      "value": 13
-                    },
-                    "$variable[V2]$": {
-                      "type": "number",
-                      "value": 8
-                    }
-                  },
-                  "id": "9600d4dc-fd6a-43e7-b35b-e8b79ec201c8"
+                  "id": "9cb260f4-e1b4-4050-a665-cbbe348d0d36"
                 }
               ],
               "true2": [
                 {
                   "command": "MENU_DEFINE_TEXT_AREA",
                   "args": {
-                    "collisionGroup": 6
+                    "collisionGroup": 0,
+                    "text": "Soap",
+                    "variable": "L1",
+                    "textArea": 0
                   },
-                  "id": "ac226ee1-0893-409c-956c-2fb4f46052d4"
-                },
-                {
-                  "command": "EVENT_SET_VALUE",
-                  "args": {
-                    "variable": "8",
-                    "value": {
-                      "type": "variable",
-                      "value": "L0"
-                    }
-                  },
-                  "id": "39791296-f167-45ae-9744-3531c5b71472"
-                },
-                {
-                  "command": "EVENT_CALL_CUSTOM_EVENT",
-                  "args": {
-                    "customEventId": "1b9bd3af-1dd8-4b0e-a567-0297831f5a6f",
-                    "$variable[V0]$": {
-                      "type": "variable",
-                      "value": "L0"
-                    },
-                    "$variable[V1]$": {
-                      "type": "number",
-                      "value": 13
-                    },
-                    "$variable[V2]$": {
-                      "type": "number",
-                      "value": 13
-                    }
-                  },
-                  "id": "dbac2d1c-d1bd-4196-bd8a-3aed192e4597"
+                  "id": "1eb2807f-b0b2-4ca8-bdf5-a5a7ba6b333a"
                 }
               ],
               "true3": [],
@@ -553,7 +479,25 @@
               "true15": [],
               "false": []
             },
-            "id": "25bb9e53-0587-4c72-a907-3ea334dd8258"
+            "id": "1c0f7ab0-7075-4808-9375-fef7a65e2dfe"
+          },
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "L1",
+              "value": {
+                "type": "sub",
+                "valueA": {
+                  "type": "variable",
+                  "value": "L1"
+                },
+                "valueB": {
+                  "type": "number",
+                  "value": 3
+                }
+              }
+            },
+            "id": "5850e140-17fd-4fc5-a8e6-92a03d29aa11"
           },
           {
             "command": "MENU_JUMP_TO_MENU_STATE",
