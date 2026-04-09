@@ -82,7 +82,7 @@ const compile = (input, helpers) => {
     helpers._overlayWait(false, [".UI_WAIT_TEXT"])
     helpers._callNative("fixTextArea")
 
-    helpers._markLocalUse(textAreaStartTile)
+    helpers._markLocalUse(textAreaStartTile, textAreaStartLen)
 }
 
 module.exports = {
