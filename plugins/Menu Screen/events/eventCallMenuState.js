@@ -3,16 +3,12 @@ const groups = ["Menus"];
 const name = "Jump To Menu State";
 
 const fields = [{
-    label: "Menu ID",
-    type: "constvalue",
     key: "menu_id",
-    min: 1,
-    defaultValue: {
-        type: "number",
-        value: 1
-    }
-}]
-//Might want some additional fields that allow you to toggle if the state's "On X" scripts run.
+    label: "Menu ID",
+    type: "togglebuttons",
+    options: Array(8).fill().map((_, i) => [i + 1, `${i + 1}`]),
+    defaultValue: 1,
+}] //Might want some additional fields that allow you to toggle if the state's "On X" scripts run.
 // Also maybe a "Then" field that runs after "On Select" runs or maybe a copy of what Define has, allowing you to do some sort of t--too complex
 
 /**
@@ -23,7 +19,7 @@ const fields = [{
 const compile = (input, helpers) => {
     const menu_status = helpers._declareLocal("menu_status", 1, true);
 
-    helpers._stackPushScriptValue(input.menu_id)
+    helpers._stackPushConst(input.menu_id)
     helpers._callNative("prepareMenuState")
     helpers._stackPop(1)
 

@@ -60,6 +60,7 @@ const compile = (input, helpers) => {
         helpers._stackPop(1)
     } else {
         const searchSymbol = `${helpers.options.scene.hash}_text_area_`
+        const textAreaStartTile = helpers._declareLocal("textAreaStartTile", 1, true)
         const text_areas = Object.entries(helpers.options.compiledAssetsCache)
             .filter(([key, _]) => key.startsWith(searchSymbol))
             .map(([textArea, startTile]) => ({
@@ -68,13 +69,16 @@ const compile = (input, helpers) => {
                     value: Number(textArea.replace(searchSymbol, ''))
                 },
                 branch: () => {
-                    helpers._stackPushConst(startTile)
-                    helpers._callNative("drawTextArea")
-                    helpers._stackPop(1)
+                    helpers.variableSetToValue(textAreaStartTile, startTile)
                 }
             }))
 
+        // TODO optimization: Can use the cache to hold a label to this switch statement if it already exists and just call it instead
         helpers.caseVariableConstValue(input.variable, text_areas)
+        helpers._stackPushVariable(textAreaStartTile)
+        helpers._callNative("drawTextArea")
+        helpers._stackPop(1)
+        helpers._markLocalUse(textAreaStartTile)
     }
     helpers._overlayWait(false, [".UI_WAIT_TEXT"])
     helpers._callNative("fixTextArea")

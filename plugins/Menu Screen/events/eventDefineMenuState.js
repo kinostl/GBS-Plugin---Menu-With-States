@@ -40,25 +40,16 @@ const on_change = event_tab("on_change");
 const on_init = event_tab("on_init");
 
 const fields = [{
-    label: "Menu ID",
-    type: "constvalue",
     key: "menu_id",
-    min: 1,
-    defaultValue: {
-        type: "number",
-        value: 1
-    }
-}, {
-    label: "Set variable",
-    type: "variable",
-    key: "variable"
-},
-{
-    key: "collisionGroup",
-    label: "Collision Group",
+    label: "Menu ID",
     type: "togglebuttons",
     options: Array(8).fill().map((_, i) => [i + 1, `${i + 1}`]),
     defaultValue: 1,
+},
+{
+    label: "Set variable",
+    type: "variable",
+    key: "variable"
 },
 ...settings,
 {
@@ -94,7 +85,7 @@ const compile = (input, helpers) => {
     let y = 0
 
     for (let i = 0; i < tiles.length; i++) {
-        if (tiles[i] === input.collisionGroup) {
+        if (tiles[i] === input.menu_id) {
             const choice = { x, y }
             option_pos.push(choice)
         }
@@ -183,7 +174,7 @@ const compile = (input, helpers) => {
         }
     }], option_symbol)
 
-    const menu_struct = {
+    const menu_struct = JSON.stringify({
         set_variable_id: `${helpers.getVariableAlias(input.variable)}`,
         menu_items: `TO_FAR_PTR_T(${option_script})`,
         menu_items_count: `${menu_items.length}`,
@@ -192,7 +183,8 @@ const compile = (input, helpers) => {
         on_cancel: `TO_FAR_PTR_T(${on_cancel_script})`,
         on_change: `TO_FAR_PTR_T(${on_change_script})`,
         options: unionFlags(choiceFlags)
-    }
+    })
+
     if (!helpers.options.compiledAssetsCache[`${symbol}`]) {
         helpers.options.compiledAssetsCache[`${symbol}`] = []
     }
@@ -218,7 +210,7 @@ const compile = (input, helpers) => {
             type: "const menu_screen_state_t",
             symbol: `${symbol}`,
             comment: "",
-            array: helpers.options.compiledAssetsCache[`${symbol}`],
+            array: helpers.options.compiledAssetsCache[`${symbol}`].map((_)=>JSON.parse(_)),
             dependencies: [
                 "game_globals",
                 "menu_screen_t",
@@ -226,6 +218,13 @@ const compile = (input, helpers) => {
             ]
         }
     }])
+
+    helpers._stackPushConst(
+        helpers.options.compiledAssetsCache[`${symbol}`].indexOf(menu_struct)
+    )
+    helpers._stackPushConst(input.menu_id)
+    helpers._callNative("setMenuState")
+    helpers._stackPop(2)
 }
 
 module.exports = {

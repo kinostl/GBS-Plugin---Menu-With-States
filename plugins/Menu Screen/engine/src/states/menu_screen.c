@@ -21,11 +21,21 @@ typedef enum menu_screen_status_e {
   CHOICE_SELECTED = 3
 } menu_screen_status_e;
 
+UWORD menu_state_idx[8];
+
 void menu_screen_init(void) BANKED {}
 void menu_screen_update(void) BANKED {}
 
+void setMenuState(SCRIPT_CTX *THIS) BANKED {
+  const UWORD menu_id = *(UWORD *)VM_REF_TO_PTR(FN_ARG0) - 1;
+  const UWORD state_id = *(UWORD *)VM_REF_TO_PTR(FN_ARG0) - 1;
+
+  menu_state_idx[state_id] = menu_id;
+}
+
 void prepareMenuState(SCRIPT_CTX *THIS) BANKED {
-  const WORD menu_id = *(WORD *)VM_REF_TO_PTR(FN_ARG0) - 1;
+  const UWORD state_id = *(UWORD *)VM_REF_TO_PTR(FN_ARG0) - 1;
+  const UWORD menu_id = menu_state_idx[state_id];
 
   MemcpyBanked(&cmst, ((menu_screen_state_t *)menu_screen_states) + menu_id,
                sizeof(menu_screen_state_t), BANK(menu_screen_states));
@@ -34,7 +44,8 @@ void prepareMenuState(SCRIPT_CTX *THIS) BANKED {
 }
 
 void preloadMenuState(SCRIPT_CTX *THIS) BANKED {
-  const WORD menu_id = *(WORD *)VM_REF_TO_PTR(FN_ARG0) - 1;
+  const UWORD state_id = *(UWORD *)VM_REF_TO_PTR(FN_ARG0) - 1;
+  const UWORD menu_id = menu_state_idx[state_id];
 
   MemcpyBanked(&cmst, ((menu_screen_state_t *)menu_screen_states) + menu_id,
                sizeof(menu_screen_state_t), BANK(menu_screen_states));
