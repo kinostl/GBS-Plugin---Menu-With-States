@@ -18,13 +18,26 @@
   "y": 32,
   "script": [
     {
-      "command": "MENU_PRELOAD_MENU_STATE",
+      "command": "EVENT_SET_VALUE",
       "args": {
-        "menu_id": 1,
-        "__comment": false,
-        "__collapse": false
+        "variable": "L0",
+        "value": {
+          "type": "false"
+        },
+        "__collapse": true
       },
-      "id": "bde55a17-ba92-401e-b162-23dc51df39e9"
+      "id": "4676dc97-9c3e-443f-8f68-4cff43bab797"
+    },
+    {
+      "command": "EVENT_SET_VALUE",
+      "args": {
+        "variable": "L1",
+        "value": {
+          "type": "false"
+        },
+        "__collapse": true
+      },
+      "id": "3f19d5aa-ae27-411c-aa3c-820ca1af5656"
     },
     {
       "command": "MENU_PREPARE_TEXT_AREAS",
@@ -36,7 +49,8 @@
           2,
           4,
           3
-        ]
+        ],
+        "__collapse": true
       },
       "id": "f51475cf-d363-40a0-9b31-d30853d13729"
     },
@@ -44,7 +58,7 @@
       "command": "MENU_DEFINE_TEXT_AREA",
       "args": {
         "collisionGroup": 1,
-        "__collapse": false,
+        "__collapse": true,
         "text": "Fire",
         "textArea": 1
       },
@@ -54,7 +68,7 @@
       "command": "MENU_DEFINE_TEXT_AREA",
       "args": {
         "collisionGroup": 2,
-        "__collapse": false,
+        "__collapse": true,
         "text": "Ice",
         "textArea": 2
       },
@@ -64,7 +78,7 @@
       "command": "MENU_DEFINE_TEXT_AREA",
       "args": {
         "collisionGroup": 3,
-        "__collapse": false,
+        "__collapse": true,
         "text": "Soap",
         "textArea": 3
       },
@@ -82,7 +96,7 @@
         "__comment": false,
         "cancelOnLastOption": false,
         "collisionGroup": 1,
-        "__collapse": false
+        "__collapse": true
       },
       "children": {
         "on_init": [
@@ -209,7 +223,8 @@
           {
             "command": "MENU_JUMP_TO_MENU_STATE",
             "args": {
-              "menu_id": 2
+              "menu_id": 2,
+              "__comment": false
             },
             "id": "e102d655-3718-4c78-a56d-e8e31cb421ca"
           }
@@ -323,7 +338,7 @@
         "x": 12,
         "y": 3,
         "cancelOnB": true,
-        "__section": "on_cancel",
+        "__section": "on_select",
         "menu_id": 2,
         "variable": "L1",
         "__comment": false,
@@ -517,7 +532,7 @@
       "args": {
         "menu_id": 1,
         "__comment": false,
-        "__collapse": false
+        "__collapse": true
       },
       "id": "a962a24d-d83f-47e0-81f7-622142b37971"
     }

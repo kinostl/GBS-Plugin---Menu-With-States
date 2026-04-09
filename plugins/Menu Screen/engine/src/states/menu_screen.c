@@ -3,9 +3,12 @@
 #include <bankdata.h>
 #include <data/menu_screen_t.h>
 #include <gb/gb.h>
+#include <gb/hardware.h>
 #include <gbs_types.h>
 #include <input.h>
 #include <math.h>
+#include <scroll.h>
+#include <string.h>
 #include <ui.h>
 #include <vm.h>
 #pragma bank 255
@@ -41,25 +44,6 @@ void prepareMenuState(SCRIPT_CTX *THIS) BANKED {
                sizeof(menu_screen_state_t), BANK(menu_screen_states));
 
   vm_call_far(THIS, cmst.on_init.bank, cmst.on_init.ptr);
-}
-
-void preloadMenuState(SCRIPT_CTX *THIS) BANKED {
-  const UWORD state_id = *(UWORD *)VM_REF_TO_PTR(FN_ARG0) - 1;
-  const UWORD menu_id = menu_state_idx[state_id];
-
-  MemcpyBanked(&cmst, ((menu_screen_state_t *)menu_screen_states) + menu_id,
-               sizeof(menu_screen_state_t), BANK(menu_screen_states));
-
-  WORD *set_variable = (WORD *)VM_REF_TO_PTR(cmst.set_variable_id);
-  const WORD menu_item_id = MAX(1, MIN(cmst.menu_items_count, *set_variable));
-  menu_item_t current_menu_screen_item;
-
-  MemcpyBanked(&current_menu_screen_item,
-               ((menu_item_t *)cmst.menu_items.ptr) + menu_item_id - 1,
-               sizeof(menu_item_t), cmst.menu_items.bank);
-
-  PLAYER.pos.x = TILE_TO_SUBPX(current_menu_screen_item.X);
-  PLAYER.pos.y = TILE_TO_SUBPX(current_menu_screen_item.Y);
 }
 
 void continueMenuState(SCRIPT_CTX *THIS) BANKED {
@@ -135,6 +119,13 @@ void invokeMenuState(SCRIPT_CTX *THIS) BANKED {
     return;
   *set_variable = next_index;
   *current_menu_screen_status=CHOICE_CHANGED;
+}
+
+void clearTextArea(SCRIPT_CTX *THIS) BANKED {
+  const WORD textAreaLength = *(WORD *)VM_REF_TO_PTR(FN_ARG0);
+  const WORD textAreaTile = *(WORD *)VM_REF_TO_PTR(FN_ARG1);
+  memset(ui_text_data, 0, textAreaLength*16);
+  set_bkg_data(textAreaTile, textAreaLength, ui_text_data);
 }
 
 void drawTextArea(SCRIPT_CTX *THIS) BANKED {
