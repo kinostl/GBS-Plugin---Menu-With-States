@@ -30,6 +30,20 @@
       "id": "bde55a17-ba92-401e-b162-23dc51df39e9"
     },
     {
+      "command": "MENU_PREPARE_TEXT_AREAS",
+      "args": {
+        "collisionGroups": [
+          5,
+          6,
+          1,
+          2,
+          4,
+          3
+        ]
+      },
+      "id": "f51475cf-d363-40a0-9b31-d30853d13729"
+    },
+    {
       "command": "MENU_DEFINE_TEXT_AREA",
       "args": {
         "collisionGroup": 1,
@@ -58,17 +72,6 @@
         "textArea": 3
       },
       "id": "87f80f44-fb8d-4b66-b491-f227589e1878"
-    },
-    {
-      "command": "MENU_PREPARE_TEXT_AREAS",
-      "args": {
-        "collisionGroups": [
-          4,
-          5,
-          6
-        ]
-      },
-      "id": "f51475cf-d363-40a0-9b31-d30853d13729"
     },
     {
       "command": "MENU_DEFINE_MENU_STATE",
