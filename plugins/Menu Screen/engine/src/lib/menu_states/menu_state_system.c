@@ -45,12 +45,6 @@ void continueMenuState(SCRIPT_CTX *THIS) BANKED {
   menu_screen_status_e *current_menu_screen_status =
       (menu_screen_status_e *)VM_REF_TO_PTR(menu_status_id);
 
-#define oneWayJump(dest)                                                       \
-  THIS->stack_ptr = THIS->base_addr;                                           \
-  THIS->bank = dest.bank;                                                      \
-  THIS->PC = dest.ptr
-
-  // TODO return this to vm_call_far for the oneWayJump and make the Jump be a function that gets called by the Jump To event so that we can support stack variables again
   switch (*current_menu_screen_status) {
   case CHOICE_NONE:
   default:
@@ -60,13 +54,12 @@ void continueMenuState(SCRIPT_CTX *THIS) BANKED {
     *current_menu_screen_status = CHOICE_NONE;
     return;
   case CHOICE_SELECTED:
-    oneWayJump(cmst.on_select);
+    vm_call_far(THIS, cmst.on_select.bank, cmst.on_select.ptr);
     return;
   case CHOICE_CANCELLED:
-    oneWayJump(cmst.on_cancel);
+    vm_call_far(THIS, cmst.on_cancel.bank, cmst.on_cancel.ptr);
     return;
   }
-#undef oneWayJump
 }
 
 void invokeMenuState(SCRIPT_CTX *THIS) BANKED {

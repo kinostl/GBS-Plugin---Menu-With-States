@@ -17,29 +17,44 @@ const fields = [{
  * @param {import('/home/deck/.local/share/gb-studio/helpers.d.ts').Helpers} helpers 
  */
 const compile = (input, helpers) => {
-    const menu_status = helpers._declareLocal("menu_status", 1, true);
+    if (input.compile_subscript == "thread") {
+        const menu_status = helpers._declareLocal("menu_status", 1, true);
 
-    helpers._stackPushConst(input.menu_id)
-    helpers._callNative("prepareMenuState")
-    helpers._stackPop(1)
+        helpers._stackPushConst(input.menu_id)
+        helpers._callNative("prepareMenuState")
+        helpers._stackPop(1)
 
-    helpers.variableSetToValue(menu_status, 0)
-    helpers._stackPushReference(menu_status)
-    helpers.whileScriptValue({
-        "type": "eq",
-        "valueA": {
-            "type": "variable",
-            "value": menu_status
-        },
-        "valueB": {
-            "type": "number",
-            "value": 0
+        helpers.variableSetToValue(menu_status, 0)
+        helpers._stackPushReference(menu_status)
+        helpers.whileScriptValue({
+            "type": "eq",
+            "valueA": {
+                "type": "variable",
+                "value": menu_status
+            },
+            "valueB": {
+                "type": "number",
+                "value": 0
+            }
+        }, () => {
+            helpers._callNative("invokeMenuState")
+            helpers._callNative("continueMenuState")
+            helpers._idle()
+        })
+        helpers._stackPop(1)
+        return;
+    }
+
+    const menu_state_thread_h = helpers._declareLocal("menu_state_thread_h", 1, true)
+    helpers.threadStart(menu_state_thread_h, [{
+        "command": id,
+        "id": "",
+        "args": {
+            ...input,
+            compile_subscript: "thread"
         }
-    }, () => {
-        helpers._callNative("invokeMenuState")
-        helpers._callNative("continueMenuState")
-    })
-    helpers._stackPop(1)
+    }])
+    helpers.markLocalsUsed(menu_state_thread_h)
 }
 
 module.exports = {
