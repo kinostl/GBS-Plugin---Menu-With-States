@@ -13,7 +13,7 @@ typedef enum menu_options_e {
 
 typedef struct menu_screen_state_t {
   menu_options_e options;
-  UWORD set_variable_id;
+  WORD set_variable_id;
   UWORD menu_items_count;
   far_ptr_t menu_items;
   far_ptr_t on_init;

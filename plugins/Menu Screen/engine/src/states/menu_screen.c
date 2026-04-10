@@ -89,21 +89,30 @@ void invokeMenuState(SCRIPT_CTX *THIS) BANKED {
   PLAYER.pos.y = TILE_TO_SUBPX(current_menu_screen_item.Y);
 
   UBYTE next_index = 0;
-  static UBYTE move_lock = 0;
-  const UBYTE move_unlocked = move_lock >= PLAYER.move_speed;
 
   vsync();
   input_update();
 
+#ifdef PRESS_AND_HOLD
+  static UBYTE move_lock = 0;
+  const UBYTE move_unlocked = move_lock >= PLAYER.move_speed;
   if (move_unlocked) {
     move_lock = 0;
   } else if (INPUT_RECENT_UP || INPUT_RECENT_DOWN) {
     move_lock++;
   }
 
-  if (INPUT_UP_PRESSED || (move_unlocked && INPUT_RECENT_UP)) {
+#define INPUT_UP_HELD (INPUT_UP_PRESSED || (move_unlocked && INPUT_RECENT_UP))
+#define INPUT_DOWN_HELD                                                        \
+  (INPUT_DOWN_PRESSED || (move_unlocked && INPUT_RECENT_DOWN))
+#else
+#define INPUT_UP_HELD (INPUT_UP_PRESSED)
+#define INPUT_DOWN_HELD (INPUT_DOWN_PRESSED)
+#endif
+
+  if (INPUT_UP_HELD) {
     next_index = current_menu_screen_item.iU;
-  } else if (INPUT_DOWN_PRESSED || (move_unlocked && INPUT_RECENT_DOWN)) {
+  } else if (INPUT_DOWN_HELD) {
     next_index = current_menu_screen_item.iD;
   } else if (INPUT_LEFT_PRESSED) {
     next_index = current_menu_screen_item.iL;
@@ -127,7 +136,7 @@ void invokeMenuState(SCRIPT_CTX *THIS) BANKED {
   if (!next_index)
     return;
   *set_variable = next_index;
-  *current_menu_screen_status=CHOICE_CHANGED;
+  *current_menu_screen_status = CHOICE_CHANGED;
 }
 
 void clearTextArea(SCRIPT_CTX *THIS) BANKED {
@@ -151,4 +160,5 @@ void drawTextArea(SCRIPT_CTX *THIS) BANKED {
 
 void fixTextArea(SCRIPT_CTX *THIS) BANKED {
   ui_set_start_tile(TEXT_BUFFER_START, 0);
+  THIS;
 }
