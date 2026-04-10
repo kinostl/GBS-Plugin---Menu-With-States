@@ -1,6 +1,6 @@
 const id = "MENU_DEFINE_MENU_STATE";
 const groups = ["Menus"];
-const name = "Define Menu State";
+const name = "Define Menu State Using Collisions";
 const l10n = require("../helpers/l10n").default;
 
 const settings = [
@@ -76,57 +76,8 @@ const fields = [{
  * @param {import('/home/deck/.local/share/gb-studio/helpers.d.ts').Helpers} helpers 
  */
 const compile = (input, helpers) => {
-    const option_pos = []
-
-    const tiles = helpers.options.scene.collisions
-    const x_lim = helpers.options.scene.width
-
-    let x = 0
-    let y = 0
-
-    for (let i = 0; i < tiles.length; i++) {
-        if (tiles[i] === input.menu_id) {
-            const choice = { x, y }
-            option_pos.push(choice)
-        }
-
-        x++
-        if (x >= x_lim) {
-            x = 0
-            y++
-        }
-    }
-
-    const options = option_pos.map((option, i) => {
-        option.id = i + 1
-        return option
-    })
-
-    const count = options.length
-
-    const menu_items = options.map((_) => {
-        const option = {}
-        option.x = _.x
-        option.y = _.y
-        option.id = _.id
-        option.left = 1
-        option.right = count
-        option.up = option.id - 1
-        option.down = option.id + 1
-
-        if (option.up <= 1) {
-            option.up = 1
-        }
-
-        if (option.down >= count) {
-            option.down = count
-        }
-
-        return option
-    })
-
     if (input.compileSubScript) {
-        menu_items.forEach((_) => {
+        input.menu_items.forEach((_) => {
             helpers._menuItem(
                 _.x,
                 _.y,
@@ -140,8 +91,8 @@ const compile = (input, helpers) => {
     }
 
     const on_init_script = helpers._compileSubScript("custom", input.on_init)
-    const on_select_script = helpers._compileSubScript("custom", input.on_select)
-    const on_cancel_script = helpers._compileSubScript("custom", input.on_cancel)
+    const on_select_script = helpers._compileSubScript("thread", input.on_select)
+    const on_cancel_script = helpers._compileSubScript("thread", input.on_cancel)
     const on_change_script = helpers._compileSubScript("custom", input.on_change)
 
     const unionFlags = (flags, defaultValue = "UI_MENU_STANDARD") => {
@@ -177,7 +128,7 @@ const compile = (input, helpers) => {
     const menu_struct = JSON.stringify({
         set_variable_id: `${helpers.getVariableAlias(input.variable)}`,
         menu_items: `TO_FAR_PTR_T(${option_script})`,
-        menu_items_count: `${menu_items.length}`,
+        menu_items_count: `${input.menu_items.length}`,
         on_init: `TO_FAR_PTR_T(${on_init_script})`,
         on_select: `TO_FAR_PTR_T(${on_select_script})`,
         on_cancel: `TO_FAR_PTR_T(${on_cancel_script})`,
@@ -234,4 +185,5 @@ module.exports = {
     fields,
     compile,
     sceneTypes: ["MENU_SCREEN"],
+    deprecated: true
 };

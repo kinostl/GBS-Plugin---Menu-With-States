@@ -3,13 +3,7 @@
   "id": "4ecfe6d9-c0a0-4ad3-9a6a-4eeafef94bae",
   "name": "Menu/Magic/Ice",
   "description": "",
-  "variables": {
-    "V0": {
-      "id": "V0",
-      "name": "Variable A",
-      "passByReference": true
-    }
-  },
+  "variables": {},
   "actors": {
     "0": {
       "id": "0",

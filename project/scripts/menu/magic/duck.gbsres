@@ -3,13 +3,7 @@
   "id": "a21f39b7-3fbc-478e-8d8d-7af5d5e8b941",
   "name": "Menu/Magic/Duck",
   "description": "",
-  "variables": {
-    "V0": {
-      "id": "V0",
-      "name": "Variable A",
-      "passByReference": true
-    }
-  },
+  "variables": {},
   "actors": {
     "0": {
       "id": "0",

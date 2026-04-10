@@ -3,13 +3,7 @@
   "id": "ef3ef23d-ee70-4cff-ac84-4f8157045dbc",
   "name": "Menu/Fight",
   "description": "",
-  "variables": {
-    "V0": {
-      "id": "V0",
-      "name": "Variable A",
-      "passByReference": true
-    }
-  },
+  "variables": {},
   "actors": {
     "0": {
       "id": "0",

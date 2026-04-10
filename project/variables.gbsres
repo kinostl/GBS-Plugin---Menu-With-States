@@ -100,6 +100,21 @@
       "id": "66b62b33-656c-4aaf-a77f-fbdb36c1b4a5__L3",
       "name": "Player Start Y",
       "symbol": "var_player_start_y"
+    },
+    {
+      "id": "fe1ab85d-9086-43a2-9659-cc774966fd40__L0",
+      "name": "Point Health",
+      "symbol": "var_point_health_0"
+    },
+    {
+      "id": "702903d0-bfae-4ae3-9d19-9daf1aeb9746__L0",
+      "name": "Radio Health",
+      "symbol": "var_radio_health_0"
+    },
+    {
+      "id": "0c532ec2-ed5f-49a6-8ccf-b7a8351284f6__L0",
+      "name": "Rock Health",
+      "symbol": "var_rock_health_0"
     }
   ],
   "constants": [

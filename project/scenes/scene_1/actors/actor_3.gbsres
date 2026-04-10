@@ -1,6 +1,6 @@
 {
   "_resourceType": "actor",
-  "id": "e40c8deb-ee4d-4238-b696-d0f8d735d898",
+  "id": "0c532ec2-ed5f-49a6-8ccf-b7a8351284f6",
   "name": "",
   "frame": 0,
   "animate": false,
@@ -15,8 +15,20 @@
   "collisionGroup": "1",
   "collisionExtraFlags": [],
   "prefabScriptOverrides": {},
-  "symbol": "actor_2",
-  "script": [],
+  "symbol": "actor_7",
+  "script": [
+    {
+      "command": "EVENT_SET_VALUE",
+      "args": {
+        "variable": "L0",
+        "value": {
+          "type": "number",
+          "value": 69
+        }
+      },
+      "id": "233d96c2-f9da-49c2-85c5-eeed9c100def"
+    }
+  ],
   "startScript": [
     {
       "command": "EVENT_CALL_CUSTOM_EVENT",
@@ -27,14 +39,14 @@
           "value": "L0"
         }
       },
-      "id": "d738629b-a5b1-4e70-b4eb-daadac65e51f"
+      "id": "2440db44-a81a-4850-9500-91bdbc513384"
     },
     {
       "command": "EVENT_ACTOR_STOP_UPDATE",
       "args": {
         "actorId": "$self$"
       },
-      "id": "2dd200a8-977b-494b-9f8b-9d274215046a"
+      "id": "93447c09-d9e1-47e1-a20e-00e956265306"
     }
   ],
   "updateScript": [
@@ -61,20 +73,32 @@
             "args": {
               "customEventId": "82166c49-fdc3-4602-9b59-89e2df1dcfb4"
             },
-            "id": "6059a34b-4fd8-4a8b-a500-54263a39f391"
+            "id": "af39888b-e6ab-450d-b2e3-d5b18ce0d871"
           }
         ],
         "false": []
       },
-      "id": "71806ceb-da58-4d87-baeb-df35be884e8c"
+      "id": "7f1aa179-c8b8-4c7b-9760-7d7e177ef62c"
     },
     {
       "command": "EVENT_STOP",
       "args": {},
-      "id": "44a906d7-2f18-4a49-ae14-743b3109fbdc"
+      "id": "50ad25c6-aaf8-41bb-b20c-ee84f83c657d"
     }
   ],
-  "hit1Script": [],
+  "hit1Script": [
+    {
+      "command": "EVENT_SET_VALUE",
+      "args": {
+        "variable": "L0",
+        "value": {
+          "type": "number",
+          "value": 420
+        }
+      },
+      "id": "445776b8-f3bf-4455-ae42-41503130f6d1"
+    }
+  ],
   "hit2Script": [
     {
       "command": "EVENT_CALL_CUSTOM_EVENT",
@@ -89,10 +113,36 @@
           "value": "L1"
         }
       },
-      "id": "718f1a8f-d344-44b0-91a2-1b52f166042e"
+      "id": "d48820bf-b09b-4477-8048-5927d78510c1"
     }
   ],
-  "hit3Script": [],
+  "hit3Script": [
+    {
+      "command": "EVENT_TEXT",
+      "args": {
+        "text": [
+          "Plumbus"
+        ],
+        "__section": "text",
+        "avatarId": "",
+        "minHeight": 4,
+        "maxHeight": 7,
+        "textX": 1,
+        "textY": 1,
+        "textHeight": 5,
+        "position": "bottom",
+        "clearPrevious": true,
+        "showFrame": "true",
+        "speedIn": -1,
+        "speedOut": -1,
+        "closeWhen": "key",
+        "closeButton": "a",
+        "closeDelayTime": 0.5,
+        "closeDelayFrames": 30
+      },
+      "id": "e6a4abfb-a101-4e13-bdcc-1211fcb0b603"
+    }
+  ],
   "coordinateType": "tiles",
   "x": 12,
   "y": 6,

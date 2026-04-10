@@ -1,7 +1,7 @@
 {
   "_resourceType": "scene",
   "id": "66b62b33-656c-4aaf-a77f-fbdb36c1b4a5",
-  "_index": 2,
+  "_index": 1,
   "name": "Scene 3",
   "backgroundId": "78f72f85-8236-425c-9473-4abdd7cdba51",
   "tilesetId": "",
@@ -95,7 +95,8 @@
         "$variable[V1]$": {
           "type": "number",
           "value": 4
-        }
+        },
+        "__collapse": true
       },
       "id": "033a08e6-ae79-4740-9443-3aef09e517ea"
     },
@@ -110,7 +111,8 @@
         "$variable[V1]$": {
           "type": "number",
           "value": 5
-        }
+        },
+        "__collapse": true
       },
       "id": "d76703e0-f861-4bc6-b3aa-d72ec1a43095"
     },
@@ -125,12 +127,13 @@
         "$variable[V1]$": {
           "type": "number",
           "value": 6
-        }
+        },
+        "__collapse": true
       },
       "id": "17d3d45b-e232-4568-91f3-1a905ee84d60"
     },
     {
-      "command": "MENU_DEFINE_MENU_STATE",
+      "command": "MENU_DEFINE_MENU_STATE_VIA_COLLISIONS",
       "args": {
         "x": 2,
         "y": 3,
@@ -378,7 +381,7 @@
       "id": "865991fc-bbf7-4356-b655-6adca8676ad4"
     },
     {
-      "command": "MENU_DEFINE_MENU_STATE",
+      "command": "MENU_DEFINE_MENU_STATE_VIA_COLLISIONS",
       "args": {
         "x": 12,
         "y": 3,

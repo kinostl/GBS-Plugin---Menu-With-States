@@ -3,13 +3,7 @@
   "id": "b5f82077-3eb3-404e-93f3-ea33a6799965",
   "name": "Menu/Magic/Fire",
   "description": "",
-  "variables": {
-    "V0": {
-      "id": "V0",
-      "name": "Variable A",
-      "passByReference": true
-    }
-  },
+  "variables": {},
   "actors": {
     "0": {
       "id": "0",

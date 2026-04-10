@@ -1,15 +1,16 @@
 #include <actor.h>
 #include <asm/types.h>
-#include <data_manager.h>
 #include <gbs_types.h>
 #include <math.h>
-#include <ui.h>
 #include <vm.h>
+#include "data/game_globals.h"
 
 #pragma bank 255
 
+#include "states/menu_screen.h"
+
 menu_item_t actor_menu_options[MAX_ACTORS];
-UBYTE actor_menu_actors[MAX_ACTORS];
+actor_t * actor_menu_actors[MAX_ACTORS];
 
 inline UBYTE clampedMenuIndex(BYTE index, UBYTE length) {
       if (index < 0) {
@@ -22,31 +23,23 @@ inline UBYTE clampedMenuIndex(BYTE index, UBYTE length) {
 
 }
 
-void runActorMenu(SCRIPT_CTX *THIS) OLDCALL BANKED {
+void prepareActorMenuState(SCRIPT_CTX *THIS) OLDCALL BANKED {
   UBYTE menu_actors_length = 0;
-  UBYTE actor_id = 1;
 
-  const UBYTE collision_mask = *(UBYTE *)VM_REF_TO_PTR(FN_ARG1);
-  const WORD variable_idx = *(WORD *)VM_REF_TO_PTR(FN_ARG0);
-  WORD *variable = VM_REF_TO_PTR(variable_idx);
-  *variable = 0;
+  const UBYTE collision_mask = *(UBYTE *)VM_REF_TO_PTR(FN_ARG0);
+
   for (actor_t *actor = actors_active_head; actor; actor = actor->next) {
     if (actor == &PLAYER) {
       continue;
     }
 
-    for (UBYTE i = 1; i < MAX_ACTORS; i++) {
-      if (actor == &actors[i]) {
-        actor_id = i;
-        break;
-      }
-    }
-
     if (actor->collision_group & collision_mask) {
-      actor_menu_actors[menu_actors_length] = actor_id;
+      actor_menu_actors[menu_actors_length] = actor;
+
       menu_item_t *menu_actor = &actor_menu_options[menu_actors_length];
       menu_actor->X = SUBPX_TO_TILE(actor->pos.x + actor->bounds.left) - 1;
       menu_actor->Y = SUBPX_TO_TILE(actor->pos.y + actor->bounds.top);
+
       menu_actors_length++;
     }
   }
@@ -59,8 +52,21 @@ void runActorMenu(SCRIPT_CTX *THIS) OLDCALL BANKED {
     menu_actor->iD = clampedMenuIndex(i - 1, menu_actors_length);
   }
 
-  const UBYTE choice = ui_run_menu(actor_menu_options, 0, MENU_SET_START, menu_actors_length, menu_actors_length);
-  if (choice) {
-    *variable = actor_menu_actors[choice-1];
+  cmst.menu_items.bank = 0;
+  cmst.menu_items.ptr = actor_menu_options;
+  cmst.menu_items_count = menu_actors_length;
+}
+
+void concludeActorMenuState(SCRIPT_CTX *THIS) BANKED {
+  UWORD set_var = *(UWORD *)VM_REF_TO_PTR(cmst.set_variable_id);
+
+  actor_t *hit_actor = actor_menu_actors[set_var - 1];
+
+  const UWORD collision_group = *(UWORD *)VM_REF_TO_PTR(FN_ARG0);
+  VM_GLOBAL(VAR_MENU_LOCK) = collision_group;
+  if ((hit_actor->script.bank) &&
+      (hit_actor->hscript_hit & SCRIPT_TERMINATED)) {
+    script_execute(hit_actor->script.bank, hit_actor->script.ptr,
+                   &(hit_actor->hscript_hit), 1, collision_group);
   }
 }
