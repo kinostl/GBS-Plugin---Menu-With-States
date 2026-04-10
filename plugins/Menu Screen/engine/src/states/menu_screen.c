@@ -2,6 +2,7 @@
 #include <asm/types.h>
 #include <bankdata.h>
 #include <data/menu_screen_t.h>
+#include <game_time.h>
 #include <gb/gb.h>
 #include <gb/hardware.h>
 #include <gbs_types.h>
@@ -88,13 +89,21 @@ void invokeMenuState(SCRIPT_CTX *THIS) BANKED {
   PLAYER.pos.y = TILE_TO_SUBPX(current_menu_screen_item.Y);
 
   UBYTE next_index = 0;
+  static UBYTE move_lock = 0;
+  const UBYTE move_unlocked = move_lock >= PLAYER.move_speed;
 
   vsync();
   input_update();
 
-  if (INPUT_UP_PRESSED) {
+  if (move_unlocked) {
+    move_lock = 0;
+  } else if (INPUT_RECENT_UP || INPUT_RECENT_DOWN) {
+    move_lock++;
+  }
+
+  if (INPUT_UP_PRESSED || (move_unlocked && INPUT_RECENT_UP)) {
     next_index = current_menu_screen_item.iU;
-  } else if (INPUT_DOWN_PRESSED) {
+  } else if (INPUT_DOWN_PRESSED || (move_unlocked && INPUT_RECENT_DOWN)) {
     next_index = current_menu_screen_item.iD;
   } else if (INPUT_LEFT_PRESSED) {
     next_index = current_menu_screen_item.iL;
