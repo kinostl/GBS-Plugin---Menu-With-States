@@ -89,12 +89,10 @@ void invokeMenuState(SCRIPT_CTX *THIS) BANKED {
     } else {
       *current_menu_screen_status = CHOICE_SELECTED;
     }
-    return;
   } else if ((INPUT_B_PRESSED) && (cmst.options & MENU_CANCEL_B)) {
     *current_menu_screen_status = CHOICE_CANCELLED;
   } else {
     *current_menu_screen_status = CHOICE_NONE;
-    return;
   }
 
   switch (*current_menu_screen_status) {
