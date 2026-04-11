@@ -37,8 +37,8 @@ const compile = (input, helpers) => {
                 "value": 0
             }
         }, () => {
+            helpers._idle()
             helpers._callNative("invokeMenuState")
-            helpers._callNative("continueMenuState")
         })
         helpers._stackPop(1)
         return;

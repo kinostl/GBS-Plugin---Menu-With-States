@@ -18,15 +18,19 @@
   "symbol": "actor_7",
   "script": [
     {
-      "command": "EVENT_SET_VALUE",
+      "command": "EVENT_CALL_CUSTOM_EVENT",
       "args": {
-        "variable": "L0",
-        "value": {
-          "type": "number",
-          "value": 69
+        "customEventId": "ebd35050-2de7-496b-9638-e247d4290ad1",
+        "$variable[V0]$": {
+          "type": "variable",
+          "value": "L0"
+        },
+        "$variable[V1]$": {
+          "type": "variable",
+          "value": "L1"
         }
       },
-      "id": "233d96c2-f9da-49c2-85c5-eeed9c100def"
+      "id": "ccba35e5-f441-4309-a4c0-dfa4e93dc8d9"
     }
   ],
   "startScript": [
@@ -86,59 +90,9 @@
       "id": "50ad25c6-aaf8-41bb-b20c-ee84f83c657d"
     }
   ],
-  "hit1Script": [
-    {
-      "command": "EVENT_SET_VALUE",
-      "args": {
-        "variable": "L0",
-        "value": {
-          "type": "number",
-          "value": 420
-        }
-      },
-      "id": "445776b8-f3bf-4455-ae42-41503130f6d1"
-    }
-  ],
-  "hit2Script": [
-    {
-      "command": "EVENT_CALL_CUSTOM_EVENT",
-      "args": {
-        "customEventId": "ebd35050-2de7-496b-9638-e247d4290ad1",
-        "$variable[V0]$": {
-          "type": "variable",
-          "value": "L0"
-        },
-        "$variable[V1]$": {
-          "type": "variable",
-          "value": "L1"
-        }
-      },
-      "id": "d48820bf-b09b-4477-8048-5927d78510c1"
-    }
-  ],
-  "hit3Script": [
-    {
-      "command": "EVENT_ACTOR_MOVE_RELATIVE",
-      "args": {
-        "__section": "movement",
-        "actorId": "$self$",
-        "x": {
-          "type": "number",
-          "value": -8
-        },
-        "y": {
-          "type": "number",
-          "value": 0
-        },
-        "collideWith": [
-          "walls"
-        ],
-        "lockDirection": [],
-        "moveType": "horizontal"
-      },
-      "id": "c9ee15da-2cf6-40f5-b2f5-399c605f5424"
-    }
-  ],
+  "hit1Script": [],
+  "hit2Script": [],
+  "hit3Script": [],
   "coordinateType": "tiles",
   "x": 12,
   "y": 6,
