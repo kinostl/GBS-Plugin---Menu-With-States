@@ -32,18 +32,25 @@ const event_tab = (key) => {
     }
 }
 
-const collision_tab = (key, label) => {
-    return {
+const compound_tab = (key) => {
+    return [{
         key: `${key}_group`,
-        label: "Use Which 'On Hit' Script?",
+        label: "Run this 'On Hit' Script",
         type: "collisionMask",
         includePlayer: true,
         defaultValue: "1",
         conditions: [tab_condition(key)]
-    }
+    },{
+        label: "Then after the 'On Hit' Script is done",
+        conditions: [tab_condition(key)]
+    },{
+        key: `${key}_cb`,
+        type: "events",
+        conditions: [tab_condition(key)]
+    }]
 }
 
-const on_select = collision_tab("on_select");
+const on_select = compound_tab("on_select");
 const on_cancel = event_tab("on_cancel");
 const on_change = event_tab("on_change");
 const on_init = event_tab("on_init");
@@ -80,7 +87,7 @@ const fields = [{
     defaultValue: "on_select"
 },
     on_init,
-    on_select,
+    ...on_select,
     on_cancel,
     on_change
 ]
@@ -117,9 +124,13 @@ const compile = (input, helpers) => {
     }
 
     if (input.compileSubScript === "on_select") {
+        const thread_lock = helpers._declareLocal("thread_lock", 1, true)
+        helpers._stackPushReference(thread_lock)
         helpers._stackPushConst(toASMCollisionMask([input.on_select_group]))
         helpers._callNative("concludeActorMenuState")
-        helpers._stackPop(1)
+        helpers._stackPop(2)
+        helpers._addCmd("VM_JOIN", helpers.getVariableAlias(thread_lock))
+        helpers._markLocalUse(thread_lock)
         return
     }
 
@@ -139,7 +150,7 @@ const compile = (input, helpers) => {
             ...input,
             compileSubScript: "on_select"
         }
-    }]
+    }, ...input.on_select_cb]
 
     helpers.compileEvents([{
         "command": "MENU_DEFINE_MENU_STATE",

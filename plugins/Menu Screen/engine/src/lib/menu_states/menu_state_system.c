@@ -45,6 +45,7 @@ void continueMenuState(SCRIPT_CTX *THIS) BANKED {
   menu_screen_status_e *current_menu_screen_status =
       (menu_screen_status_e *)VM_REF_TO_PTR(menu_status_id);
 
+  THIS->waitable = TRUE;
   switch (*current_menu_screen_status) {
   case CHOICE_NONE:
   default:
@@ -76,9 +77,6 @@ void invokeMenuState(SCRIPT_CTX *THIS) BANKED {
   PLAYER.pos.y = TILE_TO_SUBPX(current_menu_screen_item.Y);
 
   UBYTE next_index = 0;
-
-  vsync();
-  input_update();
 
 #ifdef PRESS_AND_HOLD
   static UBYTE move_lock = 0;

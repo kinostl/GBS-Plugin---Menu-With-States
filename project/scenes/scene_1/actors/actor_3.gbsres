@@ -118,29 +118,25 @@
   ],
   "hit3Script": [
     {
-      "command": "EVENT_TEXT",
+      "command": "EVENT_ACTOR_MOVE_RELATIVE",
       "args": {
-        "text": [
-          "Plumbus"
+        "__section": "movement",
+        "actorId": "$self$",
+        "x": {
+          "type": "number",
+          "value": -8
+        },
+        "y": {
+          "type": "number",
+          "value": 0
+        },
+        "collideWith": [
+          "walls"
         ],
-        "__section": "text",
-        "avatarId": "",
-        "minHeight": 4,
-        "maxHeight": 7,
-        "textX": 1,
-        "textY": 1,
-        "textHeight": 5,
-        "position": "bottom",
-        "clearPrevious": true,
-        "showFrame": "true",
-        "speedIn": -1,
-        "speedOut": -1,
-        "closeWhen": "key",
-        "closeButton": "a",
-        "closeDelayTime": 0.5,
-        "closeDelayFrames": 30
+        "lockDirection": [],
+        "moveType": "horizontal"
       },
-      "id": "e6a4abfb-a101-4e13-bdcc-1211fcb0b603"
+      "id": "c9ee15da-2cf6-40f5-b2f5-399c605f5424"
     }
   ],
   "coordinateType": "tiles",

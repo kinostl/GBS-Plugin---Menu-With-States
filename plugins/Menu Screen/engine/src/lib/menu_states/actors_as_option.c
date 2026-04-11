@@ -58,15 +58,14 @@ void prepareActorMenuState(SCRIPT_CTX *THIS) OLDCALL BANKED {
 }
 
 void concludeActorMenuState(SCRIPT_CTX *THIS) BANKED {
-  UWORD set_var = *(UWORD *)VM_REF_TO_PTR(cmst.set_variable_id);
+  const UWORD set_var = *(UWORD *)VM_REF_TO_PTR(cmst.set_variable_id);
+  const UWORD lock_var = *(UWORD *)VM_REF_TO_PTR(FN_ARG1);
+  UWORD *lock = VM_REF_TO_PTR(lock_var);
 
   actor_t *hit_actor = actor_menu_actors[set_var - 1];
 
   const UWORD collision_group = *(UWORD *)VM_REF_TO_PTR(FN_ARG0);
   VM_GLOBAL(VAR_MENU_LOCK) = collision_group;
-  if ((hit_actor->script.bank) &&
-      (hit_actor->hscript_hit & SCRIPT_TERMINATED)) {
-    script_execute(hit_actor->script.bank, hit_actor->script.ptr,
-                   &(hit_actor->hscript_hit), 1, collision_group);
-  }
+  script_execute(hit_actor->script.bank, hit_actor->script.ptr, lock, 1,
+                 collision_group);
 }
