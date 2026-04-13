@@ -37,7 +37,8 @@
       "id": "d679f39b-627d-48ea-a326-a7272a24978b"
     }
   ],
-  "updateScript": [
+  "updateScript": [],
+  "hit1Script": [
     {
       "command": "EVENT_IF",
       "args": {
@@ -61,20 +62,19 @@
             "args": {
               "customEventId": "82166c49-fdc3-4602-9b59-89e2df1dcfb4"
             },
-            "id": "ba0c3a1a-f161-40ae-83d2-2c7d5188c3e9"
+            "id": "cac5a42c-47b6-48da-ae4a-8dd83c1c4b13"
           }
         ],
         "false": []
       },
-      "id": "c9ea4ef3-039a-4282-a8a9-27b339f02abc"
+      "id": "ea3a7ea6-181c-4310-9bfb-5be0d216cdb2"
     },
     {
       "command": "EVENT_STOP",
       "args": {},
-      "id": "42082954-e1e3-4eb9-b404-1c88a97b220d"
+      "id": "49eb4a47-48a1-4ad0-a4c5-46d4f924380e"
     }
   ],
-  "hit1Script": [],
   "hit2Script": [
     {
       "command": "EVENT_CALL_CUSTOM_EVENT",

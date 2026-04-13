@@ -1,13 +1,15 @@
-const id = "MENU_DEFINE_MENU_STATE_VIA_ACTORS";
+const id = "MENU_DEFINE_MENU_STATE_VIA_MENU";
 const groups = ["Menus"];
-const name = "Define Menu State Using Actors";
+const name = "Define Menu State Using Menu";
 const l10n = require("../helpers/l10n").default;
 
-/**
- * Displays a list of actors in a specified group
- */
-
 const settings = [
+    {
+        type: "checkbox",
+        label: l10n("FIELD_LAST_OPTION_CANCELS"),
+        description: l10n("FIELD_LAST_OPTION_CANCELS_DESC"),
+        key: "cancelOnLastOption",
+    },
     {
         type: "checkbox",
         label: l10n("FIELD_CANCEL_IF_B"),
@@ -32,25 +34,7 @@ const event_tab = (key) => {
     }
 }
 
-const compound_tab = (key) => {
-    return [{
-        key: `${key}_group`,
-        label: "Run this 'On Hit' Script",
-        type: "collisionMask",
-        includePlayer: true,
-        defaultValue: "1",
-        conditions: [tab_condition(key)]
-    },{
-        label: "Then after the 'On Hit' Script is done",
-        conditions: [tab_condition(key)]
-    },{
-        key: `${key}_cb`,
-        type: "events",
-        conditions: [tab_condition(key)]
-    }]
-}
-
-const on_select = compound_tab("on_select");
+const on_select = event_tab("on_select");
 const on_cancel = event_tab("on_cancel");
 const on_change = event_tab("on_change");
 const on_init = event_tab("on_init");
@@ -67,12 +51,6 @@ const fields = [{
     type: "variable",
     key: "variable"
 },
-{
-    key: "collisionGroup",
-    label: "List Actors in Groups",
-    type: "collisionMask",
-    defaultValue: ["1"],
-},
 ...settings,
 {
     key: "__section",
@@ -87,28 +65,10 @@ const fields = [{
     defaultValue: "on_select"
 },
     on_init,
-    ...on_select,
+    on_select,
     on_cancel,
     on_change
 ]
-
-const toASMCollisionMask = (groups) => {
-    return groups.reduce((mask, group) => {
-        if (group === "player") {
-            return mask | 1;
-        }
-        if (group === "1") {
-            return mask | 2;
-        }
-        if (group === "2") {
-            return mask | 4;
-        }
-        if (group === "3") {
-            return mask | 8;
-        }
-        return mask;
-    }, 0)
-};
 
 /**
  * 
@@ -117,20 +77,13 @@ const toASMCollisionMask = (groups) => {
  */
 const compile = (input, helpers) => {
     if (input.compileSubScript === "on_init") {
-        helpers._stackPushConst(toASMCollisionMask(input.collisionGroup))
-        helpers._callNative("prepareActorMenuState")
-        helpers._stackPop(1)
+        //Write Menu
+        //Open Menu
         return
     }
 
     if (input.compileSubScript === "on_select") {
-        const thread_lock = helpers._declareLocal("thread_lock", 1, true)
-        helpers._stackPushReference(thread_lock)
-        helpers._stackPushConst(toASMCollisionMask([input.on_select_group]))
-        helpers._callNative("runActorMenuScript")
-        helpers._stackPop(2)
-        helpers._addCmd("VM_JOIN", helpers.getVariableAlias(thread_lock))
-        helpers._markLocalUse(thread_lock)
+        //Close Menu
         return
     }
 

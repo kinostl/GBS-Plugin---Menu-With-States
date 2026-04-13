@@ -53,7 +53,8 @@
       "id": "93447c09-d9e1-47e1-a20e-00e956265306"
     }
   ],
-  "updateScript": [
+  "updateScript": [],
+  "hit1Script": [
     {
       "command": "EVENT_IF",
       "args": {
@@ -77,20 +78,14 @@
             "args": {
               "customEventId": "82166c49-fdc3-4602-9b59-89e2df1dcfb4"
             },
-            "id": "af39888b-e6ab-450d-b2e3-d5b18ce0d871"
+            "id": "c3614ba7-1e86-4812-9714-0f09d3eb8f6d"
           }
         ],
         "false": []
       },
-      "id": "7f1aa179-c8b8-4c7b-9760-7d7e177ef62c"
-    },
-    {
-      "command": "EVENT_STOP",
-      "args": {},
-      "id": "50ad25c6-aaf8-41bb-b20c-ee84f83c657d"
+      "id": "7158a6ce-6dd3-47b8-aa22-3eee4d30a8d8"
     }
   ],
-  "hit1Script": [],
   "hit2Script": [],
   "hit3Script": [],
   "coordinateType": "tiles",

@@ -28,13 +28,42 @@
         "__section": "on_select",
         "on_select": "1",
         "variable": "L0",
-        "on_select_group": "3"
+        "on_select_group": "player",
+        "__collapse": false
       },
       "children": {
         "on_init": [],
         "on_cancel": [],
         "on_change": [],
-        "on_select_cb": []
+        "on_select_cb": [
+          {
+            "command": "MENU_RUN_ACTOR_SCRIPT",
+            "args": {
+              "actor": "fe1ab85d-9086-43a2-9659-cc774966fd40",
+              "collision_group": "1",
+              "waitForScript": true
+            },
+            "id": "d8f62f11-334d-4742-b0a5-81f7a120019d"
+          },
+          {
+            "command": "MENU_RUN_ACTOR_SCRIPT",
+            "args": {
+              "actor": "702903d0-bfae-4ae3-9d19-9daf1aeb9746",
+              "collision_group": "1",
+              "waitForScript": true
+            },
+            "id": "607d451d-4bf8-4b21-be18-f6646fd4b070"
+          },
+          {
+            "command": "MENU_RUN_ACTOR_SCRIPT",
+            "args": {
+              "actor": "0c532ec2-ed5f-49a6-8ccf-b7a8351284f6",
+              "collision_group": "1",
+              "waitForScript": true
+            },
+            "id": "0ee562e2-3ef9-49e0-be76-2c652bfe09c9"
+          }
+        ]
       },
       "id": "79b7de98-8f89-4c87-8e8b-97286505d39c"
     },
