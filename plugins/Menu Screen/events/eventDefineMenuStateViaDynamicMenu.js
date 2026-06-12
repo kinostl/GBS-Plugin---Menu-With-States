@@ -1,6 +1,6 @@
 const id = "MENU_DEFINE_MENU_STATE_VIA_DYNAMIC_MENU";
 const groups = ["Menus"];
-const name = "Define Menu State Using Menu";
+const name = "Define Menu State Using Dynamic Menu";
 const l10n = require("../helpers/l10n").default;
 
 /**
@@ -253,28 +253,122 @@ const fields = [{
 /**
  * 
  * @param {*} input
- * @param {import('/home/deck/.local/share/gb-studio/helpers.d.ts').Helpers} helpers 
+ * @param {import('/home/zone/.local/share/gb-studio/helpers.d.ts').Helpers} helpers 
  */
 const compile = (input, helpers) => {
+    let menu_height = input.slot_count + 2
+    let choice_count = input.slot_count
+    if (input.cancelOnLastOption) {
+        menu_height++
+        choice_count++
+    }
+
+    if (input.layout == "dialogue" && choice_count > 4) {
+        menu_height -= 4
+    }
+
     if (input.compileSubScript === "on_init") {
-        //Write Menu
-        //Open Menu
+        helpers.actorShow(0)
+        helpers._setConstMemUInt8("show_actors_on_overlay", 1)
+
+        const choice = input.variable
+        const slot_x = helpers._declareLocal("slot_x", 1, true)
+        const slot_y = helpers._declareLocal("slot_y", 1, true)
+
+        const menu_x = input.layout == "menu" ? 10 : 0
+        const menu_width = input.layout == "menu" ? 10 : 20
+        helpers._actorSetFlags(
+            0,
+            [".ACTOR_FLAG_PINNED"],
+            [".ACTOR_FLAG_PINNED"]
+        )
+
+        const view_choices = []
+        const confirm_choices = []
+
+        for (let i = 0; i < input.script_count; i++) {
+            view_choices.push({
+                value: {
+                    type: "number",
+                    value: i + 1,
+                },
+                branch: () => {
+                    helpers._loadText(2)
+                    helpers._dw(slot_x, slot_y)
+                    helpers._string(`\\003%c%c\\001\\001${input[`slot_${i + 1}_view`]}`)
+                    helpers._displayText()
+                    helpers._overlayWait(false, [".UI_WAIT_TEXT"])
+                }
+            })
+        }
+
+        for (let i = 0; i < input.slot_count; i++) {
+            confirm_choices.push({
+                value: {
+                    type: "number",
+                    value: i + 1,
+                },
+                branch: () => {
+                    helpers.variableCopy(choice, input[`slot_${i + 1}_choice`])
+                }
+            })
+        }
+        const start_draw_view_loop = helpers.getNextLabel()
+        const end_draw_view_loop = helpers.getNextLabel()
+
+        helpers._overlayClear(0, 0, menu_width, menu_height, ".UI_COLOR_WHITE", true, false)
+        for (let i = 0; i < input.slot_count; i++) {
+            const x_off = (input.layout == "dialogue" && i >= 4) ? 9 : 0
+            const x = 3 + x_off
+
+            const y_off = (input.layout == "dialogue" && i >= 4) ? -4 : 0
+            const y = i + 2 + y_off
+
+            helpers.variableSetToValue(slot_x, x)
+            helpers.variableSetToValue(slot_y, y)
+            helpers.variableCopy(choice, input[`slot_${i + 1}_choice`])
+            helpers._addCmd("VM_CALL", `${start_draw_view_loop}$`)
+        }
+        helpers._jump(end_draw_view_loop)
+        helpers._label(start_draw_view_loop)
+        helpers._stackPushConst(1)
+        helpers.output.pop()
+        helpers.caseVariableConstValue(choice, view_choices)
+        helpers._addCmd("VM_RET")
+        helpers._stackPop(1)
+        helpers.output.pop()
+        helpers._label(end_draw_view_loop)
+        if (input.cancelOnLastOption) {
+            const x_off = (input.layout == "dialogue" && i > 4) ? 10 : 0
+            const x = 2 + x_off
+
+            const y_off = (input.layout == "dialogue" && i > 4) ? -4 : 0
+            const y = choice_count + 1 + y_off
+            helpers.textDraw(input.cancelOnLastOptionText, x, y, "overlay")
+        }
+
+        if (input.layout == "menu") {
+            helpers.overlayMoveTo(menu_x, 18, ".OVERLAY_SPEED_INSTANT")
+        }
+        helpers.overlayMoveTo(menu_x, 18 - menu_height, ".OVERLAY_IN_SPEED")
+
         return
     }
 
     if (input.compileSubScript === "on_select") {
-        //Close Menu
         return
     }
 
-    const on_init = [{
-        "command": id,
-        "id": "",
-        "args": {
-            ...input,
-            compileSubScript: "on_init"
-        }
-    }, ...input.on_init]
+    const on_init = [
+        ...input.on_init,
+        {
+            "command": id,
+            "id": "",
+            "args": {
+                ...input,
+                compileSubScript: "on_init"
+            }
+        }]
 
     const on_select = [{
         "command": id,
@@ -283,7 +377,44 @@ const compile = (input, helpers) => {
             ...input,
             compileSubScript: "on_select"
         }
-    }, ...input.on_select_cb]
+    }, ...input.on_select]
+
+    const clampedMenuIndex = (index) => {
+        if (index < 0) {
+            return 0;
+        }
+        if (index > choice_count - 1) {
+            return 0;
+        }
+        return index + 1;
+    };
+
+    const menu_items = []
+    if (input.layout === "menu") {
+        const y_base = 17 - choice_count
+        for (let i = 0; i < choice_count; i++) {
+            menu_items.push({
+                x: 11,
+                y: y_base + i,
+                left: 1,
+                right: choice_count,
+                up: clampedMenuIndex(i - 1),
+                down: clampedMenuIndex(i + 1),
+            })
+        }
+    } else {
+        const y_base = choice_count < 4 ? 17 - choice_count : 13
+        for (let i = 0; i < choice_count; i++) {
+            menu_items.push({
+                x: i < 4 ? 1 : 10,
+                y: y_base + (i % 4),
+                left: clampedMenuIndex(i - 4) || 1,
+                right: clampedMenuIndex(i + 4) || choice_count,
+                up: clampedMenuIndex(i - 1),
+                down: clampedMenuIndex(i + 1),
+            })
+        }
+    }
 
     helpers.compileEvents([{
         "command": "MENU_DEFINE_MENU_STATE",
@@ -292,7 +423,7 @@ const compile = (input, helpers) => {
             ...input,
             on_init,
             on_select,
-            menu_items: []
+            menu_items
         }
     }])
 }

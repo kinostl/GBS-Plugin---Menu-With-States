@@ -23,7 +23,7 @@ const fields = [{
 /**
  * 
  * @param {*} input
- * @param {import('/home/deck/.local/share/gb-studio/helpers.d.ts').Helpers} helpers 
+ * @param {import('/home/zone/.local/share/gb-studio/helpers.d.ts').Helpers} helpers 
  */
 const compile = (input, helpers) => {
     const textAreaStartTile = helpers._declareLocal("textAreaStartTile", 1, true)

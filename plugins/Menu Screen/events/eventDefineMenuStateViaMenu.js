@@ -220,8 +220,8 @@ const compile = (input, helpers) => {
       cancelOnLastOption = false,
       cancelOnB = false,
     ) => {
+      helpers.actorShow(0)
       helpers._setConstMemUInt8("show_actors_on_overlay", 1)
-      helpers._addCmd("VM_SET_CONST_UINT8","_show_actors_on_overlay", "1")
       const variableAlias = helpers.getVariableAlias(variable);
       const optionsText = options.map(
         (option, index) => textCodeSetFont(0) + (option || `Item ${index + 1}`),
@@ -291,6 +291,12 @@ const compile = (input, helpers) => {
       cancelOnB = false,
     ) => {
       const x = layout === "menu" ? 10 : 0;
+      helpers._actorSetFlags(
+        0,
+        [],
+        []
+      )
+      helpers.actorHide(0)
       helpers._setConstMemUInt8("show_actors_on_overlay", 0)
       helpers._overlayMoveTo(x, 18, ".OVERLAY_OUT_SPEED");
       helpers._overlayWait(true, [".UI_WAIT_WINDOW", ".UI_WAIT_TEXT"]);

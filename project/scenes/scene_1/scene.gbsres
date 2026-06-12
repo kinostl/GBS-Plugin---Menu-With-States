@@ -158,13 +158,14 @@
         "layout": "menu",
         "__section": "on_init",
         "__dynamic_menu_section": "settings",
-        "__collapse": false,
+        "__collapse": true,
         "items": 2,
         "cancelOnLastOption": false,
         "option1": "First Item",
         "option2": "Second Item",
         "variable": "L0",
-        "height": 2
+        "height": 2,
+        "__comment": true
       },
       "children": {
         "on_init": [
@@ -176,7 +177,8 @@
               "distance": 20,
               "speed": 2,
               "time": 0.5,
-              "frames": 30
+              "frames": 4,
+              "timeUnits": "frames"
             },
             "id": "cc3804d2-cfbd-4b81-9f8f-f4d2975bcbf9"
           }
@@ -272,9 +274,148 @@
       "id": "74d4f53b-5b57-408b-8606-8fa46dff8f93"
     },
     {
+      "command": "EVENT_SET_VALUE",
+      "args": {
+        "variable": "L2",
+        "value": {
+          "type": "number",
+          "value": 1
+        }
+      },
+      "id": "b8ccbaac-1ce9-453b-8acc-b1aab08d3126"
+    },
+    {
+      "command": "MENU_DEFINE_MENU_STATE_VIA_DYNAMIC_MENU",
+      "args": {
+        "menu_id": 1,
+        "__dynamic_menu_section": "menu",
+        "variable": "L2",
+        "slot_count": 2,
+        "script_count": 2,
+        "slot_1_view": "Item 1",
+        "slot_1_script": {
+          "type": "number",
+          "value": 1
+        },
+        "slot_2_view": "Item 2",
+        "slot_2_script": {
+          "type": "number",
+          "value": 2
+        },
+        "slot_3_view": "Item 3",
+        "slot_3_script": {
+          "type": "number",
+          "value": 3
+        },
+        "slot_4_view": "Item 4",
+        "slot_4_script": {
+          "type": "number",
+          "value": 4
+        },
+        "slot_5_view": "Item 5",
+        "slot_5_script": {
+          "type": "number",
+          "value": 5
+        },
+        "slot_6_view": "Item 6",
+        "slot_6_script": {
+          "type": "number",
+          "value": 6
+        },
+        "slot_7_view": "Item 7",
+        "slot_7_script": {
+          "type": "number",
+          "value": 7
+        },
+        "slot_8_view": "Item 8",
+        "slot_8_script": {
+          "type": "number",
+          "value": 8
+        },
+        "slot_9_view": "Item 9",
+        "slot_9_script": {
+          "type": "number",
+          "value": 9
+        },
+        "slot_10_view": "Item 10",
+        "slot_10_script": {
+          "type": "number",
+          "value": 10
+        },
+        "slot_11_view": "Item 11",
+        "slot_11_script": {
+          "type": "number",
+          "value": 11
+        },
+        "slot_12_view": "Item 12",
+        "slot_12_script": {
+          "type": "number",
+          "value": 12
+        },
+        "slot_13_view": "Item 13",
+        "slot_13_script": {
+          "type": "number",
+          "value": 13
+        },
+        "slot_14_view": "Item 14",
+        "slot_14_script": {
+          "type": "number",
+          "value": 14
+        },
+        "slot_15_view": "Item 15",
+        "slot_15_script": {
+          "type": "number",
+          "value": 15
+        },
+        "slot_16_view": "Item 16",
+        "slot_16_script": {
+          "type": "number",
+          "value": 16
+        },
+        "cancelOnLastOptionText": "Cancel",
+        "cancelOnB": true,
+        "layout": "dialogue",
+        "__section": "on_init",
+        "cancelOnLastOption": false,
+        "slot_1_choice": "L0",
+        "slot_2_choice": "L1"
+      },
+      "children": {
+        "on_init": [
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "L0",
+              "value": {
+                "type": "number",
+                "value": 1
+              }
+            },
+            "id": "c7778fd6-b5f4-4744-8523-f6c75d3caebc"
+          },
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "L1",
+              "value": {
+                "type": "number",
+                "value": 2
+              }
+            },
+            "id": "ed691453-f2db-493f-872a-cf059a3108a3"
+          }
+        ],
+        "on_select": [],
+        "on_cancel": [],
+        "on_change": []
+      },
+      "id": "2e489647-ed6c-4ab6-8cad-f6fff3e02737"
+    },
+    {
       "command": "MENU_JUMP_TO_MENU_STATE",
       "args": {
-        "menu_id": 1
+        "menu_id": 1,
+        "__collapse": false
       },
       "id": "5e358dab-37e8-478a-897c-1578705a9034"
     }

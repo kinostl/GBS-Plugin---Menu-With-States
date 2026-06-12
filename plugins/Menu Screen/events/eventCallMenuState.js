@@ -14,7 +14,7 @@ const fields = [{
 /**
  * 
  * @param {*} input
- * @param {import('/home/deck/.local/share/gb-studio/helpers.d.ts').Helpers} helpers 
+ * @param {import('/home/zone/.local/share/gb-studio/helpers.d.ts').Helpers} helpers 
  */
 const compile = (input, helpers) => {
     if (input.compile_subscript == "thread") {
