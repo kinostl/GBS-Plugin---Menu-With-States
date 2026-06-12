@@ -128,22 +128,9 @@ const settings = [].concat(
     options: [
       ["dialogue", l10n("FIELD_LAYOUT_DIALOGUE")],
       ["menu", l10n("FIELD_LAYOUT_MENU")],
-      ["locked", "Locked"]
     ],
     defaultValue: "dialogue",
   },
-  {
-    key: "height",
-    type: "number",
-    label: "Height (excluding border)",
-    defaultValue: 2,
-    min: 2,
-    max: 16,
-    conditions: [{
-      key: "layout",
-      in: ["locked"]
-    }]
-  }
 );
 
 const tab_condition = (type) => {
@@ -292,7 +279,10 @@ const compile = (input, helpers) => {
     return
   }
 
-  if (input.compileSubScript === "on_select") {
+  if (
+    input.compileSubScript === "on_select" ||
+    input.compileSubScript === "on_cancel"
+  ) {
     const closeTextMenu = (
       variable,
       options,
@@ -347,6 +337,15 @@ const compile = (input, helpers) => {
     }
   }, ...input.on_select]
 
+  const on_cancel = [{
+    "command": id,
+    "id": "",
+    "args": {
+      ...input,
+      compileSubScript: "on_cancel"
+    }
+  }, ...input.on_cancel]
+
   const clampedMenuIndex = (index) => {
     if (index < 0) {
       return 0;
@@ -391,6 +390,7 @@ const compile = (input, helpers) => {
       ...input,
       on_init,
       on_select,
+      on_cancel,
       on_change: [],
       menu_items
     }
