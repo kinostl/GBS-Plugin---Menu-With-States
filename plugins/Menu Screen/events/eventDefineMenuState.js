@@ -1,74 +1,9 @@
 const id = "MENU_DEFINE_MENU_STATE";
 const groups = ["Menus"];
-const name = "Define Menu State Using Collisions";
+const name = id;
 const l10n = require("../helpers/l10n").default;
 
-const settings = [
-    {
-        type: "checkbox",
-        label: l10n("FIELD_LAST_OPTION_CANCELS"),
-        description: l10n("FIELD_LAST_OPTION_CANCELS_DESC"),
-        key: "cancelOnLastOption",
-    },
-    {
-        type: "checkbox",
-        label: l10n("FIELD_CANCEL_IF_B"),
-        description: l10n("FIELD_CANCEL_IF_B_DESC"),
-        key: "cancelOnB",
-        defaultValue: true,
-    }
-]
-
-const tab_condition = (type) => {
-    return {
-        key: "__section",
-        in: [type, undefined]
-    }
-}
-
-const event_tab = (key) => {
-    return {
-        key,
-        type: "events",
-        conditions: [tab_condition(key)]
-    }
-}
-
-const on_select = event_tab("on_select");
-const on_cancel = event_tab("on_cancel");
-const on_change = event_tab("on_change");
-const on_init = event_tab("on_init");
-
-const fields = [{
-    key: "menu_id",
-    label: "Menu ID",
-    type: "togglebuttons",
-    options: Array(8).fill().map((_, i) => [i + 1, `${i + 1}`]),
-    defaultValue: 1,
-},
-{
-    label: "Set variable",
-    type: "variable",
-    key: "variable"
-},
-...settings,
-{
-    key: "__section",
-    type: "tabs",
-    variant: "eventSection",
-    values: {
-        on_init: "On Init",
-        on_select: "On Selection Made",
-        on_cancel: "On Cancel",
-        on_change: "On Cursor Change"
-    },
-    defaultValue: "on_select"
-},
-    on_init,
-    on_select,
-    on_cancel,
-    on_change
-]
+const fields = []
 
 /**
  * 

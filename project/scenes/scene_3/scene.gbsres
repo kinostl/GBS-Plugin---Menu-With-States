@@ -138,7 +138,7 @@
         "x": 2,
         "y": 3,
         "cancelOnB": true,
-        "__section": "on_select",
+        "__section": "on_init",
         "menu_id": 1,
         "variable": "L0",
         "__comment": false,
@@ -391,7 +391,7 @@
         "variable": "L1",
         "__comment": false,
         "collisionGroup": 2,
-        "__collapse": false
+        "__collapse": true
       },
       "children": {
         "on_init": [
