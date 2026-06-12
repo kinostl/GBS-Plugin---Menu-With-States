@@ -111,14 +111,12 @@ const settings = [].concat(
   },
   {
     type: "checkbox",
-    label: l10n("FIELD_LAST_OPTION_CANCELS"),
-    description: l10n("FIELD_LAST_OPTION_CANCELS_DESC"),
+    label: "Last option runs 'on cancel'",
     key: "cancelOnLastOption",
   },
   {
     type: "checkbox",
-    label: l10n("FIELD_CANCEL_IF_B"),
-    description: l10n("FIELD_CANCEL_IF_B_DESC"),
+    label: "Run 'on cancel' if B is pressed",
     key: "cancelOnB",
     defaultValue: true,
   },
@@ -130,9 +128,22 @@ const settings = [].concat(
     options: [
       ["dialogue", l10n("FIELD_LAYOUT_DIALOGUE")],
       ["menu", l10n("FIELD_LAYOUT_MENU")],
+      ["locked", "Locked"]
     ],
     defaultValue: "dialogue",
   },
+  {
+    key: "height",
+    type: "number",
+    label: "Height (excluding border)",
+    defaultValue: 2,
+    min: 2,
+    max: 16,
+    conditions: [{
+      key: "layout",
+      in: ["locked"]
+    }]
+  }
 );
 
 const tab_condition = (type) => {
@@ -182,7 +193,7 @@ const fields = [{
 /**
  * 
  * @param {*} input
- * @param {import('/home/deck/.local/share/gb-studio/helpers.d.ts').Helpers} helpers 
+ * @param {import('/home/zone/.local/share/gb-studio/helpers.d.ts').Helpers} helpers 
  */
 const compile = (input, helpers) => {
   const decOct = (x) => Number(x).toString(8).padStart(3, 0)
@@ -210,6 +221,11 @@ const compile = (input, helpers) => {
   ].splice(0, input.items)
 
   if (input.compileSubScript === "on_init") {
+    helpers._actorSetFlags(
+      0,
+      [".ACTOR_FLAG_PINNED"],
+      [".ACTOR_FLAG_PINNED"]
+    )
     const openTextMenu = (
       variable,
       options,
@@ -217,6 +233,7 @@ const compile = (input, helpers) => {
       cancelOnLastOption = false,
       cancelOnB = false,
     ) => {
+      helpers._setConstMemUInt8("show_actors_on_overlay", 1)
       helpers._addCmd("VM_SET_CONST_UINT8","_show_actors_on_overlay", "1")
       const variableAlias = helpers.getVariableAlias(variable);
       const optionsText = options.map(
@@ -283,7 +300,8 @@ const compile = (input, helpers) => {
       cancelOnLastOption = false,
       cancelOnB = false,
     ) => {
-      const x = 0 //this should actually be variant, check reference
+      const x = layout === "menu" ? 10 : 0;
+      helpers._setConstMemUInt8("show_actors_on_overlay", 0)
       helpers._overlayMoveTo(x, 18, ".OVERLAY_OUT_SPEED");
       helpers._overlayWait(true, [".UI_WAIT_WINDOW", ".UI_WAIT_TEXT"]);
       if (layout === "menu") {
@@ -303,6 +321,11 @@ const compile = (input, helpers) => {
       input.cancelOnLastOption,
       input.cancelOnB,
     );
+    helpers._actorSetFlags(
+      0,
+      [".ACTOR_FLAG_PINNED"],
+      [".ACTOR_FLAG_PINNED"]
+    )
     return
   }
 
@@ -335,11 +358,11 @@ const compile = (input, helpers) => {
   };
 
   const menu_items = []
-  const y_base = 17-options.length
   if (input.layout === "menu") {
+    const y_base = 17 - options.length
     for (let i = 0; i < options.length; i++) {
       menu_items.push({
-        x: 1,
+        x: 11,
         y: y_base + i,
         left: 1,
         right: options.length,
@@ -348,6 +371,7 @@ const compile = (input, helpers) => {
       })
     }
   } else {
+    const y_base = options.length < 4 ? 17 - options.length : 13
     for (let i = 0; i < options.length; i++) {
       menu_items.push({
         x: i < 4 ? 1 : 10,

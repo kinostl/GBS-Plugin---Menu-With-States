@@ -155,7 +155,7 @@
           "value": 16
         },
         "cancelOnB": true,
-        "layout": "dialogue",
+        "layout": "menu",
         "__section": "on_init",
         "__dynamic_menu_section": "settings",
         "__collapse": false,
@@ -163,7 +163,8 @@
         "cancelOnLastOption": false,
         "option1": "First Item",
         "option2": "Second Item",
-        "variable": "L0"
+        "variable": "L0",
+        "height": 2
       },
       "children": {
         "on_init": [],
