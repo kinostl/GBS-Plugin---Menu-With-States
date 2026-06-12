@@ -256,6 +256,9 @@ const fields = [{
  * @param {import('/home/zone/.local/share/gb-studio/helpers.d.ts').Helpers} helpers 
  */
 const compile = (input, helpers) => {
+    const menu_x = input.layout == "menu" ? 10 : 0
+    const menu_width = input.layout == "menu" ? 10 : 20
+
     let menu_height = input.slot_count + 2
     let choice_count = input.slot_count
     if (input.cancelOnLastOption) {
@@ -267,16 +270,28 @@ const compile = (input, helpers) => {
         menu_height -= 4
     }
 
+    const choice = input.variable
+    const confirm_choices = []
+
+    for (let i = 0; i < input.slot_count; i++) {
+        confirm_choices.push({
+            value: {
+                type: "number",
+                value: i + 1,
+            },
+            branch: () => {
+                helpers.variableCopy(choice, input[`slot_${i + 1}_choice`])
+            }
+        })
+    }
+
     if (input.compileSubScript === "on_init") {
         helpers.actorShow(0)
         helpers._setConstMemUInt8("show_actors_on_overlay", 1)
 
-        const choice = input.variable
         const slot_x = helpers._declareLocal("slot_x", 1, true)
         const slot_y = helpers._declareLocal("slot_y", 1, true)
 
-        const menu_x = input.layout == "menu" ? 10 : 0
-        const menu_width = input.layout == "menu" ? 10 : 20
         helpers._actorSetFlags(
             0,
             [".ACTOR_FLAG_PINNED"],
@@ -284,7 +299,6 @@ const compile = (input, helpers) => {
         )
 
         const view_choices = []
-        const confirm_choices = []
 
         for (let i = 0; i < input.script_count; i++) {
             view_choices.push({
@@ -302,17 +316,6 @@ const compile = (input, helpers) => {
             })
         }
 
-        for (let i = 0; i < input.slot_count; i++) {
-            confirm_choices.push({
-                value: {
-                    type: "number",
-                    value: i + 1,
-                },
-                branch: () => {
-                    helpers.variableCopy(choice, input[`slot_${i + 1}_choice`])
-                }
-            })
-        }
         const start_draw_view_loop = helpers.getNextLabel()
         const end_draw_view_loop = helpers.getNextLabel()
 
@@ -352,10 +355,16 @@ const compile = (input, helpers) => {
         }
         helpers.overlayMoveTo(menu_x, 18 - menu_height, ".OVERLAY_IN_SPEED")
 
+        helpers.markLocalsUsed(slot_x, slot_y)
         return
     }
 
     if (input.compileSubScript === "on_select") {
+        helpers.actorHide(0)
+        helpers._setConstMemUInt8("show_actors_on_overlay", 0)
+        helpers.overlayMoveTo(menu_x, 18, ".OVERLAY_OUT_SPEED")
+        helpers.caseVariableConstValue(choice, confirm_choices)
+        helpers.markLocalsUsed(choice)
         return
     }
 
