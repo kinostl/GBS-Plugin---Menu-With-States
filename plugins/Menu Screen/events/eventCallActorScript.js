@@ -48,7 +48,7 @@ const toASMCollisionMask = (groups) => {
 const compile = (input, helpers) => {
     const thread_lock = helpers._declareLocal("thread_lock", 1, true)
     helpers._stackPushReference(thread_lock)
-    helpers._stackPushConst(toASMCollisionMask([input.on_select_group]))
+    helpers._stackPushConst(toASMCollisionMask([input.collision_group]))
     helpers.actorPushById(input.actor)
     helpers._callNative("runActorScript")
     helpers._stackPop(3)

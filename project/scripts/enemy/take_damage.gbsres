@@ -28,8 +28,8 @@
       "args": {
         "variable": "V1",
         "from": {
-          "type": "variable",
-          "value": "4"
+          "type": "constant",
+          "value": "79113f00-6f21-401a-a77b-b6f777789b3d"
         },
         "comparison": ">",
         "to": {
@@ -165,18 +165,6 @@
         "false": []
       },
       "id": "923a4b24-e1c1-4683-96e3-1acfe089cd12"
-    },
-    {
-      "command": "EVENT_SET_VALUE",
-      "args": {
-        "variable": "0",
-        "value": {
-          "type": "number",
-          "value": 2
-        },
-        "__collapse": false
-      },
-      "id": "6f535257-9252-489f-969f-426857ae7d8d"
     }
   ]
 }

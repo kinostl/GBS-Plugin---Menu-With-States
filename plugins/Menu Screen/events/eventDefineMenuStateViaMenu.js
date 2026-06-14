@@ -220,7 +220,6 @@ const compile = (input, helpers) => {
       cancelOnLastOption = false,
       cancelOnB = false,
     ) => {
-      helpers.actorShow(0)
       helpers._setConstMemUInt8("show_actors_on_overlay", 1)
       const variableAlias = helpers.getVariableAlias(variable);
       const optionsText = options.map(
@@ -296,7 +295,6 @@ const compile = (input, helpers) => {
         [],
         []
       )
-      helpers.actorHide(0)
       helpers._setConstMemUInt8("show_actors_on_overlay", 0)
       helpers._overlayMoveTo(x, 18, ".OVERLAY_OUT_SPEED");
       helpers._overlayWait(true, [".UI_WAIT_WINDOW", ".UI_WAIT_TEXT"]);

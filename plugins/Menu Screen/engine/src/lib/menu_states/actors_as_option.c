@@ -59,7 +59,7 @@ void prepareActorMenuState(SCRIPT_CTX *THIS) OLDCALL BANKED {
 
 void runActorMenuScript(SCRIPT_CTX *THIS) BANKED {
   const UWORD set_var = *(UWORD *)VM_REF_TO_PTR(cmst.set_variable_id);
-  const UWORD lock_var = *(UWORD *)VM_REF_TO_PTR(FN_ARG1);
+  const WORD lock_var = *(WORD *)VM_REF_TO_PTR(FN_ARG1);
   UWORD *lock = VM_REF_TO_PTR(lock_var);
 
   actor_t *hit_actor = actor_menu_actors[set_var - 1];
@@ -71,7 +71,7 @@ void runActorMenuScript(SCRIPT_CTX *THIS) BANKED {
 }
 
 void runActorScript(SCRIPT_CTX *THIS) BANKED {
-  const UWORD lock_var = *(UWORD *)VM_REF_TO_PTR(FN_ARG2);
+  const WORD lock_var = *(WORD *)VM_REF_TO_PTR(FN_ARG2);
   const UWORD collision_group = *(UWORD *)VM_REF_TO_PTR(FN_ARG1);
   const UWORD actor_id = *(UWORD *)VM_REF_TO_PTR(FN_ARG0);
 

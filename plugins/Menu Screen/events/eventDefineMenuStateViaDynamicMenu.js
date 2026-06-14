@@ -286,7 +286,6 @@ const compile = (input, helpers) => {
     }
 
     if (input.compileSubScript === "on_init") {
-        helpers.actorShow(0)
         helpers._setConstMemUInt8("show_actors_on_overlay", 1)
 
         const slot_x = helpers._declareLocal("slot_x", 1, true)
@@ -360,7 +359,6 @@ const compile = (input, helpers) => {
     }
 
     if (input.compileSubScript === "on_select") {
-        helpers.actorHide(0)
         helpers._setConstMemUInt8("show_actors_on_overlay", 0)
         helpers.overlayMoveTo(menu_x, 18, ".OVERLAY_OUT_SPEED")
         helpers.caseVariableConstValue(choice, confirm_choices)

@@ -25,10 +25,10 @@ const compile = (input, helpers) => {
         return
     }
 
-    const on_init_script = helpers._compileSubScript("custom", input.on_init)
-    const on_select_script = helpers._compileSubScript("thread", input.on_select)
-    const on_cancel_script = helpers._compileSubScript("thread", input.on_cancel)
-    const on_change_script = helpers._compileSubScript("custom", input.on_change)
+    const on_init_script = helpers._compileSubScript("custom", input.on_init, "ms_on_init")
+    const on_select_script = helpers._compileSubScript("thread", input.on_select, "ms_on_select")
+    const on_cancel_script = helpers._compileSubScript("thread", input.on_cancel, "ms_on_cancel")
+    const on_change_script = helpers._compileSubScript("custom", input.on_change, "ms_on_change")
 
     const unionFlags = (flags, defaultValue = "UI_MENU_STANDARD") => {
         if (flags.length === 0) {

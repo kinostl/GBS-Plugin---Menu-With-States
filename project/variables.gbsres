@@ -147,6 +147,12 @@
       "name": "SLOT/MAGIC/SOAP",
       "symbol": "const_slot_magic_soap",
       "value": 3
+    },
+    {
+      "id": "79113f00-6f21-401a-a77b-b6f777789b3d",
+      "name": "ANIMATION_TYPE/DMG_ANIM_COUNT",
+      "symbol": "const_animation_type_dmg_an_0",
+      "value": 1
     }
   ]
 }

@@ -19,11 +19,6 @@
   "symbol": "script_13",
   "script": [
     {
-      "command": "EVENT_SCRIPT_LOCK",
-      "args": {},
-      "id": "1d001ba3-1e49-4c38-acec-2e48254d6e1b"
-    },
-    {
       "command": "EVENT_ACTOR_MOVE_RELATIVE",
       "args": {
         "__section": "movement",
@@ -213,11 +208,6 @@
         ]
       },
       "id": "f8e4064c-7095-480f-929d-3266bbceec7f"
-    },
-    {
-      "command": "EVENT_SCRIPT_UNLOCK",
-      "args": {},
-      "id": "776e664b-fb2f-4807-b267-3a8821b93174"
     }
   ]
 }

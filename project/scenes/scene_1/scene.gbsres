@@ -18,6 +18,176 @@
   "y": 32,
   "script": [
     {
+      "command": "EVENT_SET_VALUE",
+      "args": {
+        "variable": "6",
+        "value": {
+          "type": "number",
+          "value": 1
+        }
+      },
+      "id": "5db2b659-bbed-4ce0-b3c1-11f9fafed94b"
+    },
+    {
+      "command": "EVENT_SET_VALUE",
+      "args": {
+        "variable": "7",
+        "value": {
+          "type": "number",
+          "value": 2
+        }
+      },
+      "id": "edc48462-1708-4c99-99c9-70bffd744ef1"
+    },
+    {
+      "command": "EVENT_SET_VALUE",
+      "args": {
+        "variable": "8",
+        "value": {
+          "type": "number",
+          "value": 3
+        }
+      },
+      "id": "ee0f3311-13b0-429b-9b32-81bb68797b9b"
+    },
+    {
+      "command": "MENU_DEFINE_MENU_STATE_VIA_MENU",
+      "args": {
+        "menu_id": 1,
+        "variable": "9",
+        "items": 4,
+        "option1": "Fight",
+        "option2": "Item",
+        "option3": "Magic",
+        "option4": "Run",
+        "option5": "",
+        "option6": "",
+        "option7": "",
+        "option8": "",
+        "cancelOnB": false,
+        "layout": "dialogue",
+        "__section": "on_select",
+        "__collapse": false,
+        "__comment": false
+      },
+      "children": {
+        "on_init": [
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "9",
+              "value": {
+                "type": "number",
+                "value": 1
+              }
+            },
+            "id": "0e6a663f-7c4f-418c-b3d4-d0a431b7289c"
+          }
+        ],
+        "on_select": [
+          {
+            "command": "EVENT_SWITCH",
+            "args": {
+              "variable": "9",
+              "choices": 4,
+              "__collapseCase0": false,
+              "__collapseCase1": false,
+              "__collapseCase2": false,
+              "__collapseCase3": false,
+              "__collapseCase4": false,
+              "__collapseCase5": false,
+              "__collapseCase6": false,
+              "__collapseCase7": false,
+              "__collapseCase8": false,
+              "__collapseCase9": false,
+              "__collapseCase10": false,
+              "__collapseCase11": false,
+              "__collapseCase12": false,
+              "__collapseCase13": false,
+              "__collapseCase14": false,
+              "__collapseCase15": false,
+              "__collapseElse": false
+            },
+            "children": {
+              "true0": [
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "3",
+                    "value": {
+                      "type": "constant",
+                      "value": "1222793e-4aef-4f7d-8597-11e9fb6fa2ce"
+                    }
+                  },
+                  "id": "706ebf7a-ef64-44fa-ac47-85ee6c196d90"
+                },
+                {
+                  "command": "MENU_JUMP_TO_MENU_STATE",
+                  "args": {
+                    "menu_id": 2
+                  },
+                  "id": "c3f738a8-b4b9-458c-b5e9-eff01536c4b6"
+                }
+              ],
+              "true1": [
+                {
+                  "command": "MENU_JUMP_TO_MENU_STATE",
+                  "args": {
+                    "menu_id": 3
+                  },
+                  "id": "34ff744c-a7d9-42ec-b30a-624fae702b66"
+                }
+              ],
+              "true2": [
+                {
+                  "command": "MENU_JUMP_TO_MENU_STATE",
+                  "args": {
+                    "menu_id": 4
+                  },
+                  "id": "9a5fc2a0-ed7f-4929-b984-2dc76c38676e"
+                }
+              ],
+              "true3": [
+                {
+                  "command": "EVENT_SWITCH_SCENE",
+                  "args": {
+                    "sceneId": "2f13d5a2-0bec-4d54-bd1c-f3365e0d8cb3",
+                    "x": {
+                      "type": "number",
+                      "value": 9
+                    },
+                    "y": {
+                      "type": "number",
+                      "value": 10
+                    },
+                    "direction": "",
+                    "fadeSpeed": "2"
+                  },
+                  "id": "9a899562-2b9e-4ee0-ac59-647ca91ab20b"
+                }
+              ],
+              "true4": [],
+              "true5": [],
+              "true6": [],
+              "true7": [],
+              "true8": [],
+              "true9": [],
+              "true10": [],
+              "true11": [],
+              "true12": [],
+              "true13": [],
+              "true14": [],
+              "true15": [],
+              "false": []
+            },
+            "id": "dc2d89a1-7abc-411a-8412-f3c4fd14490d"
+          }
+        ],
+        "on_cancel": []
+      },
+      "id": "457eca19-a243-439a-9285-0e0e72c21a54"
+    },
+    {
       "command": "MENU_DEFINE_MENU_STATE_VIA_ACTORS",
       "args": {
         "menu_id": 2,
@@ -25,16 +195,36 @@
           "1"
         ],
         "cancelOnB": true,
-        "__section": "on_init",
+        "__section": "on_select",
         "on_select": "1",
-        "variable": "L0",
+        "variable": "9",
         "on_select_group": "player",
-        "__collapse": true,
-        "__comment": true
+        "__collapse": false,
+        "__comment": false
       },
       "children": {
-        "on_init": [],
-        "on_cancel": [],
+        "on_init": [
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "9",
+              "value": {
+                "type": "number",
+                "value": 1
+              }
+            },
+            "id": "e6c8396f-23c5-4e41-8ba8-79925f3d5e70"
+          }
+        ],
+        "on_cancel": [
+          {
+            "command": "MENU_JUMP_TO_MENU_STATE",
+            "args": {
+              "menu_id": 1
+            },
+            "id": "676d023a-d1e7-459e-bd38-ea42d043b723"
+          }
+        ],
         "on_change": [],
         "on_select_cb": [
           {
@@ -69,240 +259,24 @@
       "id": "79b7de98-8f89-4c87-8e8b-97286505d39c"
     },
     {
-      "command": "MENU_DEFINE_MENU_STATE_VIA_MENU",
-      "args": {
-        "menu_id": 1,
-        "slot_count": 1,
-        "script_count": 1,
-        "slot_1_view": "Item 1",
-        "slot_1_script": {
-          "type": "number",
-          "value": 1
-        },
-        "slot_2_view": "Item 2",
-        "slot_2_script": {
-          "type": "number",
-          "value": 2
-        },
-        "slot_3_view": "Item 3",
-        "slot_3_script": {
-          "type": "number",
-          "value": 3
-        },
-        "slot_4_view": "Item 4",
-        "slot_4_script": {
-          "type": "number",
-          "value": 4
-        },
-        "slot_5_view": "Item 5",
-        "slot_5_script": {
-          "type": "number",
-          "value": 5
-        },
-        "slot_6_view": "Item 6",
-        "slot_6_script": {
-          "type": "number",
-          "value": 6
-        },
-        "slot_7_view": "Item 7",
-        "slot_7_script": {
-          "type": "number",
-          "value": 7
-        },
-        "slot_8_view": "Item 8",
-        "slot_8_script": {
-          "type": "number",
-          "value": 8
-        },
-        "slot_9_view": "Item 9",
-        "slot_9_script": {
-          "type": "number",
-          "value": 9
-        },
-        "slot_10_view": "Item 10",
-        "slot_10_script": {
-          "type": "number",
-          "value": 10
-        },
-        "slot_11_view": "Item 11",
-        "slot_11_script": {
-          "type": "number",
-          "value": 11
-        },
-        "slot_12_view": "Item 12",
-        "slot_12_script": {
-          "type": "number",
-          "value": 12
-        },
-        "slot_13_view": "Item 13",
-        "slot_13_script": {
-          "type": "number",
-          "value": 13
-        },
-        "slot_14_view": "Item 14",
-        "slot_14_script": {
-          "type": "number",
-          "value": 14
-        },
-        "slot_15_view": "Item 15",
-        "slot_15_script": {
-          "type": "number",
-          "value": 15
-        },
-        "slot_16_view": "Item 16",
-        "slot_16_script": {
-          "type": "number",
-          "value": 16
-        },
-        "cancelOnB": true,
-        "layout": "menu",
-        "__section": "on_init",
-        "__dynamic_menu_section": "settings",
-        "__collapse": true,
-        "items": 2,
-        "cancelOnLastOption": false,
-        "option1": "First Item",
-        "option2": "Second Item",
-        "variable": "L0",
-        "height": 2,
-        "__comment": true
-      },
-      "children": {
-        "on_init": [
-          {
-            "command": "EVENT_ACTOR_EFFECTS",
-            "args": {
-              "effect": "flicker",
-              "actorId": "fc340f48-f2d9-4a65-b65b-ea3812750f3c",
-              "distance": 20,
-              "speed": 2,
-              "time": 0.5,
-              "frames": 4,
-              "timeUnits": "frames"
-            },
-            "id": "cc3804d2-cfbd-4b81-9f8f-f4d2975bcbf9"
-          }
-        ],
-        "on_select": [
-          {
-            "command": "EVENT_SWITCH",
-            "args": {
-              "variable": "L0",
-              "choices": 2,
-              "__collapseCase0": false,
-              "__collapseCase1": false,
-              "__collapseCase2": false,
-              "__collapseCase3": false,
-              "__collapseCase4": false,
-              "__collapseCase5": false,
-              "__collapseCase6": false,
-              "__collapseCase7": false,
-              "__collapseCase8": false,
-              "__collapseCase9": false,
-              "__collapseCase10": false,
-              "__collapseCase11": false,
-              "__collapseCase12": false,
-              "__collapseCase13": false,
-              "__collapseCase14": false,
-              "__collapseCase15": false,
-              "__collapseElse": false
-            },
-            "children": {
-              "true0": [
-                {
-                  "command": "EVENT_ACTOR_EFFECTS",
-                  "args": {
-                    "effect": "flicker",
-                    "actorId": "fe1ab85d-9086-43a2-9659-cc774966fd40",
-                    "distance": 20,
-                    "speed": 2,
-                    "time": 0.5,
-                    "frames": 30
-                  },
-                  "id": "48c45c64-f9a2-4e02-a74c-819e1895eb50"
-                }
-              ],
-              "true1": [
-                {
-                  "command": "EVENT_ACTOR_EFFECTS",
-                  "args": {
-                    "effect": "flicker",
-                    "actorId": "702903d0-bfae-4ae3-9d19-9daf1aeb9746",
-                    "distance": 20,
-                    "speed": 2,
-                    "time": 0.5,
-                    "frames": 30
-                  },
-                  "id": "8975d4d5-41ef-41c0-8ddf-61d49c30e440"
-                }
-              ],
-              "true2": [],
-              "true3": [],
-              "true4": [],
-              "true5": [],
-              "true6": [],
-              "true7": [],
-              "true8": [],
-              "true9": [],
-              "true10": [],
-              "true11": [],
-              "true12": [],
-              "true13": [],
-              "true14": [],
-              "true15": [],
-              "false": []
-            },
-            "id": "58c3d851-4092-40e5-b948-04fc8369bb59"
-          }
-        ],
-        "on_cancel": [
-          {
-            "command": "EVENT_ACTOR_EFFECTS",
-            "args": {
-              "effect": "flicker",
-              "actorId": "0c532ec2-ed5f-49a6-8ccf-b7a8351284f6",
-              "distance": 20,
-              "speed": 2,
-              "time": 0.5,
-              "frames": 30
-            },
-            "id": "3fe966dd-35fa-4c00-a23f-f60efb6febc3"
-          }
-        ],
-        "on_change": []
-      },
-      "id": "74d4f53b-5b57-408b-8606-8fa46dff8f93"
-    },
-    {
-      "command": "EVENT_SET_VALUE",
-      "args": {
-        "variable": "L2",
-        "value": {
-          "type": "number",
-          "value": 1
-        }
-      },
-      "id": "b8ccbaac-1ce9-453b-8acc-b1aab08d3126"
-    },
-    {
       "command": "MENU_DEFINE_MENU_STATE_VIA_DYNAMIC_MENU",
       "args": {
-        "menu_id": 1,
+        "menu_id": 4,
         "__dynamic_menu_section": "menu",
-        "variable": "L2",
-        "slot_count": 2,
-        "script_count": 2,
-        "slot_1_view": "Item 1",
+        "variable": "9",
+        "slot_count": 3,
+        "script_count": 3,
+        "slot_1_view": "Fire",
         "slot_1_script": {
           "type": "number",
           "value": 1
         },
-        "slot_2_view": "Item 2",
+        "slot_2_view": "Ice",
         "slot_2_script": {
           "type": "number",
           "value": 2
         },
-        "slot_3_view": "Item 3",
+        "slot_3_view": "Soap",
         "slot_3_script": {
           "type": "number",
           "value": 3
@@ -375,34 +349,26 @@
         "cancelOnLastOptionText": "Cancel",
         "cancelOnB": true,
         "layout": "dialogue",
-        "__section": "on_init",
+        "__section": "on_select",
         "cancelOnLastOption": false,
-        "slot_1_choice": "L0",
-        "slot_2_choice": "L1"
+        "slot_1_choice": "6",
+        "slot_2_choice": "7",
+        "__collapse": false,
+        "slot_3_choice": "8",
+        "__comment": false
       },
       "children": {
         "on_init": [
           {
             "command": "EVENT_SET_VALUE",
             "args": {
-              "variable": "L0",
+              "variable": "9",
               "value": {
                 "type": "number",
                 "value": 1
               }
             },
             "id": "c7778fd6-b5f4-4744-8523-f6c75d3caebc"
-          },
-          {
-            "command": "EVENT_SET_VALUE",
-            "args": {
-              "variable": "L1",
-              "value": {
-                "type": "number",
-                "value": 2
-              }
-            },
-            "id": "ed691453-f2db-493f-872a-cf059a3108a3"
           }
         ],
         "on_select": [],
@@ -423,5 +389,6 @@
   "playerHit1Script": [],
   "playerHit2Script": [],
   "playerHit3Script": [],
-  "playerSpriteSheetId": "e4ac0c3d-6ac2-4fa5-8e21-910df055d0ac"
+  "playerSpriteSheetId": "e4ac0c3d-6ac2-4fa5-8e21-910df055d0ac",
+  "autoFadeEventCollapse": true
 }

@@ -117,6 +117,7 @@ const toASMCollisionMask = (groups) => {
  */
 const compile = (input, helpers) => {
     if (input.compileSubScript === "on_init") {
+        helpers._addComment("Actor Menu On Init")
         helpers._stackPushConst(toASMCollisionMask(input.collisionGroup))
         helpers._callNative("prepareActorMenuState")
         helpers._stackPop(1)
@@ -124,6 +125,7 @@ const compile = (input, helpers) => {
     }
 
     if (input.compileSubScript === "on_select") {
+        helpers._addComment("Actor Menu On Select")
         const thread_lock = helpers._declareLocal("thread_lock", 1, true)
         helpers._stackPushReference(thread_lock)
         helpers._stackPushConst(toASMCollisionMask([input.on_select_group]))

@@ -1,0 +1,26 @@
+{
+    "configurations": [
+        {
+            "name": "gameboy",
+            "includePath": [
+                "${workspaceFolder}/plugins/Menu Screen/engine/src/**",
+                "${workspaceFolder}/plugins/Menu Screen/engine/include/**",
+                "${userHome}/.cache/gb-studio/_gbsbuild/include/**",
+                "${userHome}/.cache/gb-studio/_gbstools/gbdk/include/**"
+            ],
+            "defines": [
+                "__PORT_sm83",
+                "__TARGET_gb"
+            ],
+            "compilerPath": "",
+            "cStandard": "c11",
+            "intelliSenseMode": "${default}",
+            "compilerArgs": [],
+            "browse": {
+                "limitSymbolsToIncludedHeaders": true
+            }
+        }
+    ],
+    "version": 4
+}
+

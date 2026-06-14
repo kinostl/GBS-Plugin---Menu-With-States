@@ -13,18 +13,6 @@
   "symbol": "script_1",
   "script": [
     {
-      "command": "MENU_DISPLAY_ACTORS_MENU",
-      "args": {
-        "variable": "V0",
-        "collisionGroup": [
-          "1"
-        ],
-        "__comment": false,
-        "__collapse": true
-      },
-      "id": "01b1a4fa-5396-4e45-9bbb-4ad5f2d2c482"
-    },
-    {
       "command": "EVENT_ACTOR_SET_DIRECTION",
       "args": {
         "actorId": "$self$",

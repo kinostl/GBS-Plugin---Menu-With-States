@@ -5,12 +5,10 @@ __PORT_sm83
 -D
 CGB
 -I
-/home/zone/Documents/spacebot_contribs/Ekoryah Shards of the Fallen Crown/Ekoryah-Shards-of-the-Fallen-Crown/plugins/RPG Combat Tools/engine/include
--I
-/home/zone/Documents/spacebot_contribs/Ekoryah Shards of the Fallen Crown/Ekoryah-Shards-of-the-Fallen-Crown/plugins/Ekoryah Shards of the Fallen Crown/engine/include
+/home/zone/Documents/RPG Menu Deux Tre/plugins/Menu Screen/engine/include
 -isystem
-/home/zone/.cache/gbstudio-v4/_gbsbuild/include
+/home/zone/.cache/gb-studio/_gbsbuild/include
 -isystem
-/home/zone/.cache/gbstudio-v4/_gbstools/gbdk/include
+/home/zone/.cache/gb-studio/_gbstools/gbdk/include
 --std
 c11
