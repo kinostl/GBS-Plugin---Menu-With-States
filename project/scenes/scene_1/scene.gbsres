@@ -253,6 +253,13 @@
               "waitForScript": true
             },
             "id": "0ee562e2-3ef9-49e0-be76-2c652bfe09c9"
+          },
+          {
+            "command": "MENU_JUMP_TO_MENU_STATE",
+            "args": {
+              "menu_id": 1
+            },
+            "id": "c9cab3d8-ba7f-450d-9a59-e8d61e26f298"
           }
         ]
       },
@@ -349,7 +356,7 @@
         "cancelOnLastOptionText": "Cancel",
         "cancelOnB": true,
         "layout": "dialogue",
-        "__section": "on_select",
+        "__section": "on_init",
         "cancelOnLastOption": false,
         "slot_1_choice": "6",
         "slot_2_choice": "7",
@@ -371,7 +378,107 @@
             "id": "c7778fd6-b5f4-4744-8523-f6c75d3caebc"
           }
         ],
-        "on_select": [],
+        "on_select": [
+          {
+            "command": "EVENT_SWITCH",
+            "args": {
+              "variable": "9",
+              "choices": 3,
+              "__collapseCase0": false,
+              "__collapseCase1": false,
+              "__collapseCase2": false,
+              "__collapseCase3": false,
+              "__collapseCase4": false,
+              "__collapseCase5": false,
+              "__collapseCase6": false,
+              "__collapseCase7": false,
+              "__collapseCase8": false,
+              "__collapseCase9": false,
+              "__collapseCase10": false,
+              "__collapseCase11": false,
+              "__collapseCase12": false,
+              "__collapseCase13": false,
+              "__collapseCase14": false,
+              "__collapseCase15": false,
+              "__collapseElse": false,
+              "value0": {
+                "type": "constant",
+                "value": "6b59d959-f1c8-47cc-a49f-81fc340fc7c6"
+              },
+              "value1": {
+                "type": "constant",
+                "value": "8b8eace7-602d-419e-bed8-d780b3ae73ce"
+              },
+              "value2": {
+                "type": "constant",
+                "value": "ee9e2f44-c8d5-4394-ae19-0ba676b8ba50"
+              }
+            },
+            "children": {
+              "true0": [
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "3",
+                    "value": {
+                      "type": "constant",
+                      "value": "a621af65-ad59-4545-9bb5-6983d7e9e040"
+                    }
+                  },
+                  "id": "b8aa0954-55e2-4c2f-a7e6-483cd8280356"
+                }
+              ],
+              "true1": [
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "3",
+                    "value": {
+                      "type": "constant",
+                      "value": "1222793e-4aef-4f7d-8597-11e9fb6fa2ce"
+                    }
+                  },
+                  "id": "184b19b4-6c75-4ac3-ba00-125bbdf5d5bd"
+                }
+              ],
+              "true2": [
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "3",
+                    "value": {
+                      "type": "constant",
+                      "value": "1222793e-4aef-4f7d-8597-11e9fb6fa2ce"
+                    }
+                  },
+                  "id": "ddb6d487-3a82-4d85-891a-b46b90d67d9e"
+                }
+              ],
+              "true3": [],
+              "true4": [],
+              "true5": [],
+              "true6": [],
+              "true7": [],
+              "true8": [],
+              "true9": [],
+              "true10": [],
+              "true11": [],
+              "true12": [],
+              "true13": [],
+              "true14": [],
+              "true15": [],
+              "false": []
+            },
+            "id": "44728ba9-8f39-4364-a150-09d074edb17f"
+          },
+          {
+            "command": "MENU_JUMP_TO_MENU_STATE",
+            "args": {
+              "menu_id": 2
+            },
+            "id": "8af72d06-0e3a-49ad-96f0-9a5a92057653"
+          }
+        ],
         "on_cancel": [],
         "on_change": []
       },

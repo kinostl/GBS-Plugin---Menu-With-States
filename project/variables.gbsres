@@ -120,14 +120,14 @@
   "constants": [
     {
       "id": "a621af65-ad59-4545-9bb5-6983d7e9e040",
-      "name": "ANIMATION_TYPE/UP-DOWN",
-      "symbol": "const_animation_type_up_dow",
+      "name": "ANIM_T/UP-DOWN",
+      "symbol": "const_anim_t_up_down",
       "value": 1
     },
     {
       "id": "1222793e-4aef-4f7d-8597-11e9fb6fa2ce",
-      "name": "ANIMATION_TYPE/LEFT_RIGHT",
-      "symbol": "const_animation_type_left_r",
+      "name": "ANIM_T/LEFT_RIGHT",
+      "symbol": "const_anim_t_left_right",
       "value": 2
     },
     {
@@ -150,8 +150,8 @@
     },
     {
       "id": "79113f00-6f21-401a-a77b-b6f777789b3d",
-      "name": "ANIMATION_TYPE/DMG_ANIM_COUNT",
-      "symbol": "const_animation_type_dmg_an_0",
+      "name": "DMG/ANIM_COUNT",
+      "symbol": "const_dmg_anim_count",
       "value": 1
     }
   ]

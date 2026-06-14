@@ -22,22 +22,13 @@ const fields = [{
     defaultValue: true,
 }]
 
-const toASMCollisionMask = (groups) => {
-    return groups.reduce((mask, group) => {
-        if (group === "player") {
-            return mask | 1;
-        }
-        if (group === "1") {
-            return mask | 2;
-        }
-        if (group === "2") {
-            return mask | 4;
-        }
-        if (group === "3") {
-            return mask | 8;
-        }
-        return mask;
-    }, 0)
+const toASMCollisionGroup = (group) => {
+    return ({
+        "player": "0",
+        "1": "2",
+        "2": "4",
+        "3": "8",
+    })[group]
 };
 
 /**
@@ -48,7 +39,7 @@ const toASMCollisionMask = (groups) => {
 const compile = (input, helpers) => {
     const thread_lock = helpers._declareLocal("thread_lock", 1, true)
     helpers._stackPushReference(thread_lock)
-    helpers._stackPushConst(toASMCollisionMask([input.collision_group]))
+    helpers._stackPushConst(toASMCollisionGroup(input.collision_group))
     helpers.actorPushById(input.actor)
     helpers._callNative("runActorScript")
     helpers._stackPop(3)

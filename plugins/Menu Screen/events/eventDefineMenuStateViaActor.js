@@ -92,22 +92,13 @@ const fields = [{
     on_change
 ]
 
-const toASMCollisionMask = (groups) => {
-    return groups.reduce((mask, group) => {
-        if (group === "player") {
-            return mask | 1;
-        }
-        if (group === "1") {
-            return mask | 2;
-        }
-        if (group === "2") {
-            return mask | 4;
-        }
-        if (group === "3") {
-            return mask | 8;
-        }
-        return mask;
-    }, 0)
+const toASMCollisionGroup = (group) => {
+    return ({
+        "player": "0",
+        "1": "2",
+        "2": "4",
+        "3": "8",
+    })[group]
 };
 
 /**
@@ -118,7 +109,7 @@ const toASMCollisionMask = (groups) => {
 const compile = (input, helpers) => {
     if (input.compileSubScript === "on_init") {
         helpers._addComment("Actor Menu On Init")
-        helpers._stackPushConst(toASMCollisionMask(input.collisionGroup))
+        helpers._stackPushConst(toASMCollisionGroup(input.collisionGroup))
         helpers._callNative("prepareActorMenuState")
         helpers._stackPop(1)
         return
@@ -128,7 +119,7 @@ const compile = (input, helpers) => {
         helpers._addComment("Actor Menu On Select")
         const thread_lock = helpers._declareLocal("thread_lock", 1, true)
         helpers._stackPushReference(thread_lock)
-        helpers._stackPushConst(toASMCollisionMask([input.on_select_group]))
+        helpers._stackPushConst(toASMCollisionGroup(input.on_select_group))
         helpers._callNative("runActorMenuScript")
         helpers._stackPop(2)
         helpers._addCmd("VM_JOIN", helpers.getVariableAlias(thread_lock))
