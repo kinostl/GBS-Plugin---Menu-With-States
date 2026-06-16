@@ -2,6 +2,18 @@ const id = "MENU_DEFINE_MENU_STATE_VIA_MENU";
 const groups = ["Menus"];
 const name = "Define Menu State Using Menu";
 const l10n = require("../helpers/l10n").default;
+const autoLabel = (fetchArg) => {
+  const numItems = parseInt(fetchArg("items"));
+  const text = Array(numItems)
+    .fill()
+    .map((_, i) => {
+      return `"${fetchArg(`option${i + 1}`)}"`;
+    })
+    .join();
+  const variable = fetchArg("variable")
+  const id = fetchArg("menu_id")
+  return `Menu State #${id}: Set ${variable} With Options: ${text}`;
+};
 
 /**
  * copy the shit from Menu classic not my dynamic shit
@@ -407,4 +419,5 @@ module.exports = {
   groups,
   fields,
   compile,
+  autoLabel,
 };

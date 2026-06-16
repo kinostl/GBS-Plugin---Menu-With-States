@@ -2,6 +2,11 @@ const id = "MENU_DEFINE_MENU_STATE_VIA_DYNAMIC_MENU";
 const groups = ["Menus"];
 const name = "Define Menu State Using Dynamic Menu";
 const l10n = require("../helpers/l10n").default;
+const autoLabel = (fetchArg) => {
+  const variable = fetchArg("variable")
+  const id = fetchArg("menu_id")
+  return `Menu State #${id}: Set ${variable} With Dynamic Options`;
+};
 
 /**
  * Dynamic Menu Fields
@@ -441,4 +446,5 @@ module.exports = {
     groups,
     fields,
     compile,
+    autoLabel,
 };

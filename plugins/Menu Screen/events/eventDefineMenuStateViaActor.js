@@ -2,6 +2,12 @@ const id = "MENU_DEFINE_MENU_STATE_VIA_ACTORS";
 const groups = ["Menus"];
 const name = "Define Menu State Using Actors";
 const l10n = require("../helpers/l10n").default;
+const autoLabel = (fetchArg) => {
+  const variable = fetchArg("variable")
+  const id = fetchArg("menu_id")
+  const group = fetchArg("collisionGroup")
+  return `Menu State #${id}: Set ${variable} With Actors in Group ${group} as Options`;
+};
 
 /**
  * Displays a list of actors in a specified group
@@ -163,4 +169,5 @@ module.exports = {
     groups,
     fields,
     compile,
+    autoLabel,
 };

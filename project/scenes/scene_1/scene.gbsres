@@ -24,7 +24,8 @@
         "value": {
           "type": "number",
           "value": 1
-        }
+        },
+        "__collapse": true
       },
       "id": "5db2b659-bbed-4ce0-b3c1-11f9fafed94b"
     },
@@ -35,7 +36,8 @@
         "value": {
           "type": "number",
           "value": 2
-        }
+        },
+        "__collapse": true
       },
       "id": "edc48462-1708-4c99-99c9-70bffd744ef1"
     },
@@ -46,7 +48,8 @@
         "value": {
           "type": "number",
           "value": 3
-        }
+        },
+        "__collapse": true
       },
       "id": "ee0f3311-13b0-429b-9b32-81bb68797b9b"
     },
@@ -67,7 +70,7 @@
         "cancelOnB": false,
         "layout": "dialogue",
         "__section": "on_select",
-        "__collapse": false,
+        "__collapse": true,
         "__comment": false
       },
       "children": {
@@ -149,6 +152,31 @@
               ],
               "true3": [
                 {
+                  "command": "EVENT_TEXT",
+                  "args": {
+                    "text": [
+                      "You flee..."
+                    ],
+                    "__section": "text",
+                    "avatarId": "",
+                    "minHeight": 4,
+                    "maxHeight": 7,
+                    "textX": 1,
+                    "textY": 1,
+                    "textHeight": 5,
+                    "position": "bottom",
+                    "clearPrevious": true,
+                    "showFrame": "true",
+                    "speedIn": -1,
+                    "speedOut": -1,
+                    "closeWhen": "key",
+                    "closeButton": "a",
+                    "closeDelayTime": 0.5,
+                    "closeDelayFrames": 30
+                  },
+                  "id": "be8de0a5-32a5-4047-98eb-2fc7a5fbdf8c"
+                },
+                {
                   "command": "EVENT_SWITCH_SCENE",
                   "args": {
                     "sceneId": "2f13d5a2-0bec-4d54-bd1c-f3365e0d8cb3",
@@ -199,7 +227,7 @@
         "on_select": "1",
         "variable": "9",
         "on_select_group": "player",
-        "__collapse": false,
+        "__collapse": true,
         "__comment": false
       },
       "children": {
@@ -264,6 +292,100 @@
         ]
       },
       "id": "79b7de98-8f89-4c87-8e8b-97286505d39c"
+    },
+    {
+      "command": "MENU_DEFINE_MENU_STATE_VIA_MENU",
+      "args": {
+        "menu_id": 3,
+        "variable": "9",
+        "items": 2,
+        "option1": "Potion",
+        "option2": "Bombs",
+        "option3": "",
+        "option4": "",
+        "option5": "",
+        "option6": "",
+        "option7": "",
+        "option8": "",
+        "cancelOnB": true,
+        "layout": "dialogue",
+        "__section": "on_select",
+        "__collapse": true
+      },
+      "children": {
+        "on_init": [],
+        "on_select": [
+          {
+            "command": "EVENT_SWITCH",
+            "args": {
+              "variable": "9",
+              "choices": 2,
+              "__collapseCase0": false,
+              "__collapseCase1": false,
+              "__collapseCase2": false,
+              "__collapseCase3": false,
+              "__collapseCase4": false,
+              "__collapseCase5": false,
+              "__collapseCase6": false,
+              "__collapseCase7": false,
+              "__collapseCase8": false,
+              "__collapseCase9": false,
+              "__collapseCase10": false,
+              "__collapseCase11": false,
+              "__collapseCase12": false,
+              "__collapseCase13": false,
+              "__collapseCase14": false,
+              "__collapseCase15": false,
+              "__collapseElse": false
+            },
+            "children": {
+              "true0": [
+                {
+                  "command": "EVENT_CALL_CUSTOM_EVENT",
+                  "args": {
+                    "customEventId": "20eb97dc-0532-4ed5-a99e-7f1e72e4f270"
+                  },
+                  "id": "bab3e386-27cf-41e0-b0e7-fdfde5b8e18e"
+                },
+                {
+                  "command": "MENU_JUMP_TO_MENU_STATE",
+                  "args": {
+                    "menu_id": 1
+                  },
+                  "id": "dc639d83-cf59-4efc-9013-2a663f744e44"
+                }
+              ],
+              "true1": [
+                {
+                  "command": "MENU_JUMP_TO_MENU_STATE",
+                  "args": {
+                    "menu_id": 4
+                  },
+                  "id": "207e8526-12b2-410b-a3ce-878534ae3b62"
+                }
+              ],
+              "true2": [],
+              "true3": [],
+              "true4": [],
+              "true5": [],
+              "true6": [],
+              "true7": [],
+              "true8": [],
+              "true9": [],
+              "true10": [],
+              "true11": [],
+              "true12": [],
+              "true13": [],
+              "true14": [],
+              "true15": [],
+              "false": []
+            },
+            "id": "4a7bb416-3e61-4bff-aa0a-1f0505e942ea"
+          }
+        ],
+        "on_cancel": []
+      },
+      "id": "8401b772-3160-46ca-89f7-c5ac9d6b3504"
     },
     {
       "command": "MENU_DEFINE_MENU_STATE_VIA_DYNAMIC_MENU",
@@ -356,11 +478,11 @@
         "cancelOnLastOptionText": "Cancel",
         "cancelOnB": true,
         "layout": "dialogue",
-        "__section": "on_init",
+        "__section": "on_select",
         "cancelOnLastOption": false,
         "slot_1_choice": "6",
         "slot_2_choice": "7",
-        "__collapse": false,
+        "__collapse": true,
         "slot_3_choice": "8",
         "__comment": false
       },
@@ -488,9 +610,35 @@
       "command": "MENU_JUMP_TO_MENU_STATE",
       "args": {
         "menu_id": 1,
-        "__collapse": false
+        "__collapse": true
       },
       "id": "5e358dab-37e8-478a-897c-1578705a9034"
+    },
+    {
+      "command": "EVENT_PARTICLE_EFFECT",
+      "args": {
+        "spriteSheetId": "581d34d0-9591-4e6e-a609-1d94f203b0cd",
+        "spriteStateId": "",
+        "speed": 2,
+        "animSpeed": 15,
+        "effect": "static",
+        "lifeTime": 1
+      },
+      "id": "3f06ad9c-2c75-4817-a855-2cfff98bc9c7"
+    },
+    {
+      "command": "EVENT_WAIT",
+      "args": {
+        "time": {
+          "type": "number",
+          "value": 0.5
+        },
+        "frames": {
+          "type": "number",
+          "value": 1
+        }
+      },
+      "id": "032cb3cf-9d2b-438c-b8b7-0275cf18d890"
     }
   ],
   "playerHit1Script": [],

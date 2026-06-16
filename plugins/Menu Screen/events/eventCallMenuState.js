@@ -1,6 +1,10 @@
 const id = "MENU_JUMP_TO_MENU_STATE";
 const groups = ["Menus"];
 const name = "Jump To Menu State";
+const autoLabel = (fetchArg) => {
+    const id = fetchArg("menu_id")
+    return `Jump To Menu State #${id}`;
+};
 
 const fields = [{
     key: "menu_id",
@@ -64,4 +68,5 @@ module.exports = {
     compile,
     waitUntilAfterInitFade: true,
     sceneTypes: ["MENU_SCREEN"],
+    autoLabel
 };

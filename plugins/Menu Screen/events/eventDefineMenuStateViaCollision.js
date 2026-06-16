@@ -2,6 +2,11 @@ const id = "MENU_DEFINE_MENU_STATE_VIA_COLLISIONS";
 const groups = ["Menus"];
 const name = "Define Menu State Using Collisions";
 const l10n = require("../helpers/l10n").default;
+const autoLabel = (fetchArg) => {
+  const variable = fetchArg("variable")
+  const id = fetchArg("menu_id")
+  return `Menu State #${id}: Set ${variable} With Collisions as Options`;
+};
 
 const settings = [
     {
@@ -142,4 +147,5 @@ module.exports = {
     fields,
     compile,
     sceneTypes: ["MENU_SCREEN"],
+    autoLabel,
 };
