@@ -133,14 +133,16 @@ const compile = (input, helpers) => {
         return
     }
 
-    const on_init = [{
-        "command": id,
-        "id": "",
-        "args": {
-            ...input,
-            compileSubScript: "on_init"
-        }
-    }, ...input.on_init]
+    const on_init = [
+        ...input.on_init,
+        {
+            "command": id,
+            "id": "",
+            "args": {
+                ...input,
+                compileSubScript: "on_init"
+            }
+        }]
 
     const on_select = [{
         "command": id,

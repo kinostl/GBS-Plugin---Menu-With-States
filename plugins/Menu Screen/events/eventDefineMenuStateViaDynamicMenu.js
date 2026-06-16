@@ -320,9 +320,6 @@ const compile = (input, helpers) => {
             })
         }
 
-        const start_draw_view_loop = helpers.getNextLabel()
-        const end_draw_view_loop = helpers.getNextLabel()
-
         helpers._overlayClear(0, 0, menu_width, menu_height, ".UI_COLOR_WHITE", true, false)
         for (let i = 0; i < input.slot_count; i++) {
             const x_off = (input.layout == "dialogue" && i >= 4) ? 9 : 0
@@ -333,18 +330,8 @@ const compile = (input, helpers) => {
 
             helpers.variableSetToValue(slot_x, x)
             helpers.variableSetToValue(slot_y, y)
-            helpers.variableCopy(choice, input[`slot_${i + 1}_choice`])
-            helpers._addCmd("VM_CALL", `${start_draw_view_loop}$`)
+            helpers.caseVariableConstValue(input[`slot_${i + 1}_choice`], view_choices)
         }
-        helpers._jump(end_draw_view_loop)
-        helpers._label(start_draw_view_loop)
-        helpers._stackPushConst(1)
-        helpers.output.pop()
-        helpers.caseVariableConstValue(choice, view_choices)
-        helpers._addCmd("VM_RET")
-        helpers._stackPop(1)
-        helpers.output.pop()
-        helpers._label(end_draw_view_loop)
         if (input.cancelOnLastOption) {
             const x_off = (input.layout == "dialogue" && i > 4) ? 10 : 0
             const x = 2 + x_off
@@ -367,7 +354,11 @@ const compile = (input, helpers) => {
         helpers._setConstMemUInt8("show_actors_on_overlay", 0)
         helpers.overlayMoveTo(menu_x, 18, ".OVERLAY_OUT_SPEED")
         helpers.caseVariableConstValue(choice, confirm_choices)
-        helpers.markLocalsUsed(choice)
+        return
+    }
+    if (input.compileSubScript === "on_cancel") {
+        helpers._setConstMemUInt8("show_actors_on_overlay", 0)
+        helpers.overlayMoveTo(menu_x, 18, ".OVERLAY_OUT_SPEED")
         return
     }
 
@@ -391,12 +382,21 @@ const compile = (input, helpers) => {
         }
     }, ...input.on_select]
 
+    const on_cancel = [{
+        "command": id,
+        "id": "",
+        "args": {
+            ...input,
+            compileSubScript: "on_cancel"
+        }
+    }, ...input.on_cancel]
+
     const clampedMenuIndex = (index) => {
         if (index < 0) {
-            return 0;
+            return 1;
         }
         if (index > choice_count - 1) {
-            return 0;
+            return choice_count;
         }
         return index + 1;
     };
@@ -435,6 +435,7 @@ const compile = (input, helpers) => {
             ...input,
             on_init,
             on_select,
+            on_cancel,
             menu_items
         }
     }])

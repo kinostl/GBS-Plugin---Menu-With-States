@@ -69,8 +69,8 @@
         "option8": "",
         "cancelOnB": false,
         "layout": "dialogue",
-        "__section": "on_select",
-        "__collapse": true,
+        "__section": "on_cancel",
+        "__collapse": false,
         "__comment": false
       },
       "children": {
@@ -223,11 +223,11 @@
           "1"
         ],
         "cancelOnB": true,
-        "__section": "on_select",
+        "__section": "on_cancel",
         "on_select": "1",
         "variable": "9",
         "on_select_group": "player",
-        "__collapse": true,
+        "__collapse": false,
         "__comment": false
       },
       "children": {
@@ -309,11 +309,23 @@
         "option8": "",
         "cancelOnB": true,
         "layout": "dialogue",
-        "__section": "on_select",
-        "__collapse": true
+        "__section": "on_init",
+        "__collapse": false
       },
       "children": {
-        "on_init": [],
+        "on_init": [
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "9",
+              "value": {
+                "type": "number",
+                "value": 1
+              }
+            },
+            "id": "3193df70-8337-49c2-ae4f-45c7955e4e8d"
+          }
+        ],
         "on_select": [
           {
             "command": "EVENT_SWITCH",
@@ -383,7 +395,15 @@
             "id": "4a7bb416-3e61-4bff-aa0a-1f0505e942ea"
           }
         ],
-        "on_cancel": []
+        "on_cancel": [
+          {
+            "command": "MENU_JUMP_TO_MENU_STATE",
+            "args": {
+              "menu_id": 1
+            },
+            "id": "d7847b68-6853-447e-b172-188d2070ca6e"
+          }
+        ]
       },
       "id": "8401b772-3160-46ca-89f7-c5ac9d6b3504"
     },
@@ -478,11 +498,11 @@
         "cancelOnLastOptionText": "Cancel",
         "cancelOnB": true,
         "layout": "dialogue",
-        "__section": "on_select",
+        "__section": "on_cancel",
         "cancelOnLastOption": false,
         "slot_1_choice": "6",
         "slot_2_choice": "7",
-        "__collapse": true,
+        "__collapse": false,
         "slot_3_choice": "8",
         "__comment": false
       },
@@ -601,7 +621,15 @@
             "id": "8af72d06-0e3a-49ad-96f0-9a5a92057653"
           }
         ],
-        "on_cancel": [],
+        "on_cancel": [
+          {
+            "command": "MENU_JUMP_TO_MENU_STATE",
+            "args": {
+              "menu_id": 1
+            },
+            "id": "fa175e0b-20e0-4726-b73f-07d7f6ef76a0"
+          }
+        ],
         "on_change": []
       },
       "id": "2e489647-ed6c-4ab6-8cad-f6fff3e02737"
@@ -613,32 +641,6 @@
         "__collapse": true
       },
       "id": "5e358dab-37e8-478a-897c-1578705a9034"
-    },
-    {
-      "command": "EVENT_PARTICLE_EFFECT",
-      "args": {
-        "spriteSheetId": "581d34d0-9591-4e6e-a609-1d94f203b0cd",
-        "spriteStateId": "",
-        "speed": 2,
-        "animSpeed": 15,
-        "effect": "static",
-        "lifeTime": 1
-      },
-      "id": "3f06ad9c-2c75-4817-a855-2cfff98bc9c7"
-    },
-    {
-      "command": "EVENT_WAIT",
-      "args": {
-        "time": {
-          "type": "number",
-          "value": 0.5
-        },
-        "frames": {
-          "type": "number",
-          "value": 1
-        }
-      },
-      "id": "032cb3cf-9d2b-438c-b8b7-0275cf18d890"
     }
   ],
   "playerHit1Script": [],

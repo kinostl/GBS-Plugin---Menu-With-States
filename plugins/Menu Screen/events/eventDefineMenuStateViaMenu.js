@@ -335,14 +335,16 @@ const compile = (input, helpers) => {
     return
   }
 
-  const on_init = [{
-    "command": id,
-    "id": "",
-    "args": {
-      ...input,
-      compileSubScript: "on_init"
-    }
-  }, ...input.on_init]
+  const on_init = [
+    ...input.on_init,
+    {
+      "command": id,
+      "id": "",
+      "args": {
+        ...input,
+        compileSubScript: "on_init"
+      }
+    }]
 
   const on_select = [{
     "command": id,
@@ -364,10 +366,10 @@ const compile = (input, helpers) => {
 
   const clampedMenuIndex = (index) => {
     if (index < 0) {
-      return 0;
+      return 1;
     }
     if (index > options.length - 1) {
-      return 0;
+      return options.length;
     }
     return index + 1;
   };
