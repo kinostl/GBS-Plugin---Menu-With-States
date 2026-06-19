@@ -16,7 +16,138 @@
   "symbol": "scene_2",
   "x": 330.49514563106794,
   "y": 30,
-  "script": [],
+  "script": [
+    {
+      "command": "EVENT_LOAD_PROJECTILE_SLOT",
+      "args": {
+        "__section": "projectile",
+        "slot": 0,
+        "spriteSheetId": "d549bba6-eaf5-401c-bfaa-e5f4575b49cd",
+        "spriteStateId": "",
+        "speed": 1,
+        "animSpeed": 15,
+        "lifeTime": 0.8,
+        "initialOffset": 0,
+        "loopAnim": true,
+        "destroyOnHit": false,
+        "collisionGroup": "3",
+        "collisionMask": []
+      },
+      "id": "cf2156b9-0dea-4687-8feb-e4ee8c889da8"
+    },
+    {
+      "command": "EVENT_LOAD_PROJECTILE_SLOT",
+      "args": {
+        "__section": "projectile",
+        "slot": 1,
+        "spriteSheetId": "8e4417c3-f879-4771-a133-135f0df3c9d4",
+        "spriteStateId": "",
+        "speed": 1,
+        "animSpeed": 15,
+        "lifeTime": 0.8,
+        "initialOffset": 0,
+        "loopAnim": true,
+        "destroyOnHit": false,
+        "collisionGroup": "3",
+        "collisionMask": []
+      },
+      "id": "7ced0e55-f38b-4a59-98a3-a647f4cfe0ee"
+    },
+    {
+      "command": "EVENT_LOAD_PROJECTILE_SLOT",
+      "args": {
+        "__section": "projectile",
+        "slot": 2,
+        "spriteSheetId": "deb4c778-7905-4d3a-9de4-b5e8108807e2",
+        "spriteStateId": "",
+        "speed": 1,
+        "animSpeed": 15,
+        "lifeTime": 0.8,
+        "initialOffset": 0,
+        "loopAnim": true,
+        "destroyOnHit": false,
+        "collisionGroup": "3",
+        "collisionMask": []
+      },
+      "id": "9f2be4fa-a74d-403b-95f0-850ce9dc1f33"
+    },
+    {
+      "command": "EVENT_THREAD_START",
+      "args": {
+        "variable": "T0",
+        "__scriptTabs": "true"
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_LOOP",
+            "args": {},
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_EMITTER_START",
+                  "args": {
+                    "width": 8,
+                    "height": 8,
+                    "shape": "rect",
+                    "speed": -3,
+                    "time": {
+                      "type": "number",
+                      "value": 0.5
+                    },
+                    "frames": {
+                      "type": "number",
+                      "value": 1
+                    },
+                    "density": 20,
+                    "units": "tiles",
+                    "__scriptTabs": "particle_def",
+                    "x": 0,
+                    "y": 0,
+                    "time_units": "time",
+                    "chance": 20,
+                    "number_of_emitters": 8,
+                    "directionType": "angle",
+                    "angle": 128,
+                    "number_of_particles": 5,
+                    "slot": [
+                      0,
+                      1,
+                      2
+                    ]
+                  },
+                  "id": "2b3508be-920d-4cf0-831e-91a9cb28889b"
+                },
+                {
+                  "command": "EVENT_WAIT",
+                  "args": {
+                    "time": {
+                      "type": "number",
+                      "value": 0.2
+                    },
+                    "frames": {
+                      "type": "number",
+                      "value": 1
+                    }
+                  },
+                  "id": "f6966368-7273-4875-b9b6-0741ea13ea31"
+                }
+              ]
+            },
+            "id": "34b3e492-9ea6-46bb-9b93-ca3d268a5ab7"
+          }
+        ]
+      },
+      "id": "f33a6475-d3ef-437c-ab91-071adb7cbef8"
+    },
+    {
+      "command": "EVENT_FADE_IN",
+      "args": {
+        "speed": "2"
+      },
+      "id": "96d5634b-23f1-48b6-9af8-0d8bd53aa818"
+    }
+  ],
   "playerHit1Script": [],
   "playerHit2Script": [],
   "playerHit3Script": [],

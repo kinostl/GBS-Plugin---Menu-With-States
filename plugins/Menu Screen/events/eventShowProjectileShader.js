@@ -5,23 +5,17 @@ const groups = ["EVENT_GROUP_ACTOR"];
 
 const fields = [
     {
-        type: "group",
-        fields: [
-            {
-                key: "spriteSheetId",
-                type: "sprite",
-                label: l10n("FIELD_SPRITE_SHEET"),
-                description: l10n("FIELD_SPRITE_SHEET_PROJECTILE_DESC"),
-                defaultValue: "LAST_SPRITE",
-            },
-            {
-                key: "spriteStateId",
-                type: "animationstate",
-                label: l10n("FIELD_ANIMATION_STATE"),
-                description: l10n("FIELD_ANIMATION_STATE_DESC"),
-                defaultValue: "",
-            },
-        ],
+        key: "slot",
+        label: l10n("FIELD_PROJECTILE_SLOT"),
+        description: l10n("FIELD_LOAD_PROJECTILE_SLOT_DESC"),
+        type: "togglebuttons",
+        options: [0, 1, 2, 3, 4].map((n) => [
+            n,
+            l10n("FIELD_SLOT_N", { slot: n + 1 }),
+            l10n("FIELD_PROJECTILE_SLOT_N", { slot: n + 1 }),
+        ]),
+        allowNone: false,
+        defaultValue: 0,
     },
     {
         key: "actorId",
@@ -29,28 +23,6 @@ const fields = [
         type: "actor",
         defaultValue: "$self$",
         width: "100%",
-    },
-    {
-        type: "group",
-        fields: [
-            {
-                key: "speed",
-                label: l10n("FIELD_SPEED"),
-                description: l10n("FIELD_SPEED_DESC"),
-                type: "moveSpeed",
-                allowNone: true,
-                defaultValue: 2,
-                width: "50%",
-            },
-            {
-                key: "animSpeed",
-                label: l10n("FIELD_ANIMATION_SPEED"),
-                description: l10n("FIELD_ANIMATION_SPEED_DESC"),
-                type: "animSpeed",
-                defaultValue: 15,
-                width: "50%",
-            },
-        ],
     },
     {
         type: "group",
@@ -74,72 +46,7 @@ const fields = [
                     ].map((x) => [x, x]),
                 defaultValue: "static",
                 width: "100%",
-            },
-            {
-                key: "time",
-                label: l10n("FIELD_DURATION"),
-                description: l10n("FIELD_DURATION_WAIT_DESC"),
-                type: "value",
-                min: 0,
-                max: 60,
-                step: 0.1,
-                unitsField: "units",
-                unitsDefault: "time",
-                unitsAllowed: ["time", "frames"],
-                defaultValue: {
-                    type: "number",
-                    value: 0.5,
-                },
-                conditions: [
-                    {
-                        key: "units",
-                        ne: "frames",
-                    },
-                ],
-            },
-            {
-                key: "frames",
-                label: l10n("FIELD_DURATION"),
-                description: l10n("FIELD_DURATION_WAIT_DESC"),
-                type: "value",
-                min: 0,
-                max: 3600,
-                width: "50%",
-                unitsField: "units",
-                unitsDefault: "time",
-                unitsAllowed: ["time", "frames"],
-                defaultValue: {
-                    type: "number",
-                    value: 1,
-                },
-                conditions: [
-                    {
-                        key: "units",
-                        eq: "frames",
-                    },
-                ],
-            },
-        ]
-    },
-    {
-        type: "group",
-        fields: [
-            {
-                key: "offsetX",
-                label: "Offset X",
-                type: "number",
-                min: 0,
-                max: 256,
-                defaultValue: 0,
-            },
-            {
-                key: "offsetY",
-                label: "Offset Y",
-                type: "number",
-                min: 0,
-                max: 256,
-                defaultValue: 0,
-            },
+            }
         ]
     },
     {
@@ -223,7 +130,11 @@ const fields = [
  * @param {*} input
  * @param {import('/home/zone/.local/share/gb-studio/helpers.d.ts').Helpers} helpers 
  */
-const compile = (input, helpers) => { };
+const compile = (input, helpers) => {
+    const projectileIndex = input.slot
+    helpers.actorSetActive("player")
+    helpers.launchProjectileInActorDirection(input.slot, 0, 0, input.actorId)
+};
 
 module.exports = {
     id,
