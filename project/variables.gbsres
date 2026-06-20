@@ -132,27 +132,21 @@
     },
     {
       "id": "6b59d959-f1c8-47cc-a49f-81fc340fc7c6",
-      "name": "SLOT/MAGIC/FIRE",
-      "symbol": "const_slot_magic_fire",
+      "name": "MAGIC_T/FIRE",
+      "symbol": "const_magic_t_fire",
       "value": 1
     },
     {
       "id": "8b8eace7-602d-419e-bed8-d780b3ae73ce",
-      "name": "SLOT/MAGIC/ICE",
-      "symbol": "const_slot_magic_ice",
+      "name": "MAGIC_T/ICE",
+      "symbol": "const_magic_t_ice",
       "value": 2
     },
     {
       "id": "ee9e2f44-c8d5-4394-ae19-0ba676b8ba50",
-      "name": "SLOT/MAGIC/SOAP",
-      "symbol": "const_slot_magic_soap",
+      "name": "MAGIC_T/SOAP",
+      "symbol": "const_magic_t_soap",
       "value": 3
-    },
-    {
-      "id": "79113f00-6f21-401a-a77b-b6f777789b3d",
-      "name": "DMG/ANIM_COUNT",
-      "symbol": "const_dmg_anim_count",
-      "value": 1
     },
     {
       "id": "33a135a6-bb87-4a1d-85aa-d08b3386c9ca",

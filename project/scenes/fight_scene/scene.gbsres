@@ -2,7 +2,7 @@
   "_resourceType": "scene",
   "id": "a6076c33-248b-492b-9eba-f856fce3054e",
   "_index": 2,
-  "name": "Scene 1",
+  "name": "Fight Scene",
   "backgroundId": "8f7aebc2-cd56-4496-a829-d44e67ac9248",
   "tilesetId": "",
   "width": 20,
@@ -34,7 +34,7 @@
         "cancelOnB": false,
         "layout": "dialogue",
         "__section": "on_select",
-        "__collapse": true,
+        "__collapse": false,
         "__comment": false
       },
       "children": {
@@ -191,7 +191,7 @@
         "on_select": "1",
         "variable": "9",
         "on_select_group": "player",
-        "__collapse": false,
+        "__collapse": true,
         "__comment": false
       },
       "children": {
@@ -567,7 +567,15 @@
               "true13": [],
               "true14": [],
               "true15": [],
-              "false": []
+              "false": [
+                {
+                  "command": "MENU_JUMP_TO_MENU_STATE",
+                  "args": {
+                    "menu_id": 1
+                  },
+                  "id": "59d82988-3f2c-4855-8a00-dc7d1b07c3a8"
+                }
+              ]
             },
             "id": "44728ba9-8f39-4364-a150-09d074edb17f"
           },

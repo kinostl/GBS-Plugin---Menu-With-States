@@ -68,7 +68,19 @@
         "__collapse": false
       },
       "children": {
-        "true0": [],
+        "true0": [
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "V1",
+              "value": {
+                "type": "number",
+                "value": 1
+              }
+            },
+            "id": "d87b2eeb-a247-438a-bbda-d4eaa80e4ff4"
+          }
+        ],
         "true1": [
           {
             "command": "EVENT_LAUNCH_PROJECTILE",
@@ -373,8 +385,8 @@
       "args": {
         "variable": "V1",
         "from": {
-          "type": "constant",
-          "value": "79113f00-6f21-401a-a77b-b6f777789b3d"
+          "type": "variable",
+          "value": "V1"
         },
         "comparison": ">",
         "to": {

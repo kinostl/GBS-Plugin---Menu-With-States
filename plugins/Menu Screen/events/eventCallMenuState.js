@@ -57,6 +57,7 @@ const compile = (input, helpers) => {
             compile_subscript: "thread"
         }
     }])
+    helpers.scriptEnd()
     helpers.markLocalsUsed(menu_state_thread_h)
 }
 
