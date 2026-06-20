@@ -18,6 +18,17 @@
   "y": 32,
   "script": [
     {
+      "command": "EVENT_SET_VALUE",
+      "args": {
+        "variable": "5",
+        "value": {
+          "type": "number",
+          "value": 5
+        }
+      },
+      "id": "dea98d2a-b447-4033-9226-d5deb93441f8"
+    },
+    {
       "command": "EVENT_ACTOR_EFFECTS",
       "args": {
         "effect": "splitIn",

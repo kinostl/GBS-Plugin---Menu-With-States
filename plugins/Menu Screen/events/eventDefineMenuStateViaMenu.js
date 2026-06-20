@@ -420,4 +420,5 @@ module.exports = {
   fields,
   compile,
   autoLabel,
+  sceneTypes: ["MENU_SCREEN"],
 };

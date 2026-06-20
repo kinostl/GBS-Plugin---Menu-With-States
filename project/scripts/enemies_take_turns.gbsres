@@ -21,6 +21,81 @@
   "symbol": "script_0",
   "script": [
     {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "lt",
+          "valueA": {
+            "type": "variable",
+            "value": "1"
+          },
+          "valueB": {
+            "type": "number",
+            "value": 1
+          }
+        },
+        "__collapseElse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_TEXT",
+            "args": {
+              "text": [
+                "You won!"
+              ],
+              "__section": "text",
+              "avatarId": "",
+              "minHeight": 4,
+              "maxHeight": 7,
+              "textX": 1,
+              "textY": 1,
+              "textHeight": 5,
+              "position": "bottom",
+              "clearPrevious": true,
+              "showFrame": "true",
+              "speedIn": -1,
+              "speedOut": -1,
+              "closeWhen": "key",
+              "closeButton": "a",
+              "closeDelayTime": 0.5,
+              "closeDelayFrames": 30
+            },
+            "id": "9ac0e383-9582-4e4e-84f5-2c4831cd8f87"
+          },
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "2",
+              "value": {
+                "type": "true"
+              }
+            },
+            "id": "270ca85a-df54-49b9-874e-c20f203cf935"
+          },
+          {
+            "command": "EVENT_SWITCH_SCENE",
+            "args": {
+              "sceneId": "2f13d5a2-0bec-4d54-bd1c-f3365e0d8cb3",
+              "x": {
+                "type": "number",
+                "value": 9
+              },
+              "y": {
+                "type": "number",
+                "value": 10
+              },
+              "direction": "up",
+              "fadeSpeed": "2"
+            },
+            "id": "82293c22-68c6-46ef-98de-fca9c8aa110b"
+          }
+        ],
+        "false": []
+      },
+      "id": "2cfb81a3-b66c-41dc-ad38-3ed2f55b954e"
+    },
+    {
       "command": "MENU_RUN_ACTOR_SCRIPT",
       "args": {
         "actor": "0",

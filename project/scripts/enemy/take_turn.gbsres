@@ -3,13 +3,7 @@
   "id": "82166c49-fdc3-4602-9b59-89e2df1dcfb4",
   "name": "Enemy/Take Turn",
   "description": "",
-  "variables": {
-    "V0": {
-      "id": "V0",
-      "name": "Variable A",
-      "passByReference": true
-    }
-  },
+  "variables": {},
   "actors": {
     "0": {
       "id": "0",
@@ -84,7 +78,7 @@
           {
             "command": "EVENT_DEC_VALUE",
             "args": {
-              "variable": "V0"
+              "variable": "5"
             },
             "id": "1a8a4789-fcd0-4cca-92a3-ede09bfc26ab"
           },
@@ -120,7 +114,7 @@
                 "type": "lte",
                 "valueA": {
                   "type": "variable",
-                  "value": "V0"
+                  "value": "5"
                 },
                 "valueB": {
                   "type": "number",
