@@ -58,7 +58,7 @@
       "command": "MENU_DEFINE_TEXT_AREA",
       "args": {
         "collisionGroup": 1,
-        "__collapse": false,
+        "__collapse": true,
         "text": "Fire",
         "textArea": 1
       },
@@ -68,7 +68,7 @@
       "command": "MENU_DEFINE_TEXT_AREA",
       "args": {
         "collisionGroup": 2,
-        "__collapse": false,
+        "__collapse": true,
         "text": "Ice",
         "textArea": 2
       },
@@ -78,7 +78,7 @@
       "command": "MENU_DEFINE_TEXT_AREA",
       "args": {
         "collisionGroup": 3,
-        "__collapse": false,
+        "__collapse": true,
         "text": "Soap",
         "textArea": 3
       },
@@ -96,7 +96,7 @@
           "type": "number",
           "value": 4
         },
-        "__collapse": false
+        "__collapse": true
       },
       "id": "033a08e6-ae79-4740-9443-3aef09e517ea"
     },
@@ -112,7 +112,7 @@
           "type": "number",
           "value": 5
         },
-        "__collapse": false
+        "__collapse": true
       },
       "id": "d76703e0-f861-4bc6-b3aa-d72ec1a43095"
     },
@@ -128,7 +128,7 @@
           "type": "number",
           "value": 6
         },
-        "__collapse": false
+        "__collapse": true
       },
       "id": "17d3d45b-e232-4568-91f3-1a905ee84d60"
     },
@@ -138,13 +138,13 @@
         "x": 2,
         "y": 3,
         "cancelOnB": true,
-        "__section": "on_init",
+        "__section": "on_change",
         "menu_id": 1,
         "variable": "L0",
         "__comment": false,
         "cancelOnLastOption": false,
         "collisionGroup": 1,
-        "__collapse": true
+        "__collapse": false
       },
       "children": {
         "on_init": [

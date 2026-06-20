@@ -25,9 +25,16 @@ const compile = (input, helpers) => {
         return
     }
 
-    const on_init_script = helpers._compileSubScript("custom", input.on_init, "ms_on_init")
+    /**
+     * These are threads as a hack to force them to have VM_STOP at the end
+     */
     const on_select_script = helpers._compileSubScript("thread", input.on_select, "ms_on_select")
     const on_cancel_script = helpers._compileSubScript("thread", input.on_cancel, "ms_on_cancel")
+
+    /**
+     * These are correctly custom scripts because they continue acting after they run
+     */
+    const on_init_script = helpers._compileSubScript("custom", input.on_init, "ms_on_init")
     const on_change_script = helpers._compileSubScript("custom", input.on_change, "ms_on_change")
 
     const unionFlags = (flags, defaultValue = "UI_MENU_STANDARD") => {
