@@ -1,7 +1,7 @@
 {
   "_resourceType": "script",
   "id": "6d6e809f-51b2-4261-9454-65a858003c98",
-  "name": "Setup/Magic/Slot",
+  "name": "Set Magic Slot",
   "description": "",
   "variables": {
     "V0": {

@@ -89,10 +89,7 @@ const fields = [
  * @param {import('/home/zone/.local/share/gb-studio/helpers.d.ts').Helpers} helpers 
  */
 const compile = (input, helpers) => {
-    const chance = helpers._declareLocal("chance", 1)
-
-    helpers.variableSetToRandom(chance, 1, 100)
-    helpers.ifVariableCompareScriptValue(chance, ".LTE", {type: "number", value: input.chance}, ()=>{
+    const launchParticle = () => {
         helpers._addComment("Launch Particle In Angle");
         helpers._stackPushScriptValue(input.x)
         helpers._stackPushScriptValue(input.y)
@@ -100,8 +97,16 @@ const compile = (input, helpers) => {
         helpers._projectileLaunch(input.slot, ".ARG2");
         helpers._stackPop(3);
         helpers._addNL();
-    })
-    helpers._markLocalUse(chance)
+    }
+
+    if (input.chance == 100) {
+        launchParticle()
+    } else {
+        const chance = helpers._declareLocal("chance", 1)
+        helpers.variableSetToRandom(chance, 1, 100)
+        helpers.ifVariableCompareScriptValue(chance, ".LTE", { type: "number", value: input.chance }, launchParticle)
+        helpers._markLocalUse(chance)
+    }
 };
 
 module.exports = {

@@ -28,7 +28,8 @@
         "$variable[V1]$": {
           "type": "variable",
           "value": "L1"
-        }
+        },
+        "$actor[1]$": "fc340f48-f2d9-4a65-b65b-ea3812750f3c"
       },
       "id": "c3250788-127b-47a5-9c23-124146fcba40"
     }

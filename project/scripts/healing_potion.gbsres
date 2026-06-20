@@ -1,17 +1,24 @@
 {
   "_resourceType": "script",
   "id": "20eb97dc-0532-4ed5-a99e-7f1e72e4f270",
-  "name": "Menu/Items/Potion/Healing",
+  "name": "Healing Potion",
   "description": "",
   "variables": {},
-  "actors": {},
+  "actors": {
+    "0": {
+      "id": "0",
+      "name": "Actor A"
+    }
+  },
   "symbol": "script_7",
   "script": [
     {
-      "command": "EVENT_LAUNCH_PROJECTILE_SLOT",
+      "command": "EVENT_LAUNCH_PROJECTILE",
       "args": {
-        "__section": "source",
-        "actorId": "$self$",
+        "__section": "projectile",
+        "spriteSheetId": "495cc611-a667-4cf5-a26e-49d16fdb5002",
+        "spriteStateId": "",
+        "actorId": "0",
         "x": 0,
         "y": 0,
         "directionType": "direction",
@@ -20,9 +27,18 @@
         "angle": 0,
         "angleVariable": "V0",
         "targetActorId": "$self$",
-        "slot": 2
+        "speed": 0.25,
+        "animSpeed": 15,
+        "lifeTime": 1,
+        "initialOffset": 0,
+        "loopAnim": true,
+        "destroyOnHit": true,
+        "collisionGroup": "3",
+        "collisionMask": [
+          "1"
+        ]
       },
-      "id": "ac604718-b476-44e2-bb77-70fbc45209b7"
+      "id": "d561d7c9-9fd5-4339-a60b-9e6b56850bf9"
     },
     {
       "command": "EVENT_WAIT",

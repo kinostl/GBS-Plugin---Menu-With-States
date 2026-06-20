@@ -58,7 +58,7 @@
       "command": "MENU_DEFINE_TEXT_AREA",
       "args": {
         "collisionGroup": 1,
-        "__collapse": true,
+        "__collapse": false,
         "text": "Fire",
         "textArea": 1
       },
@@ -68,7 +68,7 @@
       "command": "MENU_DEFINE_TEXT_AREA",
       "args": {
         "collisionGroup": 2,
-        "__collapse": true,
+        "__collapse": false,
         "text": "Ice",
         "textArea": 2
       },
@@ -78,7 +78,7 @@
       "command": "MENU_DEFINE_TEXT_AREA",
       "args": {
         "collisionGroup": 3,
-        "__collapse": true,
+        "__collapse": false,
         "text": "Soap",
         "textArea": 3
       },
@@ -96,7 +96,7 @@
           "type": "number",
           "value": 4
         },
-        "__collapse": true
+        "__collapse": false
       },
       "id": "033a08e6-ae79-4740-9443-3aef09e517ea"
     },
@@ -112,7 +112,7 @@
           "type": "number",
           "value": 5
         },
-        "__collapse": true
+        "__collapse": false
       },
       "id": "d76703e0-f861-4bc6-b3aa-d72ec1a43095"
     },
@@ -128,7 +128,7 @@
           "type": "number",
           "value": 6
         },
-        "__collapse": true
+        "__collapse": false
       },
       "id": "17d3d45b-e232-4568-91f3-1a905ee84d60"
     },
@@ -158,7 +158,7 @@
                   "value": "L0"
                 }
               },
-              "__collapseElse": true
+              "__collapseElse": false
             },
             "children": {
               "true": [
@@ -391,7 +391,7 @@
         "variable": "L1",
         "__comment": false,
         "collisionGroup": 2,
-        "__collapse": true
+        "__collapse": false
       },
       "children": {
         "on_init": [
@@ -405,7 +405,7 @@
                   "value": "L1"
                 }
               },
-              "__collapseElse": true
+              "__collapseElse": false
             },
             "children": {
               "true": [

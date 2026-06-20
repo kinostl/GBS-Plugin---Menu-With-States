@@ -120,14 +120,14 @@
   "constants": [
     {
       "id": "a621af65-ad59-4545-9bb5-6983d7e9e040",
-      "name": "ANIM_T/UP-DOWN",
-      "symbol": "const_anim_t_up_down",
+      "name": "ANIM_T/FIGHT",
+      "symbol": "const_anim_t_fight",
       "value": 1
     },
     {
       "id": "1222793e-4aef-4f7d-8597-11e9fb6fa2ce",
-      "name": "ANIM_T/LEFT_RIGHT",
-      "symbol": "const_anim_t_left_right",
+      "name": "ANIM_T/FIRE",
+      "symbol": "const_anim_t_fire",
       "value": 2
     },
     {
@@ -153,6 +153,18 @@
       "name": "DMG/ANIM_COUNT",
       "symbol": "const_dmg_anim_count",
       "value": 1
+    },
+    {
+      "id": "33a135a6-bb87-4a1d-85aa-d08b3386c9ca",
+      "name": "ANIM_T/SOAP",
+      "symbol": "const_anim_t_soap",
+      "value": 3
+    },
+    {
+      "id": "96e6a0bf-5d53-4acd-91fb-87ad2f9c470f",
+      "name": "ANIM_T/ICE",
+      "symbol": "const_anim_t_ice",
+      "value": 4
     }
   ]
 }

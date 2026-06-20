@@ -1,42 +1,23 @@
 {
   "_resourceType": "script",
-  "id": "3496beee-46f2-4bec-b5b4-edd7a3f992c6",
-  "name": "Setup/Magic/Display",
+  "id": "1b9bd3af-1dd8-4b0e-a567-0297831f5a6f",
+  "name": "Write Magic Slot",
   "description": "",
   "variables": {
     "V0": {
       "id": "V0",
-      "name": "Slot Choice",
+      "name": "New Spell",
       "passByReference": true
     },
     "V1": {
       "id": "V1",
-      "name": "X",
-      "passByReference": false
-    },
-    "V2": {
-      "id": "V2",
-      "name": "Y",
-      "passByReference": false
+      "name": "Text Area ID",
+      "passByReference": true
     }
   },
   "actors": {},
-  "symbol": "script_16",
+  "symbol": "script_17",
   "script": [
-    {
-      "command": "EVENT_INC_VALUE",
-      "args": {
-        "variable": "V1"
-      },
-      "id": "3de36123-8b33-4640-98b4-72c52a45a768"
-    },
-    {
-      "command": "EVENT_INC_VALUE",
-      "args": {
-        "variable": "V2"
-      },
-      "id": "43b4c674-83eb-40a0-bbfb-de11d94aff21"
-    },
     {
       "command": "EVENT_SWITCH",
       "args": {
@@ -75,38 +56,35 @@
       "children": {
         "true0": [
           {
-            "command": "EVENT_TEXT_DRAW",
+            "command": "MENU_DEFINE_TEXT_AREA",
             "args": {
-              "text": "\\003#V1##V2#Fire",
-              "x": 0,
-              "y": 0,
-              "location": "overlay"
+              "text": "Fire",
+              "textArea": 0,
+              "variable": "V1"
             },
-            "id": "9ce33819-1023-4ab5-961b-e1219a8a319c"
+            "id": "395cdf58-0fd7-413a-a587-4b1daf29b512"
           }
         ],
         "true1": [
           {
-            "command": "EVENT_TEXT_DRAW",
+            "command": "MENU_DEFINE_TEXT_AREA",
             "args": {
-              "text": "\\003#V1##V2#Ice",
-              "x": 0,
-              "y": 0,
-              "location": "overlay"
+              "text": "Ice",
+              "textArea": 0,
+              "variable": "V1"
             },
-            "id": "c37ab877-120e-4af3-be92-8c0e9a3f4f9c"
+            "id": "a6715f4b-5568-42e7-bd36-f0077b549cda"
           }
         ],
         "true2": [
           {
-            "command": "EVENT_TEXT_DRAW",
+            "command": "MENU_DEFINE_TEXT_AREA",
             "args": {
-              "text": "\\003#V1##V2#Soap",
-              "x": 0,
-              "y": 0,
-              "location": "overlay"
+              "text": "Soap",
+              "textArea": 0,
+              "variable": "V1"
             },
-            "id": "ddb62435-8582-4375-98ad-7988f6f9a9a1"
+            "id": "dd91c4e2-a308-4881-b6f3-7cf32a62446a"
           }
         ],
         "true3": [],
@@ -124,7 +102,7 @@
         "true15": [],
         "false": []
       },
-      "id": "baadc4c1-3aa8-4edd-88ee-ccbd670c6fcb"
+      "id": "d416ac57-7587-4868-87a8-9c0ffb3856b2"
     }
   ]
 }

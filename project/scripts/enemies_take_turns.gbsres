@@ -1,0 +1,54 @@
+{
+  "_resourceType": "script",
+  "id": "2a3a06b9-0b13-44e7-8d41-62a4dbc14d13",
+  "name": "Enemies Take Turns",
+  "description": "",
+  "variables": {},
+  "actors": {
+    "0": {
+      "id": "0",
+      "name": "Actor A"
+    },
+    "1": {
+      "id": "1",
+      "name": "Actor B"
+    },
+    "2": {
+      "id": "2",
+      "name": "Actor C"
+    }
+  },
+  "symbol": "script_0",
+  "script": [
+    {
+      "command": "MENU_RUN_ACTOR_SCRIPT",
+      "args": {
+        "actor": "0",
+        "collision_group": "1",
+        "waitForScript": true,
+        "__collapse": false
+      },
+      "id": "4410f96f-91f1-4b55-aeaa-3f4b2d7093b5"
+    },
+    {
+      "command": "MENU_RUN_ACTOR_SCRIPT",
+      "args": {
+        "actor": "1",
+        "collision_group": "1",
+        "waitForScript": true,
+        "__collapse": false
+      },
+      "id": "bab1cb37-2ae4-4330-904a-8d8b35865111"
+    },
+    {
+      "command": "MENU_RUN_ACTOR_SCRIPT",
+      "args": {
+        "actor": "2",
+        "collision_group": "1",
+        "waitForScript": true,
+        "__collapse": false
+      },
+      "id": "e8aaab69-35de-4a6d-828b-2fdbc290ae2b"
+    }
+  ]
+}
