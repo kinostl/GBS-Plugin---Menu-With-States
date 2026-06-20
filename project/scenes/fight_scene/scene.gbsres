@@ -18,6 +18,19 @@
   "y": 32,
   "script": [
     {
+      "command": "EVENT_ACTOR_EFFECTS",
+      "args": {
+        "effect": "splitIn",
+        "actorId": "fc340f48-f2d9-4a65-b65b-ea3812750f3c",
+        "distance": 20,
+        "speed": 2,
+        "time": 0.5,
+        "frames": 30,
+        "__collapse": true
+      },
+      "id": "0add6baf-a7d3-4fff-9331-25b9e118ebb4"
+    },
+    {
       "command": "MENU_DEFINE_MENU_STATE_VIA_MENU",
       "args": {
         "menu_id": 1,
@@ -34,7 +47,7 @@
         "cancelOnB": false,
         "layout": "dialogue",
         "__section": "on_select",
-        "__collapse": false,
+        "__collapse": true,
         "__comment": false
       },
       "children": {
@@ -257,7 +270,7 @@
         "cancelOnB": true,
         "layout": "dialogue",
         "__section": "on_select",
-        "__collapse": false
+        "__collapse": true
       },
       "children": {
         "on_init": [
@@ -460,7 +473,7 @@
         "cancelOnLastOption": false,
         "slot_1_choice": "6",
         "slot_2_choice": "7",
-        "__collapse": false,
+        "__collapse": true,
         "slot_3_choice": "8",
         "__comment": false
       },

@@ -291,8 +291,6 @@ const compile = (input, helpers) => {
     }
 
     if (input.compileSubScript === "on_init") {
-        helpers._setConstMemUInt8("show_actors_on_overlay", 1)
-
         const slot_x = helpers._declareLocal("slot_x", 1, true)
         const slot_y = helpers._declareLocal("slot_y", 1, true)
 
@@ -351,13 +349,11 @@ const compile = (input, helpers) => {
     }
 
     if (input.compileSubScript === "on_select") {
-        helpers._setConstMemUInt8("show_actors_on_overlay", 0)
         helpers.overlayMoveTo(menu_x, 18, ".OVERLAY_OUT_SPEED")
         helpers.caseVariableConstValue(choice, confirm_choices)
         return
     }
     if (input.compileSubScript === "on_cancel") {
-        helpers._setConstMemUInt8("show_actors_on_overlay", 0)
         helpers.overlayMoveTo(menu_x, 18, ".OVERLAY_OUT_SPEED")
         return
     }

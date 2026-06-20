@@ -9,10 +9,12 @@
 #include <math.h>
 #include <ui.h>
 #include <vm.h>
+#include <macro.h>
 #pragma bank 255
 
 #include "data/menu_screen_states.h"
 #include "states/menu_screen.h"
+#include <interrupts.h>
 
 typedef enum menu_screen_status_e {
   CHOICE_NONE=0,
@@ -22,6 +24,7 @@ typedef enum menu_screen_status_e {
 } menu_screen_status_e;
 
 UWORD menu_state_idx[8];
+static UBYTE _save_show_actors_on_overlay;
 
 void setMenuState(SCRIPT_CTX *THIS) BANKED {
   const UWORD menu_id = *(UWORD *)VM_REF_TO_PTR(FN_ARG1);
@@ -37,10 +40,14 @@ void prepareMenuState(SCRIPT_CTX *THIS) BANKED {
   MemcpyBanked(&cmst, ((menu_screen_state_t *)menu_screen_states) + menu_id,
                sizeof(menu_screen_state_t), BANK(menu_screen_states));
 
+  _save_show_actors_on_overlay = show_actors_on_overlay;
+  show_actors_on_overlay = TRUE;
+
   vm_call_far(THIS, cmst.on_init.bank, cmst.on_init.ptr);
 }
 
 void invokeMenuState(SCRIPT_CTX *THIS) BANKED {
+  CLR_FLAG(PLAYER.flags, ACTOR_FLAG_HIDDEN);
   const WORD menu_status_id = *(WORD *)VM_REF_TO_PTR(FN_ARG0);
   menu_screen_status_e *current_menu_screen_status = (menu_screen_status_e *)VM_REF_TO_PTR(menu_status_id);
   WORD *set_variable = (WORD *)VM_REF_TO_PTR(cmst.set_variable_id);
@@ -105,9 +112,13 @@ void invokeMenuState(SCRIPT_CTX *THIS) BANKED {
     return;
   case CHOICE_SELECTED:
     vm_call_far(THIS, cmst.on_select.bank, cmst.on_select.ptr);
+    SET_FLAG(PLAYER.flags, ACTOR_FLAG_HIDDEN);
+    show_actors_on_overlay = _save_show_actors_on_overlay;
     return;
   case CHOICE_CANCELLED:
     vm_call_far(THIS, cmst.on_cancel.bank, cmst.on_cancel.ptr);
+    SET_FLAG(PLAYER.flags, ACTOR_FLAG_HIDDEN);
+    show_actors_on_overlay = _save_show_actors_on_overlay;
     return;
   }
 }
