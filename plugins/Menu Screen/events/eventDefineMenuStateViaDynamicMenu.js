@@ -38,16 +38,6 @@ const dynamic_menu_script_fields = Array(DYNAMIC_MENU_MAX_SCRIPTS).fill().map((_
             type: "text",
             key: `slot_${i + 1}_view`,
             defaultValue: `Item ${i + 1}`,
-            width: "50%",
-            conditions
-        }, {
-            type: "constvalue",
-            key: `slot_${i + 1}_script`,
-            width: "50%",
-            defaultValue: {
-                type: "number",
-                value: i + 1,
-            },
             conditions
         }]
     }
@@ -65,11 +55,6 @@ const dynamic_menu_script_header = [{
         },
         {
             label: "Item Text",
-            width: "50%",
-            conditions: dynamic_menu_script_conditions,
-        }, {
-            label: "Item Value",
-            width: "50%",
             conditions: dynamic_menu_script_conditions,
         }]
 }]
@@ -261,101 +246,77 @@ const fields = [{
  * @param {import('/home/zone/.local/share/gb-studio/helpers.d.ts').Helpers} helpers 
  */
 const compile = (input, helpers) => {
-    const menu_x = input.layout == "menu" ? 10 : 0
-    const menu_width = input.layout == "menu" ? 10 : 20
-
-    let menu_height = input.slot_count + 2
-    let choice_count = input.slot_count
-    if (input.cancelOnLastOption) {
-        menu_height++
-        choice_count++
-    }
-
-    if (input.layout == "dialogue" && choice_count > 4) {
-        menu_height -= 4
-    }
-
-    const choice = input.variable
-    const confirm_choices = []
-
-    for (let i = 0; i < input.slot_count; i++) {
-        confirm_choices.push({
-            value: {
-                type: "number",
-                value: i + 1,
-            },
-            branch: () => {
-                helpers.variableCopy(choice, input[`slot_${i + 1}_choice`])
-            }
-        })
-    }
+    const options = [
+        input.slot_1_view,
+        input.slot_2_view,
+        input.slot_3_view,
+        input.slot_4_view,
+        input.slot_5_view,
+        input.slot_6_view,
+        input.slot_7_view,
+        input.slot_8_view,
+        input.slot_9_view,
+        input.slot_10_view,
+        input.slot_11_view,
+        input.slot_12_view,
+        input.slot_13_view,
+        input.slot_14_view,
+        input.slot_15_view,
+        input.slot_16_view,
+        input.slot_17_view,
+        input.slot_18_view,
+    ].splice(0, input.script_count)
 
     if (input.compileSubScript === "on_init") {
-        const slot_x = helpers._declareLocal("slot_x", 1, true)
-        const slot_y = helpers._declareLocal("slot_y", 1, true)
+        const longest = options.reduce((longest, x)=> Math.max(longest, x.length), 0)
 
-        helpers._actorSetFlags(
-            0,
-            [".ACTOR_FLAG_PINNED"],
-            [".ACTOR_FLAG_PINNED"]
-        )
+        helpers._addComment("Dynamic Menu On Init")
+        helpers._stackPushConst(input.script_count)
+        helpers._stackPushConst(longest+1)
+        helpers._callNative("prepareDynamicMenuState")
+        options.forEach((x) => {
+            helpers._string(x)
+            helpers._addCmd(`.bndry ${longest+1}`)
+        })
+        helpers._stackPop(2)
+        return
+    }
 
-        const view_choices = []
+    const clampedMenuIndex = (index) => {
+        if (index < 0) {
+            return 1;
+        }
+        if (index > input.slot_count - 1) {
+            return input.slot_count;
+        }
+        return index + 1;
+    };
 
-        for (let i = 0; i < input.script_count; i++) {
-            view_choices.push({
-                value: {
-                    type: "number",
-                    value: i + 1,
-                },
-                branch: () => {
-                    helpers._loadText(2)
-                    helpers._dw(slot_x, slot_y)
-                    helpers._string(`\\003%c%c\\001\\001${input[`slot_${i + 1}_view`]}`)
-                    helpers._displayText()
-                    helpers._overlayWait(false, [".UI_WAIT_TEXT"])
-                }
+    const menu_items = []
+    if (input.layout === "menu") {
+        const y_base = 17 - input.slot_count
+        for (let i = 0; i < input.slot_count; i++) {
+            menu_items.push({
+                x: 11,
+                y: y_base + i,
+                left: 1,
+                right: input.slot_count,
+                up: clampedMenuIndex(i - 1),
+                down: clampedMenuIndex(i + 1),
             })
         }
-
-        helpers._overlayClear(0, 0, menu_width, menu_height, ".UI_COLOR_WHITE", true, false)
+    } else {
+        const y_base = input.slot_count < 4 ? 17 - input.slot_count : 13
         for (let i = 0; i < input.slot_count; i++) {
-            const x_off = (input.layout == "dialogue" && i >= 4) ? 9 : 0
-            const x = 3 + x_off
-
-            const y_off = (input.layout == "dialogue" && i >= 4) ? -4 : 0
-            const y = i + 2 + y_off
-
-            helpers.variableSetToValue(slot_x, x)
-            helpers.variableSetToValue(slot_y, y)
-            helpers.caseVariableConstValue(input[`slot_${i + 1}_choice`], view_choices)
+            menu_items.push({
+                x: i < 4 ? 1 : 10,
+                y: y_base + (i % 4),
+                left: clampedMenuIndex(i - 4) || 1,
+                right: clampedMenuIndex(i + 4) || input.slot_count,
+                up: clampedMenuIndex(i - 1),
+                down: clampedMenuIndex(i + 1),
+            })
         }
-        if (input.cancelOnLastOption) {
-            const x_off = (input.layout == "dialogue" && i > 4) ? 10 : 0
-            const x = 2 + x_off
-
-            const y_off = (input.layout == "dialogue" && i > 4) ? -4 : 0
-            const y = choice_count + 1 + y_off
-            helpers.textDraw(input.cancelOnLastOptionText, x, y, "overlay")
-        }
-
-        if (input.layout == "menu") {
-            helpers.overlayMoveTo(menu_x, 18, ".OVERLAY_SPEED_INSTANT")
-        }
-        helpers.overlayMoveTo(menu_x, 18 - menu_height, ".OVERLAY_IN_SPEED")
-
-        helpers.markLocalsUsed(slot_x, slot_y)
-        return
-    }
-
-    if (input.compileSubScript === "on_select") {
-        helpers.overlayMoveTo(menu_x, 18, ".OVERLAY_OUT_SPEED")
-        helpers.caseVariableConstValue(choice, confirm_choices)
-        return
-    }
-    if (input.compileSubScript === "on_cancel") {
-        helpers.overlayMoveTo(menu_x, 18, ".OVERLAY_OUT_SPEED")
-        return
     }
 
     const on_init = [
@@ -369,70 +330,13 @@ const compile = (input, helpers) => {
             }
         }]
 
-    const on_select = [{
-        "command": id,
-        "id": "",
-        "args": {
-            ...input,
-            compileSubScript: "on_select"
-        }
-    }, ...input.on_select]
-
-    const on_cancel = [{
-        "command": id,
-        "id": "",
-        "args": {
-            ...input,
-            compileSubScript: "on_cancel"
-        }
-    }, ...input.on_cancel]
-
-    const clampedMenuIndex = (index) => {
-        if (index < 0) {
-            return 1;
-        }
-        if (index > choice_count - 1) {
-            return choice_count;
-        }
-        return index + 1;
-    };
-
-    const menu_items = []
-    if (input.layout === "menu") {
-        const y_base = 17 - choice_count
-        for (let i = 0; i < choice_count; i++) {
-            menu_items.push({
-                x: 11,
-                y: y_base + i,
-                left: 1,
-                right: choice_count,
-                up: clampedMenuIndex(i - 1),
-                down: clampedMenuIndex(i + 1),
-            })
-        }
-    } else {
-        const y_base = choice_count < 4 ? 17 - choice_count : 13
-        for (let i = 0; i < choice_count; i++) {
-            menu_items.push({
-                x: i < 4 ? 1 : 10,
-                y: y_base + (i % 4),
-                left: clampedMenuIndex(i - 4) || 1,
-                right: clampedMenuIndex(i + 4) || choice_count,
-                up: clampedMenuIndex(i - 1),
-                down: clampedMenuIndex(i + 1),
-            })
-        }
-    }
-
     helpers.compileEvents([{
         "command": "MENU_DEFINE_MENU_STATE",
         "id": "",
         "args": {
             ...input,
-            on_init,
-            on_select,
-            on_cancel,
-            menu_items
+            menu_items,
+            on_init
         }
     }])
 }

@@ -1,5 +1,34 @@
 {
   "version": "4.3.0-e1",
+  "fields": [
+    {
+      "key": "menu_state_lock_textbox",
+      "sceneType": "MENU_SCREEN",
+      "label": "Enable Feature: Locked Text Box",
+      "description": "Makes it so that a menu doesn't grow or shrink when its on screen. Good for keeping a consistent look to a menu state that uses the overlay. Number excludes border",
+      "group": "Menu Screen",
+      "type": "checkbox",
+      "cType": "UBYTE",
+      "defaultValue": 0,
+      "isHeading": true
+    },
+    {
+      "key": "menu_state_lock_textbox_height",
+      "label":"Text Box Height",
+      "sceneType": "MENU_SCREEN",
+      "group": "Menu Screen",
+      "type": "slider",
+      "cType": "UBYTE",
+      "defaultValue": 1,
+      "min": 1,
+      "max": 18,
+      "indent": 1,
+      "conditions":[{
+        "key": "menu_state_lock_textbox",
+        "truthy": true
+      }]
+    }
+  ],
   "sceneTypes": [
     {
       "key": "MENU_SCREEN",

@@ -24,6 +24,22 @@
     {
       "id": "SHOOTER_WALL_COLLISION_GROUP",
       "value": "COLLISION_GROUP_NONE"
+    },
+    {
+      "id": "menu_state_lock_textbox_height",
+      "value": 1
+    },
+    {
+      "id": "menu_state_lock_textbox",
+      "value": 1
+    },
+    {
+      "id": "FEAT_ADVENTURE_RUN",
+      "value": 0
+    },
+    {
+      "id": "FEAT_PLATFORM_WALL_JUMP",
+      "value": 0
     }
   ]
 }
