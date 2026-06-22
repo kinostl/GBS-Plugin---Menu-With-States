@@ -22,4 +22,15 @@ typedef struct menu_screen_state_t {
   far_ptr_t on_change;
 } menu_screen_state_t;
 
+inline UBYTE clampedMenuIndex(BYTE index, UBYTE length) {
+      if (index < 0) {
+        return 0;
+      }
+      if (index > length - 1) {
+        return length;
+      }
+      return index + 1;
+
+}
+
 #endif

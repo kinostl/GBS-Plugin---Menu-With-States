@@ -12,17 +12,6 @@
 menu_item_t actor_menu_options[MAX_ACTORS];
 actor_t * actor_menu_actors[MAX_ACTORS];
 
-inline UBYTE clampedMenuIndex(BYTE index, UBYTE length) {
-      if (index < 0) {
-        return 0;
-      }
-      if (index > length - 1) {
-        return 0;
-      }
-      return index + 1;
-
-}
-
 void prepareActorMenuState(SCRIPT_CTX *THIS) OLDCALL BANKED {
   UBYTE menu_actors_length = 0;
 
@@ -48,8 +37,8 @@ void prepareActorMenuState(SCRIPT_CTX *THIS) OLDCALL BANKED {
     menu_item_t *menu_actor = &actor_menu_options[i];
     menu_actor->iL = 1;
     menu_actor->iR = menu_actors_length;
-    menu_actor->iU = clampedMenuIndex(i + 1, menu_actors_length);
-    menu_actor->iD = clampedMenuIndex(i - 1, menu_actors_length);
+    menu_actor->iU = clampedMenuIndex(i - 1, menu_actors_length);
+    menu_actor->iD = clampedMenuIndex(i + 1, menu_actors_length);
   }
 
   cmst.menu_items.bank = 0;

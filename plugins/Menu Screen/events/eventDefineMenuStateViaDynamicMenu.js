@@ -271,15 +271,39 @@ const compile = (input, helpers) => {
         const longest = options.reduce((longest, x)=> Math.max(longest, x.length), 0)
 
         helpers._addComment("Dynamic Menu On Init")
+
+        for (let i = input.slot_count; i > 0; i--) {
+            helpers._stackPush(helpers.getVariableAlias(input[`slot_${i}_choice`]))
+
+        }
+        helpers._stackPushConst(input.script_count)
+
+        helpers._callNative("prepareDynamicMenuStateOptions")
+        helpers._overlayWait(false, [".UI_WAIT_TEXT", ".UI_WAIT_WINDOW"])
+        helpers._stackPop(1+input.slot_count)
+        helpers._addNL()
+
         helpers._stackPushConst(input.script_count)
         helpers._stackPushConst(longest+1)
         helpers._callNative("prepareDynamicMenuState")
         options.forEach((x) => {
-            helpers._string(x)
-            helpers._addCmd(`.bndry ${longest+1}`)
+            helpers._string(`${x}${"\\011".repeat(longest - x.length)}`)
         })
+        helpers._displayText()
+        helpers._overlayWait(false, [".UI_WAIT_TEXT", ".UI_WAIT_WINDOW"])
         helpers._stackPop(2)
         return
+    }
+
+    if (input.compileSubScript === "on_select"){
+        helpers._stackPushReference(helpers.getVariableAlias(input.variable))
+        helpers._callNative("finishDynamicMenuState")
+        helpers._overlayWait(false, [".UI_WAIT_TEXT", ".UI_WAIT_WINDOW"])
+        helpers._stackPop(1)
+    }
+    if (input.compileSubScript === "on_cancel"){
+        helpers._callNative("cancelDynamicMenuState")
+        helpers._overlayWait(false, [".UI_WAIT_TEXT", ".UI_WAIT_WINDOW"])
     }
 
     const clampedMenuIndex = (index) => {
@@ -292,33 +316,6 @@ const compile = (input, helpers) => {
         return index + 1;
     };
 
-    const menu_items = []
-    if (input.layout === "menu") {
-        const y_base = 17 - input.slot_count
-        for (let i = 0; i < input.slot_count; i++) {
-            menu_items.push({
-                x: 11,
-                y: y_base + i,
-                left: 1,
-                right: input.slot_count,
-                up: clampedMenuIndex(i - 1),
-                down: clampedMenuIndex(i + 1),
-            })
-        }
-    } else {
-        const y_base = input.slot_count < 4 ? 17 - input.slot_count : 13
-        for (let i = 0; i < input.slot_count; i++) {
-            menu_items.push({
-                x: i < 4 ? 1 : 10,
-                y: y_base + (i % 4),
-                left: clampedMenuIndex(i - 4) || 1,
-                right: clampedMenuIndex(i + 4) || input.slot_count,
-                up: clampedMenuIndex(i - 1),
-                down: clampedMenuIndex(i + 1),
-            })
-        }
-    }
-
     const on_init = [
         ...input.on_init,
         {
@@ -330,13 +327,40 @@ const compile = (input, helpers) => {
             }
         }]
 
+
+    const on_select = [
+        {
+            "command": id,
+            "id": "",
+            "args": {
+                ...input,
+                compileSubScript: "on_select"
+            }
+        },
+        ...input.on_select
+    ]
+
+    const on_cancel = [
+        {
+            "command": id,
+            "id": "",
+            "args": {
+                ...input,
+                compileSubScript: "on_cancel"
+            }
+        },
+        ...input.on_cancel
+    ]
+
     helpers.compileEvents([{
         "command": "MENU_DEFINE_MENU_STATE",
         "id": "",
         "args": {
             ...input,
-            menu_items,
-            on_init
+            menu_items:[],
+            on_init,
+            on_select,
+            on_cancel
         }
     }])
 }
