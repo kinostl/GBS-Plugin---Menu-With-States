@@ -246,6 +246,14 @@ const fields = [{
  * @param {import('/home/zone/.local/share/gb-studio/helpers.d.ts').Helpers} helpers 
  */
 const compile = (input, helpers) => {
+    // const expected = fields.map((x)=>x.key).filter((x)=>x)
+    // const actual = Object.keys(input)
+
+    // const missing = expected.filter((x)=>{
+    //     const in_actual = actual.includes(x)
+    //     return !in_actual
+    // })
+    // throw new Error(JSON.stringify(missing, null, 4))
     const options = [
         input.slot_1_view,
         input.slot_2_view,
@@ -273,7 +281,11 @@ const compile = (input, helpers) => {
         helpers._addComment("Dynamic Menu On Init")
 
         for (let i = input.slot_count; i > 0; i--) {
-            helpers._stackPush(helpers.getVariableAlias(input[`slot_${i}_choice`]))
+            if (input.is_static_menu) {
+                helpers._stackPushConst(i)
+            } else {
+                helpers._stackPush(helpers.getVariableAlias(input[`slot_${i}_choice`]))
+            }
 
         }
         helpers._stackPushConst(input.script_count)

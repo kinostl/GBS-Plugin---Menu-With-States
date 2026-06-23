@@ -90,9 +90,15 @@
         "option8": "",
         "cancelOnB": false,
         "layout": "dialogue",
-        "__section": "on_select",
-        "__collapse": true,
-        "__comment": false
+        "__section": "on_cancel",
+        "__collapse": false,
+        "__comment": false,
+        "slot_count": 4,
+        "slot_1_view": "Fight",
+        "slot_2_view": "Items",
+        "slot_3_view": "Magic",
+        "slot_4_view": "Run",
+        "cancelOnLastOption": false
       },
       "children": {
         "on_init": [
@@ -105,7 +111,7 @@
                 "value": 1
               }
             },
-            "id": "0e6a663f-7c4f-418c-b3d4-d0a431b7289c"
+            "id": "5bafc411-8a94-4e17-829c-8670974e898a"
           }
         ],
         "on_select": [
@@ -130,7 +136,8 @@
               "__collapseCase13": false,
               "__collapseCase14": false,
               "__collapseCase15": false,
-              "__collapseElse": false
+              "__collapseElse": false,
+              "__collapse": false
             },
             "children": {
               "true0": [
@@ -143,14 +150,14 @@
                       "value": "a621af65-ad59-4545-9bb5-6983d7e9e040"
                     }
                   },
-                  "id": "706ebf7a-ef64-44fa-ac47-85ee6c196d90"
+                  "id": "75acc5b1-896e-44a2-b3fb-b2f972291f82"
                 },
                 {
                   "command": "MENU_JUMP_TO_MENU_STATE",
                   "args": {
                     "menu_id": 2
                   },
-                  "id": "c3f738a8-b4b9-458c-b5e9-eff01536c4b6"
+                  "id": "8bb603e3-9119-4026-b0e4-338043b97fda"
                 }
               ],
               "true1": [
@@ -159,7 +166,7 @@
                   "args": {
                     "menu_id": 3
                   },
-                  "id": "34ff744c-a7d9-42ec-b30a-624fae702b66"
+                  "id": "70e31927-870d-4d01-8c6d-a0f1e48a0f6b"
                 }
               ],
               "true2": [
@@ -168,7 +175,7 @@
                   "args": {
                     "menu_id": 4
                   },
-                  "id": "9a5fc2a0-ed7f-4929-b984-2dc76c38676e"
+                  "id": "3fbb9ef7-9704-4676-aa1c-ef2eb539bdeb"
                 }
               ],
               "true3": [
@@ -195,7 +202,7 @@
                     "closeDelayTime": 0.5,
                     "closeDelayFrames": 30
                   },
-                  "id": "be8de0a5-32a5-4047-98eb-2fc7a5fbdf8c"
+                  "id": "3a457622-6e6a-4259-94ab-e6c348bbd631"
                 },
                 {
                   "command": "EVENT_SWITCH_SCENE",
@@ -212,7 +219,7 @@
                     "direction": "",
                     "fadeSpeed": "2"
                   },
-                  "id": "9a899562-2b9e-4ee0-ac59-647ca91ab20b"
+                  "id": "d216cd42-1960-43b0-b40c-550340b0e4b2"
                 }
               ],
               "true4": [],
@@ -229,7 +236,7 @@
               "true15": [],
               "false": []
             },
-            "id": "dc2d89a1-7abc-411a-8412-f3c4fd14490d"
+            "id": "673f81ee-6ef8-40cf-af5e-de107f539b17"
           }
         ],
         "on_cancel": []
@@ -314,7 +321,13 @@
         "cancelOnB": true,
         "layout": "dialogue",
         "__section": "on_select",
-        "__collapse": true
+        "__collapse": false,
+        "cancelOnLastOption": false,
+        "script_count": 2,
+        "slot_1_view": "Potion",
+        "slot_2_view": "Bombs",
+        "slot_count": 2,
+        "__comment": false
       },
       "children": {
         "on_init": [
@@ -660,7 +673,7 @@
     {
       "command": "MENU_JUMP_TO_MENU_STATE",
       "args": {
-        "menu_id": 4,
+        "menu_id": 3,
         "__collapse": false
       },
       "id": "5e358dab-37e8-478a-897c-1578705a9034"

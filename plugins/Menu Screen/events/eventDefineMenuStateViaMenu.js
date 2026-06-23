@@ -3,11 +3,11 @@ const groups = ["Menus"];
 const name = "Define Menu State Using Menu";
 const l10n = require("../helpers/l10n").default;
 const autoLabel = (fetchArg) => {
-  const numItems = parseInt(fetchArg("items"));
+  const numItems = parseInt(fetchArg("slot_count"));
   const text = Array(numItems)
     .fill()
     .map((_, i) => {
-      return `"${fetchArg(`option${i + 1}`)}"`;
+      return `"${fetchArg(`slot_${i + 1}_view`)}"`;
     })
     .join();
   const variable = fetchArg("variable")
@@ -38,7 +38,7 @@ const settings = [].concat(
       defaultValue: "LAST_VARIABLE",
     },
     {
-      key: "items",
+      key: "slot_count",
       label: l10n("FIELD_NUMBER_OF_OPTIONS"),
       description: l10n("FIELD_NUMBER_OF_OPTIONS_DESC"),
       type: "number",
@@ -56,7 +56,7 @@ const settings = [].concat(
       const value = i + 1;
       arr.push(
         {
-          key: `option${i + 1}`,
+          key: `slot_${i + 1}_view`,
           label: l10n("FIELD_SET_TO_VALUE_IF", { value: String(i + 1) }),
           description: l10n("FIELD_SET_TO_VALUE_IF_MENU_DESC", {
             value: String(i + 1),
@@ -68,13 +68,13 @@ const settings = [].concat(
           placeholder: l10n("FIELD_ITEM", { value: String(i + 1) }),
           conditions: [
             {
-              key: "items",
+              key: "slot_count",
               gt: value,
             },
           ],
         },
         {
-          key: `option${i + 1}`,
+          key: `slot_${i + 1}_view`,
           label: l10n("FIELD_SET_TO_VALUE_IF", { value: String(i + 1) }),
           description: l10n("FIELD_SET_TO_VALUE_IF_MENU_DESC", {
             value: String(i + 1),
@@ -86,7 +86,7 @@ const settings = [].concat(
           placeholder: l10n("FIELD_ITEM", { value: String(i + 1) }),
           conditions: [
             {
-              key: "items",
+              key: "slot_count",
               eq: value,
             },
             {
@@ -96,7 +96,7 @@ const settings = [].concat(
           ],
         },
         {
-          key: `option${i + 1}`,
+          key: `slot_${i + 1}_view`,
           label: l10n("FIELD_SET_TO_VALUE_IF", { value: "0" }),
           description: l10n("FIELD_SET_TO_VALUE_IF_MENU_DESC", { value: "0" }),
           hideFromDocs: true,
@@ -106,7 +106,7 @@ const settings = [].concat(
           placeholder: l10n("FIELD_ITEM", { value: String(i + 1) }),
           conditions: [
             {
-              key: "items",
+              key: "slot_count",
               eq: value,
             },
             {
@@ -195,220 +195,14 @@ const fields = [{
  * @param {import('/home/zone/.local/share/gb-studio/helpers.d.ts').Helpers} helpers 
  */
 const compile = (input, helpers) => {
-  const decOct = (x) => Number(x).toString(8).padStart(3, 0)
-  const textCodeSetSpeed = (speed) => {
-    return `\\001\\${decOct(speed + 1)}`;
-  };
-
-  const textCodeSetFont = (fontIndex) => {
-    return `\\002\\${decOct(fontIndex + 1)}`;
-  };
-
-  const textCodeGoto = (x, y) => {
-    return `\\003\\${decOct(x)}\\${decOct(y)}`;
-  };
-
-  const options = [
-    input.option1,
-    input.option2,
-    input.option3,
-    input.option4,
-    input.option5,
-    input.option6,
-    input.option7,
-    input.option8,
-  ].splice(0, input.items)
-
-  if (input.compileSubScript === "on_init") {
-    helpers._actorSetFlags(
-      0,
-      [".ACTOR_FLAG_PINNED"],
-      [".ACTOR_FLAG_PINNED"]
-    )
-    const openTextMenu = (
-      variable,
-      options,
-      layout = "menu",
-      cancelOnLastOption = false,
-      cancelOnB = false,
-    ) => {
-      const variableAlias = helpers.getVariableAlias(variable);
-      const optionsText = options.map(
-        (option, index) => textCodeSetFont(0) + (option || `Item ${index + 1}`),
-      );
-      const height =
-        layout === "menu" ? options.length : Math.min(options.length, 4);
-      const menuText =
-        textCodeSetSpeed(0) +
-        textCodeGoto(3, 2) +
-        (layout === "menu"
-          ? optionsText.join("\n")
-          : optionsText
-            .map((text, i) => {
-              if (i === 4) {
-                return textCodeGoto(12, 2) + text;
-              }
-              return text;
-            })
-            .join("\n"));
-      const numLines = options.length;
-      const x = layout === "menu" ? 10 : 0;
-      const choiceFlags = [];
-      if (cancelOnLastOption) {
-        choiceFlags.push(".UI_MENU_LAST_0");
-      }
-      if (cancelOnB) {
-        choiceFlags.push(".UI_MENU_CANCEL_B");
-      }
-
-      helpers._addComment("Text Menu");
-
-      let dest = variableAlias;
-      if (helpers._isIndirectVariable(variable)) {
-        const menuResultRef = helpers._declareLocal("menu_result", 1, true);
-        dest = menuResultRef;
-      }
-
-      helpers._overlayClear(0, 0, 20 - x, height + 2, ".UI_COLOR_WHITE", true, true);
-      if (layout === "menu") {
-        helpers._overlayMoveTo(10, 18, ".OVERLAY_SPEED_INSTANT");
-      }
-      helpers._overlayMoveTo(x, 18 - height - 2, ".OVERLAY_IN_SPEED");
-      helpers._setTextLayer(".TEXT_LAYER_WIN");
-      helpers._loadAndDisplayText(menuText);
-      helpers._overlayWait(true, [".UI_WAIT_WINDOW", ".UI_WAIT_TEXT"]);
-    }
-
-    openTextMenu(
-      input.variable,
-      options,
-      input.layout,
-      input.cancelOnLastOption,
-      input.cancelOnB,
-    );
-    return
-  }
-
-  if (
-    input.compileSubScript === "on_select" ||
-    input.compileSubScript === "on_cancel"
-  ) {
-    const closeTextMenu = (
-      variable,
-      options,
-      layout = "menu",
-      cancelOnLastOption = false,
-      cancelOnB = false,
-    ) => {
-      const x = layout === "menu" ? 10 : 0;
-      helpers._actorSetFlags(
-        0,
-        [],
-        []
-      )
-      helpers._overlayMoveTo(x, 18, ".OVERLAY_OUT_SPEED");
-      helpers._overlayWait(true, [".UI_WAIT_WINDOW", ".UI_WAIT_TEXT"]);
-      if (layout === "menu") {
-        helpers._overlayMoveTo(0, 18, ".OVERLAY_SPEED_INSTANT");
-      }
-
-      if (helpers._isIndirectVariable(variable)) {
-        helpers._setInd(variableAlias, dest);
-      }
-
-      helpers._addNL();
-    }
-    closeTextMenu(
-      input.variable,
-      options,
-      input.layout,
-      input.cancelOnLastOption,
-      input.cancelOnB,
-    );
-    helpers._actorSetFlags(
-      0,
-      [".ACTOR_FLAG_PINNED"],
-      [".ACTOR_FLAG_PINNED"]
-    )
-    return
-  }
-
-  const on_init = [
-    ...input.on_init,
-    {
-      "command": id,
-      "id": "",
-      "args": {
-        ...input,
-        compileSubScript: "on_init"
-      }
-    }]
-
-  const on_select = [{
-    "command": id,
-    "id": "",
-    "args": {
-      ...input,
-      compileSubScript: "on_select"
-    }
-  }, ...input.on_select]
-
-  const on_cancel = [{
-    "command": id,
-    "id": "",
-    "args": {
-      ...input,
-      compileSubScript: "on_cancel"
-    }
-  }, ...input.on_cancel]
-
-  const clampedMenuIndex = (index) => {
-    if (index < 0) {
-      return 1;
-    }
-    if (index > options.length - 1) {
-      return options.length;
-    }
-    return index + 1;
-  };
-
-  const menu_items = []
-  if (input.layout === "menu") {
-    const y_base = 17 - options.length
-    for (let i = 0; i < options.length; i++) {
-      menu_items.push({
-        x: 11,
-        y: y_base + i,
-        left: 1,
-        right: options.length,
-        up: clampedMenuIndex(i - 1),
-        down: clampedMenuIndex(i + 1),
-      })
-    }
-  } else {
-    const y_base = options.length < 4 ? 17 - options.length : 13
-    for (let i = 0; i < options.length; i++) {
-      menu_items.push({
-        x: i < 4 ? 1 : 10,
-        y: y_base + (i % 4),
-        left: clampedMenuIndex(i - 4) || 1,
-        right: clampedMenuIndex(i + 4) || options.length,
-        up: clampedMenuIndex(i - 1),
-        down: clampedMenuIndex(i + 1),
-      })
-    }
-  }
+  input.script_count = input.slot_count
 
   helpers.compileEvents([{
-    "command": "MENU_DEFINE_MENU_STATE",
-    "id": "",
-    "args": {
+    "command":"MENU_DEFINE_MENU_STATE_VIA_DYNAMIC_MENU",
+    "id":"",
+    "args":{
       ...input,
-      on_init,
-      on_select,
-      on_cancel,
-      on_change: [],
-      menu_items
+      is_static_menu: true
     }
   }])
 }
