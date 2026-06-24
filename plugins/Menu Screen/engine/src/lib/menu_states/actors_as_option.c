@@ -12,33 +12,26 @@
 menu_item_t actor_menu_options[MAX_ACTORS];
 actor_t * actor_menu_actors[MAX_ACTORS];
 
-void prepareActorMenuState(SCRIPT_CTX *THIS) OLDCALL BANKED {
-  UBYTE menu_actors_length = 0;
+void prepareActorMenuState(SCRIPT_CTX *THIS) OLDCALL BANKED
+{
+  const UWORD menu_actors_length = *(UWORD *)VM_REF_TO_PTR(FN_ARG0);
+  menu_item_t *actor_menu_option = actor_menu_options;
+  actor_t **actor_menu_actor = actor_menu_actors;
 
-  const UBYTE collision_mask = *(UBYTE *)VM_REF_TO_PTR(FN_ARG0);
+  for (UBYTE i = 0; i < menu_actors_length; i++)
+  {
+    const UWORD actor_id = *(UWORD *)VM_REF_TO_PTR(FN_ARG1 - i);
+    *actor_menu_actor = &actors[actor_id];
+    actor_menu_option->X = SUBPX_TO_TILE((*actor_menu_actor)->pos.x + (*actor_menu_actor)->bounds.left) - 1;
+    actor_menu_option->Y = SUBPX_TO_TILE((*actor_menu_actor)->pos.y + (*actor_menu_actor)->bounds.top);
 
-  for (actor_t *actor = actors_active_head; actor; actor = actor->next) {
-    if (actor == &PLAYER) {
-      continue;
-    }
+    actor_menu_option->iL = 1;
+    actor_menu_option->iR = menu_actors_length;
+    actor_menu_option->iU = clampedMenuIndex(i - 1, menu_actors_length);
+    actor_menu_option->iD = clampedMenuIndex(i + 1, menu_actors_length);
 
-    if (actor->collision_group & collision_mask) {
-      actor_menu_actors[menu_actors_length] = actor;
-
-      menu_item_t *menu_actor = &actor_menu_options[menu_actors_length];
-      menu_actor->X = SUBPX_TO_TILE(actor->pos.x + actor->bounds.left) - 1;
-      menu_actor->Y = SUBPX_TO_TILE(actor->pos.y + actor->bounds.top);
-
-      menu_actors_length++;
-    }
-  }
-
-  for (UBYTE i = 0; i < menu_actors_length; i++) {
-    menu_item_t *menu_actor = &actor_menu_options[i];
-    menu_actor->iL = 1;
-    menu_actor->iR = menu_actors_length;
-    menu_actor->iU = clampedMenuIndex(i - 1, menu_actors_length);
-    menu_actor->iD = clampedMenuIndex(i + 1, menu_actors_length);
+    actor_menu_option++;
+    actor_menu_actor++;
   }
 
   cmst.menu_items.bank = 0;

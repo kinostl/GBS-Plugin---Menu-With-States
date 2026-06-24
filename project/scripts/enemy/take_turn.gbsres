@@ -88,24 +88,34 @@
               "text": [
                 "Enemy\nhit for 1 Damage"
               ],
-              "__section": "text",
+              "__section": "presets",
               "avatarId": "",
-              "minHeight": 4,
-              "maxHeight": 7,
+              "minHeight": 6,
+              "maxHeight": 6,
               "textX": 1,
               "textY": 1,
               "textHeight": 5,
               "position": "bottom",
               "clearPrevious": true,
               "showFrame": "true",
-              "speedIn": -1,
-              "speedOut": -1,
-              "closeWhen": "key",
+              "speedIn": -3,
+              "speedOut": -3,
+              "closeWhen": "notModal",
               "closeButton": "a",
               "closeDelayTime": 0.5,
-              "closeDelayFrames": 30
+              "closeDelayFrames": 30,
+              "__presetId": "cfd2c7c8-3b2a-46a6-ac89-3c47dacc0213"
             },
             "id": "ebb75827-d791-4fd9-8205-74797376494f"
+          },
+          {
+            "command": "EVENT_AWAIT_INPUT",
+            "args": {
+              "input": [
+                "a"
+              ]
+            },
+            "id": "d6b448f4-8ec4-4f97-b356-d74100a3248b"
           },
           {
             "command": "EVENT_IF",
@@ -131,24 +141,34 @@
                     "text": [
                       "You lost"
                     ],
-                    "__section": "text",
+                    "__section": "presets",
                     "avatarId": "",
-                    "minHeight": 4,
-                    "maxHeight": 7,
+                    "minHeight": 6,
+                    "maxHeight": 6,
                     "textX": 1,
                     "textY": 1,
                     "textHeight": 5,
                     "position": "bottom",
                     "clearPrevious": true,
                     "showFrame": "true",
-                    "speedIn": -1,
-                    "speedOut": -1,
-                    "closeWhen": "key",
+                    "speedIn": -3,
+                    "speedOut": -3,
+                    "closeWhen": "notModal",
                     "closeButton": "a",
                     "closeDelayTime": 0.5,
-                    "closeDelayFrames": 30
+                    "closeDelayFrames": 30,
+                    "__presetId": "cfd2c7c8-3b2a-46a6-ac89-3c47dacc0213"
                   },
                   "id": "5580f9ed-329e-4b24-8dac-310d242756d4"
+                },
+                {
+                  "command": "EVENT_AWAIT_INPUT",
+                  "args": {
+                    "input": [
+                      "a"
+                    ]
+                  },
+                  "id": "0bcb63a2-9be8-4424-a1e5-3d9b8730af20"
                 },
                 {
                   "command": "EVENT_SWITCH_SCENE",
@@ -180,24 +200,34 @@
               "text": [
                 "Enemy\nAttack missed."
               ],
-              "__section": "text",
+              "__section": "behavior",
               "avatarId": "",
-              "minHeight": 4,
-              "maxHeight": 7,
+              "minHeight": 6,
+              "maxHeight": 6,
               "textX": 1,
               "textY": 1,
               "textHeight": 5,
               "position": "bottom",
               "clearPrevious": true,
               "showFrame": "true",
-              "speedIn": -1,
-              "speedOut": -1,
-              "closeWhen": "key",
+              "speedIn": -3,
+              "speedOut": -3,
+              "closeWhen": "notModal",
               "closeButton": "a",
               "closeDelayTime": 0.5,
-              "closeDelayFrames": 30
+              "closeDelayFrames": 30,
+              "__presetId": "cfd2c7c8-3b2a-46a6-ac89-3c47dacc0213"
             },
             "id": "56e1b2e4-5db4-4c8b-9ab4-a8bbf90d85c2"
+          },
+          {
+            "command": "EVENT_AWAIT_INPUT",
+            "args": {
+              "input": [
+                "a"
+              ]
+            },
+            "id": "1c0893d6-8231-4492-8c7a-0344785461c6"
           }
         ]
       },

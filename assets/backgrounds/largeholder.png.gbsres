@@ -1,0 +1,12 @@
+{
+  "_resourceType": "background",
+  "id": "60a33438-f03c-4e5a-acd9-72102343929d",
+  "name": "largeholder",
+  "symbol": "bg_largeholder",
+  "tileColors": "",
+  "filename": "largeholder.png",
+  "width": 60,
+  "height": 54,
+  "imageWidth": 480,
+  "imageHeight": 432
+}

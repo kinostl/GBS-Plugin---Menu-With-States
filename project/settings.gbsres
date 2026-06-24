@@ -1,8 +1,8 @@
 {
   "_resourceType": "settings",
   "startSceneId": "a6076c33-248b-492b-9eba-f856fce3054e",
-  "startX": 10,
-  "startY": 13,
+  "startX": 8,
+  "startY": 11,
   "startMoveSpeed": 1,
   "startAnimSpeed": 15,
   "startDirection": "right",
@@ -104,7 +104,34 @@
   "colorCorrection": "default",
   "generateDebugFilesEnabled": true,
   "compilerPreset": 3000,
-  "scriptEventPresets": {},
+  "scriptEventPresets": {
+    "EVENT_TEXT": {
+      "cfd2c7c8-3b2a-46a6-ac89-3c47dacc0213": {
+        "id": "cfd2c7c8-3b2a-46a6-ac89-3c47dacc0213",
+        "name": "Locked Textbox",
+        "groups": [
+          "layout",
+          "behaviour"
+        ],
+        "args": {
+          "position": "bottom",
+          "minHeight": 6,
+          "maxHeight": 6,
+          "textX": 1,
+          "textY": 1,
+          "textHeight": 5,
+          "clearPrevious": true,
+          "showFrame": "true",
+          "speedIn": -3,
+          "speedOut": -3,
+          "closeWhen": "notModal",
+          "closeButton": "a",
+          "closeDelayTime": 0.5,
+          "closeDelayFrames": 30
+        }
+      }
+    }
+  },
   "scriptEventDefaultPresets": {},
   "runSceneSelectionOnly": true,
   "spriteMode": "8x16",

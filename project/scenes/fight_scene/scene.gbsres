@@ -20,39 +20,6 @@
     {
       "command": "EVENT_SET_VALUE",
       "args": {
-        "variable": "6",
-        "value": {
-          "type": "constant",
-          "value": "6b59d959-f1c8-47cc-a49f-81fc340fc7c6"
-        }
-      },
-      "id": "e1e3b257-7726-458e-9814-dcb1846bf5a8"
-    },
-    {
-      "command": "EVENT_SET_VALUE",
-      "args": {
-        "variable": "7",
-        "value": {
-          "type": "number",
-          "value": 0
-        }
-      },
-      "id": "92811697-1579-45e8-9b71-c49f79d7e95a"
-    },
-    {
-      "command": "EVENT_SET_VALUE",
-      "args": {
-        "variable": "8",
-        "value": {
-          "type": "constant",
-          "value": "ee9e2f44-c8d5-4394-ae19-0ba676b8ba50"
-        }
-      },
-      "id": "d4b951e7-6072-4432-bfab-b48459497a52"
-    },
-    {
-      "command": "EVENT_SET_VALUE",
-      "args": {
         "variable": "5",
         "value": {
           "type": "number",
@@ -251,11 +218,11 @@
           "1"
         ],
         "cancelOnB": true,
-        "__section": "on_select",
+        "__section": "on_init",
         "on_select": "1",
         "variable": "9",
         "on_select_group": "player",
-        "__collapse": true,
+        "__collapse": false,
         "__comment": false
       },
       "children": {
@@ -673,7 +640,7 @@
     {
       "command": "MENU_JUMP_TO_MENU_STATE",
       "args": {
-        "menu_id": 3,
+        "menu_id": 1,
         "__collapse": false
       },
       "id": "5e358dab-37e8-478a-897c-1578705a9034"

@@ -246,14 +246,6 @@ const fields = [{
  * @param {import('/home/zone/.local/share/gb-studio/helpers.d.ts').Helpers} helpers 
  */
 const compile = (input, helpers) => {
-    // const expected = fields.map((x)=>x.key).filter((x)=>x)
-    // const actual = Object.keys(input)
-
-    // const missing = expected.filter((x)=>{
-    //     const in_actual = actual.includes(x)
-    //     return !in_actual
-    // })
-    // throw new Error(JSON.stringify(missing, null, 4))
     const options = [
         input.slot_1_view,
         input.slot_2_view,
@@ -318,15 +310,6 @@ const compile = (input, helpers) => {
         helpers._overlayWait(false, [".UI_WAIT_TEXT", ".UI_WAIT_WINDOW"])
     }
 
-    const clampedMenuIndex = (index) => {
-        if (index < 0) {
-            return 1;
-        }
-        if (index > input.slot_count - 1) {
-            return input.slot_count;
-        }
-        return index + 1;
-    };
 
     const on_init = [
         ...input.on_init,

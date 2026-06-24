@@ -113,11 +113,19 @@ const toASMCollisionGroup = (group) => {
  * @param {import('/home/zone/.local/share/gb-studio/helpers.d.ts').Helpers} helpers 
  */
 const compile = (input, helpers) => {
+
     if (input.compileSubScript === "on_init") {
+        const actors = helpers.options.scene.actors.filter((x)=>{
+            return x.collisionGroup == input.collisionGroup
+        }).sort((a,b)=>b.y-a.y)
+
         helpers._addComment("Actor Menu On Init")
-        helpers._stackPushConst(toASMCollisionGroup(input.collisionGroup))
+        actors.forEach((actor)=>{
+            helpers.actorPushById(actor.id)
+        })
+        helpers._stackPushConst(actors.length, "Actor Count")
         helpers._callNative("prepareActorMenuState")
-        helpers._stackPop(1)
+        helpers._stackPop(actors.length+1)
         return
     }
 
