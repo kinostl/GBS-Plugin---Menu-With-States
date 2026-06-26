@@ -76,19 +76,25 @@ void invokeMenuState(SCRIPT_CTX *THIS) BANKED {
 #define INPUT_UP_HELD (INPUT_UP_PRESSED)
 #define INPUT_DOWN_HELD (INPUT_DOWN_PRESSED)
 #endif
+#define clampedInput(x)                           \
+  if (x > 0)                                      \
+  {                                               \
+    *set_variable = x;                            \
+    *current_menu_screen_status = CHOICE_CHANGED; \
+  }
 
   if (INPUT_UP_HELD) {
-    *set_variable = current_menu_screen_item.iU;
-    *current_menu_screen_status = CHOICE_CHANGED;
+    clampedInput(current_menu_screen_item.iU)
   } else if (INPUT_DOWN_HELD) {
-    *set_variable = current_menu_screen_item.iD;
-    *current_menu_screen_status = CHOICE_CHANGED;
+    clampedInput(current_menu_screen_item.iD)
   } else if (INPUT_LEFT_PRESSED) {
-    *set_variable = current_menu_screen_item.iL;
-    *current_menu_screen_status = CHOICE_CHANGED;
+    clampedInput(current_menu_screen_item.iL)else
+    {
+      *set_variable = 1;
+      *current_menu_screen_status = CHOICE_CHANGED;
+    }
   } else if (INPUT_RIGHT_PRESSED) {
-    *set_variable = current_menu_screen_item.iR;
-    *current_menu_screen_status = CHOICE_CHANGED;
+    clampedInput(current_menu_screen_item.iR)
   } else if (INPUT_A_PRESSED) {
     if ((*set_variable == cmst.menu_items_count) &&
         (cmst.options & MENU_CANCEL_LAST)) {
