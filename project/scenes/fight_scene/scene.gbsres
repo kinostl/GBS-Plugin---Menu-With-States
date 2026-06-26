@@ -57,7 +57,7 @@
         "option8": "",
         "cancelOnB": false,
         "layout": "dialogue",
-        "__section": "on_cancel",
+        "__section": "on_select",
         "__collapse": false,
         "__comment": false,
         "slot_count": 4,
@@ -152,24 +152,50 @@
                     "text": [
                       "You flee..."
                     ],
-                    "__section": "text",
+                    "__section": "presets",
                     "avatarId": "",
-                    "minHeight": 4,
-                    "maxHeight": 7,
+                    "minHeight": 6,
+                    "maxHeight": 6,
                     "textX": 1,
                     "textY": 1,
                     "textHeight": 5,
                     "position": "bottom",
                     "clearPrevious": true,
                     "showFrame": "true",
-                    "speedIn": -1,
-                    "speedOut": -1,
-                    "closeWhen": "key",
+                    "speedIn": -3,
+                    "speedOut": -3,
+                    "closeWhen": "notModal",
                     "closeButton": "a",
                     "closeDelayTime": 0.5,
-                    "closeDelayFrames": 30
+                    "closeDelayFrames": 30,
+                    "__presetId": "cfd2c7c8-3b2a-46a6-ac89-3c47dacc0213"
                   },
                   "id": "3a457622-6e6a-4259-94ab-e6c348bbd631"
+                },
+                {
+                  "command": "EVENT_AWAIT_INPUT",
+                  "args": {
+                    "input": [
+                      "a"
+                    ]
+                  },
+                  "id": "2185b602-0f75-43b8-be42-12ebc25b1b63"
+                },
+                {
+                  "command": "EVENT_FADE_OUT",
+                  "args": {
+                    "speed": "2"
+                  },
+                  "id": "e382ce00-5c88-4ccf-9a26-5018ee37e0c5"
+                },
+                {
+                  "command": "EVENT_OVERLAY_MOVE_TO",
+                  "args": {
+                    "x": 0,
+                    "y": 18,
+                    "speed": -3
+                  },
+                  "id": "36912d62-a185-4b18-834c-da65ab9ac6f1"
                 },
                 {
                   "command": "EVENT_SWITCH_SCENE",
@@ -184,7 +210,7 @@
                       "value": 10
                     },
                     "direction": "",
-                    "fadeSpeed": "2"
+                    "fadeSpeed": 0
                   },
                   "id": "d216cd42-1960-43b0-b40c-550340b0e4b2"
                 }

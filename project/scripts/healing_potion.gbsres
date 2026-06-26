@@ -71,24 +71,34 @@
         "text": [
           "Removed all damage"
         ],
-        "__section": "text",
+        "__section": "presets",
         "avatarId": "",
-        "minHeight": 4,
-        "maxHeight": 7,
+        "minHeight": 6,
+        "maxHeight": 6,
         "textX": 1,
         "textY": 1,
         "textHeight": 5,
         "position": "bottom",
         "clearPrevious": true,
         "showFrame": "true",
-        "speedIn": -1,
-        "speedOut": -1,
-        "closeWhen": "key",
+        "speedIn": -3,
+        "speedOut": -3,
+        "closeWhen": "notModal",
         "closeButton": "a",
         "closeDelayTime": 0.5,
-        "closeDelayFrames": 30
+        "closeDelayFrames": 30,
+        "__presetId": "cfd2c7c8-3b2a-46a6-ac89-3c47dacc0213"
       },
       "id": "8aa28c90-becb-4920-aa3f-9a0cd597a91d"
+    },
+    {
+      "command": "EVENT_AWAIT_INPUT",
+      "args": {
+        "input": [
+          "a"
+        ]
+      },
+      "id": "a9e4fb00-817e-4896-ab36-d246d35cc3ef"
     }
   ]
 }
