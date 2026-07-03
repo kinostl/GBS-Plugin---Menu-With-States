@@ -6,7 +6,7 @@ This is a menu system for anyone making a game where menus matter a bit more tha
 
 ## Menu Scene Type Read Me
 
-If you're looking for the README of the actual plugin, [click here](./Menu Scene Type/README.md).
+If you're looking for the README of the actual plugin, [click here](Menu%20Scene%20Type/README.md)
 
 # Folder Structure
 
