@@ -16,7 +16,7 @@ What it says on the tin. Open this up in GBS to take a look at how its used. Exa
 
 ## Menu Scene Type
 
-The actual plugin. Copy this into your plugins folder if you want to use it, or grab it from the repository after its been merged in.
+The actual plugin. Copy this into your plugins folder if you want to use it, or grab it from the repository after its been merged in. You can also get a zip of the plugin itself from the Releases.
 
 ## Notebook
 
